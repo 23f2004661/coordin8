@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordin8 — Multimodal Hierarchical RAG Knowledge System</title>
+  <meta name="description" content="Heterogeneous multimodal knowledge ingestion, canonical document models, and hierarchical RAG.">
+  <link rel="stylesheet" href="css/styles.css?v=2.2">
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">C8</div>
+      <div>
+        <div class="brand-title">Coordin8</div>
+        <div class="brand-subtitle">Hierarchical RAG</div>
+      </div>
+    </div>
+
+    <ul class="nav-menu">
+      <li class="nav-item active" data-view="dashboard" id="nav-dashboard">
+        <svg viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        <span>Dashboard</span>
+      </li>
+      <li class="nav-item" data-view="documents" id="nav-documents">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span>Documents</span>
+      </li>
+      <li class="nav-item" data-view="upload" id="nav-upload">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <span>Upload & Ingest</span>
+      </li>
+      <li class="nav-item" data-view="search" id="nav-search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span>Search & Answer</span>
+      </li>
+      <li class="nav-item" data-view="inspector" id="nav-inspector">
+        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <span>Provenance Inspector</span>
+      </li>
+    </ul>
+
+    <div class="server-status">
+      <div class="status-dot" id="server-indicator"></div>
+      <span id="server-label">Checking Backend...</span>
+    </div>
+  </aside>
+
+  <!-- Main Application Wrapper -->
+  <div class="main-wrapper">
+    <!-- Topbar -->
+    <header class="topbar">
+      <h1 class="page-title" id="current-page-title">Dashboard</h1>
+      <div class="topbar-actions">
+        <button class="btn btn-secondary" onclick="document.getElementById('nav-upload').click()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Ingest File
+        </button>
+        <button class="btn btn-primary" onclick="document.getElementById('nav-search').click()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Ask Knowledge Base
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="content-area">
+      <!-- 1. DASHBOARD VIEW -->
+      <section class="view-panel active" id="panel-dashboard">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-label">Indexed Documents</span>
+            <span class="stat-value" id="stat-docs">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Canonical Chunks</span>
+            <span class="stat-value" id="stat-chunks">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Vector Points (Qdrant)</span>
+            <span class="stat-value" id="stat-vectors">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Evaluation Recall@5</span>
+            <span class="stat-value" style="color: var(--success);">100%</span>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-header">
+            <h2 class="card-title">Modalities Ingested</h2>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <span class="badge badge-pdf" style="padding: 6px 12px; font-size: 13px;">PDF (Native + Unlimited-OCR)</span>
+            <span class="badge badge-pptx" style="padding: 6px 12px; font-size: 13px;">PPTX (Slide Structure + VLM)</span>
+            <span class="badge badge-xlsx" style="padding: 6px 12px; font-size: 13px;">XLSX (Schema + Safe Operations)</span>
+            <span class="badge badge-docx" style="padding: 6px 12px; font-size: 13px;">DOCX (Word XML Structure)</span>
+            <span class="badge badge-ready" style="padding: 6px 12px; font-size: 13px;">TRANSCRIPTS (Turns + Timestamps)</span>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-header">
+            <h2 class="card-title">Recent Ingestion Records</h2>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Document Title</th>
+                  <th>Format</th>
+                  <th>File Size</th>
+                  <th>Status</th>
+                  <th>Canonical Summary</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="documents-tbody">
+                <!-- Injected via app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. DOCUMENTS VIEW -->
+      <section class="view-panel" id="panel-documents">
+        <div class="card-panel">
+          <div class="card-header">
+            <h2 class="card-title">Registered Canonical Documents</h2>
+            <button class="btn btn-secondary" onclick="initDocumentsTable()">Refresh</button>
+          </div>
+          <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
+            Every uploaded file is transformed into a canonical document hierarchy preserving sections, structural blocks, assets, and lineage.
+          </p>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Document Title</th>
+                  <th>Format</th>
+                  <th>File Size</th>
+                  <th>Status</th>
+                  <th>Canonical Summary</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="panel-documents-tbody">
+                <!-- Injected via app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. UPLOAD & INGESTION VIEW -->
+      <section class="view-panel" id="panel-upload">
+        <div class="card-panel">
+          <div class="card-header">
+            <h2 class="card-title">Ingest Heterogeneous Files</h2>
+          </div>
+          <div class="dropzone" id="file-dropzone">
+            <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/>
+            </svg>
+            <div style="font-size: 16px; font-weight: 600; margin-bottom: 4px;">Click or drag files to this area to ingest</div>
+            <div style="font-size: 12px; color: var(--text-muted);">
+              Supports PDF, DOCX, PPTX, XLSX, Images (PNG/JPG), and Transcripts (VTT/TXT).
+            </div>
+            <input type="file" id="file-input" style="display: none;" accept=".pdf,.docx,.pptx,.xlsx,.png,.jpg,.jpeg,.vtt,.txt,.md">
+          </div>
+
+          <div id="upload-status" style="display: none; margin-top: 16px; padding: 14px 18px; border-radius: var(--radius-sm); font-size: 13px;"></div>
+
+          <div style="margin-top: 16px;">
+            <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Ingestion Pipeline Stages (Section 16)</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; font-size: 12px; font-family: var(--font-mono);">
+              <div style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center;">1. REGISTERED</div>
+              <div style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center;">2. EXTRACTING</div>
+              <div style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center;">3. NORMALIZED</div>
+              <div style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center;">4. ENRICHING</div>
+              <div style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center;">5. CHUNKED</div>
+              <div style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center;">6. INDEXING</div>
+              <div style="background: hsla(158, 64%, 52%, 0.1); color: var(--success); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--success); text-align: center; font-weight: 600;">7. READY</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. SEARCH & GROUNDED ANSWER VIEW -->
+      <section class="view-panel" id="panel-search">
+        <div class="card-panel">
+          <div class="card-header">
+            <h2 class="card-title">Hierarchical Retrieval & Grounded Answer</h2>
+          </div>
+          
+          <div class="chat-history" id="chat-history">
+            <div class="chat-message chat-bot">
+              <div>Hello! I am <strong>Coordin8</strong>. Ask me any question across your uploaded meeting transcripts, presentations, spreadsheets, and documents. Every claim is strictly grounded with source citations.</div>
+            </div>
+          </div>
+
+          <div class="search-box-container">
+            <input type="text" class="input-text" id="search-query-input" placeholder="e.g., What were the reasons for moving the API gateway migration to Q4?">
+            <button class="btn btn-primary" id="btn-ask-query">Ask Coordin8</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. PROVENANCE INSPECTOR VIEW (Section 26 Developer View) -->
+      <section class="view-panel" id="panel-inspector">
+        <div class="card-panel">
+          <div class="card-header">
+            <h2 class="card-title">Developer Provenance Inspector (Section 26)</h2>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted);">
+            Inspects the retrieval pipeline lineage: <code>document &rarr; section &rarr; chunk</code>, dense and sparse retrieval scores, after-fusion rank, and source provenance.
+          </p>
+          <div class="inspector-tree" id="inspector-list">
+            <!-- Injected via app.js -->
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/app.js?v=2026.1"></script>
+</body>
+</html>
