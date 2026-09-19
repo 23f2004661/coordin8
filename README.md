@@ -55,40 +55,120 @@ coordin8/
 
 ---
 
-## Quickstart
+## Starting the System (Step-by-Step)
 
-### 1. Launch Infrastructure
+Whenever you start working on Coordin8, follow these 3 steps across separate terminal windows:
+
+### Step 1: Start Infrastructure (Docker)
+In your root project directory (`coordin8/`), spin up the Qdrant vector database and PostgreSQL:
 ```powershell
-docker-compose up -d
+docker compose up -d
+```
+> *(Or `docker-compose up -d` on older Docker installations)*
+
+To verify that the containers are healthy and running:
+```powershell
+docker compose ps
 ```
 
-### 2. Backend Setup
+---
+
+### Step 2: Start Backend Server (FastAPI)
+In a new terminal window, activate your virtual environment and start the API server:
+
+**Windows (PowerShell):**
 ```powershell
 cd backend
-# Create or activate virtual environment
 .\venv\Scripts\Activate.ps1
-
-# Install requirements
-pip install -r requirements.txt
-
-# Copy configuration
-cp ../.env.example .env
-
-# Run development server
 python main.py
 ```
-The backend API documentation will be available at `http://localhost:8000/docs`.
 
-### 3. Isolated OCR Service (Optional for Scanned Documents)
+**Linux / macOS:**
+```bash
+cd backend
+source venv/bin/activate
+python main.py
+```
+
+- API Server: `http://localhost:8000`
+- Interactive Swagger UI: `http://localhost:8000/docs`
+- ReDoc UI: `http://localhost:8000/redoc`
+
+---
+
+### Step 3: Start Frontend Dashboard
+In another terminal window, serve the static web dashboard:
+
+```powershell
+cd frontend
+python -m http.server 3000
+```
+
+- Dashboard UI: `http://localhost:3000`
+- The frontend automatically communicates with the backend at `http://localhost:8000`.
+
+---
+
+### Step 4 (Optional): Start Isolated OCR Service
+If processing scanned documents or high-volume OCR with the isolated Baidu Unlimited-OCR microservice:
+
 ```powershell
 cd services/unlimited_ocr
 python server.py
 ```
 
-### 4. Frontend
-Open `frontend/index.html` in any modern web browser or serve with a lightweight local server:
-```powershell
-cd frontend
-python -m http.server 3000
-```
-Visit `http://localhost:3000` to access the dashboard and provenance inspector.
+---
+
+## Service Summary & Ports
+
+| Service | Address | Purpose |
+| :--- | :--- | :--- |
+| **Frontend Web Dashboard** | `http://localhost:3000` | UI, search, upload & provenance inspector |
+| **Backend REST API** | `http://localhost:8000` | Core API & business logic |
+| **API Documentation** | `http://localhost:8000/docs` | Swagger OpenAPI interactive docs |
+| **Qdrant Vector DB** | `http://localhost:6333` | REST vector search (`/dashboard` for web UI) |
+| **Qdrant gRPC** | `localhost:6334` | High-throughput vector indexing |
+| **PostgreSQL Database** | `localhost:5432` | Relational document metadata & states |
+| **Unlimited OCR (Opt.)**| `http://localhost:8001` | Isolated GPU-optimized OCR service |
+
+---
+
+## Stopping the System
+
+When you are done working:
+1. Press `Ctrl + C` in both the Backend and Frontend terminal windows.
+2. Stop the Docker containers from the `coordin8/` directory:
+   ```powershell
+   docker compose down
+   ```
+
+---
+
+## First-Time Installation & Setup
+
+If you are setting up the project for the very first time on a new machine:
+
+1. **Clone and enter repository**:
+   ```powershell
+   git clone <repo_url>
+   cd coordin8
+   ```
+
+2. **Configure environment variables**:
+   ```powershell
+   cp .env.example .env
+   cp .env.example backend/.env
+   ```
+   *Edit `.env` or `backend/.env` to configure your LLM provider (`OPENAI_API_KEY` or local LM Studio endpoint).*
+
+3. **Set up backend virtual environment**:
+   ```powershell
+   cd backend
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
+
+4. **Launch containers and run**:
+   Follow the [Starting the System](#starting-the-system-step-by-step) steps above.

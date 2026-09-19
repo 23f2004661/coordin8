@@ -23,6 +23,17 @@ class SummaryGenerator:
             f"It provides operational details, background information, and source evidence."
         )
 
+        content_preview = ""
+        for s in document.sections:
+            for b in s.blocks:
+                if b.content and not b.content.startswith("!["):
+                    content_preview += " " + b.content[:250].replace("\n", " ")
+            if len(content_preview) > 300:
+                break
+
+        if content_preview.strip():
+            summary_text += f" Content excerpt: {content_preview.strip()[:250]}..."
+
         return DocumentSummary(
             summary=summary_text,
             main_topics=[title] + [s.title for s in document.sections[:3]],

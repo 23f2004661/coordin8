@@ -36,20 +36,6 @@ class ChunkRetriever:
         parsed_query: ParsedQuery,
         limit: int = 15,
     ) -> list[RetrievedChunk]:
-        doc_ids = [s.document_id for s in candidate_sections if s.document_id]
-
-        if doc_ids:
-            chunks = db.query(ChunkRecord).filter(ChunkRecord.document_id.in_(doc_ids)).all()
-        else:
-            chunks = db.query(ChunkRecord).limit(100).all()
-
-        if not chunks:
-            # Fallback: load any existing chunks in DB
-            chunks = db.query(ChunkRecord).limit(limit * 2).all()
-
-        if not chunks:
-            return []
-
         # Vector search in Qdrant if running
         qdrant_scores: dict[str, float] = {}
         try:
@@ -62,6 +48,26 @@ class ChunkRetriever:
                         qdrant_scores[cid] = float(h.get("score", 0.0))
         except Exception as exc:
             logger.warning("Qdrant chunk search failed: %s", exc)
+
+        doc_ids = [s.document_id for s in candidate_sections if s.document_id]
+
+        chunks_map: dict[str, ChunkRecord] = {}
+        if doc_ids:
+            for chk in db.query(ChunkRecord).filter(ChunkRecord.document_id.in_(doc_ids)).all():
+                chunks_map[chk.chunk_id] = chk
+
+        if qdrant_scores:
+            extra = db.query(ChunkRecord).filter(ChunkRecord.chunk_id.in_(list(qdrant_scores.keys()))).all()
+            for chk in extra:
+                chunks_map[chk.chunk_id] = chk
+
+        if not chunks_map:
+            for chk in db.query(ChunkRecord).limit(limit * 3).all():
+                chunks_map[chk.chunk_id] = chk
+
+        chunks = list(chunks_map.values())
+        if not chunks:
+            return []
 
         q_lower = parsed_query.raw_query.lower()
         scored_chunks: list[tuple[float, ChunkRecord]] = []
