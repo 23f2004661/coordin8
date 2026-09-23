@@ -60,3 +60,16 @@ class ArtifactStorage:
         if path.exists():
             return path.read_text(encoding="utf-8")
         return None
+
+    def get_canonical_json(self, document_id: str) -> str | None:
+        path = self.derived_dir / document_id / "canonical.json"
+        if path.exists():
+            return path.read_text(encoding="utf-8")
+        return None
+
+    def delete_document_artifacts(self, document_id: str) -> None:
+        import shutil
+        for directory in [self.raw_dir, self.derived_dir, self.renders_dir]:
+            folder = directory / document_id
+            if folder.exists():
+                shutil.rmtree(folder, ignore_errors=True)
