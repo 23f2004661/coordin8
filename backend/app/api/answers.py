@@ -52,11 +52,22 @@ def generate_grounded_answer(request: AnswerRequest, db: Session = Depends(get_d
     answer = llm_client.generate_answer(request.query, context.formatted_prompt_context)
 
     citations = [e.citation for e in context.evidence_units]
+    evidence_items = [
+        {
+            "evidence_id": e.evidence_id,
+            "document_id": e.document_id,
+            "citation": e.citation,
+            "score": round(e.score, 4),
+            "content": e.content,
+        }
+        for e in context.evidence_units
+    ]
 
     return {
         "query": request.query,
         "answer": answer,
         "citations": citations,
+        "evidence_items": evidence_items,
         "evidence_used": len(context.evidence_units),
         "estimated_context_tokens": context.total_estimated_tokens,
     }

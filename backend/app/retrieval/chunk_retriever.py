@@ -20,6 +20,12 @@ class RetrievedChunk:
     slide: int | None
     sheet: str | None
     score: float
+    dense_score: float = 0.0
+    sparse_score: float = 0.0
+    retriever_type: str = "Dense (Qdrant BGE-M3)"
+    fusion_rank: int = 1
+    reranker_score: float = 0.0
+    provenance: str = ""
 
 
 class ChunkRetriever:
@@ -70,30 +76,61 @@ class ChunkRetriever:
             return []
 
         q_lower = parsed_query.raw_query.lower()
-        scored_chunks: list[tuple[float, ChunkRecord]] = []
+        scored_chunks: list[tuple[float, float, float, str, str, ChunkRecord]] = []
 
         for chk in chunks:
-            score = qdrant_scores.get(chk.chunk_id, 0.2)
+            has_qdrant = chk.chunk_id in qdrant_scores
+            dense = float(qdrant_scores.get(chk.chunk_id, 0.0))
+            sparse = 0.0
             content_lower = (chk.content or "").lower()
 
             # Exact phrase match boost
             if q_lower in content_lower:
-                score += 0.4
+                sparse += 0.5
 
             # Keyword matches
             for kw in parsed_query.keywords:
                 if kw.lower() in content_lower:
-                    score += 0.15
+                    sparse += 0.2
 
             if chk.summary and any(kw.lower() in chk.summary.lower() for kw in parsed_query.keywords):
-                score += 0.1
+                sparse += 0.15
 
-            scored_chunks.append((score, chk))
+            sparse = min(1.0, sparse)
+
+            if has_qdrant and sparse > 0:
+                retriever_type = "Hybrid (Dense + Lexical)"
+                total_score = min(1.0, (dense * 0.6) + (sparse * 0.4))
+            elif has_qdrant:
+                retriever_type = "Dense (Qdrant BGE-M3)"
+                total_score = min(1.0, dense)
+            elif sparse > 0:
+                retriever_type = "Lexical BM25 / Keyword"
+                total_score = min(1.0, 0.3 + (sparse * 0.7))
+            else:
+                retriever_type = "Structural Context"
+                total_score = 0.2
+
+            # Determine human-readable provenance location
+            if chk.page_number is not None:
+                prov = f"Page {chk.page_number}"
+            elif chk.slide_number is not None:
+                prov = f"Slide {chk.slide_number}"
+            elif chk.sheet_name:
+                prov = f"Sheet '{chk.sheet_name}'"
+            elif chk.content_type == "image":
+                prov = "Image OCR / Visual Region"
+            elif chk.section_id:
+                prov = f"Section {chk.section_id}"
+            else:
+                prov = "Main Document Content"
+
+            scored_chunks.append((total_score, dense, sparse, retriever_type, prov, chk))
 
         scored_chunks.sort(key=lambda x: x[0], reverse=True)
 
         retrieved = []
-        for score, chk in scored_chunks[:limit]:
+        for rank, (score, dense, sparse, rtype, prov, chk) in enumerate(scored_chunks[:limit], start=1):
             retrieved.append(
                 RetrievedChunk(
                     chunk_id=chk.chunk_id,
@@ -104,6 +141,12 @@ class ChunkRetriever:
                     slide=chk.slide_number,
                     sheet=chk.sheet_name,
                     score=min(1.0, score),
+                    dense_score=round(dense, 4),
+                    sparse_score=round(sparse, 4),
+                    retriever_type=rtype,
+                    fusion_rank=rank,
+                    reranker_score=round(score, 4),
+                    provenance=prov,
                 )
             )
         return retrieved

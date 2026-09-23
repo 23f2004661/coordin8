@@ -3,6 +3,7 @@
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
+from app.db.models import DocumentRecord
 from app.db.session import get_db
 from app.retrieval.chunk_retriever import ChunkRetriever
 from app.retrieval.document_retriever import DocumentRetriever
@@ -28,7 +29,7 @@ class SearchRequest(BaseModel):
 
 @router.post("/search")
 def hierarchical_search(request: SearchRequest, db: Session = Depends(get_db)):
-    """Coarse-to-fine hierarchical hybrid search across knowledge base."""
+    """Coarse-to-fine hierarchical hybrid search across knowledge base with provenance lineage."""
     parsed = parser.parse(request.query)
 
     # Stage 2: Document summaries
@@ -44,24 +45,41 @@ def hierarchical_search(request: SearchRequest, db: Session = Depends(get_db)):
     fused = fusion.fuse_ranks(chunks, [], top_k=request.limit)
     final = reranker.rerank(request.query, fused, top_n=request.limit)
 
+    results = []
+    for rank, c in enumerate(final, start=1):
+        doc_record = db.query(DocumentRecord).filter(DocumentRecord.document_id == c.document_id).first()
+        doc_title = doc_record.title if doc_record else c.document_id
+        file_type = doc_record.file_type if doc_record else "unknown"
+
+        prov_loc = c.provenance or "Main Content"
+        prov_str = f"{doc_title} — {prov_loc}"
+
+        results.append({
+            "chunk_id": c.chunk_id,
+            "document_id": c.document_id,
+            "document_title": doc_title,
+            "file_type": file_type,
+            "section_id": c.section_id or f"sec_{c.document_id}",
+            "lineage": f"{doc_title} → {c.section_id or 'section'} → {c.chunk_id}",
+            "content": c.content,
+            "page": c.page,
+            "slide": c.slide,
+            "sheet": c.sheet,
+            "score": round(c.score, 4),
+            "dense_score": round(c.dense_score, 4),
+            "sparse_score": round(c.sparse_score, 4),
+            "retriever_type": c.retriever_type,
+            "fusion_rank": c.fusion_rank or rank,
+            "reranker_score": round(c.reranker_score or c.score, 4),
+            "provenance": prov_str,
+        })
+
     return {
         "query": request.query,
         "intent": parsed.intent,
         "modalities": parsed.modalities,
         "candidate_documents": len(candidate_docs),
-        "results": [
-            {
-                "chunk_id": c.chunk_id,
-                "document_id": c.document_id,
-                "content": c.content,
-                "section_id": c.section_id,
-                "page": c.page,
-                "slide": c.slide,
-                "sheet": c.sheet,
-                "score": round(c.score, 4),
-            }
-            for c in final
-        ],
+        "results": results,
     }
 
 

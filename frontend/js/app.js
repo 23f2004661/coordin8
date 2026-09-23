@@ -5,72 +5,8 @@
 
 const API_BASE = 'http://localhost:8000/api';
 
-// Sample fallback mock data when backend is not reachable
-const MOCK_DOCUMENTS = [
-  {
-    document_id: 'doc_arch_review',
-    title: 'Architecture Review 2026',
-    file_type: 'pdf',
-    file_size_bytes: 2457600,
-    status: 'READY',
-    summary: 'Quarterly architecture overview covering API Gateway migration, Redis caching, and microservices.',
-    created_at: '2026-09-15T10:30:00Z',
-  },
-  {
-    document_id: 'doc_product_strategy',
-    title: 'Product Strategy Q3',
-    file_type: 'pptx',
-    file_size_bytes: 4194304,
-    status: 'READY',
-    summary: 'Executive presentation outlining Q3-Q4 roadmap milestones and dependency mappings on Slide 17.',
-    created_at: '2026-09-14T14:15:00Z',
-  },
-  {
-    document_id: 'doc_sales_2026',
-    title: 'Sales Q2 Actuals',
-    file_type: 'xlsx',
-    file_size_bytes: 1048576,
-    status: 'READY',
-    summary: 'Workbook containing transaction level revenue by state and region with gross margins.',
-    created_at: '2026-09-13T09:00:00Z',
-  },
-  {
-    document_id: 'doc_team_sync',
-    title: 'Sprint 12 Migration Sync',
-    file_type: 'transcript',
-    file_size_bytes: 512000,
-    status: 'READY',
-    summary: 'Engineering discussion regarding moving API Gateway migration to Q4 due to dependency on auth service.',
-    created_at: '2026-09-12T16:45:00Z',
-  },
-];
+// Global constants
 
-const MOCK_INSPECTOR_ITEMS = [
-  {
-    document_id: 'doc_team_sync',
-    section_id: 'sec_migration_discussion',
-    chunk_id: 'chk_transcript_turn_42',
-    content: '[00:18:32] Priya: We should move the migration to Q4.\n[00:18:51] Arjun: The main dependency is the API gateway upgrade.',
-    provenance: 'Meeting transcript — 00:18:32–00:21:10',
-    retriever_type: 'Sparse BM25 + Dense BGE-M3',
-    dense_score: 0.89,
-    sparse_score: 0.92,
-    fusion_rank: 1,
-    reranker_score: 0.954,
-  },
-  {
-    document_id: 'doc_product_strategy',
-    section_id: 'sec_slide_17',
-    chunk_id: 'chk_slide_17_bullets',
-    content: 'Slide 17: System Architecture Diagram showing API gateway dependency on Redis cache.',
-    provenance: 'Product Strategy.pptx — Slide 17',
-    retriever_type: 'Dense BGE-M3',
-    dense_score: 0.84,
-    sparse_score: 0.78,
-    fusion_rank: 2,
-    reranker_score: 0.887,
-  },
-];
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
@@ -147,10 +83,17 @@ async function initDocumentsTable() {
       if (statChunks) statChunks.textContent = '0';
       if (statVectors) statVectors.textContent = '0';
     } else {
-      renderDocuments(MOCK_DOCUMENTS, tbody);
-      if (statDocs) statDocs.textContent = MOCK_DOCUMENTS.length;
-      if (statChunks) statChunks.textContent = '342';
-      if (statVectors) statVectors.textContent = '684';
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 32px 16px;">
+            <div style="font-size: 14px; font-weight: 500; color: #f87171; margin-bottom: 4px;">⚠️ Backend Disconnected</div>
+            <div style="font-size: 12px; color: var(--text-dim);">Unable to fetch documents from <code>${API_BASE}/documents</code>. Please start the backend server.</div>
+          </td>
+        </tr>
+      `;
+      if (statDocs) statDocs.textContent = '—';
+      if (statChunks) statChunks.textContent = '—';
+      if (statVectors) statVectors.textContent = '—';
     }
   });
 }
@@ -203,26 +146,16 @@ function initSearchAndAnswer() {
       });
       if (response.ok) {
         const data = await response.json();
-        appendChatMessage('bot', data.answer, data.citations);
+        appendChatMessage('bot', data.answer, data.citations, query);
+        return;
+      } else {
+        const err = await response.json().catch(() => ({}));
+        appendChatMessage('bot', `⚠️ Backend error: ${err.detail || response.statusText || 'Unable to generate answer from knowledge base.'}`);
         return;
       }
     } catch (e) {
       console.warn('API answer failed:', e);
-    }
-
-    // High fidelity fallback demonstration response
-    if (query.toLowerCase().includes('migration') || query.toLowerCase().includes('gateway')) {
-      appendChatMessage(
-        'bot',
-        'The API gateway migration was moved to Q4 due to an architectural dependency on the API gateway and authentication service upgrades discussed during the architecture review.',
-        ['Meeting transcript — 00:18:32–00:21:10', 'Product Strategy.pptx — Slide 17']
-      );
-    } else {
-      appendChatMessage(
-        'bot',
-        `Retrieved canonical evidence for "${query}". The grounded knowledge backend identified relevant sections with high reranker confidence.`,
-        ['Quarterly Business Review.pdf — Page 4', 'Sales.xlsx — Sheet Sales!B2042:H5831']
-      );
+      appendChatMessage('bot', `⚠️ Could not reach the backend at ${API_BASE}/answer. Please verify the backend server is running on port 8000.`);
     }
   };
 
@@ -232,20 +165,30 @@ function initSearchAndAnswer() {
   });
 }
 
-function appendChatMessage(sender, text, citations = []) {
+function appendChatMessage(sender, text, citations = [], queryForInspector = '') {
   const chatHistory = document.getElementById('chat-history');
   if (!chatHistory) return;
 
   const msgDiv = document.createElement('div');
   msgDiv.className = `chat-message chat-${sender}`;
 
-  let contentHtml = `<div>${text}</div>`;
+  let contentHtml = `<div>${text ? text.replace(/\n/g, '<br/>') : ''}</div>`;
   if (citations && citations.length > 0) {
-    contentHtml += `<div style="margin-top: 8px;">`;
+    contentHtml += `<div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">`;
     citations.forEach(c => {
-      contentHtml += `<span class="citation-pill">🔖 ${c}</span>`;
+      contentHtml += `<span class="citation-pill" title="Click to trace provenance in Developer Inspector" onclick="openInspectorWithQuery('${escapeHtml(c)}')">🔖 ${escapeHtml(c)}</span>`;
     });
     contentHtml += `</div>`;
+  }
+
+  if (sender === 'bot' && queryForInspector) {
+    contentHtml += `
+      <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid hsla(220, 20%, 25%, 0.4);">
+        <button class="btn btn-secondary" style="font-size: 11px; padding: 4px 10px;" onclick="openInspectorWithQuery('${escapeHtml(queryForInspector)}')">
+          🔍 Inspect Retrieval Lineage in Inspector &rarr;
+        </button>
+      </div>
+    `;
   }
 
   msgDiv.innerHTML = contentHtml;
@@ -255,32 +198,313 @@ function appendChatMessage(sender, text, citations = []) {
 
 // Developer Provenance Inspector View (Section 26)
 function initInspectorView() {
+  const tabQuery = document.getElementById('tab-mode-query');
+  const tabDoc = document.getElementById('tab-mode-doc');
+  const queryControls = document.getElementById('inspector-query-controls');
+  const docControls = document.getElementById('inspector-doc-controls');
+  const queryInput = document.getElementById('inspector-query-input');
+  const inspectBtn = document.getElementById('btn-inspect-query');
+  const exploreDocBtn = document.getElementById('btn-explore-doc');
+  const docSelect = document.getElementById('inspector-doc-select');
+  const chipBtns = document.querySelectorAll('.inspector-chip-btn');
+
+  // Mode tab switching
+  if (tabQuery && tabDoc) {
+    tabQuery.addEventListener('click', () => {
+      tabQuery.classList.add('active');
+      tabDoc.classList.remove('active');
+      if (queryControls) queryControls.style.display = 'block';
+      if (docControls) docControls.style.display = 'none';
+    });
+
+    tabDoc.addEventListener('click', () => {
+      tabDoc.classList.add('active');
+      tabQuery.classList.remove('active');
+      if (queryControls) queryControls.style.display = 'none';
+      if (docControls) docControls.style.display = 'block';
+      populateDocSelect();
+    });
+  }
+
+  // Quick chip buttons
+  chipBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const q = btn.getAttribute('data-query');
+      if (queryInput) queryInput.value = q;
+      inspectQuery(q);
+    });
+  });
+
+  // Query search button & Enter key
+  if (inspectBtn && queryInput) {
+    inspectBtn.addEventListener('click', () => {
+      const q = queryInput.value.trim();
+      if (q) inspectQuery(q);
+    });
+    queryInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const q = queryInput.value.trim();
+        if (q) inspectQuery(q);
+      }
+    });
+  }
+
+  // Document explore button
+  if (exploreDocBtn && docSelect) {
+    exploreDocBtn.addEventListener('click', () => {
+      const docId = docSelect.value;
+      if (docId) inspectDocumentHierarchy(docId);
+    });
+  }
+
+  // Initial load
+  populateDocSelect().then(() => {
+    if (queryInput && !queryInput.value) {
+      queryInput.value = 'walmart receipt total';
+      inspectQuery('walmart receipt total');
+    }
+  });
+}
+
+async function populateDocSelect() {
+  const docSelect = document.getElementById('inspector-doc-select');
+  if (!docSelect) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/documents`);
+    if (res.ok) {
+      const docs = await res.json();
+      if (docs && docs.length > 0) {
+        docSelect.innerHTML = docs.map(d =>
+          `<option value="${d.document_id}">${escapeHtml(d.title)} (${(d.file_type || 'doc').toUpperCase()}) — ${d.document_id}</option>`
+        ).join('');
+        return;
+      } else {
+        docSelect.innerHTML = '<option value="">No documents found in knowledge base</option>';
+        return;
+      }
+    }
+  } catch (e) {
+    console.warn('Failed to load documents for selector:', e);
+  }
+
+  docSelect.innerHTML = '<option value="">Backend disconnected</option>';
+}
+
+async function inspectQuery(query) {
   const container = document.getElementById('inspector-list');
+  const summaryBar = document.getElementById('inspector-summary-bar');
   if (!container) return;
 
+  container.innerHTML = `
+    <div style="text-align: center; padding: 32px; color: var(--text-muted);">
+      <div style="font-size: 20px; margin-bottom: 8px;">⏳</div>
+      <div>Running hierarchical retrieval pipeline across knowledge base...</div>
+      <div style="font-size: 11px; color: var(--text-dim); margin-top: 4px;">Searching document summaries &rarr; candidate sections &rarr; fine chunk scoring &rarr; RRF &rarr; reranking</div>
+    </div>
+  `;
+
+  try {
+    const res = await fetch(`${API_BASE}/search`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: query, limit: 10 }),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      renderQueryInspectionResults(data, container, summaryBar);
+      return;
+    }
+  } catch (err) {
+    console.warn('Live search inspection failed:', err);
+  }
+
+  // If backend unavailable
+  if (summaryBar) summaryBar.style.display = 'none';
+  container.innerHTML = `
+    <div style="text-align: center; padding: 32px; color: var(--text-muted); background: hsla(0, 84%, 60%, 0.08); border: 1px solid #ef4444; border-radius: var(--radius-sm);">
+      <div style="font-size: 16px; font-weight: 600; margin-bottom: 6px; color: #f87171;">⚠️ Backend Search Unavailable</div>
+      <div style="font-size: 12px; color: var(--text-main);">Could not connect to <code>${API_BASE}/search</code>. Please ensure your backend server is running on port 8000.</div>
+    </div>
+  `;
+}
+
+function renderQueryInspectionResults(data, container, summaryBar) {
+  if (summaryBar) {
+    summaryBar.style.display = 'flex';
+    summaryBar.innerHTML = `
+      <div><strong>Query:</strong> "${escapeHtml(data.query)}"</div>
+      <div><strong>Parsed Intent:</strong> <code style="color: var(--accent);">${escapeHtml(data.intent || 'information_retrieval')}</code></div>
+      <div><strong>Candidate Docs Scanned:</strong> ${data.candidate_documents || 0}</div>
+      <div><strong>Ranked Chunks:</strong> ${data.results ? data.results.length : 0}</div>
+    `;
+  }
+
+  if (!data.results || data.results.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 40px 16px; color: var(--text-muted);">
+        <div style="font-size: 16px; font-weight: 500; margin-bottom: 6px;">No chunks matched this query</div>
+        <div style="font-size: 12px; color: var(--text-dim);">Try broader keywords or inspect a document directly in the "Document Structure & Chunks" tab.</div>
+      </div>
+    `;
+    return;
+  }
+
   container.innerHTML = '';
-  MOCK_INSPECTOR_ITEMS.forEach(item => {
+  data.results.forEach((r, idx) => {
     const card = document.createElement('div');
     card.className = 'inspector-node';
+
+    const ftype = (r.file_type || 'doc').toLowerCase();
+    const locIcon = ftype === 'pdf' ? '📄' : (ftype === 'xlsx' ? '📊' : (ftype === 'pptx' ? '📽️' : (ftype === 'image' ? '🖼️' : '📝')));
+
     card.innerHTML = `
       <div class="inspector-header">
-        <span>Lineage: <strong>${item.document_id}</strong> &rarr; ${item.section_id} &rarr; ${item.chunk_id}</span>
-        <span class="inspector-score">Rerank Score: ${item.reranker_score}</span>
+        <div class="lineage-badge">
+          <span>${locIcon}</span>
+          <span class="badge badge-${ftype}">${ftype.toUpperCase()}</span>
+          <strong>${escapeHtml(r.document_title || r.document_id)}</strong>
+          <span class="lineage-arrow">&rarr;</span>
+          <span>${escapeHtml(r.section_id)}</span>
+          <span class="lineage-arrow">&rarr;</span>
+          <code style="color: var(--accent);">${escapeHtml(r.chunk_id)}</code>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span class="badge" style="background: hsla(217, 91%, 60%, 0.15); color: var(--accent); border: 1px solid hsla(217, 91%, 60%, 0.3);">
+            RRF Rank #${r.fusion_rank || (idx + 1)}
+          </span>
+          <span class="badge badge-ready">Score: ${r.score}</span>
+        </div>
       </div>
-      <div style="background: var(--bg-primary); padding: 10px; border-radius: var(--radius-sm); margin-bottom: 8px; color: var(--text-main);">
-        ${item.content.replace(/\n/g, '<br/>')}
-      </div>
-      <div style="display: flex; gap: 16px; font-size: 11px; color: var(--text-muted); flex-wrap: wrap;">
-        <div><strong>Retriever:</strong> ${item.retriever_type}</div>
-        <div><strong>Dense:</strong> ${item.dense_score}</div>
-        <div><strong>Sparse:</strong> ${item.sparse_score}</div>
-        <div><strong>Fusion Rank:</strong> #${item.fusion_rank}</div>
-        <div><strong>Source Provenance:</strong> <span style="color: var(--accent);">${item.provenance}</span></div>
+
+      <div class="inspector-content-box">${escapeHtml(r.content)}</div>
+
+      <div class="score-pills-grid">
+        <div class="score-pill-item">
+          <span>Retriever:</span>
+          <span class="score-pill-val">${escapeHtml(r.retriever_type || 'Hybrid')}</span>
+        </div>
+        <div class="score-pill-item">
+          <span>Dense Score:</span>
+          <span class="score-pill-val">${r.dense_score !== undefined ? r.dense_score : '0.00'}</span>
+        </div>
+        <div class="score-pill-item">
+          <span>Sparse Score:</span>
+          <span class="score-pill-val">${r.sparse_score !== undefined ? r.sparse_score : '0.00'}</span>
+        </div>
+        <div class="score-pill-item">
+          <span>Reranker:</span>
+          <span class="score-pill-val">${r.reranker_score !== undefined ? r.reranker_score : r.score}</span>
+        </div>
+        <div class="score-pill-item" style="flex: 1;">
+          <span>Source Provenance:</span>
+          <span style="color: var(--accent); font-weight: 500;">🔖 ${escapeHtml(r.provenance || 'Source Evidence')}</span>
+        </div>
       </div>
     `;
     container.appendChild(card);
   });
 }
+
+async function inspectDocumentHierarchy(docId) {
+  const container = document.getElementById('inspector-list');
+  const summaryBar = document.getElementById('inspector-summary-bar');
+  if (!container) return;
+
+  container.innerHTML = `
+    <div style="text-align: center; padding: 32px; color: var(--text-muted);">
+      <div style="font-size: 20px; margin-bottom: 8px;">⏳</div>
+      <div>Loading structural hierarchy for document ${escapeHtml(docId)}...</div>
+    </div>
+  `;
+
+  try {
+    const res = await fetch(`${API_BASE}/documents/${docId}/hierarchy`);
+    if (res.ok) {
+      const data = await res.json();
+      renderDocumentHierarchyResults(data, container, summaryBar);
+      return;
+    }
+  } catch (err) {
+    console.warn('Failed to fetch document hierarchy:', err);
+  }
+
+  container.innerHTML = `
+    <div style="color: #f87171; padding: 20px; background: hsla(0, 84%, 60%, 0.1); border-radius: var(--radius-sm);">
+      Could not load hierarchy for ${escapeHtml(docId)}. Ensure backend is running.
+    </div>
+  `;
+}
+
+function renderDocumentHierarchyResults(data, container, summaryBar) {
+  if (summaryBar) {
+    summaryBar.style.display = 'flex';
+    summaryBar.innerHTML = `
+      <div><strong>Document:</strong> ${escapeHtml(data.title)}</div>
+      <div><strong>Format:</strong> <span class="badge badge-${data.file_type}">${data.file_type.toUpperCase()}</span></div>
+      <div><strong>Status:</strong> <span class="badge badge-ready">${data.status}</span></div>
+      <div><strong>Total Sections:</strong> ${data.sections ? data.sections.length : 0}</div>
+      <div><strong>Total Chunks:</strong> ${data.total_chunks}</div>
+    `;
+  }
+
+  container.innerHTML = `
+    <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px; margin-bottom: 14px;">
+      <div style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 4px;">Document-Level Summary:</div>
+      <div style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">${escapeHtml(data.summary || 'Summary generated during canonical pipeline.')}</div>
+    </div>
+  `;
+
+  if (!data.sections || data.sections.length === 0) {
+    container.innerHTML += `
+      <div style="text-align: center; color: var(--text-dim); padding: 24px;">No chunks or sections extracted for this document.</div>
+    `;
+    return;
+  }
+
+  data.sections.forEach((sec, secIdx) => {
+    const secDiv = document.createElement('div');
+    secDiv.className = 'inspector-node';
+    secDiv.style.borderLeft = '3px solid var(--accent)';
+
+    let chunksHtml = '';
+    sec.chunks.forEach((chk, chkIdx) => {
+      const locInfo = chk.page ? `Page ${chk.page}` : (chk.slide ? `Slide ${chk.slide}` : (chk.sheet ? `Sheet '${chk.sheet}'` : 'Main Chunk'));
+      chunksHtml += `
+        <div style="background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 12px; margin-top: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 11px; color: var(--text-muted);">
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span style="font-weight: 600; color: var(--text-main);">Chunk #${chkIdx + 1}:</span>
+              <code>${chk.chunk_id}</code>
+              <span class="badge" style="background: hsla(220, 20%, 25%, 0.6);">${chk.content_type || 'text'}</span>
+            </div>
+            <div>
+              <span style="color: var(--accent); font-weight: 500;">📍 ${locInfo}</span> | <span>${chk.token_count || 0} tokens</span>
+            </div>
+          </div>
+          <pre style="margin: 0; font-family: var(--font-mono); font-size: 12px; color: var(--text-main); white-space: pre-wrap; max-height: 160px; overflow-y: auto;">${escapeHtml(chk.content)}</pre>
+        </div>
+      `;
+    });
+
+    secDiv.innerHTML = `
+      <div class="inspector-header">
+        <div>
+          <span style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px;">Section ${secIdx + 1}</span>
+          <div style="font-size: 14px; font-weight: 600; color: var(--text-main); margin-top: 2px;">${escapeHtml(sec.section_id)}</div>
+        </div>
+        <span class="badge" style="background: hsla(217, 91%, 60%, 0.15); color: var(--accent); border: 1px solid hsla(217, 91%, 60%, 0.3);">
+          ${sec.chunks_count} chunks
+        </span>
+      </div>
+      <div style="margin-top: 8px;">${chunksHtml}</div>
+    `;
+
+    container.appendChild(secDiv);
+  });
+}
+
 
 // Real Ingestion & Upload Handling
 function initUpload() {
@@ -418,35 +642,35 @@ async function checkServerStatus() {
   if (label) label.textContent = 'Standalone Mock Mode';
 }
 
-window.inspectDocument = async function(docId) {
+window.openInspectorWithQuery = function(query) {
   const navItems = document.querySelectorAll('.nav-item');
   navItems.forEach(i => {
     if (i.getAttribute('data-view') === 'inspector') i.click();
   });
 
-  const container = document.getElementById('inspector-list');
-  if (!container) return;
+  const tabQuery = document.getElementById('tab-mode-query');
+  if (tabQuery) tabQuery.click();
 
-  try {
-    const res = await fetch(`${API_BASE}/documents/${docId}`);
-    if (res.ok) {
-      const doc = await res.json();
-      container.innerHTML = `
-        <div class="inspector-node" style="border-left: 3px solid var(--accent);">
-          <div class="inspector-header">
-            <span>Document: <strong>${escapeHtml(doc.title)}</strong> (${doc.document_id})</span>
-            <span class="badge badge-${doc.file_type}">${doc.file_type.toUpperCase()}</span>
-          </div>
-          <div style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 6px;">Document Summary:</div>
-          <div style="background: var(--bg-primary); padding: 12px; border-radius: var(--radius-sm); margin-bottom: 12px; color: var(--text-muted); font-size: 13px;">
-            ${escapeHtml(doc.summary || 'Summary unavailable')}
-          </div>
-          <div style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 6px;">Normalized Markdown Representation:</div>
-          <pre style="background: var(--bg-primary); padding: 12px; border-radius: var(--radius-sm); font-size: 11px; max-height: 280px; overflow-y: auto; color: var(--text-main); font-family: var(--font-mono); white-space: pre-wrap;">${escapeHtml(doc.normalized_markdown || 'Normalized markdown unavailable')}</pre>
-        </div>
-      `;
-    }
-  } catch (err) {
-    console.warn('Failed to load document details:', err);
+  const queryInput = document.getElementById('inspector-query-input');
+  if (queryInput) {
+    queryInput.value = query;
   }
+  inspectQuery(query);
 };
+
+window.inspectDocument = function(docId) {
+  const navItems = document.querySelectorAll('.nav-item');
+  navItems.forEach(i => {
+    if (i.getAttribute('data-view') === 'inspector') i.click();
+  });
+
+  const tabDoc = document.getElementById('tab-mode-doc');
+  if (tabDoc) tabDoc.click();
+
+  const docSelect = document.getElementById('inspector-doc-select');
+  if (docSelect) {
+    docSelect.value = docId;
+  }
+  inspectDocumentHierarchy(docId);
+};
+
