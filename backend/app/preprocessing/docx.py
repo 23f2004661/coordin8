@@ -36,22 +36,77 @@ class DocxPreprocessor(BasePreprocessor):
             file_type="docx",
         )
 
+        blocks: list[Block] = []
+        md_lines: list[str] = [f"# {path.stem}\n"]
+
+        try:
+            import docx
+            doc = docx.Document(str(path))
+
+            for p in doc.paragraphs:
+                text = p.text.strip()
+                if not text:
+                    continue
+
+                style_name = (p.style.name if p.style else "").lower()
+                is_heading = "heading" in style_name or "title" in style_name
+                btype = BlockType.HEADING if is_heading else BlockType.TEXT
+
+                if is_heading:
+                    md_lines.append(f"\n## {text}\n")
+                else:
+                    md_lines.append(f"{text}\n")
+
+                blocks.append(
+                    Block(
+                        block_id=f"blk_{uuid.uuid4().hex[:8]}",
+                        block_type=btype,
+                        content=text,
+                        provenance=doc_prov,
+                    )
+                )
+
+            for table in doc.tables:
+                rows_data = []
+                for row in table.rows:
+                    row_cells = [cell.text.strip() for cell in row.cells]
+                    rows_data.append(" | ".join(row_cells))
+                if rows_data:
+                    table_str = "\n".join(rows_data)
+                    md_lines.append(f"\n| {table_str} |\n")
+                    blocks.append(
+                        Block(
+                            block_id=f"blk_{uuid.uuid4().hex[:8]}",
+                            block_type=BlockType.TABLE,
+                            content=table_str,
+                            provenance=doc_prov,
+                        )
+                    )
+        except Exception:
+            pass
+
+        if not blocks:
+            # Fallback block
+            fallback_text = f"DOCX document {path.name}"
+            blocks.append(
+                Block(
+                    block_id=f"blk_{uuid.uuid4().hex[:8]}",
+                    block_type=BlockType.TEXT,
+                    content=fallback_text,
+                    provenance=doc_prov,
+                )
+            )
+            md_lines.append(fallback_text)
+
         section = Section(
             section_id=f"sec_{document_id}_main",
             title=path.stem,
             level=1,
+            blocks=blocks,
             provenance=doc_prov,
         )
 
-        block = Block(
-            block_id=f"blk_{uuid.uuid4().hex[:8]}",
-            block_type=BlockType.TEXT,
-            content=f"DOCX native content extracted from {path.name}",
-            provenance=doc_prov,
-        )
-        section.blocks.append(block)
-
-        normalized_md = f"# {path.stem}\n\n{block.content}\n"
+        normalized_md = "\n".join(md_lines)
 
         return Document(
             document_id=document_id,

@@ -21,7 +21,24 @@ class TextPreprocessor(BasePreprocessor):
         source_hash = compute_sha256_file(path)
         file_size = path.stat().st_size
 
-        ft = DocumentType.MARKDOWN if path.suffix.lower() == ".md" else DocumentType.TXT
+        ext = path.suffix.lower()
+        if ext == ".md":
+            ft = DocumentType.MARKDOWN
+        else:
+            ft = DocumentType.TXT
+
+        # Special extraction for HTML files
+        if ext in (".html", ".htm"):
+            import html, re
+            # Remove scripts and styles
+            no_scripts = re.sub(r"<(script|style)[^>]*>.*?</\1>", "", content_text, flags=re.DOTALL | re.IGNORECASE)
+            # Format headings, paragraphs, and list items into clean markdown
+            clean = re.sub(r"<h([1-6])[^>]*>(.*?)</h\1>", r"\n\n# \2\n\n", no_scripts, flags=re.IGNORECASE)
+            clean = re.sub(r"<p[^>]*>(.*?)</p>", r"\n\n\1\n\n", clean, flags=re.IGNORECASE)
+            clean = re.sub(r"<li[^>]*>(.*?)</li>", r"\n* \1", clean, flags=re.IGNORECASE)
+            clean = re.sub(r"<br\s*/?>", "\n", clean, flags=re.IGNORECASE)
+            clean = re.sub(r"<[^>]+>", " ", clean)
+            content_text = html.unescape(re.sub(r"\n\s*\n", "\n\n", clean)).strip()
 
         metadata = DocumentMetadata(
             title=path.stem,
@@ -39,6 +56,8 @@ class TextPreprocessor(BasePreprocessor):
             file_type=path.suffix.lstrip(".").lower() or "txt",
         )
 
+        is_code = ext in (".py", ".js", ".ts", ".json", ".sql", ".sh", ".yaml", ".yml", ".css")
+
         # Split content by double newlines or headers into meaningful blocks
         raw_paragraphs = [p.strip() for p in content_text.split("\n\n") if p.strip()]
         if not raw_paragraphs:
@@ -46,7 +65,13 @@ class TextPreprocessor(BasePreprocessor):
 
         blocks = []
         for p in raw_paragraphs:
-            btype = BlockType.HEADING if p.startswith("#") else BlockType.TEXT
+            if is_code:
+                btype = BlockType.CODE
+            elif p.startswith("#"):
+                btype = BlockType.HEADING
+            else:
+                btype = BlockType.TEXT
+
             blocks.append(
                 Block(
                     block_id=f"blk_{uuid.uuid4().hex[:8]}",

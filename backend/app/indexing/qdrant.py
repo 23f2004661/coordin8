@@ -15,11 +15,16 @@ from app.core.logging import logger
 class QdrantManager:
     """Manages Qdrant collections and points upsert."""
 
-    def __init__(self, url: str | None = None, api_key: str | None = None) -> None:
+    def __init__(
+        self,
+        url: str | None = None,
+        api_key: str | None = None,
+        collection_prefix: str | None = None,
+    ) -> None:
         settings = get_settings()
         self.url = url or settings.qdrant_url
         self.api_key = api_key or settings.qdrant_api_key
-        self.prefix = settings.qdrant_collection_prefix
+        self.prefix = collection_prefix or settings.qdrant_collection_prefix
         self.client = None
         self._init_client()
 
@@ -87,11 +92,19 @@ class QdrantManager:
         if not self.client:
             return []
         try:
-            results = self.client.search(
-                collection_name=collection_name,
-                query_vector=query_vector,
-                limit=limit,
-            )
+            if hasattr(self.client, "query_points"):
+                response = self.client.query_points(
+                    collection_name=collection_name,
+                    query=query_vector,
+                    limit=limit,
+                )
+                results = response.points
+            else:
+                results = self.client.search(
+                    collection_name=collection_name,
+                    query_vector=query_vector,
+                    limit=limit,
+                )
             return [
                 {
                     "id": hit.id,

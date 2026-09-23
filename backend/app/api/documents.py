@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 from sqlalchemy.orm import Session
-from app.db.models import DocumentRecord
+from app.db.models import ChunkRecord, DocumentRecord
 from app.db.session import get_db
 from app.ingestion.detector import detect_file_type
 from app.ingestion.jobs import JobManager
@@ -100,6 +100,51 @@ def get_document_summary(document_id: str, db: Session = Depends(get_db)):
         "document_id": record.document_id,
         "title": record.title,
         "summary": record.summary,
+    }
+
+
+@router.get("/{document_id}/hierarchy")
+def get_document_hierarchy(document_id: str, db: Session = Depends(get_db)):
+    """Retrieve full structural hierarchy: document -> sections -> chunks."""
+    record = db.query(DocumentRecord).filter(DocumentRecord.document_id == document_id).first()
+    if not record:
+        raise HTTPException(status_code=404, detail="Document not found")
+
+    chunks = db.query(ChunkRecord).filter(ChunkRecord.document_id == document_id).all()
+
+    sections_map: dict[str, list] = {}
+    for chk in chunks:
+        sec_key = chk.section_id or "sec_main"
+        if sec_key not in sections_map:
+            sections_map[sec_key] = []
+        sections_map[sec_key].append({
+            "chunk_id": chk.chunk_id,
+            "content": chk.content,
+            "content_type": chk.content_type,
+            "token_count": chk.token_count,
+            "page": chk.page_number,
+            "slide": chk.slide_number,
+            "sheet": chk.sheet_name,
+            "summary": chk.summary,
+        })
+
+    sections = [
+        {
+            "section_id": sec_id,
+            "chunks_count": len(chk_list),
+            "chunks": chk_list,
+        }
+        for sec_id, chk_list in sections_map.items()
+    ]
+
+    return {
+        "document_id": record.document_id,
+        "title": record.title,
+        "file_type": record.file_type,
+        "status": record.status,
+        "summary": record.summary,
+        "total_chunks": len(chunks),
+        "sections": sections,
     }
 
 

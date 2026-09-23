@@ -19,6 +19,8 @@ The long-term goal is to build a reusable knowledge backend that can be exposed 
 coordin8/
 ├── ProjectDetails.md          # Architectural contract and detailed specification
 ├── README.md                  # Project overview and quickstart
+├── docs/                      # Extensive integration guides & documentation
+│   └── openworker_integration.md # Complete OpenWorker SDK & MCP manual
 ├── .gitignore                 # Environment and build ignores
 ├── .env.example               # Configuration template
 ├── docker-compose.yml         # Qdrant vector store and PostgreSQL
@@ -52,6 +54,54 @@ coordin8/
 │
 └── frontend/                  # Web interface dashboard & developer provenance inspector
 ```
+
+---
+
+## OpenWorker & Agent Integration (Custom Class & MCP)
+
+Coordin8 can be used either as an in-process Python class library or as a standalone Model Context Protocol (MCP) tool server for agentic harnesses like **OpenWorker**:
+
+### Option 1: In-Process Python SDK (`KnowledgeBase` Custom Class)
+OpenWorker agents can dynamically instantiate isolated vector stores and knowledge repositories:
+
+```python
+from app import KnowledgeBase
+
+# 1. Dynamically create an isolated knowledge base
+kb = KnowledgeBase(
+    kb_id="research_agent_01",
+    storage_dir="./data/agent_kbs/agent_01",
+)
+
+# 2. Ingest documents (PDF, Word, Excel, Markdown, PPTX, Images)
+kb.ingest_file("./docs/system_spec.pdf", title="System Architecture")
+
+# 3. Perform hierarchical hybrid search
+results = kb.search("What is the failover latency?")
+
+# 4. Assemble citation-grounded prompt context ready for LLMs
+context = kb.query_context("failover latency SLA", limit=3)
+print(context["formatted_context"])
+
+# 5. Export tool calling schemas directly for OpenWorker
+tools = kb.as_tools()
+tool_result = kb.execute_tool("search_knowledge", {"query": "failover latency", "limit": 2})
+
+# 6. Clean up resources
+kb.close()
+```
+
+### Option 2: Model Context Protocol (MCP) Server (Milestone 9)
+Run Coordin8 as an out-of-process tool provider over stdio JSON-RPC:
+```powershell
+cd backend
+python -m app.mcp.server
+```
+
+OpenWorker connects via standard MCP and gains access to tools: `create_knowledge_base`, `ingest_document`, `search_knowledge`, `query_context`, `read_document`, `read_section`, `analyze_spreadsheet`.
+
+> 📖 **Full Manual**: See [docs/openworker_integration.md](docs/openworker_integration.md) for complete API reference, parameters, and multi-tenant management.  
+> 🚀 **Runnable Demo**: Run `python backend/scripts/openworker_sdk_example.py` for a live demonstration.
 
 ---
 

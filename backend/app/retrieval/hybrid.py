@@ -31,9 +31,10 @@ class HybridFusion:
         sorted_chunk_ids = sorted(scores.keys(), key=lambda cid: scores[cid], reverse=True)
 
         fused = []
-        for cid in sorted_chunk_ids[:top_k]:
+        for rank, cid in enumerate(sorted_chunk_ids[:top_k], start=1):
             chk = chunk_map[cid]
             chk.score = scores[cid]
+            chk.fusion_rank = rank
             fused.append(chk)
 
         return fused

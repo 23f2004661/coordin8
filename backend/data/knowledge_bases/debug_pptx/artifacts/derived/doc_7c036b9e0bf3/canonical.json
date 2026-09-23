@@ -1,0 +1,219 @@
+{
+  "document_id": "doc_7c036b9e0bf3",
+  "metadata": {
+    "title": "temp_deck",
+    "source_path": "data\\knowledge_bases\\debug_pptx\\artifacts\\raw\\doc_7c036b9e0bf3\\temp_deck.pptx",
+    "file_type": "pptx",
+    "file_size_bytes": 29318,
+    "source_hash": "37c2248b9a08515d29d5484408209ffb0746e50834fa2b00fb1b18d0a0062fe7",
+    "author": null,
+    "created_at": "2026-09-23 16:20:41.476970+00:00",
+    "page_count": null,
+    "slide_count": 2,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_7c036b9e0bf3_slide_1",
+      "title": "Slide 1: Q4 Engineering Strategic Roadmap",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_794ef22a",
+          "block_type": "text",
+          "content": "Q4 Engineering Strategic Roadmap",
+          "provenance": {
+            "file_id": "doc_7c036b9e0bf3",
+            "document_id": "doc_7c036b9e0bf3",
+            "file_name": "temp_deck.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Q4 Engineering Strategic Roadmap"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_8101090c",
+          "block_type": "text",
+          "content": "Presented by Core Platform Architecture Team",
+          "provenance": {
+            "file_id": "doc_7c036b9e0bf3",
+            "document_id": "doc_7c036b9e0bf3",
+            "file_name": "temp_deck.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Q4 Engineering Strategic Roadmap"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_7c036b9e0bf3",
+        "document_id": "doc_7c036b9e0bf3",
+        "file_name": "temp_deck.pptx",
+        "file_type": "pptx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": {
+          "slide_number": 1,
+          "slide_title": "Q4 Engineering Strategic Roadmap"
+        },
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_7c036b9e0bf3_slide_2",
+      "title": "Slide 2: Gateway Migration Milestones",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_2a3c3d06",
+          "block_type": "text",
+          "content": "Gateway Migration Milestones",
+          "provenance": {
+            "file_id": "doc_7c036b9e0bf3",
+            "document_id": "doc_7c036b9e0bf3",
+            "file_name": "temp_deck.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Gateway Migration Milestones"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_15cc00a4",
+          "block_type": "text",
+          "content": "Milestone Alpha: Envoy proxy migration completed by November 15.",
+          "provenance": {
+            "file_id": "doc_7c036b9e0bf3",
+            "document_id": "doc_7c036b9e0bf3",
+            "file_name": "temp_deck.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Gateway Migration Milestones"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_2ac35550",
+          "block_type": "text",
+          "content": "Milestone Beta: Cut over public DNS traffic with zero downtime.",
+          "provenance": {
+            "file_id": "doc_7c036b9e0bf3",
+            "document_id": "doc_7c036b9e0bf3",
+            "file_name": "temp_deck.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Gateway Migration Milestones"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_7c036b9e0bf3",
+        "document_id": "doc_7c036b9e0bf3",
+        "file_name": "temp_deck.pptx",
+        "file_type": "pptx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": {
+          "slide_number": 2,
+          "slide_title": "Gateway Migration Milestones"
+        },
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# temp_deck\n\n## Slide 1: Q4 Engineering Strategic Roadmap\n\nQ4 Engineering Strategic Roadmap\n\nPresented by Core Platform Architecture Team\n\n## Slide 2: Gateway Migration Milestones\n\nGateway Migration Milestones\n\nMilestone Alpha: Envoy proxy migration completed by November 15.\n\nMilestone Beta: Cut over public DNS traffic with zero downtime.\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_7c036b9e0bf3",
+    "document_id": "doc_7c036b9e0bf3",
+    "file_name": "temp_deck.pptx",
+    "file_type": "pptx",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": {
+      "slide_number": 1,
+      "slide_title": "Q4 Engineering Strategic Roadmap"
+    },
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

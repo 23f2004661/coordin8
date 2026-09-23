@@ -26,7 +26,7 @@ class MistralOCRProvider(OCRProvider):
         timeout: float = 60.0,
     ) -> None:
         settings = get_settings()
-        self.api_key = api_key or settings.mistral_api_key
+        self.api_key = api_key if api_key is not None else settings.mistral_api_key
         self.model = model or settings.mistral_ocr_model
         self.base_url = (base_url or settings.mistral_ocr_base_url).rstrip("/")
         self.timeout = timeout

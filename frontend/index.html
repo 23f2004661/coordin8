@@ -203,7 +203,7 @@
           </div>
 
           <div class="search-box-container">
-            <input type="text" class="input-text" id="search-query-input" placeholder="e.g., What were the reasons for moving the API gateway migration to Q4?">
+            <input type="text" class="input-text" id="search-query-input" placeholder="Ask any question across your uploaded documents (e.g., What was the total on the Walmart receipt?)...">
             <button class="btn btn-primary" id="btn-ask-query">Ask Coordin8</button>
           </div>
         </div>
@@ -215,9 +215,47 @@
           <div class="card-header">
             <h2 class="card-title">Developer Provenance Inspector (Section 26)</h2>
           </div>
-          <p style="font-size: 13px; color: var(--text-muted);">
-            Inspects the retrieval pipeline lineage: <code>document &rarr; section &rarr; chunk</code>, dense and sparse retrieval scores, after-fusion rank, and source provenance.
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+            Auditable provenance tracking conforming to Section 20 & 26 of <code>ProjectDetails.md</code>. Trace retrieval lineage from <code>document &rarr; section &rarr; chunk</code>, observe dense vs. lexical scores, and inspect Reciprocal Rank Fusion (RRF) & reranker output.
           </p>
+
+          <div class="inspector-toolbar">
+            <!-- Mode Switch Tabs -->
+            <div class="inspector-mode-tabs">
+              <button class="inspector-tab-btn active" id="tab-mode-query">🔍 Query Lineage Inspector</button>
+              <button class="inspector-tab-btn" id="tab-mode-doc">🗂️ Document Structure & Chunks</button>
+            </div>
+
+            <!-- Query Mode Controls -->
+            <div id="inspector-query-controls">
+              <div style="display: flex; gap: 10px; margin-top: 8px;">
+                <input type="text" class="input-text" id="inspector-query-input" placeholder="Type query to trace retrieval lineage (e.g., 'walmart receipt total', 'manager agent proposal')...">
+                <button class="btn btn-primary" id="btn-inspect-query" style="white-space: nowrap;">Inspect Lineage</button>
+              </div>
+              <div class="inspector-chips">
+                <span style="font-size: 11px; color: var(--text-dim);">Quick test queries:</span>
+                <button class="inspector-chip-btn" data-query="walmart receipt total">walmart receipt total</button>
+                <button class="inspector-chip-btn" data-query="manager agent proposal">manager agent proposal</button>
+                <button class="inspector-chip-btn" data-query="robot learning architecture">robot learning architecture</button>
+              </div>
+            </div>
+
+            <!-- Document Mode Controls -->
+            <div id="inspector-doc-controls" style="display: none; margin-top: 8px;">
+              <div style="display: flex; gap: 10px; align-items: center;">
+                <select class="input-text" id="inspector-doc-select" style="flex: 1;">
+                  <option value="">Loading registered documents...</option>
+                </select>
+                <button class="btn btn-secondary" id="btn-explore-doc" style="white-space: nowrap;">Explore Hierarchy</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Diagnostics summary banner -->
+          <div id="inspector-summary-bar" class="inspector-meta-summary" style="display: none;">
+            <!-- Populated via app.js -->
+          </div>
+
           <div class="inspector-tree" id="inspector-list">
             <!-- Injected via app.js -->
           </div>

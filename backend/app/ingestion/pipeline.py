@@ -28,8 +28,13 @@ from app.storage.artifacts import ArtifactStorage
 class IngestionPipeline:
     """Orchestrates end-to-end ingestion from raw file to indexing."""
 
-    def __init__(self, storage: ArtifactStorage | None = None) -> None:
+    def __init__(
+        self,
+        storage: ArtifactStorage | None = None,
+        indexer: IndexPipeline | None = None,
+    ) -> None:
         self.storage = storage or ArtifactStorage()
+        self.indexer = indexer or IndexPipeline()
 
     def run_pipeline(self, db: Session, document_id: str, job_id: str) -> bool:
         """Execute the ingestion pipeline through all defined stages."""
@@ -111,8 +116,7 @@ class IngestionPipeline:
             # Stage 5: INDEXING
             logger.info("Pipeline: INDEXING for doc %s", document_id)
             JobManager.update_stage(db, job_id, JobStatus.INDEXING, progress=0.95)
-            indexer = IndexPipeline()
-            indexer.index_document(canonical_doc)
+            self.indexer.index_document(canonical_doc)
 
             # Final Stage: READY
             JobManager.update_stage(db, job_id, JobStatus.READY, progress=1.0)
