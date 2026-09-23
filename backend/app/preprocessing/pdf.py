@@ -74,8 +74,24 @@ class PdfPreprocessor(BasePreprocessor):
                         provenance=sec_prov,
                     )
                     sec.blocks.append(blk)
+
+                # Check for embedded images on the page
+                try:
+                    for img_idx, img in enumerate(page.images, start=1):
+                        img_name = getattr(img, "name", f"image_{img_idx}.png")
+                        img_blk = Block(
+                            block_id=f"blk_{uuid.uuid4().hex[:8]}",
+                            block_type=BlockType.IMAGE,
+                            content=f"[Embedded Image on Page {idx}: {img_name}]",
+                            provenance=sec_prov,
+                        )
+                        sec.blocks.append(img_blk)
+                except Exception:
+                    pass
+
                 sections.append(sec)
-                md_pages.append(f"[PAGE {idx}]\n\n{clean_text}")
+                page_content = clean_text or f"[Page {idx} Content]"
+                md_pages.append(f"[PAGE {idx}]\n\n{page_content}")
         except Exception:
             pass
 

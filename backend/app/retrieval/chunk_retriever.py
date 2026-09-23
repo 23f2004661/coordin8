@@ -86,27 +86,28 @@ class ChunkRetriever:
 
             # Exact phrase match boost
             if q_lower in content_lower:
-                sparse += 0.5
+                sparse += 0.6
 
             # Keyword matches
             for kw in parsed_query.keywords:
                 if kw.lower() in content_lower:
-                    sparse += 0.2
+                    sparse += 0.25
 
             if chk.summary and any(kw.lower() in chk.summary.lower() for kw in parsed_query.keywords):
-                sparse += 0.15
+                sparse += 0.2
 
             sparse = min(1.0, sparse)
 
             if has_qdrant and sparse > 0:
                 retriever_type = "Hybrid (Dense + Lexical)"
-                total_score = min(1.0, (dense * 0.6) + (sparse * 0.4))
+                total_score = min(1.0, (dense * 0.5) + (sparse * 0.5) + 0.2)
             elif has_qdrant:
                 retriever_type = "Dense (Qdrant BGE-M3)"
-                total_score = min(1.0, dense)
+                # If query had clear keywords and this chunk has zero lexical match, reduce dense noise
+                total_score = min(1.0, dense * 0.7 if parsed_query.keywords else dense)
             elif sparse > 0:
                 retriever_type = "Lexical BM25 / Keyword"
-                total_score = min(1.0, 0.3 + (sparse * 0.7))
+                total_score = min(1.0, 0.4 + (sparse * 0.6))
             else:
                 retriever_type = "Structural Context"
                 total_score = 0.2
