@@ -5,8 +5,10 @@ Conforms to Milestone 9 of ProjectDetails.md.
 """
 
 import json
+import logging
 import sys
 from typing import Any
+import warnings
 
 from app.core.logging import logger
 from app.mcp.tools import Coordin8Tools
@@ -25,7 +27,7 @@ class MCPServer:
 
     def list_tools(self) -> list[dict[str, Any]]:
         """Return list of available MCP tools and their parameter schemas."""
-        return [
+        tools = [
             {
                 "name": "create_knowledge_base",
                 "description": "Create a new isolated vector database and knowledge repository",
@@ -136,6 +138,10 @@ class MCPServer:
                 },
             },
         ]
+        # Provide both inputSchema (official MCP spec) and input_schema (backwards compat)
+        for t in tools:
+            t["inputSchema"] = t["input_schema"]
+        return tools
 
     def call_tool(self, name: str, arguments: dict[str, Any]) -> dict[str, Any]:
         """Execute a tool call by name with given arguments."""
@@ -197,7 +203,19 @@ class MCPServer:
 
     def run_stdio_loop(self) -> None:
         """Run standard MCP stdio loop for OpenWorker / Claude Desktop IPC."""
+        # 1. Suppress all warnings so they never leak into stdout
+        warnings.filterwarnings("ignore")
+
+        # 2. Redirect all logger StreamHandlers from stdout to stderr
+        for handler in logging.root.handlers:
+            if isinstance(handler, logging.StreamHandler):
+                handler.stream = sys.stderr
+        for handler in logger.handlers:
+            if isinstance(handler, logging.StreamHandler):
+                handler.stream = sys.stderr
+
         logger.info("Starting Coordin8 MCP Server stdio loop...")
+
         for line in sys.stdin:
             line = line.strip()
             if not line:
@@ -206,21 +224,69 @@ class MCPServer:
                 request = json.loads(line)
                 method = request.get("method")
                 req_id = request.get("id")
+                params = request.get("params", {})
 
-                if method == "tools/list":
-                    response = {"jsonrpc": "2.0", "id": req_id, "result": {"tools": self.list_tools()}}
+                # Notifications (no id) in JSON-RPC 2.0
+                if method in ("notifications/initialized", "initialized"):
+                    logger.info("MCP client initialized notification received.")
+                    continue
+
+                if method == "initialize":
+                    client_proto = params.get("protocolVersion", "2024-11-05")
+                    response = {
+                        "jsonrpc": "2.0",
+                        "id": req_id,
+                        "result": {
+                            "protocolVersion": client_proto,
+                            "capabilities": {
+                                "tools": {"listChanged": False},
+                            },
+                            "serverInfo": {
+                                "name": self.name,
+                                "version": "0.1.0",
+                            },
+                        },
+                    }
+                elif method == "ping":
+                    response = {"jsonrpc": "2.0", "id": req_id, "result": {}}
+                elif method == "tools/list":
+                    response = {
+                        "jsonrpc": "2.0",
+                        "id": req_id,
+                        "result": {"tools": self.list_tools()},
+                    }
                 elif method == "tools/call":
-                    params = request.get("params", {})
                     tool_name = params.get("name")
                     arguments = params.get("arguments", {})
                     result = self.call_tool(tool_name, arguments)
-                    response = {"jsonrpc": "2.0", "id": req_id, "result": {"content": [{"type": "text", "text": json.dumps(result)}]}}
+                    is_error = "error" in result if isinstance(result, dict) else False
+                    response = {
+                        "jsonrpc": "2.0",
+                        "id": req_id,
+                        "result": {
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": json.dumps(result, indent=2, default=str),
+                                }
+                            ],
+                            "isError": is_error,
+                        },
+                    }
                 else:
-                    response = {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32601, "message": f"Method '{method}' not found"}}
+                    if req_id is not None:
+                        response = {
+                            "jsonrpc": "2.0",
+                            "id": req_id,
+                            "error": {"code": -32601, "message": f"Method '{method}' not found"},
+                        }
+                    else:
+                        continue
 
                 sys.stdout.write(json.dumps(response) + "\n")
                 sys.stdout.flush()
             except Exception as exc:
+                logger.exception("Error handling MCP request: %s", exc)
                 err_resp = {"jsonrpc": "2.0", "error": {"code": -32700, "message": str(exc)}}
                 sys.stdout.write(json.dumps(err_resp) + "\n")
                 sys.stdout.flush()
