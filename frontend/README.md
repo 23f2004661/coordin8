@@ -1,27 +1,54 @@
-# Coordin8 Frontend Dashboard
+# Co-ordin8 — Frontend (Vue.js + Bootstrap)
 
-Modern web dashboard and developer provenance inspector for the Coordin8 knowledge and retrieval system.
+An AI project manager for professional services (accounting, consulting, legal) — frontend-only demo, built with **Vue 3** and **Bootstrap 5**.
 
-Conforms to Section 26 of `ProjectDetails.md`.
+This is a static prototype: all data in `js/app.js` is mocked in-browser. There is no backend yet — it's meant to be wired up to the FastAPI + RAG + MCP backend described in the project proposal.
 
----
+## Structure
 
-## Features
-
-- **Executive Dashboard**: High-level metrics for indexed documents, chunks, vector points, and evaluation metrics.
-- **Document Management**: View registered canonical documents, format badges, and summaries.
-- **Upload & Ingestion Pipeline**: Ingestion dropzone visualizing the 7 pipeline stages (`REGISTERED` &rarr; `EXTRACTING` &rarr; `NORMALIZED` &rarr; `ENRICHING` &rarr; `CHUNKED` &rarr; `INDEXING` &rarr; `READY`).
-- **Grounded Search & Answer**: Multi-turn grounded Q&A with inline provenance citation pills.
-- **Developer Provenance Inspector**: Debug view displaying `document -> section -> chunk`, retriever type, dense/sparse scores, after-fusion rank, reranker score, and source provenance.
-
----
-
-## Running
-
-Simply open `index.html` in any web browser, or run a local static server:
-
-```powershell
-python -m http.server 3000
+```
+.
+├── index.html      # Page markup + Vue app mount point
+├── css/
+│   └── style.css   # All custom styling (design tokens, layout, components)
+├── js/
+│   └── app.js       # Vue app: state, mock data, computed properties, chart rendering
+└── README.md
 ```
 
-Access at `http://localhost:3000`. When the backend is running at `http://localhost:8000`, the frontend automatically connects to the live API endpoints.
+## Stack
+
+- **Vue 3** (loaded via CDN, no build step)
+- **Bootstrap 5** (CDN, used for base grid/utility resets)
+- **Chart.js** (CDN) — powers the dashboard's donut and line charts
+- Google Fonts — Inter (UI text) and Material Symbols (icons)
+
+No React, no bundler, no npm install required — open `index.html` directly in a browser, or serve the folder with any static file host (GitHub Pages works out of the box).
+
+## Running locally
+
+Just open `index.html` in a browser, or, for a local server:
+
+```bash
+npx serve .
+# or
+python3 -m http.server
+```
+
+## What's implemented
+
+- Landing page, login, and signup flows
+- Role-based access: Super Admin → Tenant Admin → Project Workspace (Manager / Team member views)
+- Multi-project switching
+- Deliverables board (Kanban + Gantt timeline)
+- Audit trail / source citation on every task
+- Deadline risk flagging
+- Minutes of Meeting (MoM), document summarization, weekly status reports (mocked)
+- Jira metrics panel
+- Chat with the project (canned responses over mock data)
+
+## Next steps for the real build
+
+- Replace the mock data objects in `js/app.js` with calls to the FastAPI backend
+- Replace the mock `summarizeDoc()` and `sendChat()` functions with real RAG/agent API calls
+- Real authentication in place of the login role-picker

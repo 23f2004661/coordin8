@@ -1,269 +1,555 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coordin8 — Multimodal Hierarchical RAG Knowledge System</title>
-  <meta name="description" content="Heterogeneous multimodal knowledge ingestion, canonical document models, and hierarchical RAG.">
-  <link rel="stylesheet" href="css/styles.css?v=2.2">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Co-ordin8</title>
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+<!-- Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0">
+
+<!-- App styles -->
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div id="app" v-cloak>
 
-  <!-- Sidebar Navigation -->
-  <aside class="sidebar">
-    <div class="brand">
-      <div class="brand-icon">C8</div>
-      <div>
-        <div class="brand-title">Coordin8</div>
-        <div class="brand-subtitle">Hierarchical RAG</div>
+  <!-- ================= LANDING ================= -->
+  <div v-if="stage==='landing'" class="landing">
+    <div class="landing-nav-bar">
+      <div class="landing-nav">
+        <div class="brand" style="cursor:pointer" @click="landingSection=''">CO-ORDIN8</div>
+        <div class="nav-links">
+          <span :class="{active: landingSection==='features'}" @click="toggleLanding('features')">Features</span>
+          <span :class="{active: landingSection==='how'}" @click="toggleLanding('how')">How it works</span>
+          <span :class="{active: landingSection==='pricing'}" @click="toggleLanding('pricing')">Pricing</span>
+        </div>
+        <div class="nav-actions">
+          <span class="login-link" @click="stage='login'">Log in</span>
+          <button @click="stage='signup'">Sign up</button>
+        </div>
       </div>
     </div>
+    <div class="landing-info-wrap" v-if="landingSection">
+      <div class="landing-info">
+        <div class="landing-info-inner">
+          <template v-if="landingSection==='features'">
+            <div class="info-title">Everything built to earn trust, not just automate</div>
+            <p class="info-sub">Six capabilities that make an AI project manager safe to rely on.</p>
+            <div class="info-grid">
+              <div class="fcard">
+                <div class="icon" style="background:var(--blue-soft)"><span class="msi" style="color:var(--blue)">link</span></div>
+                <h4>Audit trail on every task</h4>
+                <p>Every task links back to the transcript, document, or update it came from.</p>
+              </div>
+              <div class="fcard">
+                <div class="icon" style="background:var(--purple-soft)"><span class="msi" style="color:var(--purple)">apps</span></div>
+                <h4>Multi-project workspace</h4>
+                <p>Switch between client engagements without losing context on any of them.</p>
+              </div>
+              <div class="fcard">
+                <div class="icon" style="background:var(--green-soft)"><span class="msi" style="color:var(--green)">shield_person</span></div>
+                <h4>Role-based views</h4>
+                <p>Managers see the whole project; team members see only what's theirs.</p>
+              </div>
+              <div class="fcard">
+                <div class="icon" style="background:var(--red-soft)"><span class="msi" style="color:var(--red)">warning</span></div>
+                <h4>Deadline risk detection</h4>
+                <p>Flags tasks likely to slip, based on sentiment and status in real meetings.</p>
+              </div>
+              <div class="fcard">
+                <div class="icon" style="background:var(--amber-soft)"><span class="msi" style="color:var(--amber)">bar_chart</span></div>
+                <h4>Auto-generated reports</h4>
+                <p>Client-ready weekly status reports, drafted straight from the tracker.</p>
+              </div>
+              <div class="fcard">
+                <div class="icon" style="background:var(--blue-soft)"><span class="msi" style="color:var(--blue)">integration_instructions</span></div>
+                <h4>Jira-linked tasks</h4>
+                <p>Key sprint metrics shown natively, with a direct link out to Jira for detail.</p>
+              </div>
+            </div>
+          </template>
 
-    <ul class="nav-menu">
-      <li class="nav-item active" data-view="dashboard" id="nav-dashboard">
-        <svg viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-        <span>Dashboard</span>
-      </li>
-      <li class="nav-item" data-view="documents" id="nav-documents">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        <span>Documents</span>
-      </li>
-      <li class="nav-item" data-view="upload" id="nav-upload">
-        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        <span>Upload & Ingest</span>
-      </li>
-      <li class="nav-item" data-view="search" id="nav-search">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <span>Search & Answer</span>
-      </li>
-      <li class="nav-item" data-view="inspector" id="nav-inspector">
-        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        <span>Provenance Inspector</span>
-      </li>
-    </ul>
+          <template v-else-if="landingSection==='how'">
+            <div class="info-title">From messy inputs to a trustworthy tracker</div>
+            <p class="info-sub">Four steps, from raw meeting notes to a status report your client can read.</p>
+            <div class="info-steps">
+              <div class="info-step">
+                <div class="num">1</div>
+                <div><h4>Ingest</h4><p>Upload transcripts, contracts, spreadsheets, or scanned briefs — any format your team already works in.</p></div>
+              </div>
+              <div class="info-step">
+                <div class="num">2</div>
+                <div><h4>Understand</h4><p>Everything is embedded into memory (RAG), so the agent can recall any past meeting or document on demand.</p></div>
+              </div>
+              <div class="info-step">
+                <div class="num">3</div>
+                <div><h4>Act</h4><p>The agent drafts tasks with an owner and deadline, flags risk, and adds a citation back to its source — straight onto your tracker.</p></div>
+              </div>
+              <div class="info-step">
+                <div class="num">4</div>
+                <div><h4>Report</h4><p>Ask questions in plain language, or let it roll everything up into a weekly status report automatically.</p></div>
+              </div>
+            </div>
+          </template>
 
-    <div class="server-status">
-      <div class="status-dot" id="server-indicator"></div>
-      <span id="server-label">Checking Backend...</span>
-    </div>
-  </aside>
-
-  <!-- Main Application Wrapper -->
-  <div class="main-wrapper">
-    <!-- Topbar -->
-    <header class="topbar">
-      <h1 class="page-title" id="current-page-title">Dashboard</h1>
-      <div class="topbar-actions">
-        <button class="btn btn-secondary" onclick="document.getElementById('nav-upload').click()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Ingest File
-        </button>
-        <button class="btn btn-primary" onclick="document.getElementById('nav-search').click()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          Ask Knowledge Base
-        </button>
+          <template v-else-if="landingSection==='pricing'">
+            <div class="info-title">Simple, seat-based pricing</div>
+            <p class="info-sub">Scales with your team size and how many integrations you connect.</p>
+            <div class="pricing-grid">
+              <div class="price-card">
+                <div class="plan">Starter</div>
+                <div class="amount">$12 <span>/ seat / mo</span></div>
+                <ul>
+                  <li>✓ 1 active project</li>
+                  <li>✓ Audit trail &amp; risk flags</li>
+                  <li>✓ Weekly status reports</li>
+                </ul>
+              </div>
+              <div class="price-card featured">
+                <div class="plan">Team</div>
+                <div class="amount">$28 <span>/ seat / mo</span></div>
+                <ul>
+                  <li>✓ Unlimited projects</li>
+                  <li>✓ Jira integration</li>
+                  <li>✓ Role-based views</li>
+                  <li>✓ Priority support</li>
+                </ul>
+              </div>
+              <div class="price-card">
+                <div class="plan">Enterprise</div>
+                <div class="amount">Custom</div>
+                <ul>
+                  <li>✓ Multi-tenant admin</li>
+                  <li>✓ SSO &amp; audit export</li>
+                  <li>✓ Dedicated support</li>
+                </ul>
+              </div>
+            </div>
+            <p class="pricing-note">Indicative only — this is a proposal-stage build, so final pricing isn't set yet.</p>
+          </template>
+        </div>
       </div>
-    </header>
-
-    <!-- Main Content Container -->
-    <main class="content-area">
-      <!-- 1. DASHBOARD VIEW -->
-      <section class="view-panel active" id="panel-dashboard">
-        <div class="stats-grid">
-          <div class="stat-card">
-            <span class="stat-label">Indexed Documents</span>
-            <span class="stat-value" id="stat-docs">0</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Canonical Chunks</span>
-            <span class="stat-value" id="stat-chunks">0</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Vector Points (Qdrant)</span>
-            <span class="stat-value" id="stat-vectors">0</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Evaluation Recall@5</span>
-            <span class="stat-value" style="color: var(--success);">100%</span>
-          </div>
-        </div>
-
-        <div class="card-panel">
-          <div class="card-header">
-            <h2 class="card-title">Modalities Ingested</h2>
-          </div>
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <span class="badge badge-pdf" style="padding: 6px 12px; font-size: 13px;">PDF (Native + Unlimited-OCR)</span>
-            <span class="badge badge-pptx" style="padding: 6px 12px; font-size: 13px;">PPTX (Slide Structure + VLM)</span>
-            <span class="badge badge-xlsx" style="padding: 6px 12px; font-size: 13px;">XLSX (Schema + Safe Operations)</span>
-            <span class="badge badge-docx" style="padding: 6px 12px; font-size: 13px;">DOCX (Word XML Structure)</span>
-            <span class="badge badge-ready" style="padding: 6px 12px; font-size: 13px;">TRANSCRIPTS (Turns + Timestamps)</span>
-          </div>
-        </div>
-
-        <div class="card-panel">
-          <div class="card-header">
-            <h2 class="card-title">Recent Ingestion Records</h2>
-          </div>
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Document Title</th>
-                  <th>Format</th>
-                  <th>File Size</th>
-                  <th>Status</th>
-                  <th>Canonical Summary</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="documents-tbody">
-                <!-- Injected via app.js -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2. DOCUMENTS VIEW -->
-      <section class="view-panel" id="panel-documents">
-        <div class="card-panel">
-          <div class="card-header">
-            <h2 class="card-title">Registered Canonical Documents</h2>
-            <button class="btn btn-secondary" onclick="initDocumentsTable()">Refresh</button>
-          </div>
-          <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
-            Every uploaded file is transformed into a canonical document hierarchy preserving sections, structural blocks, assets, and lineage.
-          </p>
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Document Title</th>
-                  <th>Format</th>
-                  <th>File Size</th>
-                  <th>Status</th>
-                  <th>Canonical Summary</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="panel-documents-tbody">
-                <!-- Injected via app.js -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3. UPLOAD & INGESTION VIEW -->
-      <section class="view-panel" id="panel-upload">
-        <div class="card-panel">
-          <div class="card-header">
-            <h2 class="card-title">Ingest Heterogeneous Files</h2>
-          </div>
-          <div class="dropzone" id="file-dropzone">
-            <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/>
-            </svg>
-            <div style="font-size: 16px; font-weight: 600; margin-bottom: 4px;">Click or drag files to this area to ingest</div>
-            <div style="font-size: 12px; color: var(--text-muted);">
-              Supports PDF, DOCX, PPTX, XLSX, Images (PNG/JPG), and Transcripts (VTT/TXT).
-            </div>
-            <input type="file" id="file-input" style="display: none;" accept=".pdf,.docx,.pptx,.xlsx,.png,.jpg,.jpeg,.vtt,.txt,.md">
-          </div>
-
-          <div id="upload-status" style="display: none; margin-top: 16px; padding: 14px 18px; border-radius: var(--radius-sm); font-size: 13px;"></div>
-
-          <div style="margin-top: 16px;">
-            <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Ingestion Pipeline Stages (Section 16)</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; font-size: 12px; font-family: var(--font-mono);">
-              <div style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center;">1. REGISTERED</div>
-              <div style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center;">2. EXTRACTING</div>
-              <div style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center;">3. NORMALIZED</div>
-              <div style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center;">4. ENRICHING</div>
-              <div style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center;">5. CHUNKED</div>
-              <div style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: center;">6. INDEXING</div>
-              <div style="background: hsla(158, 64%, 52%, 0.1); color: var(--success); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--success); text-align: center; font-weight: 600;">7. READY</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4. SEARCH & GROUNDED ANSWER VIEW -->
-      <section class="view-panel" id="panel-search">
-        <div class="card-panel">
-          <div class="card-header">
-            <h2 class="card-title">Hierarchical Retrieval & Grounded Answer</h2>
-          </div>
-          
-          <div class="chat-history" id="chat-history">
-            <div class="chat-message chat-bot">
-              <div>Hello! I am <strong>Coordin8</strong>. Ask me any question across your uploaded meeting transcripts, presentations, spreadsheets, and documents. Every claim is strictly grounded with source citations.</div>
-            </div>
-          </div>
-
-          <div class="search-box-container">
-            <input type="text" class="input-text" id="search-query-input" placeholder="Ask any question across your uploaded documents (e.g., What was the total on the Walmart receipt?)...">
-            <button class="btn btn-primary" id="btn-ask-query">Ask Coordin8</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- 5. PROVENANCE INSPECTOR VIEW (Section 26 Developer View) -->
-      <section class="view-panel" id="panel-inspector">
-        <div class="card-panel">
-          <div class="card-header">
-            <h2 class="card-title">Developer Provenance Inspector (Section 26)</h2>
-          </div>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-            Auditable provenance tracking conforming to Section 20 & 26 of <code>ProjectDetails.md</code>. Trace retrieval lineage from <code>document &rarr; section &rarr; chunk</code>, observe dense vs. lexical scores, and inspect Reciprocal Rank Fusion (RRF) & reranker output.
-          </p>
-
-          <div class="inspector-toolbar">
-            <!-- Mode Switch Tabs -->
-            <div class="inspector-mode-tabs">
-              <button class="inspector-tab-btn active" id="tab-mode-query">🔍 Query Lineage Inspector</button>
-              <button class="inspector-tab-btn" id="tab-mode-doc">🗂️ Document Structure & Chunks</button>
-            </div>
-
-            <!-- Query Mode Controls -->
-            <div id="inspector-query-controls">
-              <div style="display: flex; gap: 10px; margin-top: 8px;">
-                <input type="text" class="input-text" id="inspector-query-input" placeholder="Type query to trace retrieval lineage (e.g., 'walmart receipt total', 'manager agent proposal')...">
-                <button class="btn btn-primary" id="btn-inspect-query" style="white-space: nowrap;">Inspect Lineage</button>
-              </div>
-              <div class="inspector-chips">
-                <span style="font-size: 11px; color: var(--text-dim);">Quick test queries:</span>
-                <button class="inspector-chip-btn" data-query="walmart receipt total">walmart receipt total</button>
-                <button class="inspector-chip-btn" data-query="manager agent proposal">manager agent proposal</button>
-                <button class="inspector-chip-btn" data-query="robot learning architecture">robot learning architecture</button>
-              </div>
-            </div>
-
-            <!-- Document Mode Controls -->
-            <div id="inspector-doc-controls" style="display: none; margin-top: 8px;">
-              <div style="display: flex; gap: 10px; align-items: center;">
-                <select class="input-text" id="inspector-doc-select" style="flex: 1;">
-                  <option value="">Loading registered documents...</option>
-                </select>
-                <button class="btn btn-secondary" id="btn-explore-doc" style="white-space: nowrap;">Explore Hierarchy</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Diagnostics summary banner -->
-          <div id="inspector-summary-bar" class="inspector-meta-summary" style="display: none;">
-            <!-- Populated via app.js -->
-          </div>
-
-          <div class="inspector-tree" id="inspector-list">
-            <!-- Injected via app.js -->
-          </div>
-        </div>
-      </section>
-    </main>
+    </div>
+    <div class="landing-hero" v-if="!landingSection">
+      <h1>The AI project manager for professional services</h1>
+      <p>Upload transcripts, contracts, and trackers. The agent finds action items, flags risk, and drafts your status reports — every fact traceable back to its source.</p>
+      <div class="landing-feats">
+        <div><span class="msi" style="color:var(--blue)">link</span> Audit trail on every task</div>
+        <div><span class="msi" style="color:var(--purple)">apps</span> Multi-project workspace</div>
+        <div><span class="msi" style="color:var(--green)">shield_person</span> Role-based views</div>
+        <div><span class="msi" style="color:var(--red)">warning</span> Deadline risk detection</div>
+        <div><span class="msi" style="color:var(--amber)">bar_chart</span> Auto-generated reports</div>
+        <div><span class="msi" style="color:var(--blue)">integration_instructions</span> Jira-linked tasks</div>
+      </div>
+      <button class="btn-accent" @click="stage='signup'">Get started</button>
+    </div>
   </div>
 
-  <script src="js/app.js?v=2026.1"></script>
+  <!-- ================= LOGIN ================= -->
+  <div v-else-if="stage==='login'" class="login-wrap">
+    <div class="login-card">
+      <h2>Log in</h2>
+      <p>This is a frontend-only demo — pick a role to see that account's view.</p>
+      <label class="field-label">Email</label>
+      <input class="field-input" v-model="loginEmail" placeholder="name@company.com">
+      <label class="field-label">Password</label>
+      <input class="field-input" type="password" v-model="loginPassword" placeholder="••••••••">
+      <label class="field-label">Log in as</label>
+      <select class="field-input" v-model="loginRole">
+        <option value="manager">Manager</option>
+        <option value="team_member">Team member</option>
+        <option value="tenant_admin">Tenant admin</option>
+        <option value="super_admin">Super admin</option>
+      </select>
+      <p class="role-note">In production this comes from the account itself, not a picker — a team member could never select "Manager".</p>
+      <button class="btn-accent" style="width:100%" @click="doLogin">Log in</button>
+      <p style="text-align:center;font-size:12.5px;color:var(--muted);margin:14px 0 0">
+        Don't have an account? <span style="color:var(--accent-dark);font-weight:500;cursor:pointer" @click="stage='signup'">Sign up</span>
+      </p>
+      <button class="btn-ghost" style="width:100%;margin-top:8px" @click="stage='landing'">Back</button>
+    </div>
+  </div>
+
+  <!-- ================= SIGN UP ================= -->
+  <div v-else-if="stage==='signup'" class="login-wrap">
+    <div class="login-card">
+      <h2>Create your account</h2>
+      <p>Set up Co-ordin8 for your team — this is a frontend-only demo.</p>
+      <label class="field-label">Full name</label>
+      <input class="field-input" v-model="signupName" placeholder="Alex Rivera">
+      <label class="field-label">Work email</label>
+      <input class="field-input" v-model="signupEmail" placeholder="name@company.com">
+      <label class="field-label">Organization</label>
+      <input class="field-input" v-model="signupOrg" placeholder="Acme Consulting">
+      <label class="field-label">Password</label>
+      <input class="field-input" type="password" v-model="signupPassword" placeholder="Create a password">
+      <label class="field-label">I'm signing up as</label>
+      <select class="field-input" v-model="loginRole">
+        <option value="manager">Manager</option>
+        <option value="team_member">Team member</option>
+        <option value="tenant_admin">Tenant admin</option>
+      </select>
+      <p class="role-note">A real signup would email-verify you and an org admin would confirm your role.</p>
+      <button class="btn-accent" style="width:100%" @click="doLogin">Create account</button>
+      <p style="text-align:center;font-size:12.5px;color:var(--muted);margin:14px 0 0">
+        Already have an account? <span style="color:var(--accent-dark);font-weight:500;cursor:pointer" @click="stage='login'">Log in</span>
+      </p>
+      <button class="btn-ghost" style="width:100%;margin-top:8px" @click="stage='landing'">Back</button>
+    </div>
+  </div>
+
+  <!-- ================= SUPER ADMIN ================= -->
+  <div v-else-if="appShell==='super_admin'" class="simple-shell">
+    <div class="simple-header">
+      <h1>Tenants</h1>
+      <div class="actions">
+        <button class="btn-accent" @click="toast('Add tenant form would open here')">+ Add tenant</button>
+        <button class="btn-ghost" @click="logout">Logout</button>
+      </div>
+    </div>
+    <div class="card">
+      <table class="mini-table">
+        <tr><th>Organization</th><th>Plan</th><th>Status</th></tr>
+        <tr v-for="t in tenants" :key="t.name">
+          <td>{{ t.name }}</td><td>{{ t.plan }}</td>
+          <td><span class="badge-chip badge-ok">{{ t.status }}</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ================= TENANT ADMIN ================= -->
+  <div v-else-if="appShell==='tenant_admin'" class="simple-shell">
+    <div class="simple-header">
+      <h1>IBM — Projects</h1>
+      <div class="actions">
+        <button class="btn-accent" @click="toast('New project form would open here')">+ New project</button>
+        <button class="btn-ghost" @click="logout">Logout</button>
+      </div>
+    </div>
+    <div class="panel-row">
+      <div class="card panel">
+        <h3>Projects</h3>
+        <table class="mini-table">
+          <tr><th>Project</th><th>Client</th><th>Members</th><th>Jira</th></tr>
+          <tr v-for="p in projects" :key="p.id">
+            <td>{{ p.name }}</td><td>{{ p.client }}</td><td>{{ p.members }}</td>
+            <td><span class="badge-chip badge-neutral">Linked</span></td>
+          </tr>
+        </table>
+      </div>
+      <div class="card panel">
+        <h3>Templates</h3>
+        <div class="list-item" v-for="tp in templates" :key="tp.name">
+          <div class="main-t"><div class="t1">{{ tp.name }}</div><div class="t2">{{ tp.desc }}</div></div>
+        </div>
+        <span class="view-all" @click="toast('New template form would open here')">+ New template</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PROJECT WORKSPACE ================= -->
+  <div v-else class="app-shell">
+    <div class="sidebar">
+      <div class="rail-item" :class="{active:currentView==='dashboard'}" @click="currentView='dashboard'" title="Dashboard"><span class="msi">home</span></div>
+      <div class="rail-item" :class="{active:currentView==='board'}" @click="currentView='board'" :title="roleView==='manager' ? 'Deliverables' : 'My tasks'"><span class="msi">view_kanban</span></div>
+      <template v-if="roleView==='manager'">
+        <div class="rail-item" :class="{active:currentView==='mom'}" @click="currentView='mom'" title="Minutes of meeting"><span class="msi">description</span></div>
+        <div class="rail-item" :class="{active:currentView==='documents'}" @click="currentView='documents'" title="Documents"><span class="msi">summarize</span></div>
+        <div class="rail-item" :class="{active:currentView==='reports'}" @click="currentView='reports'" title="Reports"><span class="msi">bar_chart</span></div>
+        <div class="rail-item" :class="{active:currentView==='jira'}" @click="currentView='jira'" title="Jira metrics"><span class="msi">link</span></div>
+        <div class="rail-item" :class="{active:currentView==='team'}" @click="currentView='team'" title="Team"><span class="msi">group</span></div>
+      </template>
+      <div class="rail-item" :class="{active:currentView==='chat'}" @click="currentView='chat'" title="Chat"><span class="msi">chat</span></div>
+      <div class="rail-item logout" @click="logout" title="Logout"><span class="msi">logout</span></div>
+    </div>
+
+    <div class="main">
+      <div class="panze-top">
+        <div class="panze-brand">Co-ordin8<span>{{ currentProject.name }}</span></div>
+        <div class="pill-nav">
+          <button :class="{active:currentView==='dashboard'}" @click="currentView='dashboard'">Dashboard</button>
+          <button :class="{active:currentView==='board'}" @click="currentView='board'">{{ roleView==='manager' ? 'Deliverables' : 'My tasks' }}</button>
+          <button v-if="roleView==='manager'" :class="{active:currentView==='reports'}" @click="currentView='reports'">Reports</button>
+        </div>
+        <div class="top-icons">
+          <div class="top-icon-btn"><span class="msi" style="font-size:18px">mail</span><span class="dot"></span></div>
+          <div class="top-icon-btn" @click="currentView='chat'"><span class="msi" style="font-size:18px">notifications</span></div>
+          <div class="top-icon-btn"><span class="msi" style="font-size:18px">help</span></div>
+          <div class="top-icon-btn" v-if="roleView==='manager'" @click="currentView='team'"><span class="msi" style="font-size:18px">settings</span></div>
+          <div class="avatar-block">
+            <div class="avatar">{{ user.initials }}</div>
+            <div><div class="name">{{ user.name }}</div><div class="role">{{ roleView==='manager' ? 'Manager' : 'Team member' }}</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-title-row">
+        <div>
+          <p class="eyebrow">{{ roleView==='manager' ? 'Manage and track your projects' : 'Here is what needs your attention today' }} · Next up: {{ focusTask }}</p>
+          <h1>{{ pageTitle }}</h1>
+        </div>
+        <div class="search-wrap">
+          <div class="project-switch" v-if="roleView==='manager'">
+            <select v-model="currentProjectId">
+              <option v-for="p in projects" :key="p.id" :value="p.id">{{ p.name }}</option>
+            </select>
+          </div>
+          <div class="risk-pill" :class="{ok: currentRiskCount===0}">
+            <span class="msi" style="font-size:15px">{{ currentRiskCount>0 ? 'warning' : 'check_circle' }}</span>
+            {{ currentRiskCount>0 ? currentRiskCount + ' tasks at risk' : 'All on track' }}
+          </div>
+          <div class="search-input">
+            <span class="msi" style="font-size:17px">search</span>
+            <input placeholder="Search task, meeting, projects...">
+          </div>
+        </div>
+      </div>
+
+      <!-- DASHBOARD -->
+      <template v-if="currentView==='dashboard'">
+        <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+          <div style="flex:3;min-width:340px;display:flex;flex-direction:column;gap:16px">
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px">
+              <div class="card panel">
+                <div class="chart-panel-head"><h3>My Tasks</h3><span class="msi" style="font-size:18px;color:var(--muted)">add_circle</span></div>
+                <div class="tc-card" v-for="(t,i) in visibleTasks.slice(0,3)" :key="t.id" :class="'c' + (i % 4)">
+                  <div class="tc-top">
+                    <div class="tc-icon"><span class="msi" style="font-size:16px">{{ t.risk ? 'warning' : (t.ai ? 'smart_toy' : 'task_alt') }}</span></div>
+                    <div class="tc-check"><span class="msi" style="font-size:13px">check</span></div>
+                  </div>
+                  <div class="tc-title">{{ t.title }}</div>
+                  <div class="tc-sub">{{ t.owner }} · due {{ t.due }}</div>
+                </div>
+                <span class="view-all" @click="currentView='board'">View all tasks →</span>
+              </div>
+
+              <div class="card panel">
+                <h3>Tasks Overview</h3>
+                <p class="desc">{{ visibleTasks.length }} total, this project</p>
+                <div class="donut-row">
+                  <div class="donut-canvas-wrap">
+                    <canvas ref="donutChartRef"></canvas>
+                    <div class="donut-center"><div class="n">{{ visibleTasks.length }}</div><div class="l">Total</div></div>
+                  </div>
+                  <div class="donut-legend">
+                    <div class="li2" v-for="s in statusBreakdown" :key="s.status">
+                      <div class="dot" :style="{background:s.color}"></div>
+                      <div class="lbl2">{{ s.status }}</div>
+                      <div class="val">{{ s.count }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card panel">
+                <div class="chart-panel-head">
+                  <h3>Tasks Completed</h3>
+                  <select v-model="chartPeriod">
+                    <option value="weekly">Weekly</option>
+                    <option value="daily">Daily</option>
+                  </select>
+                </div>
+                <div class="chart-canvas-wrap" style="height:180px"><canvas ref="mainChartRef"></canvas></div>
+                <p style="font-size:10px;color:var(--muted);margin:6px 0 0">Demo data — reflects real history once connected</p>
+              </div>
+            </div>
+
+            <div class="card panel">
+              <h3>Deliverables Overview</h3>
+              <p class="desc">{{ currentProject.name }} — by status</p>
+              <div class="progress-item" v-for="s in statusBreakdown" :key="s.status">
+                <div class="pt"><span>{{ s.status }}</span><span>{{ s.count }} task{{ s.count===1?'':'s' }}</span></div>
+                <div class="ptrack"><div class="pfill" :style="{width: (visibleTasks.length ? s.count/visibleTasks.length*100 : 0) + '%', background: s.color}"></div></div>
+              </div>
+            </div>
+
+            <div class="tip-bar">
+              <span>💡 Try asking: "What's blocking the Q3 filing?"</span>
+              <span style="cursor:pointer;font-weight:600" @click="currentView='chat'">Ask now →</span>
+            </div>
+          </div>
+
+          <div style="flex:1;min-width:270px;display:flex;flex-direction:column;gap:16px">
+            <div class="card panel">
+              <div class="chart-panel-head"><h3>My Meetings</h3><span class="msi" style="font-size:18px;color:var(--muted)">calendar_month</span></div>
+              <div class="meet-card" v-for="m in currentMeetings" :key="m.title">
+                <div class="m-lbl">My meetings</div>
+                <div class="m-row">
+                  <div class="m-title">{{ m.title }}</div>
+                  <span class="msi m-go" style="font-size:16px">north_east</span>
+                </div>
+                <div class="m-time">{{ m.time }}</div>
+                <div class="m-join"><span class="msi" style="font-size:14px">videocam</span> Join meeting</div>
+              </div>
+              <div v-if="currentMeetings.length===0" style="font-size:12px;color:var(--muted)">Nothing on the calendar.</div>
+              <span class="view-all">See all meetings →</span>
+            </div>
+
+            <div class="card panel">
+              <div class="chart-panel-head"><h3>Needs Review</h3><span class="msi" style="font-size:18px;color:var(--muted)">tune</span></div>
+              <div class="ticket-card" v-for="tk in ticketItems" :key="tk.title">
+                <div class="tk-row">
+                  <div class="tk-avatar" :style="{background: tk.color}">{{ tk.initials }}</div>
+                  <div style="flex:1;min-width:0">
+                    <div class="tk-name">{{ tk.title }}</div>
+                    <div class="tk-msg">{{ tk.msg }}</div>
+                    <div class="tk-btn" @click="currentView='board'">Check <span class="msi" style="font-size:13px">chevron_right</span></div>
+                  </div>
+                </div>
+              </div>
+              <div v-if="ticketItems.length===0" style="font-size:12px;color:var(--muted)">Nothing needs review right now.</div>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- BOARD / DELIVERABLES -->
+      <template v-if="currentView==='board'">
+        <div class="card panel" style="margin-bottom:16px">
+          <h3 style="margin-bottom:14px"><span class="msi" style="font-size:16px">view_kanban</span> {{ roleView==='manager' ? 'Deliverables' : 'My tasks' }}</h3>
+          <div class="board-cols">
+            <div class="board-col" v-for="col in boardColumns" :key="col">
+              <h4>{{ col }}</h4>
+              <div class="task-card" v-for="t in visibleTasks.filter(x=>x.status===col)" :key="t.id">
+                <div class="t">{{ t.title }}</div>
+                <div class="tagrow">
+                  <span class="badge-chip badge-neutral">{{ t.owner }}</span>
+                  <span class="badge-chip badge-risk" v-if="t.risk">At risk</span>
+                  <span class="badge-chip badge-ai" v-if="t.ai">AI found</span>
+                </div>
+                <div class="src"><span class="msi" style="font-size:13px">link</span> {{ t.source }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <h3><span class="msi" style="font-size:16px">view_timeline</span> Timeline</h3>
+          <div class="gantt-wrap" style="border:none;padding:0">
+            <div class="gantt-scale">
+              <span>Sep 14</span><span>Sep 18</span><span>Sep 22</span><span>Sep 26</span><span style="text-align:right">Sep 30</span>
+            </div>
+            <div class="gantt-row" v-for="t in ganttRows" :key="t.id">
+              <div class="gantt-label">
+                <div>{{ t.title }}</div>
+                <div class="t2">{{ t.owner }} · {{ t.status }}</div>
+              </div>
+              <div class="gantt-track">
+                <div class="gantt-bar"
+                     :style="{ left: t.leftPct + '%', width: t.widthPct + '%', background: t.risk ? 'var(--red)' : (t.ai ? 'var(--blue)' : 'var(--accent)'), opacity: t.status==='Done' ? 0.45 : 1 }">
+                  {{ t.due }}
+                </div>
+              </div>
+            </div>
+            <p style="font-size:11px;color:var(--muted);margin:12px 0 0">Bar color: purple = on track, blue = AI found, red = at risk</p>
+          </div>
+        </div>
+      </template>
+
+      <!-- MOM -->
+      <template v-if="currentView==='mom' && roleView==='manager'">
+        <div class="card" style="margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+          <div style="font-size:13px;color:var(--muted)">Upload a transcript to generate minutes and extract action items</div>
+          <button class="btn-accent btn-sm" @click="toast('Upload dialog would open here')">+ Upload transcript</button>
+        </div>
+        <div class="card panel" v-for="m in currentMoms" :key="m.title" style="margin-bottom:12px">
+          <h3>{{ m.title }}</h3>
+          <p class="desc">{{ m.summary }}</p>
+          <div class="badge-chip badge-neutral" v-for="a in m.actions" :key="a" style="margin-right:6px;margin-bottom:6px;display:inline-block">{{ a }}</div>
+        </div>
+      </template>
+
+      <!-- DOCUMENTS -->
+      <template v-if="currentView==='documents' && roleView==='manager'">
+        <div class="card panel">
+          <h3>Document summarisation</h3>
+          <p class="desc">Paste text or upload a document to get a quick summary</p>
+          <textarea v-model="docInput" rows="4" style="width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:12.5px;font-family:Inter,sans-serif;background:var(--page);color:var(--ink)" placeholder="Paste contract or brief text here…"></textarea>
+          <button class="btn-accent btn-sm" style="margin-top:10px" @click="summarizeDoc">Summarize</button>
+          <div v-if="docSummary" class="card" style="margin-top:12px;background:var(--page)">
+            <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Summary</div>
+            <div style="font-size:12.5px">{{ docSummary }}</div>
+          </div>
+        </div>
+      </template>
+
+      <!-- REPORTS -->
+      <template v-if="currentView==='reports' && roleView==='manager'">
+        <div class="card panel">
+          <h3>Weekly status report — {{ currentProject.name }}</h3>
+          <p class="desc">Auto-generated from the tracker and meeting history, client-ready</p>
+          <div class="card" style="background:var(--page);font-size:12.5px;line-height:1.7">
+            <strong>Progress:</strong> {{ visibleTasks.filter(t=>t.status==='Done').length }} of {{ visibleTasks.length }} tasks complete this cycle.<br>
+            <strong>Risks:</strong> {{ currentRiskCount }} task(s) flagged — see board for detail.<br>
+            <strong>Next steps:</strong> {{ visibleTasks.find(t=>t.status!=='Done')?.title || 'No open items' }} due next.
+          </div>
+          <button class="btn-accent btn-sm" style="margin-top:12px" @click="toast('Preview would open in a new tab')">Preview</button>
+          <button class="btn-ghost btn-sm" style="margin-top:12px;margin-left:8px" @click="toast('Report sent to client (demo)')">Send to client</button>
+        </div>
+      </template>
+
+      <!-- JIRA -->
+      <template v-if="currentView==='jira' && roleView==='manager'">
+        <div class="card panel">
+          <h3>Jira metrics <span class="badge-chip badge-ok">Connected</span></h3>
+          <p class="desc">Pulled live from Jira's API for {{ currentProject.jiraKey }}</p>
+          <div class="glance-grid">
+            <div class="card glance-card"><div class="num">{{ currentJira.open }}</div><div class="lbl">Open tickets</div></div>
+            <div class="card glance-card"><div class="num">{{ currentJira.sprint }}</div><div class="lbl">In this sprint</div></div>
+            <div class="card glance-card"><div class="num" style="color:var(--red)">{{ currentJira.overdue }}</div><div class="lbl">Overdue</div></div>
+            <div class="card glance-card"><div class="num">{{ currentJira.progress }}%</div><div class="lbl">Sprint progress</div></div>
+          </div>
+          <button class="btn-accent btn-sm" @click="toast('Would open Jira in a new tab')">View full details in Jira ↗</button>
+        </div>
+      </template>
+
+      <!-- TEAM -->
+      <template v-if="currentView==='team' && roleView==='manager'">
+        <div class="card panel">
+          <h3>Team — {{ currentProject.name }}</h3>
+          <table class="mini-table">
+            <tr><th>Name</th><th>Role</th><th>Active tasks</th></tr>
+            <tr v-for="m in teamMembers" :key="m.name">
+              <td>{{ m.name }}</td><td>{{ m.role }}</td><td>{{ m.active }}</td>
+            </tr>
+          </table>
+        </div>
+      </template>
+
+      <!-- CHAT -->
+      <template v-if="currentView==='chat'">
+        <div class="card panel" style="max-width:640px">
+          <h3>Chat with this project</h3>
+          <div class="chat-log" style="max-height:320px">
+            <div class="chat-msg" :class="m.role" v-for="(m,i) in chatLog" :key="i">{{ m.text }}</div>
+            <div v-if="chatLog.length===0" style="font-size:12.5px;color:var(--muted)">Ask something like "What's blocking the Q3 filing?"</div>
+          </div>
+          <div class="ask-box">
+            <input v-model="chatInput" placeholder="Ask about this project…" @keyup.enter="sendChat">
+            <button @click="sendChat">Ask</button>
+          </div>
+        </div>
+      </template>
+
+    </div>
+  </div>
+
+  <div class="toast-box" v-if="toastMsg">{{ toastMsg }}</div>
+</div>
+
+
+<!-- Vue 3 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@3.4.21/dist/vue.global.prod.js"></script>
+<!-- Chart.js (dashboard charts) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.js"></script>
+<!-- App logic -->
+<script src="js/app.js"></script>
 </body>
 </html>
