@@ -37,6 +37,10 @@ backend/data/renders/*
 !backend/data/renders/.gitkeep
 backend/data/temp/*
 !backend/data/temp/.gitkeep
+backend/data/*.db*
+backend/data/knowledge_bases/
+backend/data/openworker_workspaces/
+backend/data/test_spaces/
 
 # Evaluation Results
 backend/evals/results/*

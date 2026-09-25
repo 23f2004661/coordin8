@@ -47,5 +47,6 @@ def get_db() -> Generator[Session, None, None]:
 
 def init_db(bind_engine=None) -> None:
     """Initialize tables if they do not already exist."""
+    import app.db.models  # noqa: F401 - ensure models register tables on Base.metadata
     target = bind_engine or engine
     Base.metadata.create_all(bind=target)

@@ -38,6 +38,9 @@ from app.spreadsheets.operations import OperationType, SpreadsheetOperation
 from app.storage.artifacts import ArtifactStorage
 
 
+DEFAULT_KB_DIR = (Path(__file__).resolve().parent.parent / "data" / "knowledge_bases").resolve()
+
+
 class KnowledgeBase:
     """An autonomous, isolated Knowledge Base instance.
 
@@ -60,7 +63,7 @@ class KnowledgeBase:
         if storage_dir:
             self.storage_dir = Path(storage_dir)
         else:
-            self.storage_dir = Path("./data/knowledge_bases") / kb_id
+            self.storage_dir = DEFAULT_KB_DIR / kb_id
         self.storage_dir.mkdir(parents=True, exist_ok=True)
 
         # 2. Scoped Database
@@ -467,7 +470,7 @@ class KnowledgeBaseManager:
     """Manages creation, lifecycle, and discovery of multiple KnowledgeBase instances."""
 
     def __init__(self, base_storage_dir: str | Path | None = None) -> None:
-        self.base_dir = Path(base_storage_dir or "./data/knowledge_bases")
+        self.base_dir = Path(base_storage_dir or DEFAULT_KB_DIR)
         self.base_dir.mkdir(parents=True, exist_ok=True)
         self._instances: dict[str, KnowledgeBase] = {}
 

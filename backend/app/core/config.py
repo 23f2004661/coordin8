@@ -82,6 +82,19 @@ except ImportError:
             self.artifact_root: str = os.getenv("ARTIFACT_ROOT", "./data")
 
 
+from pathlib import Path
+
+BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
+
+
 @lru_cache
 def get_settings() -> Settings:
-    return Settings()
+    s = Settings()
+    # Resolve relative SQLite URL to absolute backend path so it works from any CWD (e.g. OpenWorker)
+    if s.database_url.startswith("sqlite:///./"):
+        rel = s.database_url[len("sqlite:///./"):]
+        abs_db = (BACKEND_DIR / rel).resolve()
+        s.database_url = f"sqlite:///{abs_db}"
+    if s.artifact_root.startswith("./"):
+        s.artifact_root = str((BACKEND_DIR / s.artifact_root[2:]).resolve())
+    return s
