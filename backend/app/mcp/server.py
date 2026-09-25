@@ -203,10 +203,21 @@ class MCPServer:
 
     def run_stdio_loop(self) -> None:
         """Run standard MCP stdio loop for OpenWorker / Claude Desktop IPC."""
-        # 1. Suppress all warnings so they never leak into stdout
-        warnings.filterwarnings("ignore")
+        # 1. Save pristine stdout for MCP JSON-RPC protocol ONLY
+        real_stdout = sys.stdout
 
-        # 2. Redirect all logger StreamHandlers from stdout to stderr
+        # 2. Redirect global sys.stdout to sys.stderr so rogue prints or library logs NEVER corrupt MCP JSON
+        sys.stdout = sys.stderr
+
+        # 3. Suppress all warnings and disable verbose engine echo on stdout
+        warnings.filterwarnings("ignore")
+        for log_name in ("sqlalchemy", "sqlalchemy.engine", "sqlalchemy.engine.Engine", "sqlalchemy.pool"):
+            sqllog = logging.getLogger(log_name)
+            sqllog.handlers.clear()
+            sqllog.propagate = False
+            sqllog.setLevel(logging.WARNING)
+
+        # 4. Redirect all logger StreamHandlers to stderr
         for handler in logging.root.handlers:
             if isinstance(handler, logging.StreamHandler):
                 handler.stream = sys.stderr
@@ -283,13 +294,13 @@ class MCPServer:
                     else:
                         continue
 
-                sys.stdout.write(json.dumps(response) + "\n")
-                sys.stdout.flush()
+                real_stdout.write(json.dumps(response) + "\n")
+                real_stdout.flush()
             except Exception as exc:
                 logger.exception("Error handling MCP request: %s", exc)
                 err_resp = {"jsonrpc": "2.0", "error": {"code": -32700, "message": str(exc)}}
-                sys.stdout.write(json.dumps(err_resp) + "\n")
-                sys.stdout.flush()
+                real_stdout.write(json.dumps(err_resp) + "\n")
+                real_stdout.flush()
 
 
 if __name__ == "__main__":

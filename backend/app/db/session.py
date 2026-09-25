@@ -13,7 +13,7 @@ connect_args = {"check_same_thread": False} if settings.database_url.startswith(
 engine = create_engine(
     settings.database_url,
     connect_args=connect_args,
-    echo=settings.app_env == "development",
+    echo=False,
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -26,7 +26,7 @@ def create_db_engine(db_url: str | None = None, echo: bool | None = None):
     url = db_url or settings.database_url
     is_sqlite = url.startswith("sqlite")
     c_args = {"check_same_thread": False} if is_sqlite else {}
-    is_echo = echo if echo is not None else (settings.app_env == "development")
+    is_echo = echo if echo is not None else False
     return create_engine(url, connect_args=c_args, echo=is_echo)
 
 
