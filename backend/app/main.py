@@ -29,7 +29,21 @@ async def lifespan(app: FastAPI):
     except Exception as exc:
         logger.warning("Qdrant collection check deferred: %s", exc)
 
+    # Initialize Projects Manager & Watchdog file watcher
+    try:
+        from app.projects.manager import ProjectManager
+        ProjectManager.get_instance().start_service()
+        logger.info("ProjectManager & Watchdog file service running.")
+    except Exception as exc:
+        logger.warning("ProjectManager startup deferred: %s", exc)
+
     yield
+
+    try:
+        from app.projects.manager import ProjectManager
+        ProjectManager.get_instance().stop_service()
+    except Exception:
+        pass
 
     logger.info("Shutting down Coordin8 Backend.")
 

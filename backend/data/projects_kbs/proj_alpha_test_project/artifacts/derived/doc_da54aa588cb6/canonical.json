@@ -1,0 +1,83 @@
+{
+  "document_id": "doc_da54aa588cb6",
+  "metadata": {
+    "title": "architecture_notes",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_alpha_test_project\\artifacts\\raw\\doc_da54aa588cb6\\architecture_notes.md",
+    "file_type": "md",
+    "file_size_bytes": 114,
+    "source_hash": "340b844ea42fb95af4298466e937db28eb8f5ec082e228cb4edf3715f1228091",
+    "author": null,
+    "created_at": "2026-09-28 14:28:14.075861+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_da54aa588cb6_main",
+      "title": "architecture_notes",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_72eca6ad",
+          "block_type": "heading",
+          "content": "# System Architecture\nThe API gateway failover threshold is 250 milliseconds with redundant hot standby clusters.",
+          "provenance": {
+            "file_id": "doc_da54aa588cb6",
+            "document_id": "doc_da54aa588cb6",
+            "file_name": "architecture_notes.md",
+            "file_type": "md",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_da54aa588cb6",
+        "document_id": "doc_da54aa588cb6",
+        "file_name": "architecture_notes.md",
+        "file_type": "md",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# System Architecture\nThe API gateway failover threshold is 250 milliseconds with redundant hot standby clusters.",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_da54aa588cb6",
+    "document_id": "doc_da54aa588cb6",
+    "file_name": "architecture_notes.md",
+    "file_type": "md",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

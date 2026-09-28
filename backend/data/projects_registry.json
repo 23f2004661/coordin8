@@ -1,0 +1,53 @@
+{
+  "home_folder": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home",
+  "updated_at": "2026-09-28T20:32:31.185582",
+  "projects": {
+    "proj_alpha_test_project": {
+      "project_id": "proj_alpha_test_project",
+      "name": "Alpha Test Project",
+      "code": "ATP",
+      "description": "Demo project",
+      "category": "General",
+      "color": "#6366f1",
+      "folder_path": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Alpha Test Project",
+      "kb_id": "kb_alpha_test_project",
+      "creation_mode": "scratch",
+      "created_at": "2026-09-28T19:57:53.347385",
+      "progress": 0,
+      "meetings": [],
+      "deliverables": [],
+      "ingested_count": 0
+    },
+    "proj_existing_research_project": {
+      "project_id": "proj_existing_research_project",
+      "name": "Existing Research Project",
+      "code": "ERP",
+      "description": "Imported project",
+      "category": "General",
+      "color": "#6366f1",
+      "folder_path": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Existing Research Docs",
+      "kb_id": "kb_existing_research_project",
+      "creation_mode": "existing_folder",
+      "created_at": "2026-09-28T19:58:30.651883",
+      "progress": 0,
+      "meetings": [],
+      "deliverables": [],
+      "ingested_count": 2
+    },
+    "proj_learning_robotics_hf": {
+      "project_id": "proj_learning_robotics_hf",
+      "name": "Learning Robotics HF",
+      "code": "LEA",
+      "description": "The goal is to become a robotics researcher",
+      "category": "Core Infrastructure",
+      "color": "#10b981",
+      "folder_path": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Learning Robotics HF",
+      "kb_id": "kb_learning_robotics_hf",
+      "creation_mode": "existing_folder",
+      "created_at": "2026-09-28T20:32:31.185573",
+      "progress": 0,
+      "meetings": [],
+      "deliverables": []
+    }
+  }
+}

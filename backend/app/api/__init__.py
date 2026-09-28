@@ -4,11 +4,13 @@ from fastapi import APIRouter
 from app.api.answers import router as answers_router
 from app.api.documents import router as documents_router
 from app.api.jobs import router as jobs_router
+from app.api.projects import router as projects_router
 from app.api.search import router as search_router
 from app.api.spreadsheets import router as spreadsheets_router
 
 api_router = APIRouter(prefix="/api")
 
+api_router.include_router(projects_router)
 api_router.include_router(documents_router)
 api_router.include_router(jobs_router)
 api_router.include_router(search_router)

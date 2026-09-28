@@ -1,0 +1,83 @@
+{
+  "document_id": "doc_9fa46a32a7c5",
+  "metadata": {
+    "title": "research_summary",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_existing_research_project\\artifacts\\raw\\doc_9fa46a32a7c5\\research_summary.txt",
+    "file_type": "txt",
+    "file_size_bytes": 45,
+    "source_hash": "6dc9464af96305cc67601eba1a9986c059d65bcc5ebec1ae8de4b94a0f653fdd",
+    "author": null,
+    "created_at": "2026-09-28 14:28:43.310084+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_9fa46a32a7c5_main",
+      "title": "research_summary",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_0401633a",
+          "block_type": "text",
+          "content": "Research findings on multimodal RAG indexing.",
+          "provenance": {
+            "file_id": "doc_9fa46a32a7c5",
+            "document_id": "doc_9fa46a32a7c5",
+            "file_name": "research_summary.txt",
+            "file_type": "txt",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_9fa46a32a7c5",
+        "document_id": "doc_9fa46a32a7c5",
+        "file_name": "research_summary.txt",
+        "file_type": "txt",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "Research findings on multimodal RAG indexing.",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_9fa46a32a7c5",
+    "document_id": "doc_9fa46a32a7c5",
+    "file_name": "research_summary.txt",
+    "file_type": "txt",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

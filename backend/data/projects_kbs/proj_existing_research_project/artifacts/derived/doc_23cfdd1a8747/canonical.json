@@ -1,0 +1,83 @@
+{
+  "document_id": "doc_23cfdd1a8747",
+  "metadata": {
+    "title": "guidelines",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_existing_research_project\\artifacts\\raw\\doc_23cfdd1a8747\\guidelines.md",
+    "file_type": "md",
+    "file_size_bytes": 62,
+    "source_hash": "7f8353b183bb17bf576a82cbc62481c230a0bc6a89f4ea0bb30e27e334f76c10",
+    "author": null,
+    "created_at": "2026-09-28 14:28:35.031590+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_23cfdd1a8747_main",
+      "title": "guidelines",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_efb67f30",
+          "block_type": "heading",
+          "content": "# Guidelines\nEnsure all chunks preserve provenance citations.",
+          "provenance": {
+            "file_id": "doc_23cfdd1a8747",
+            "document_id": "doc_23cfdd1a8747",
+            "file_name": "guidelines.md",
+            "file_type": "md",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_23cfdd1a8747",
+        "document_id": "doc_23cfdd1a8747",
+        "file_name": "guidelines.md",
+        "file_type": "md",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# Guidelines\nEnsure all chunks preserve provenance citations.",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_23cfdd1a8747",
+    "document_id": "doc_23cfdd1a8747",
+    "file_name": "guidelines.md",
+    "file_type": "md",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

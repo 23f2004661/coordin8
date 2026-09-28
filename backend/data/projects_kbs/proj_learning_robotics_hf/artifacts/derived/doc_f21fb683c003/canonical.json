@@ -1,0 +1,193 @@
+{
+  "document_id": "doc_f21fb683c003",
+  "metadata": {
+    "title": "Roadmap",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_learning_robotics_hf\\artifacts\\raw\\doc_f21fb683c003\\Roadmap.docx",
+    "file_type": "docx",
+    "file_size_bytes": 13620,
+    "source_hash": "ea0ecabe192d09e12afea9e3ca6f1ad87ecaf826e96a11bdcaaedb4e1f0cac5d",
+    "author": null,
+    "created_at": "2026-09-28 15:02:35.721504+00:00",
+    "page_count": null,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_f21fb683c003_main",
+      "title": "Roadmap",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_f51a19f9",
+          "block_type": "text",
+          "content": "Roadmap:",
+          "provenance": {
+            "file_id": "doc_f21fb683c003",
+            "document_id": "doc_f21fb683c003",
+            "file_name": "Roadmap.docx",
+            "file_type": "docx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_f63fc37c",
+          "block_type": "text",
+          "content": "Learn robotics using HF tutorials",
+          "provenance": {
+            "file_id": "doc_f21fb683c003",
+            "document_id": "doc_f21fb683c003",
+            "file_name": "Roadmap.docx",
+            "file_type": "docx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_082ea21c",
+          "block_type": "text",
+          "content": "Write Gate robotics and automation paper",
+          "provenance": {
+            "file_id": "doc_f21fb683c003",
+            "document_id": "doc_f21fb683c003",
+            "file_name": "Roadmap.docx",
+            "file_type": "docx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_5bf4e73b",
+          "block_type": "text",
+          "content": "Join Mtech in Robotics at IIT Madras",
+          "provenance": {
+            "file_id": "doc_f21fb683c003",
+            "document_id": "doc_f21fb683c003",
+            "file_name": "Roadmap.docx",
+            "file_type": "docx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_f76250e5",
+          "block_type": "text",
+          "content": "Join the Robert Bosch Centre for AI as an intern",
+          "provenance": {
+            "file_id": "doc_f21fb683c003",
+            "document_id": "doc_f21fb683c003",
+            "file_name": "Roadmap.docx",
+            "file_type": "docx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_582ed535",
+          "block_type": "text",
+          "content": "Profit!",
+          "provenance": {
+            "file_id": "doc_f21fb683c003",
+            "document_id": "doc_f21fb683c003",
+            "file_name": "Roadmap.docx",
+            "file_type": "docx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_f21fb683c003",
+        "document_id": "doc_f21fb683c003",
+        "file_name": "Roadmap.docx",
+        "file_type": "docx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# Roadmap\n\nRoadmap:\n\nLearn robotics using HF tutorials\n\nWrite Gate robotics and automation paper\n\nJoin Mtech in Robotics at IIT Madras\n\nJoin the Robert Bosch Centre for AI as an intern\n\nProfit!\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_f21fb683c003",
+    "document_id": "doc_f21fb683c003",
+    "file_name": "Roadmap.docx",
+    "file_type": "docx",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}
