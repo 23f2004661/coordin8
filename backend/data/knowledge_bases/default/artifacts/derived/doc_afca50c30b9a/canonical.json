@@ -1,0 +1,83 @@
+{
+  "document_id": "doc_afca50c30b9a",
+  "metadata": {
+    "title": "test_ingest",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\knowledge_bases\\default\\artifacts\\raw\\doc_afca50c30b9a\\test_ingest.txt",
+    "file_type": "txt",
+    "file_size_bytes": 48,
+    "source_hash": "e1879dbeba7f32242a17cea6e111308097316a3bec91a1916e31c7d3f75dae40",
+    "author": null,
+    "created_at": "2026-09-25 13:14:27.058392+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_afca50c30b9a_main",
+      "title": "test_ingest",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_89d258fb",
+          "block_type": "text",
+          "content": "Hello world this is a test document for coordin8",
+          "provenance": {
+            "file_id": "doc_afca50c30b9a",
+            "document_id": "doc_afca50c30b9a",
+            "file_name": "test_ingest.txt",
+            "file_type": "txt",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_afca50c30b9a",
+        "document_id": "doc_afca50c30b9a",
+        "file_name": "test_ingest.txt",
+        "file_type": "txt",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "Hello world this is a test document for coordin8",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_afca50c30b9a",
+    "document_id": "doc_afca50c30b9a",
+    "file_name": "test_ingest.txt",
+    "file_type": "txt",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

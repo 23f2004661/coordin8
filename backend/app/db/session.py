@@ -13,7 +13,7 @@ connect_args = {"check_same_thread": False} if settings.database_url.startswith(
 engine = create_engine(
     settings.database_url,
     connect_args=connect_args,
-    echo=False,
+    echo=settings.app_env == "development",
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -26,7 +26,7 @@ def create_db_engine(db_url: str | None = None, echo: bool | None = None):
     url = db_url or settings.database_url
     is_sqlite = url.startswith("sqlite")
     c_args = {"check_same_thread": False} if is_sqlite else {}
-    is_echo = echo if echo is not None else False
+    is_echo = echo if echo is not None else (settings.app_env == "development")
     return create_engine(url, connect_args=c_args, echo=is_echo)
 
 
@@ -47,6 +47,5 @@ def get_db() -> Generator[Session, None, None]:
 
 def init_db(bind_engine=None) -> None:
     """Initialize tables if they do not already exist."""
-    import app.db.models  # noqa: F401 - ensure models register tables on Base.metadata
     target = bind_engine or engine
     Base.metadata.create_all(bind=target)

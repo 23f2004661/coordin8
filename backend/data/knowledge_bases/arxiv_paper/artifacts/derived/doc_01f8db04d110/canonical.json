@@ -1,0 +1,3796 @@
+{
+  "document_id": "doc_01f8db04d110",
+  "metadata": {
+    "title": "arXiv",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\knowledge_bases\\arxiv_paper\\artifacts\\raw\\doc_01f8db04d110\\arXiv.pdf",
+    "file_type": "pdf",
+    "file_size_bytes": 27319473,
+    "source_hash": "9bdf654681b7a58db558c79c90b2f6019daa77ffafb2b294799df26471b1e59f",
+    "author": null,
+    "created_at": "2026-09-28 12:25:43.848919+00:00",
+    "page_count": 17,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_01f8db04d110_p1",
+      "title": "Page 1",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_fd38981b",
+          "block_type": "text",
+          "content": "ETH Library\nDSLR-Quality Photos on Mobile\nDevices with Deep Convolutional\nNetworks\nConference Paper\nAuthor(s):\nIgnatov, Andrey; Kobyshev, Nikolay; Vanhoey, Kenneth; Timofte, Radu; Van Gool, Luc\nPublication date:\n2017\nPermanent link:\nhttps://doi.org/https://doi.org/10.3929/ethz-b-000203254\nRights / license:\nIn Copyright - Non-Commercial Use Permitted\nOriginally published in:\nhttps://doi.org/10.1109/ICCV.2017.355\nThis page was generated automatically upon download from the ETH Zurich Research Collection.\nFor more information, please consult the Terms of use.",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 1,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_9344b8af",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 1: Im1.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 1,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 1,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p2",
+      "title": "Page 2",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_4b28f36c",
+          "block_type": "text",
+          "content": "DSLR-Quality Photos on Mobile Devices with Deep Convolutional Networks\nAndrey Ignatov, Nikolay Kobyshev, Kenneth Vanhoey, Radu Timofte, Luc Van Gool\nETH Zurich\nandrey.ignatoff@gmail.com, {nk, vanhoey, timofter, vangool }@vision.ee.ethz.ch\nFigure 1: iPhone 3GS photo enhanced to DSLR-quality by our method. Best zoomed on screen.\nAbstract\nDespite a rapid rise in the quality of built-in smartphone cam-\neras, their physical limitations \u2014 small sensor size, compact\nlenses and the lack of speci\ufb01c hardware, \u2014 impede them to\nachieve the quality results of DSLR cameras. In this work we\npresent an end-to-end deep learning approach that bridges this\ngap by translating ordinary photos into DSLR-quality images.\nWe propose learning the translation function using a residual\nconvolutional neural network that improves both color rendition\nand image sharpness. Since the standard mean squared loss is\nnot well suited for measuring perceptual image quality, we intro-\nduce a composite perceptual error function that combines con-\ntent, color and texture losses. The \ufb01rst two losses are de\ufb01ned\nanalytically, while the texture loss is learned in an adversarial\nfashion. We also present DPED, a large-scale dataset that con-\nsists of real photos captured from three different phones and one\nhigh-end re\ufb02ex camera. Our quantitative and qualitative assess-\nments reveal that the enhanced image quality is comparable to\nthat of DSLR-taken photos, while the methodology is general-\nized to any type of digital camera.\n1 Introduction\nDuring the last several years there has been a signi\ufb01cant\nimprovement in compact camera sensors quality, which has\nbrought mobile photography to a substantially new level. Even\nlow-end devices are now able to take reasonably good photos\nin appropriate lighting conditions, thanks to their advanced soft-\nware and hardware tools for post-processing. However, when it\ncomes to artistic quality, mobile devices still fall behind their\nDSLR counterparts. Larger sensors and high-aperture optics\nyield better photo resolution, color rendition and less noise,\nwhereas their additional sensors help to \ufb01ne-tune shooting pa-\nrameters. These physical differences result in strong obstacles,\nmaking DSLR camera quality unattainable for compact mobile\ndevices.\nWhile a number of photographer tools for automatic image\nenhancement exist, they are usually focused on adjusting only\nglobal parameters such as contrast or brightness, without im-\nproving texture quality or taking image semantics into account.\nBesides that, they are usually based on a pre-de\ufb01ned set of rules\nthat do not always consider the speci\ufb01cs of a particular device.\nTherefore, the dominant approach to photo post-processing is\nstill based on manual image correction using specialized re-\ntouching software.\n1.1 Related work\nThe problem of automatic image quality enhancement has not\nbeen addressed in its entirety in the area of computer vision,\nthough a number of sub-tasks and related problems have been al-\nready successfully solved using deep learning techniques. Such\ntasks are usually dealing with image-to-image translation prob-\nlems, and their common property is that they are targeted at re-\n1\narXiv:submit/1998002  [cs.CV]  5 Sep 2017",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 2,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_37318b57",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 2: Im1.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 2,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 2,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p3",
+      "title": "Page 3",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_4621b764",
+          "block_type": "text",
+          "content": "moving arti\ufb01cially added artifacts to the original images. Among\nthe related problems are the following:\nImage super-resolution aims at restoring the original im-\nage from its downscaled version. In [4] a CNN architecture\nand MSE loss are used for directly learning low to high reso-\nlution mapping. It is the \ufb01rst CNN-based solution to achieve\ntop performance in single image super-resolution, comparable\nwith non-CNN methods [20]. The subsequent works devel-\noped deeper and more complex CNN architectures (e.g., [10, 18,\n16]). Currently, the best photo-realistic results on this task are\nachieved using a VGG-based loss function [9] and adversarial\nnetworks [12] that turned out to be ef\ufb01cient at recovering plau-\nsible high-frequency components.\nImage deblurring/dehazing tries to remove arti\ufb01cially added\nhaze or blur from the images. Usually, MSE is used as a target\nloss function and the proposed CNN architectures consist of 3 to\n15 convolutional layers [14, 2, 6] or are bi-channel CNNs [17].\nImage denoising/sparse inpainting similarly targets removal\nof noise and artifacts from the pictures. In [28] the authors pro-\nposed weighted MSE together with a 3-layer CNN, while in [19]\nit was shown that an 8-layer residual CNN performs better when\nusing a standard mean square error. Among other solutions are\na bi-channel CNN [29], a 17-layer CNN [26] and a recurrent\nCNN [24] that was reapplied several times to the produced re-\nsults.\nImage colorization. Here the goal is to recover colors that\nwere removed from the original image. The baseline approach\nfor this problem is to predict new values for each pixel based\non its local description that consists of various hand-crafted fea-\ntures [3]. Considerably better performance on this task was ob-\ntained using generative adversarial networks [8] or a 16-layer\nCNN with a multinomial cross-entropy loss function [27].\nImage adjustment. A few works considered the problem of\nimage color/contrast/exposure adjustment. In [25] the authors\nproposed an algorithm for automatic exposure correction using\nhand-designed features and prede\ufb01ned rules. In [23], a more\ngeneral algorithm was proposed that \u2013 similarly to [3] \u2013 uses\nlocal description of image pixels for reproducing various pho-\ntographic styles. A different approach was considered in [13],\nwhere images with similar content are retrieved from a database\nand their styles are applied to the target picture. All of these\nadjustments are implicitly included in our end-to-end transfor-\nmation learning approach by design.\n1.2 Contributions\nThe key challenge we face is dealing with all the aforementioned\nenhancements at once. Even advanced tools cannot notably im-\nprove image sharpness, texture details or small color variations\nthat were lost by the camera sensor, thus we can not generate tar-\nget enhanced photos from the existing ones. Corrupting DSLR\nphotos and training an algorithm on the corrupted images does\nnot work either: the solution would not generalize to real-world\nand very complex artifacts unless they are modeled and applied\nas corruptions, which is infeasible. To tackle this problem, we\npresent a different approach: we propose to learn the transfor-\nmation that modi\ufb01es photos taken by a given camera to DSLR-\nTable 1: DPED camera characteristics.\nCamera Sensor Image size Photo quality\niPhone 3GS 3 MP 2048\u00d7 1536 Poor\nBlackBerry Passport 13 MP 4160\u00d7 3120 Mediocre\nSony Xperia Z 13 MP 2592\u00d7 1944 Average\nCanon 70D DSLR 20 MP 3648\u00d7 2432 Excellent\nFigure 2: The rig with the four DPED cameras from Table 1.\nquality ones. Thus, the goal is to learn a cross-distribution trans-\nlation function, where the input distribution is de\ufb01ned by a given\nmobile camera sensor, and the target distribution by a DSLR sen-\nsor. To supervise the learning process, we create and leverage a\ndataset of images capturing the same scene with different cam-\neras. Once the function is learned, it can be further applied to\nunseen photos at will.\nOur main contributions are:\n\u2022 A novel approach1 for the photo enhancement task based on\nlearning a mapping function between photos from mobile\ndevices and a DSLR camera. The target model is trained in\nan end-to-end fashion without using any additional super-\nvision or handcrafted features.\n\u2022 A new large-scale dataset of over 6K photos taken syn-\nchronously by a DSLR camera and 3 low-end cameras of\nsmartphones in a wide variety of conditions.\n\u2022 A multi-term loss function composed of color, texture and\ncontent terms, allowing an ef\ufb01cient image quality estima-\ntion.\n\u2022 Experiments measuring objective and subjective quality\ndemonstrating the advantage of the enhanced photos over\nthe originals and, at the same time, their comparable qual-\nity with the DSLR counterparts.\nThe remainder of the paper is structured as follows. In\nSection 2 we describe the new DPED dataset. Section 3 presents\nour architecture and the chosen loss functions. Section 4 shows\nand analyzes the experimental results. Finally, Section 5 con-\ncludes the paper.\n1https://github.com/aiff22/DPED\n2",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 3,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_58aa8915",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 3: Im2.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 3,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 3,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p4",
+      "title": "Page 4",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_a4247931",
+          "block_type": "text",
+          "content": "iPhone BlackBerry Sony Canon\nFigure 3: Example quadruplets of images taken synchronously\nby the DPED four cameras.\n2 DSLR Photo Enhancement Dataset\nIn order to tackle the problem of image translation from poor\nquality images captured by smartphone cameras to superior\nquality images achieved by a professional DSLR camera, we\nintroduce a large-scale real-world dataset, namely the \u201cDSLR\nPhoto Enhancement Dataset\u201d (DPED)2, that can be used for the\ngeneral photo quality enhancement task. DPED consists of pho-\ntos taken in the wild synchronously by three smartphones and\none DSLR camera. The devices used to collect the data are de-\nscribed in Table 1 and example quadruplets can be seen in Fig-\nure 3.\nTo ensure that all cameras were capturing photos simultane-\nously, the devices were mounted on a tripod and activated re-\nmotely by a wireless control system (see Figure 2). In total, over\n22K photos were collected during 3 weeks, including 4549 pho-\ntos from Sony smartphone, 5727 from iPhone and 6015 photos\nfrom each Canon and BlackBerry cameras. The photos were\ntaken during the daytime in a wide variety of places and in vari-\nous illumination and weather conditions. The photos were cap-\ntured in automatic mode, and we used default settings for all\ncameras throughout the whole collection procedure.\nMatching algorithm. The synchronously captured images are\nnot perfectly aligned since the cameras have different viewing\nangles and positions as can be seen in Figure 3. To address this,\nwe performed additional non-linear transformations resulting in\na \ufb01xed-resolution image that our network takes as an input. The\nalgorithm goes as follows (see Fig. 4). First, for each (phone-\nDSLR) image pair, we compute and match SIFT keypoints [15]\nacross the images. These are used to estimate a homography\nusing RANSAC [21]. We then crop both images to the intersec-\ntion part and downscale the DSLR image crop to the size of the\nphone crop.\n2http://dped-photos.vision.ee.ethz.ch\nFigure 4: Matching algorithm: an overlapping region is deter-\nmined by SIFT descriptor matching, followed by a non-linear\ntransform and a crop resulting in two images of the same resolu-\ntion representing the same scene. Here: Canon and BlackBerry\nimages, respectively.\nTraining CNN on the aligned high-resolution images is infea-\nsible, thus patches of size 100\u00d7100px were extracted from these\nphotos. Our preliminary experiments revealed that larger patch\nsizes do not lead to better performance, while requiring consid-\nerably more computational resources. We extracted patches us-\ning a non-overlapping sliding window. The window was mov-\ning in parallel along both images from each phone-DSLR im-\nage pair, and its position on the phone image was additionally\nadjusted by shifts and rotations based on the cross-correlation\nmetrics. To avoid signi\ufb01cant displacements, only patches with\ncross-correlation greater than 0.9 were included in the dataset.\nAround 100 original images were reserved for testing, the rest\nof the photos were used for training and validation. This proce-\ndure resulted in 139K, 160K and 162K training and 2.4-4.3K test\npatches for BlackBerry-Canon, iPhone-Canon and Sony-Canon\npairs, respectively. It should be emphasized that both training\nand test patches are precisely matched, the potential shifts do not\nexceed 5 pixels. In the following we assume that these patches\nof size 3\u00d7100\u00d7100 constitute the input data to our CNNs.\n3 Method\nGiven a low-quality photoIs (source image), the goal of the con-\nsidered enhancement task is to reproduce the image It (target\nimage) taken by a DSLR camera. A deep residual CNN FW pa-\nrameterized by weights W is used to learn the underlying trans-\nlation function. Given the training set{I j\ns, Ij\nt}N\nj=1 consisting of\nN image pairs, it is trained to minimize:\nW\u2217 = arg min\nW\n1\nN\nN\u2211\nj=1\nL\n(\nFW(I j\ns ), Ij\nt\n)\n, (1)\nwhereL denotes a multi-term loss function we detail in sec-\ntion 3.1. We then de\ufb01ne the system architecture of our solution\nin Section 3.2.\n3",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_c986dd80",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im10.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_95c1b171",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im11.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_782e7b86",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im12.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_b14e46c9",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im13.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_5264d286",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im14.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_d0a108df",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im15.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_9b1dcedc",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im16.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_9ee4bab0",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im17.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_bf26b800",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im18.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_1603975f",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im19.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_5ae2341b",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im3.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_7ece71a4",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im4.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_0a88a2a7",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im5.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_29b5fc2b",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im6.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_317e9666",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im7.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_cbbb9b90",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im8.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_6006e886",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 4: Im9.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 4,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 4,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p5",
+      "title": "Page 5",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_c5f8f8e8",
+          "block_type": "text",
+          "content": "Figure 5: Fragments from the original and blurred images taken\nby the phone (two left-most) and DSLR (two right-most) cam-\nera. Blurring removes high-frequencies and makes color com-\nparison easier.\n3.1 Loss function\nThe main dif\ufb01culty of the image enhancement task is that in-\nput and target photos cannot be matched densely (i.e., pixel-\nto-pixel): different optics and sensors cause speci\ufb01c local non-\nlinear distortions and aberrations, leading to a non-constant shift\nof pixels between each image pair even after precise alignment.\nHence, the standard per-pixel losses, besides being doubtful as\na perceptual quality metric, are not applicable in our case. We\nbuild our loss function under the assumption that the overall per-\nceptual image quality can be decomposed into three independent\nparts: i) color quality, ii) texture quality and iii) content quality.\nWe now de\ufb01ne loss functions for each component, and ensure\ninvariance to local shifts by design.\n3.1.1 Color loss\nTo measure the color difference between the enhanced and tar-\nget images, we propose applying a Gaussian blur (see Figure 5)\nand computing Euclidean distance between the obtained repre-\nsentations. In the context of CNNs, this is equivalent to using\none additional convolutional layer with a \ufb01xed Gaussian kernel\nfollowed by the mean squared error (MSE) function. Color loss\ncan be written as:\nLcolor(X,Y ) =\u2016Xb\u2212Yb\u20162\n2, (2)\nwhereXb andYb are the blurred images ofX andY , resp.:\nXb(i,j ) =\n\u2211\nk,l\nX(i +k,j +l)\u00b7G(k,l ), (3)\nand the 2D Gaussian blur operator is given by\nG(k,l ) = A exp\n(\n\u2212 (k\u2212\u00b5x)2\n2\u03c3x\n\u2212 (l\u2212\u00b5y)2\n2\u03c3y\n)\n(4)\nwhere we de\ufb01nedA = 0.053,\u00b5x,y = 0, and\u03c3x,y = 3.\nThe idea behind this loss is to evaluate the difference in bright-\nness, contrast and major colors between the images while elim-\ninating texture and content comparison. Hence, we \ufb01xed a con-\nstant\u03c3 by visual inspection as the smallest value that ensures that\ntexture and content are dropped. The crucial property of this loss\nis its invariance to small distortions. Figure 6 demonstrates the\nMSE and Color losses for image pairs (X, Y), where Y equals X\nshifted in a random direction by n pixels. As one can see, color\nloss is nearly insensitive to small distortions ( \u2a7d 2 pixels). For\n0 5 10 15 20 25 30 35 40\nShift between the images [pixels]\n0\n0.05\n0.1\n0.15\n0.2\n0.25Error x 10-1\nMSE loss\nColor loss\nFigure 6: Comparison between MSE and color loss as a function\nof the magnitude of shift between images. Results were averaged\nover 50K images.\nhigher shifts (3-5px), it is still about 5-10 times smaller com-\npared to the MSE, whereas for larger displacements it demon-\nstrates similar magnitude and behavior. As a result, color loss\nforces the enhanced image to have the same color distribution as\nthe target one, while being tolerant to small mismatches.\n3.1.2 Texture loss\nInstead of using a pre-de\ufb01ned loss function, we build upon gen-\nerative adversarial networks (GANs) [5] to directly learn a suit-\nable metric for measuring texture quality. The discriminator\nCNN is applied to grayscale images so that it is targeted speci\ufb01-\ncally on texture processing. It observes both fake (improved) and\nreal (target) images, and its goal is to predict whether the input\nimage is real or not. It is trained to minimize the cross-entropy\nloss function, and the texture loss is de\ufb01ned as a standard gener-\nator objective:\nLtexture =\u2212\n\u2211\ni\nlogD(FW(Is),I t), (5)\nwhere FW and D denote the generator and discriminator net-\nworks, respectively. The discriminator is pre-trained on the\n{phone, DSLR} image pairs, and then trained jointly with the\nproposed network as is conventional for GANs. It should be\nnoted that this loss is shift-invariant by de\ufb01nition since no align-\nment is required in this case.\n3.1.3 Content loss\nInspired by [9, 12], we de\ufb01ne our content loss based on the ac-\ntivation maps produced by the ReLU layers of the pre-trained\nVGG-19 network. Instead of measuring per-pixel difference be-\ntween the images, this loss encourages them to have similar fea-\nture representation that comprises various aspects of their con-\ntent and perceptual quality. In our case it is used to preserve\nimage semantics since other losses don\u2019t consider it. Let\u03c8j() be\nthe feature map obtained after thej-th convolutional layer of the\n4",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 5,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_f1606443",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 5: Im20.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 5,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 5,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p6",
+      "title": "Page 6",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_f8e3bc57",
+          "block_type": "text",
+          "content": "VGG-19 CNN, then our content loss is de\ufb01ned as Euclidean dis-\ntance between feature representations of the enhanced and target\nimages:\nLcontent = 1\nCjHjWj\n\u2016\u03c8j\n(\nFW(Is)\n)\n\u2212\u03c8j\n(\nIt\n)\n\u2016, (6)\nwhereCj,Hj andWj denotes the number, height and width of\nthe feature maps, andFW(Is) the enhanced image.\n3.1.4 Total variation loss\nIn addition to previous losses, we add total variation (TV)\nloss [1] to enforce spatial smoothness of the produced images:\nLtv = 1\nCHW\u2016\u2207xFW(Is) +\u2207yFW(Is)\u2016, (7)\nwhereC,H andW are the dimensions of the generated image\nFW(Is). As it is relatively lowly weighted (see Eqn. 8), it does\nnot harm high-frequency components while it is quite effective\nat removing salt-and-pepper noise.\n3.1.5 Total loss\nOur \ufb01nal loss is de\ufb01ned as a weighted sum of previous losses\nwith the following coef\ufb01cients:\nLtotal =Lcontent + 0.4\u00b7L texture + 0.1\u00b7L color + 400\u00b7L tv, (8)\nwhere the content loss is based on the features produced by the\nrelu 5 4 layer of the VGG-19 network. The coef\ufb01cients were\nchosen based on preliminary experiments on the DPED training\ndata.\n3.2 Generator and Discriminator CNNs\nFigure 7 illustrates the overall architecture of the pro-\nposed CNNs. Our image transformation network is fully-\nconvolutional, and starts with a 9 \u00d79 layer followed by four\nresidual blocks. Each residual block consists of two 3\u00d73 layers\nalternated with batch-normalization layers. We use two addi-\ntional layers with kernels of size 3\u00d73 and one with 9\u00d79 kernels\nafter the residual blocks. All layers in the transformation net-\nwork have 64 channels and are followed by a ReLU activation\nfunction, except for the last one, where a scaled tanh is applied\nto the outputs.\nThe discriminator CNN consists of \ufb01ve convolutional lay-\ners each followed by a LeakyReLU nonlinearity and batch nor-\nmalization. The \ufb01rst, second and \ufb01fth convolutional layers are\nstrided with a step size of 4, 2 and 2, respectively. A sigmoidal\nactivation function is applied to the outputs of the last fully-\nconnected layer containing 1024 neurons and produces a proba-\nbility that the input image was taken by the target DSLR camera.\n3.3 Training details\nThe network was trained on a NVidia Titan X GPU for 20K iter-\nations using a batch size of 50. The parameters of the network\nInput image \nConv 9x9x64 \nConv 3x3x64 \nBatch NN \nConv 3x3x64 \nBatch NN \nblock 1 \nb\n2\nb\n3\nb\n4\n+\nConv 3x3x64 \nConv 3x3x64 \nConv 9x9x64 \nEnhanced image \nT arget image \nImage enhancement network \nT arget image \nConv 11x11x48 \nConv 5x5x128 \nBatch NN \nDiscriminator network \nConv 3x3x192 \nBatch NN \nConv 3x3x192 \nBatch NN \nConv 3x3x128 \nBatch NN \nFully connected \n\u03c3\nT arget image \nEnhanced image \nVGGo19 \nEnhanced image \nFigure 7: The overall architecture of the proposed system.\nwere optimized using Adam [11] modi\ufb01cation of stochastic gra-\ndient descent with a learning rate of 5e-4. The whole pipeline\nand experimental setup was identical for all cameras.\n4 Experiments\nOur general goal to \u201cimprove image quality\u201d is subjective and\nhard to evaluate quantitatively. We suggest a set of tools and\nmethods from the literature that are most relevant to our prob-\nlem. We use them, as well as our proposed method, on a set of\ntest images taken by mobile devices and compare how close the\nresults are to the DSRL shots.\nIn section 4.1, we present the methods we compare to. Then\nwe present both objective and subjective evaluations: the former\nw.r.t. the ground truth reference (i.e., the DSLR images) in sec-\ntion 4.2, the latter with no-reference subjective quality scores in\nsection 4.3. Finally, section 4.4 analyzes the limitations of the\nproposed solution.\n4.1 Benchmark methods\nIn addition to our proposed photo enhancement solution, we\ncompare with the following tools and methods.\nApple Photo Enhancer (APE) is a commercial product\nknown to generate among the best visual results, while the al-\ngorithm is unpublished. We trigger the method using the auto-\nmatic Enhance function from the Photos app. It performs image\nimprovement without taking any parameters.\nDong et al. [4] is a fundamental baseline super-resolution\nmethod, thus addredding a task related to end-to-end image-to-\nimage mapping. Hence we chose it to apply on our task and\ncompare with. The method relies on a standard 3-layer CNN\nand MSE loss function and maps from low resolution / corrupted\nimage to the restored image.\n5",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 6,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_7f99b345",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 6: R17.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 6,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_08d40985",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 6: R18.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 6,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_ac457706",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 6: R19.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 6,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_ad9af2b7",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 6: R20.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 6,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_21efc4dd",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 6: R21.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 6,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_cfa9d338",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 6: R22.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 6,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_e5887369",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 6: R23.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 6,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_7df1f7b1",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 6: R24.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 6,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_bfd32466",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 6: R25.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 6,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_7b480a81",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 6: R26.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 6,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_2057f49e",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 6: R27.png]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 6,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 6,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p7",
+      "title": "Page 7",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_0f201006",
+          "block_type": "text",
+          "content": "Figure 8: From left to right, top to bottom: original iPhone photo and the same image after applying, respectively: APE, Dong et\nal. [4], Johnson et al. [9], our generator network, and the corresponding DSLR image.\nTable 2: Average PSNR/SSIM results on DPED test images.\nPhone APE Dong et al. [4] Johnson et al. [9] Ours\nPSNR SSIM PSNR SSIM PSNR SSIM PSNR SSIM\niPhone 17.28 0.8631 19.27 0.8992 20.32 0.9161 20.08 0.9201\nBlackBerry 18.91 0.8922 18.89 0.9134 20.11 0.9298 20.07 0.9328\nSony 19.45 0.9168 21.21 0.9382 21.33 0.9434 21.81 0.9437\nJohnson et al. [9] is one of the latest state of the art in\nphoto-realistic super-resolution and style transferring tasks. The\nmethod is based on a deep residual network (with four resid-\nual blocks, each consisting of two convolutional layers) that is\ntrained to minimize a VGG-based loss function.\nManual enhancement . We asked a graphical artist to en-\nhance color, sharpness and general look-and-feel of 9 images\nusing professional software (Adobe Photoshop CS6). A time\nlimit of one workday was given, so as to simulate a realistic sce-\nnario. Figure 8 illustrates the ensemble of enhancement methods\nwe consider for comparison in our experiments. Dong et al. [4]\nand Johnson et al. [9] are trained using the same train image pairs\nas for our solution for each of the smartphones from the DPED\ndataset.\n4.2 Quantitative evaluation\nWe \ufb01rst quantitatively compare APE, Dong et al. [4], Johnson et\nal. [9] and our method on the task of mapping photos from three\nlow-end cameras to the high-quality DSLR (Canon) images and\nreport the results in Table 3. As such, we do not evaluate global\nimage quality but, rather, we measure resemblance to a reference\n(the ground truth DSLR image). We use classical distance met-\nrics, namely PSNR and SSIM scores: the former measures sig-\nnal distortion w.r.t. the reference, the latter measures structural\nsimilarity which is known to be a strong cue for perceived qual-\nity [22]. First, one can note that our method is the best in terms\nof SSIM, at the same time producing images that are cleaner and\nsharper, thus perceptually performs the best. On PSNR terms,\nour method competes with the state of the art: it slightly im-\nproves or worsens depending on the dataset, i.e., on the actual\nphone used. Alignment issues could be responsible for these mi-\nnor variations, and thus we consider Johnson et al.\u2019s method [4]\nand ours equivalent here, while outperforming other methods.\nIn Fig. 8 we show visual results comparing to the source photo\n(iPhone) and the target DSLR photo (Canon). More results are\nin the supplementary material.\n4.3 User study\nOur goal is to produce DSLR-quality images for the end user of\nsmartphone cameras. To measure overall quality we designed\na no-reference user study where subjects are repeatedly asked\nto choose the better looking picture out of a displayed pair.\n6",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 7,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_d9ee7ed8",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 7: Im23.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 7,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_eb1bf64a",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 7: Im24.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 7,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_91e7eb2c",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 7: Im25.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 7,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_4fa6d7b7",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 7: Im26.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 7,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_dd8d5a2a",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 7: Im27.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 7,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_3769f812",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 7: Im28.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 7,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 7,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p8",
+      "title": "Page 8",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_8ebcfc5f",
+          "block_type": "text",
+          "content": "BlackBerry BlackBerry Sony Sony\nFigure 9: Four examples of original (top) vs. enhanced (bottom) images captured by BlackBerry and Sony cameras.\nUsers were instructed to ignore precise picture composition er-\nrors (e.g., \ufb01eld of view, perspective variation, etc.). There was\nno time limit given to the participants, images were shown in full\nresolution and the users were allowed to zoom in and out at will.\nIn this setting, we did the following pairwise comparisons (ev-\nery group of experiments contains 3 classes of pictures, the users\nwere shown all possible pairwise combinations of these classes):\n(i) Comparison between:\n\u2022 original low-end phone photos,\n\u2022 DSLR photos,\n\u2022 photos enhanced by our proposed method.\nAt every question, the user is shown two pictures from differ-\nent categories (original, DSLR or enhanced). 9 scenes were used\nfor each phone (e.g., see Fig. 11). In total, there are 27 questions\nfor every phone, thus 81 in total.\n(ii) Additionally, we compared (iPhone images only):\n\u2022 photos enhanced by the proposed method,\n\u2022 photos enhanced manually (by a professional),\n\u2022 photos enhanced by APE.\nWe again considered 9 images that resulted in 27 binary se-\nlection questions. Thus, in total the study consists of 108 binary\nquestions. All pairs are shuf\ufb02ed randomly for every subject, as\nis the sequence of displayed images. 42 subjects unaware of the\ngoal of this work participated. They are mostly young scientists\nwith a computer science background.\nFigure 10 shows results: for every experiment the \ufb01rst 3 bars\nshow the results of the pairwise comparison averaged over the\n9 images shown, while the last bar shows the fraction of cases\nwhen the selected method was chosen over all experiments.\nThe sub\ufb01gures 10a-c show the results of enhancing photos\nfrom 3 different mobile devices. It can be seen that in all cases\nboth pictures taken with a DSLR as well as pictures enhanced by\nthe proposed CNN are picked much more often than the original\nones taken with the mobile devices. When subjects are asked\nto select the better picture among the DSLR-picture and our en-\nhanced picture, the choice is almost random (see the third bar\nin sub\ufb01gures 10a-c). This means that the quality difference is\ninexistent or indistinguishable, and users resort to chance.\nSub\ufb01gure 10d shows user choices among our method, human\nartist work, and APE. Although human enhancement turns out to\nbe slightly preferred to the automatic APE, the images enhanced\nby our method are picked more often, outperforming even man-\nual retouching.\nWe can conclude that our results are of on pair quality com-\npared to DSLR images, while starting from low quality phone\ncameras. The human subjects are unable to distinguish between\nthem \u2013 the preferences are equally distributed.\n4.4 Limitations\nSince the proposed enhancement process is fully-automated,\nsome \ufb02aws are inevitable. Two typical artifacts that can\nappear on the processed images are color deviations (see\nground/mountains in \ufb01rst image of Fig. 12) and too high contrast\nlevels (second image). Although they often cause rather plau-\nsible visual effects, in some situations this can lead to content\nchanges that may look arti\ufb01cial, i.e. greenish asphalt in the sec-\nond image of Fig. 12. Another notable problem is noise ampli\ufb01-\ncation \u2013 due to the nature of GANs, they can effectively restore\nhigh frequency-components. However, high-frequency noise is\nemphasized too. Fig. 12 (2nd and 3rd images) shows that a high\nnoise in the original image is ampli\ufb01ed in the enhanced image.\nNote that this noise issue occurs mostly on the lowest-quality\nphotos (i.e., from the iPhone), not on the better phone cameras.\nFinally, the need of a strong supervision in the form of\nmatched source/target training image pairs makes the process\ntedious to repeat for other cameras. To overcome this, we pro-\npose a weakly-supervised approach in [7] that does not require\nthe mentioned correspondence.\n7",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 8,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_07143689",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 8: Im29.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 8,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_f4abe140",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 8: Im30.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 8,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_1a9a80a2",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 8: Im31.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 8,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_a57a36a0",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 8: Im32.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 8,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_1e265e71",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 8: Im33.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 8,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_a9faacc9",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 8: Im34.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 8,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_383a90a3",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 8: Im35.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 8,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_928a5f0c",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 8: Im36.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 8,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 8,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p9",
+      "title": "Page 9",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_5aecb7e4",
+          "block_type": "text",
+          "content": "(a) BlackBerry phone (b) iPhone (c) Sony phone (d) Enhanced iPhone pictures\nFigure 10: User study: results of pairwise comparisons. In every sub\ufb01gure, the \ufb01rst three bars show the result of the pairwise\nexperiments, while the last bar shows the distribution of the aggregated scores.\nFigure 11: The 9 scenes shown to the participants of the user study. Here: BlackBerry images enhanced using our technique.\nFigure 12: Typical artifacts generated by our method (2nd row) compared with original iPhone images (1st row)\n5 Conclusions\nWe proposed a photo enhancement solution to effectively\ntransform cameras from common smartphones into high quality\nDSLR cameras. Our end-to-end deep learning approach uses\na composite perceptual error function that combines content,\ncolor and texture losses. To train and evaluate our method we\nintroduced DPED \u2013 a large-scale dataset that consists of real\nphotos captured from three different phones and one high-end\nre\ufb02ex camera, and suggested an ef\ufb01cient way of calibrating the\nimages so that they are suitable for image-to-image learning.\nOur quantitative and qualitative assessments reveal that the\nenhanced images demonstrate a quality comparable to DSLR-\ntaken photos, and the method itself can be applied to cameras of\nvarious quality levels.\nAcknowledgments. Work supported by the ETH Zurich Gen-\neral Fund (OK), Toyota via the project TRACE-Zurich, the ERC\ngrant VarCity, and an NVidia GPU grant.\nReferences\n[1] H. A. Aly and E. Dubois. Image up-sampling using total-\nvariation regularization with a new observation model.\nIEEE Transactions on Image Processing , 14(10):1647\u2013\n1659, Oct 2005. 5\n[2] B. Cai, X. Xu, K. Jia, C. Qing, and D. Tao. Dehazenet:\nAn end-to-end system for single image haze removal.\nIEEE Transactions on Image Processing , 25(11):5187\u2013\n5198, Nov 2016. 2\n[3] Z. Cheng, Q. Yang, and B. Sheng. Deep colorization. In\nThe IEEE International Conference on Computer Vision\n(ICCV), December 2015. 2\n[4] C. Dong, C. C. Loy, K. He, and X. Tang. Learning a Deep\nConvolutional Network for Image Super-Resolution, pages\n184\u2013199. Springer International Publishing, Cham, 2014.\n2, 5, 6\n[5] I. Goodfellow, J. Pouget-Abadie, M. Mirza, B. Xu,\nD. Warde-Farley, S. Ozair, A. Courville, and Y . Bengio.\nGenerative adversarial nets. In Z. Ghahramani, M. Welling,\n8",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 9,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_763b59cd",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 9: Im41.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 9,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_235a6e91",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 9: Im42.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 9,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_9395c790",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 9: Im43.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 9,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_fb7036bf",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 9: Im44.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 9,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_6997f2d1",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 9: Im45.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 9,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_69cbaaef",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 9: Im46.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 9,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_eac776ad",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 9: Im47.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 9,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_659af03d",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 9: Im48.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 9,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_32cd1b37",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 9: Im49.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 9,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 9,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p10",
+      "title": "Page 10",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_fbbdacb0",
+          "block_type": "text",
+          "content": "C. Cortes, N. D. Lawrence, and K. Q. Weinberger, edi-\ntors, Advances in Neural Information Processing Systems\n27, pages 2672\u20132680. Curran Associates, Inc., 2014. 4\n[6] M. Hradi \u02c7s, J. Kotera, P. Zem \u02c7c\u00b4\u0131k, and F. \u02c7Sroubek. Con-\nvolutional neural networks for direct text deblurring. In\nProceedings of BMVC 2015 . The British Machine Vision\nAssociation and Society for Pattern Recognition, 2015. 2\n[7] A. Ignatov, N. Kobyshev, R. Timofte, K. Vanhoey, and\nL. Van Gool. Wespe: Weakly supervised photo enhancer\nfor digital cameras. 2017. 7\n[8] P. Isola, J.-Y . Zhu, T. Zhou, and A. A. Efros. Image-to-\nimage translation with conditional adversarial networks.\narxiv, 2016. 2\n[9] J. Johnson, A. Alahi, and L. Fei-Fei. Perceptual Losses\nfor Real-Time Style Transfer and Super-Resolution , pages\n694\u2013711. Springer International Publishing, Cham, 2016.\n2, 4, 6\n[10] J. Kim, J. K. Lee, and K. M. Lee. Accurate image super-\nresolution using very deep convolutional networks. In2016\nIEEE Conference on Computer Vision and Pattern Recog-\nnition (CVPR), pages 1646\u20131654, June 2016. 2\n[11] D. P. Kingma and J. Ba. Adam: A method for stochastic\noptimization. CoRR, abs/1412.6980, 2014. 5\n[12] C. Ledig, L. Theis, F. Huszar, J. Caballero, A. Cunning-\nham, A. Acosta, A. Aitken, A. Tejani, J. Totz, Z. Wang, and\nW. Shi. Photo-realistic single image super-resolution using\na generative adversarial network. In The IEEE Conference\non Computer Vision and Pattern Recognition (CVPR), July\n2017. 2, 4\n[13] J.-Y . Lee, K. Sunkavalli, Z. Lin, X. Shen, and I. So Kweon.\nAutomatic content-aware color and tone stylization. InThe\nIEEE Conference on Computer Vision and Pattern Recog-\nnition (CVPR), June 2016. 2\n[14] Z. Ling, G. Fan, Y . Wang, and X. Lu. Learning deep trans-\nmission network for single image dehazing. In 2016 IEEE\nInternational Conference on Image Processing (ICIP) ,\npages 2296\u20132300, Sept 2016. 2\n[15] D. G. Lowe. Distinctive image features from scale-\ninvariant keypoints. International Journal of Computer Vi-\nsion, 60(2):91\u2013110, 2004. 3\n[16] X. Mao, C. Shen, and Y .-B. Yang. Image restoration using\nvery deep convolutional encoder-decoder networks with\nsymmetric skip connections. In D. D. Lee, M. Sugiyama,\nU. V . Luxburg, I. Guyon, and R. Garnett, editors,Advances\nin Neural Information Processing Systems 29, pages 2802\u2013\n2810. Curran Associates, Inc., 2016. 2\n[17] W. Ren, S. Liu, H. Zhang, J. Pan, X. Cao, and M.-H. Yang.\nSingle Image Dehazing via Multi-scale Convolutional Neu-\nral Networks, pages 154\u2013169. Springer International Pub-\nlishing, Cham, 2016. 2\n[18] W. Shi, J. Caballero, F. Huszar, J. Totz, A. P. Aitken,\nR. Bishop, D. Rueckert, and Z. Wang. Real-time single\nimage and video super-resolution using an ef\ufb01cient sub-\npixel convolutional neural network. In The IEEE Confer-\nence on Computer Vision and Pattern Recognition (CVPR),\nJune 2016. 2\n[19] P. Svoboda, M. Hradis, D. Barina, and P. Zemc \u00b4\u0131k. Com-\npression artifacts removal using convolutional neural net-\nworks. CoRR, abs/1605.00366, 2016. 2\n[20] R. Timofte, V . De Smet, and L. Van Gool. A+: Ad-\njusted Anchored Neighborhood Regression for Fast Super-\nResolution, pages 111\u2013126. Springer International Pub-\nlishing, Cham, 2015. 2\n[21] A. Vedaldi and B. Fulkerson. VLFeat: An open and\nportable library of computer vision algorithms, 2008. 3\n[22] Z. Wang, A. C. Bovik, H. R. Sheikh, and E. P. Simoncelli.\nImage quality assessment: from error visibility to struc-\ntural similarity. IEEE Transactions on Image Processing,\n13(4):600\u2013612, April 2004. 6\n[23] Z. Yan, H. Zhang, B. Wang, S. Paris, and Y . Yu. Automatic\nphoto adjustment using deep neural networks. ACM Trans.\nGraph., 35(2):11:1\u201311:15, Feb. 2016. 2\n[24] W. Yang, R. T. Tan, J. Feng, J. Liu, Z. Guo, and S. Yan.\nJoint rain detection and removal via iterative region depen-\ndent multi-task learning. CoRR, abs/1609.07769, 2016. 2\n[25] L. Yuan and J. Sun. Automatic Exposure Correction of\nConsumer Photographs, pages 771\u2013785. Springer Berlin\nHeidelberg, Berlin, Heidelberg, 2012. 2\n[26] K. Zhang, W. Zuo, Y . Chen, D. Meng, and L. Zhang. Be-\nyond a gaussian denoiser: Residual learning of deep CNN\nfor image denoising. IEEE Transactions on Image Process-\ning, 2017. 2\n[27] R. Zhang, P. Isola, and A. A. Efros. Colorful image col-\norization. ECCV, 2016. 2\n[28] X. Zhang and R. Wu. Fast depth image denoising and en-\nhancement using a deep convolutional network. In 2016\nIEEE International Conference on Acoustics, Speech and\nSignal Processing (ICASSP) , pages 2499\u20132503, March\n2016. 2\n[29] E. Zhou, H. Fan, Z. Cao, Y . Jiang, and Q. Yin. Learn-\ning face hallucination in the wild. In Proceedings of the\nTwenty-Ninth AAAI Conference on Arti\ufb01cial Intelligence ,\nAAAI\u201915, pages 3871\u20133877. AAAI Press, 2015. 2\n9",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 10,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 10,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p11",
+      "title": "Page 11",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_4e6d9eca",
+          "block_type": "text",
+          "content": "6 Appendix. Results of the proposed method: iPhone 3\niPhone original Enhanced with our method\nFigure 13: Image results of our method for iPhone DPED test images.\n3All visual results for iPhone are available at http://people.ee.ethz.ch/\u02dcihnatova/dped_iphone.html\n10",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 11,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_35e1e632",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 11: Im50.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 11,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_63b375e6",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 11: Im51.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 11,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_3777955c",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 11: Im52.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 11,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_97d39336",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 11: Im53.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 11,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_fb87d026",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 11: Im54.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 11,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_bcffcaf6",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 11: Im55.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 11,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_581d066a",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 11: Im56.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 11,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_3bdcc831",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 11: Im57.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 11,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 11,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p12",
+      "title": "Page 12",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_7bd67a05",
+          "block_type": "text",
+          "content": "iPhone original Enhanced with our method\nFigure 14: Image results of our method for iPhone DPED test images.\n11",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 12,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_8726390d",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 12: Im58.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 12,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_5e8d6dd9",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 12: Im59.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 12,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_f5a20969",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 12: Im60.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 12,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_de9fa624",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 12: Im61.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 12,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_dcc5b34a",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 12: Im62.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 12,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_96df437d",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 12: Im63.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 12,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_4dbd456b",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 12: Im64.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 12,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_0ffb5295",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 12: Im65.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 12,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 12,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p13",
+      "title": "Page 13",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_ef100663",
+          "block_type": "text",
+          "content": "7 Appendix. Results of the proposed method: BlackBerry 4\nBlackBerry original Enhanced with our method\nFigure 15: Image results of our method for BlackBerry DPED test images.\n4All visual results for BlackBerry are available at http://people.ee.ethz.ch/\u02dcihnatova/dped_blackberry.html\n12",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 13,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_f38bc985",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 13: Im66.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 13,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_0d31a169",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 13: Im67.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 13,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_4749ce37",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 13: Im68.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 13,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_0229a2a3",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 13: Im69.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 13,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_b0dd6120",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 13: Im70.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 13,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_69c841bf",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 13: Im71.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 13,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_5498bb60",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 13: Im72.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 13,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_5a9cabff",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 13: Im73.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 13,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 13,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p14",
+      "title": "Page 14",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_b4452863",
+          "block_type": "text",
+          "content": "BlackBerry original Enhanced with our method\nFigure 16: Image results of our method for BlackBerry DPED test images.\n13",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 14,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_9f6d9d4b",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 14: Im74.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 14,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_4b63c0a6",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 14: Im75.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 14,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_7b03f6ba",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 14: Im76.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 14,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_fc0c4297",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 14: Im77.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 14,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_3891fc32",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 14: Im78.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 14,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_ef02e952",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 14: Im79.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 14,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_d2aa2fe4",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 14: Im80.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 14,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_a10a47ed",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 14: Im81.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 14,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 14,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p15",
+      "title": "Page 15",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_fe779917",
+          "block_type": "text",
+          "content": "8 Appendix. Results of the proposed method: Sony 5\nSony original Enhanced with our method\nFigure 17: Image results of our method for Sony DPED test images.\n5All visual results for Sony are available at http://people.ee.ethz.ch/\u02dcihnatova/dped_sony.html\n14",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 15,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_c06aa15f",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 15: Im82.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 15,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_eba894ba",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 15: Im83.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 15,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_a3ec67b0",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 15: Im84.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 15,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_a7b81a96",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 15: Im85.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 15,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_efd11a81",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 15: Im86.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 15,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_36ef5d9e",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 15: Im87.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 15,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_bc5a018a",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 15: Im88.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 15,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_c1f98f6b",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 15: Im89.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 15,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 15,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p16",
+      "title": "Page 16",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_0032f8e9",
+          "block_type": "text",
+          "content": "Sony original Enhanced with our method\nFigure 18: Image results of our method for Sony DPED test images.\n15",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 16,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_d7a20793",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 16: Im90.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 16,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_ff33b97d",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 16: Im91.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 16,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_35227eaa",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 16: Im92.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 16,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_c911e31f",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 16: Im93.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 16,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_f5ad2b6b",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 16: Im94.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 16,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_9cfeb2cb",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 16: Im95.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 16,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_3722df5a",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 16: Im96.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 16,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_991cf924",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 16: Im97.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 16,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 16,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_01f8db04d110_p17",
+      "title": "Page 17",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_8bef0f44",
+          "block_type": "text",
+          "content": "9 Appendix. Loss analysis\nIn this section, we study the contribution of different terms of the proposed perceptual loss function. For this purpose, we consider\nfour different loss combinations: 1) the proposed one [color + content + texture], 2) [content + texture] loss, 3) [MSE + texture]\nloss and 4) [MSE] loss. For each of these target loss combinations, a CNN was trained on the DPED dataset and validated on its test\nsubset. The results of this experiment are provided in Table 3 and visual results are shown in Fig. 19. As one can see, the adversarial\nnetwork that stands behind the texture loss can cause signi\ufb01cant color deviations, and the additional MSE term cannot effectively\nsuppress them since it is not precise in this task (images are not perfectly aligned). Content loss shows better results in this case\nsince it is less sensitive to image mismatches. Adding an extra color term further improves the resulting images, making the colors\nmore saturated and closer to the target. Single MSE demonstrates high PSNR and SSIM values and natural color rendition while\ncausing strong artifacts and slightly degrading image sharpness. Overall our proposed [color + content + texture] loss leads to the\nbest visual results while at the same time achieves top SSIM scores.\nTable 3: PSNR/SSIM scores for different loss functions.\nPhone Color + Content + Texture Content + Texture MSE + Texture MSE\nPSNR SSIM PSNR SSIM PSNR SSIM PSNR SSIM\niPhone 20.08 0.9201 19.05 0.9166 20.11 0.9125 20.56 0.9198\nBlackBerry 20.07 0.9328 19.64 0.9312 20.13 0.9241 20.15 0.9292\nSony 21.81 0.9437 21.59 0.9426 21.72 0.9416 21.35 0.9453\nColor + Content + Texture Content + Texture MSE + Texture MSE\nFigure 19: Result images for iPhone camera for 4 different target loss functions.\n16",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_609ab4b3",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 17: Im100.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_b1115007",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 17: Im101.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_0fd99575",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 17: Im102.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_ee7667dc",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 17: Im103.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_2adde8c3",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 17: Im104.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_1803bebd",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 17: Im105.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_45366503",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 17: Im106.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_b2367cf8",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 17: Im107.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_e1895391",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 17: Im108.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_31874246",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 17: Im109.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_8b276863",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 17: Im98.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_358057d6",
+          "block_type": "image",
+          "content": "[Embedded Image on Page 17: Im99.jpg]",
+          "provenance": {
+            "file_id": "doc_01f8db04d110",
+            "document_id": "doc_01f8db04d110",
+            "file_name": "arXiv.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 17,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_01f8db04d110",
+        "document_id": "doc_01f8db04d110",
+        "file_name": "arXiv.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 17,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# arXiv\n\n[PAGE 1]\n\nETH Library\nDSLR-Quality Photos on Mobile\nDevices with Deep Convolutional\nNetworks\nConference Paper\nAuthor(s):\nIgnatov, Andrey; Kobyshev, Nikolay; Vanhoey, Kenneth; Timofte, Radu; Van Gool, Luc\nPublication date:\n2017\nPermanent link:\nhttps://doi.org/https://doi.org/10.3929/ethz-b-000203254\nRights / license:\nIn Copyright - Non-Commercial Use Permitted\nOriginally published in:\nhttps://doi.org/10.1109/ICCV.2017.355\nThis page was generated automatically upon download from the ETH Zurich Research Collection.\nFor more information, please consult the Terms of use.\n\n[PAGE 2]\n\nDSLR-Quality Photos on Mobile Devices with Deep Convolutional Networks\nAndrey Ignatov, Nikolay Kobyshev, Kenneth Vanhoey, Radu Timofte, Luc Van Gool\nETH Zurich\nandrey.ignatoff@gmail.com, {nk, vanhoey, timofter, vangool }@vision.ee.ethz.ch\nFigure 1: iPhone 3GS photo enhanced to DSLR-quality by our method. Best zoomed on screen.\nAbstract\nDespite a rapid rise in the quality of built-in smartphone cam-\neras, their physical limitations \u2014 small sensor size, compact\nlenses and the lack of speci\ufb01c hardware, \u2014 impede them to\nachieve the quality results of DSLR cameras. In this work we\npresent an end-to-end deep learning approach that bridges this\ngap by translating ordinary photos into DSLR-quality images.\nWe propose learning the translation function using a residual\nconvolutional neural network that improves both color rendition\nand image sharpness. Since the standard mean squared loss is\nnot well suited for measuring perceptual image quality, we intro-\nduce a composite perceptual error function that combines con-\ntent, color and texture losses. The \ufb01rst two losses are de\ufb01ned\nanalytically, while the texture loss is learned in an adversarial\nfashion. We also present DPED, a large-scale dataset that con-\nsists of real photos captured from three different phones and one\nhigh-end re\ufb02ex camera. Our quantitative and qualitative assess-\nments reveal that the enhanced image quality is comparable to\nthat of DSLR-taken photos, while the methodology is general-\nized to any type of digital camera.\n1 Introduction\nDuring the last several years there has been a signi\ufb01cant\nimprovement in compact camera sensors quality, which has\nbrought mobile photography to a substantially new level. Even\nlow-end devices are now able to take reasonably good photos\nin appropriate lighting conditions, thanks to their advanced soft-\nware and hardware tools for post-processing. However, when it\ncomes to artistic quality, mobile devices still fall behind their\nDSLR counterparts. Larger sensors and high-aperture optics\nyield better photo resolution, color rendition and less noise,\nwhereas their additional sensors help to \ufb01ne-tune shooting pa-\nrameters. These physical differences result in strong obstacles,\nmaking DSLR camera quality unattainable for compact mobile\ndevices.\nWhile a number of photographer tools for automatic image\nenhancement exist, they are usually focused on adjusting only\nglobal parameters such as contrast or brightness, without im-\nproving texture quality or taking image semantics into account.\nBesides that, they are usually based on a pre-de\ufb01ned set of rules\nthat do not always consider the speci\ufb01cs of a particular device.\nTherefore, the dominant approach to photo post-processing is\nstill based on manual image correction using specialized re-\ntouching software.\n1.1 Related work\nThe problem of automatic image quality enhancement has not\nbeen addressed in its entirety in the area of computer vision,\nthough a number of sub-tasks and related problems have been al-\nready successfully solved using deep learning techniques. Such\ntasks are usually dealing with image-to-image translation prob-\nlems, and their common property is that they are targeted at re-\n1\narXiv:submit/1998002  [cs.CV]  5 Sep 2017\n\n[PAGE 3]\n\nmoving arti\ufb01cially added artifacts to the original images. Among\nthe related problems are the following:\nImage super-resolution aims at restoring the original im-\nage from its downscaled version. In [4] a CNN architecture\nand MSE loss are used for directly learning low to high reso-\nlution mapping. It is the \ufb01rst CNN-based solution to achieve\ntop performance in single image super-resolution, comparable\nwith non-CNN methods [20]. The subsequent works devel-\noped deeper and more complex CNN architectures (e.g., [10, 18,\n16]). Currently, the best photo-realistic results on this task are\nachieved using a VGG-based loss function [9] and adversarial\nnetworks [12] that turned out to be ef\ufb01cient at recovering plau-\nsible high-frequency components.\nImage deblurring/dehazing tries to remove arti\ufb01cially added\nhaze or blur from the images. Usually, MSE is used as a target\nloss function and the proposed CNN architectures consist of 3 to\n15 convolutional layers [14, 2, 6] or are bi-channel CNNs [17].\nImage denoising/sparse inpainting similarly targets removal\nof noise and artifacts from the pictures. In [28] the authors pro-\nposed weighted MSE together with a 3-layer CNN, while in [19]\nit was shown that an 8-layer residual CNN performs better when\nusing a standard mean square error. Among other solutions are\na bi-channel CNN [29], a 17-layer CNN [26] and a recurrent\nCNN [24] that was reapplied several times to the produced re-\nsults.\nImage colorization. Here the goal is to recover colors that\nwere removed from the original image. The baseline approach\nfor this problem is to predict new values for each pixel based\non its local description that consists of various hand-crafted fea-\ntures [3]. Considerably better performance on this task was ob-\ntained using generative adversarial networks [8] or a 16-layer\nCNN with a multinomial cross-entropy loss function [27].\nImage adjustment. A few works considered the problem of\nimage color/contrast/exposure adjustment. In [25] the authors\nproposed an algorithm for automatic exposure correction using\nhand-designed features and prede\ufb01ned rules. In [23], a more\ngeneral algorithm was proposed that \u2013 similarly to [3] \u2013 uses\nlocal description of image pixels for reproducing various pho-\ntographic styles. A different approach was considered in [13],\nwhere images with similar content are retrieved from a database\nand their styles are applied to the target picture. All of these\nadjustments are implicitly included in our end-to-end transfor-\nmation learning approach by design.\n1.2 Contributions\nThe key challenge we face is dealing with all the aforementioned\nenhancements at once. Even advanced tools cannot notably im-\nprove image sharpness, texture details or small color variations\nthat were lost by the camera sensor, thus we can not generate tar-\nget enhanced photos from the existing ones. Corrupting DSLR\nphotos and training an algorithm on the corrupted images does\nnot work either: the solution would not generalize to real-world\nand very complex artifacts unless they are modeled and applied\nas corruptions, which is infeasible. To tackle this problem, we\npresent a different approach: we propose to learn the transfor-\nmation that modi\ufb01es photos taken by a given camera to DSLR-\nTable 1: DPED camera characteristics.\nCamera Sensor Image size Photo quality\niPhone 3GS 3 MP 2048\u00d7 1536 Poor\nBlackBerry Passport 13 MP 4160\u00d7 3120 Mediocre\nSony Xperia Z 13 MP 2592\u00d7 1944 Average\nCanon 70D DSLR 20 MP 3648\u00d7 2432 Excellent\nFigure 2: The rig with the four DPED cameras from Table 1.\nquality ones. Thus, the goal is to learn a cross-distribution trans-\nlation function, where the input distribution is de\ufb01ned by a given\nmobile camera sensor, and the target distribution by a DSLR sen-\nsor. To supervise the learning process, we create and leverage a\ndataset of images capturing the same scene with different cam-\neras. Once the function is learned, it can be further applied to\nunseen photos at will.\nOur main contributions are:\n\u2022 A novel approach1 for the photo enhancement task based on\nlearning a mapping function between photos from mobile\ndevices and a DSLR camera. The target model is trained in\nan end-to-end fashion without using any additional super-\nvision or handcrafted features.\n\u2022 A new large-scale dataset of over 6K photos taken syn-\nchronously by a DSLR camera and 3 low-end cameras of\nsmartphones in a wide variety of conditions.\n\u2022 A multi-term loss function composed of color, texture and\ncontent terms, allowing an ef\ufb01cient image quality estima-\ntion.\n\u2022 Experiments measuring objective and subjective quality\ndemonstrating the advantage of the enhanced photos over\nthe originals and, at the same time, their comparable qual-\nity with the DSLR counterparts.\nThe remainder of the paper is structured as follows. In\nSection 2 we describe the new DPED dataset. Section 3 presents\nour architecture and the chosen loss functions. Section 4 shows\nand analyzes the experimental results. Finally, Section 5 con-\ncludes the paper.\n1https://github.com/aiff22/DPED\n2\n\n[PAGE 4]\n\niPhone BlackBerry Sony Canon\nFigure 3: Example quadruplets of images taken synchronously\nby the DPED four cameras.\n2 DSLR Photo Enhancement Dataset\nIn order to tackle the problem of image translation from poor\nquality images captured by smartphone cameras to superior\nquality images achieved by a professional DSLR camera, we\nintroduce a large-scale real-world dataset, namely the \u201cDSLR\nPhoto Enhancement Dataset\u201d (DPED)2, that can be used for the\ngeneral photo quality enhancement task. DPED consists of pho-\ntos taken in the wild synchronously by three smartphones and\none DSLR camera. The devices used to collect the data are de-\nscribed in Table 1 and example quadruplets can be seen in Fig-\nure 3.\nTo ensure that all cameras were capturing photos simultane-\nously, the devices were mounted on a tripod and activated re-\nmotely by a wireless control system (see Figure 2). In total, over\n22K photos were collected during 3 weeks, including 4549 pho-\ntos from Sony smartphone, 5727 from iPhone and 6015 photos\nfrom each Canon and BlackBerry cameras. The photos were\ntaken during the daytime in a wide variety of places and in vari-\nous illumination and weather conditions. The photos were cap-\ntured in automatic mode, and we used default settings for all\ncameras throughout the whole collection procedure.\nMatching algorithm. The synchronously captured images are\nnot perfectly aligned since the cameras have different viewing\nangles and positions as can be seen in Figure 3. To address this,\nwe performed additional non-linear transformations resulting in\na \ufb01xed-resolution image that our network takes as an input. The\nalgorithm goes as follows (see Fig. 4). First, for each (phone-\nDSLR) image pair, we compute and match SIFT keypoints [15]\nacross the images. These are used to estimate a homography\nusing RANSAC [21]. We then crop both images to the intersec-\ntion part and downscale the DSLR image crop to the size of the\nphone crop.\n2http://dped-photos.vision.ee.ethz.ch\nFigure 4: Matching algorithm: an overlapping region is deter-\nmined by SIFT descriptor matching, followed by a non-linear\ntransform and a crop resulting in two images of the same resolu-\ntion representing the same scene. Here: Canon and BlackBerry\nimages, respectively.\nTraining CNN on the aligned high-resolution images is infea-\nsible, thus patches of size 100\u00d7100px were extracted from these\nphotos. Our preliminary experiments revealed that larger patch\nsizes do not lead to better performance, while requiring consid-\nerably more computational resources. We extracted patches us-\ning a non-overlapping sliding window. The window was mov-\ning in parallel along both images from each phone-DSLR im-\nage pair, and its position on the phone image was additionally\nadjusted by shifts and rotations based on the cross-correlation\nmetrics. To avoid signi\ufb01cant displacements, only patches with\ncross-correlation greater than 0.9 were included in the dataset.\nAround 100 original images were reserved for testing, the rest\nof the photos were used for training and validation. This proce-\ndure resulted in 139K, 160K and 162K training and 2.4-4.3K test\npatches for BlackBerry-Canon, iPhone-Canon and Sony-Canon\npairs, respectively. It should be emphasized that both training\nand test patches are precisely matched, the potential shifts do not\nexceed 5 pixels. In the following we assume that these patches\nof size 3\u00d7100\u00d7100 constitute the input data to our CNNs.\n3 Method\nGiven a low-quality photoIs (source image), the goal of the con-\nsidered enhancement task is to reproduce the image It (target\nimage) taken by a DSLR camera. A deep residual CNN FW pa-\nrameterized by weights W is used to learn the underlying trans-\nlation function. Given the training set{I j\ns, Ij\nt}N\nj=1 consisting of\nN image pairs, it is trained to minimize:\nW\u2217 = arg min\nW\n1\nN\nN\u2211\nj=1\nL\n(\nFW(I j\ns ), Ij\nt\n)\n, (1)\nwhereL denotes a multi-term loss function we detail in sec-\ntion 3.1. We then de\ufb01ne the system architecture of our solution\nin Section 3.2.\n3\n\n[PAGE 5]\n\nFigure 5: Fragments from the original and blurred images taken\nby the phone (two left-most) and DSLR (two right-most) cam-\nera. Blurring removes high-frequencies and makes color com-\nparison easier.\n3.1 Loss function\nThe main dif\ufb01culty of the image enhancement task is that in-\nput and target photos cannot be matched densely (i.e., pixel-\nto-pixel): different optics and sensors cause speci\ufb01c local non-\nlinear distortions and aberrations, leading to a non-constant shift\nof pixels between each image pair even after precise alignment.\nHence, the standard per-pixel losses, besides being doubtful as\na perceptual quality metric, are not applicable in our case. We\nbuild our loss function under the assumption that the overall per-\nceptual image quality can be decomposed into three independent\nparts: i) color quality, ii) texture quality and iii) content quality.\nWe now de\ufb01ne loss functions for each component, and ensure\ninvariance to local shifts by design.\n3.1.1 Color loss\nTo measure the color difference between the enhanced and tar-\nget images, we propose applying a Gaussian blur (see Figure 5)\nand computing Euclidean distance between the obtained repre-\nsentations. In the context of CNNs, this is equivalent to using\none additional convolutional layer with a \ufb01xed Gaussian kernel\nfollowed by the mean squared error (MSE) function. Color loss\ncan be written as:\nLcolor(X,Y ) =\u2016Xb\u2212Yb\u20162\n2, (2)\nwhereXb andYb are the blurred images ofX andY , resp.:\nXb(i,j ) =\n\u2211\nk,l\nX(i +k,j +l)\u00b7G(k,l ), (3)\nand the 2D Gaussian blur operator is given by\nG(k,l ) = A exp\n(\n\u2212 (k\u2212\u00b5x)2\n2\u03c3x\n\u2212 (l\u2212\u00b5y)2\n2\u03c3y\n)\n(4)\nwhere we de\ufb01nedA = 0.053,\u00b5x,y = 0, and\u03c3x,y = 3.\nThe idea behind this loss is to evaluate the difference in bright-\nness, contrast and major colors between the images while elim-\ninating texture and content comparison. Hence, we \ufb01xed a con-\nstant\u03c3 by visual inspection as the smallest value that ensures that\ntexture and content are dropped. The crucial property of this loss\nis its invariance to small distortions. Figure 6 demonstrates the\nMSE and Color losses for image pairs (X, Y), where Y equals X\nshifted in a random direction by n pixels. As one can see, color\nloss is nearly insensitive to small distortions ( \u2a7d 2 pixels). For\n0 5 10 15 20 25 30 35 40\nShift between the images [pixels]\n0\n0.05\n0.1\n0.15\n0.2\n0.25Error x 10-1\nMSE loss\nColor loss\nFigure 6: Comparison between MSE and color loss as a function\nof the magnitude of shift between images. Results were averaged\nover 50K images.\nhigher shifts (3-5px), it is still about 5-10 times smaller com-\npared to the MSE, whereas for larger displacements it demon-\nstrates similar magnitude and behavior. As a result, color loss\nforces the enhanced image to have the same color distribution as\nthe target one, while being tolerant to small mismatches.\n3.1.2 Texture loss\nInstead of using a pre-de\ufb01ned loss function, we build upon gen-\nerative adversarial networks (GANs) [5] to directly learn a suit-\nable metric for measuring texture quality. The discriminator\nCNN is applied to grayscale images so that it is targeted speci\ufb01-\ncally on texture processing. It observes both fake (improved) and\nreal (target) images, and its goal is to predict whether the input\nimage is real or not. It is trained to minimize the cross-entropy\nloss function, and the texture loss is de\ufb01ned as a standard gener-\nator objective:\nLtexture =\u2212\n\u2211\ni\nlogD(FW(Is),I t), (5)\nwhere FW and D denote the generator and discriminator net-\nworks, respectively. The discriminator is pre-trained on the\n{phone, DSLR} image pairs, and then trained jointly with the\nproposed network as is conventional for GANs. It should be\nnoted that this loss is shift-invariant by de\ufb01nition since no align-\nment is required in this case.\n3.1.3 Content loss\nInspired by [9, 12], we de\ufb01ne our content loss based on the ac-\ntivation maps produced by the ReLU layers of the pre-trained\nVGG-19 network. Instead of measuring per-pixel difference be-\ntween the images, this loss encourages them to have similar fea-\nture representation that comprises various aspects of their con-\ntent and perceptual quality. In our case it is used to preserve\nimage semantics since other losses don\u2019t consider it. Let\u03c8j() be\nthe feature map obtained after thej-th convolutional layer of the\n4\n\n[PAGE 6]\n\nVGG-19 CNN, then our content loss is de\ufb01ned as Euclidean dis-\ntance between feature representations of the enhanced and target\nimages:\nLcontent = 1\nCjHjWj\n\u2016\u03c8j\n(\nFW(Is)\n)\n\u2212\u03c8j\n(\nIt\n)\n\u2016, (6)\nwhereCj,Hj andWj denotes the number, height and width of\nthe feature maps, andFW(Is) the enhanced image.\n3.1.4 Total variation loss\nIn addition to previous losses, we add total variation (TV)\nloss [1] to enforce spatial smoothness of the produced images:\nLtv = 1\nCHW\u2016\u2207xFW(Is) +\u2207yFW(Is)\u2016, (7)\nwhereC,H andW are the dimensions of the generated image\nFW(Is). As it is relatively lowly weighted (see Eqn. 8), it does\nnot harm high-frequency components while it is quite effective\nat removing salt-and-pepper noise.\n3.1.5 Total loss\nOur \ufb01nal loss is de\ufb01ned as a weighted sum of previous losses\nwith the following coef\ufb01cients:\nLtotal =Lcontent + 0.4\u00b7L texture + 0.1\u00b7L color + 400\u00b7L tv, (8)\nwhere the content loss is based on the features produced by the\nrelu 5 4 layer of the VGG-19 network. The coef\ufb01cients were\nchosen based on preliminary experiments on the DPED training\ndata.\n3.2 Generator and Discriminator CNNs\nFigure 7 illustrates the overall architecture of the pro-\nposed CNNs. Our image transformation network is fully-\nconvolutional, and starts with a 9 \u00d79 layer followed by four\nresidual blocks. Each residual block consists of two 3\u00d73 layers\nalternated with batch-normalization layers. We use two addi-\ntional layers with kernels of size 3\u00d73 and one with 9\u00d79 kernels\nafter the residual blocks. All layers in the transformation net-\nwork have 64 channels and are followed by a ReLU activation\nfunction, except for the last one, where a scaled tanh is applied\nto the outputs.\nThe discriminator CNN consists of \ufb01ve convolutional lay-\ners each followed by a LeakyReLU nonlinearity and batch nor-\nmalization. The \ufb01rst, second and \ufb01fth convolutional layers are\nstrided with a step size of 4, 2 and 2, respectively. A sigmoidal\nactivation function is applied to the outputs of the last fully-\nconnected layer containing 1024 neurons and produces a proba-\nbility that the input image was taken by the target DSLR camera.\n3.3 Training details\nThe network was trained on a NVidia Titan X GPU for 20K iter-\nations using a batch size of 50. The parameters of the network\nInput image \nConv 9x9x64 \nConv 3x3x64 \nBatch NN \nConv 3x3x64 \nBatch NN \nblock 1 \nb\n2\nb\n3\nb\n4\n+\nConv 3x3x64 \nConv 3x3x64 \nConv 9x9x64 \nEnhanced image \nT arget image \nImage enhancement network \nT arget image \nConv 11x11x48 \nConv 5x5x128 \nBatch NN \nDiscriminator network \nConv 3x3x192 \nBatch NN \nConv 3x3x192 \nBatch NN \nConv 3x3x128 \nBatch NN \nFully connected \n\u03c3\nT arget image \nEnhanced image \nVGGo19 \nEnhanced image \nFigure 7: The overall architecture of the proposed system.\nwere optimized using Adam [11] modi\ufb01cation of stochastic gra-\ndient descent with a learning rate of 5e-4. The whole pipeline\nand experimental setup was identical for all cameras.\n4 Experiments\nOur general goal to \u201cimprove image quality\u201d is subjective and\nhard to evaluate quantitatively. We suggest a set of tools and\nmethods from the literature that are most relevant to our prob-\nlem. We use them, as well as our proposed method, on a set of\ntest images taken by mobile devices and compare how close the\nresults are to the DSRL shots.\nIn section 4.1, we present the methods we compare to. Then\nwe present both objective and subjective evaluations: the former\nw.r.t. the ground truth reference (i.e., the DSLR images) in sec-\ntion 4.2, the latter with no-reference subjective quality scores in\nsection 4.3. Finally, section 4.4 analyzes the limitations of the\nproposed solution.\n4.1 Benchmark methods\nIn addition to our proposed photo enhancement solution, we\ncompare with the following tools and methods.\nApple Photo Enhancer (APE) is a commercial product\nknown to generate among the best visual results, while the al-\ngorithm is unpublished. We trigger the method using the auto-\nmatic Enhance function from the Photos app. It performs image\nimprovement without taking any parameters.\nDong et al. [4] is a fundamental baseline super-resolution\nmethod, thus addredding a task related to end-to-end image-to-\nimage mapping. Hence we chose it to apply on our task and\ncompare with. The method relies on a standard 3-layer CNN\nand MSE loss function and maps from low resolution / corrupted\nimage to the restored image.\n5\n\n[PAGE 7]\n\nFigure 8: From left to right, top to bottom: original iPhone photo and the same image after applying, respectively: APE, Dong et\nal. [4], Johnson et al. [9], our generator network, and the corresponding DSLR image.\nTable 2: Average PSNR/SSIM results on DPED test images.\nPhone APE Dong et al. [4] Johnson et al. [9] Ours\nPSNR SSIM PSNR SSIM PSNR SSIM PSNR SSIM\niPhone 17.28 0.8631 19.27 0.8992 20.32 0.9161 20.08 0.9201\nBlackBerry 18.91 0.8922 18.89 0.9134 20.11 0.9298 20.07 0.9328\nSony 19.45 0.9168 21.21 0.9382 21.33 0.9434 21.81 0.9437\nJohnson et al. [9] is one of the latest state of the art in\nphoto-realistic super-resolution and style transferring tasks. The\nmethod is based on a deep residual network (with four resid-\nual blocks, each consisting of two convolutional layers) that is\ntrained to minimize a VGG-based loss function.\nManual enhancement . We asked a graphical artist to en-\nhance color, sharpness and general look-and-feel of 9 images\nusing professional software (Adobe Photoshop CS6). A time\nlimit of one workday was given, so as to simulate a realistic sce-\nnario. Figure 8 illustrates the ensemble of enhancement methods\nwe consider for comparison in our experiments. Dong et al. [4]\nand Johnson et al. [9] are trained using the same train image pairs\nas for our solution for each of the smartphones from the DPED\ndataset.\n4.2 Quantitative evaluation\nWe \ufb01rst quantitatively compare APE, Dong et al. [4], Johnson et\nal. [9] and our method on the task of mapping photos from three\nlow-end cameras to the high-quality DSLR (Canon) images and\nreport the results in Table 3. As such, we do not evaluate global\nimage quality but, rather, we measure resemblance to a reference\n(the ground truth DSLR image). We use classical distance met-\nrics, namely PSNR and SSIM scores: the former measures sig-\nnal distortion w.r.t. the reference, the latter measures structural\nsimilarity which is known to be a strong cue for perceived qual-\nity [22]. First, one can note that our method is the best in terms\nof SSIM, at the same time producing images that are cleaner and\nsharper, thus perceptually performs the best. On PSNR terms,\nour method competes with the state of the art: it slightly im-\nproves or worsens depending on the dataset, i.e., on the actual\nphone used. Alignment issues could be responsible for these mi-\nnor variations, and thus we consider Johnson et al.\u2019s method [4]\nand ours equivalent here, while outperforming other methods.\nIn Fig. 8 we show visual results comparing to the source photo\n(iPhone) and the target DSLR photo (Canon). More results are\nin the supplementary material.\n4.3 User study\nOur goal is to produce DSLR-quality images for the end user of\nsmartphone cameras. To measure overall quality we designed\na no-reference user study where subjects are repeatedly asked\nto choose the better looking picture out of a displayed pair.\n6\n\n[PAGE 8]\n\nBlackBerry BlackBerry Sony Sony\nFigure 9: Four examples of original (top) vs. enhanced (bottom) images captured by BlackBerry and Sony cameras.\nUsers were instructed to ignore precise picture composition er-\nrors (e.g., \ufb01eld of view, perspective variation, etc.). There was\nno time limit given to the participants, images were shown in full\nresolution and the users were allowed to zoom in and out at will.\nIn this setting, we did the following pairwise comparisons (ev-\nery group of experiments contains 3 classes of pictures, the users\nwere shown all possible pairwise combinations of these classes):\n(i) Comparison between:\n\u2022 original low-end phone photos,\n\u2022 DSLR photos,\n\u2022 photos enhanced by our proposed method.\nAt every question, the user is shown two pictures from differ-\nent categories (original, DSLR or enhanced). 9 scenes were used\nfor each phone (e.g., see Fig. 11). In total, there are 27 questions\nfor every phone, thus 81 in total.\n(ii) Additionally, we compared (iPhone images only):\n\u2022 photos enhanced by the proposed method,\n\u2022 photos enhanced manually (by a professional),\n\u2022 photos enhanced by APE.\nWe again considered 9 images that resulted in 27 binary se-\nlection questions. Thus, in total the study consists of 108 binary\nquestions. All pairs are shuf\ufb02ed randomly for every subject, as\nis the sequence of displayed images. 42 subjects unaware of the\ngoal of this work participated. They are mostly young scientists\nwith a computer science background.\nFigure 10 shows results: for every experiment the \ufb01rst 3 bars\nshow the results of the pairwise comparison averaged over the\n9 images shown, while the last bar shows the fraction of cases\nwhen the selected method was chosen over all experiments.\nThe sub\ufb01gures 10a-c show the results of enhancing photos\nfrom 3 different mobile devices. It can be seen that in all cases\nboth pictures taken with a DSLR as well as pictures enhanced by\nthe proposed CNN are picked much more often than the original\nones taken with the mobile devices. When subjects are asked\nto select the better picture among the DSLR-picture and our en-\nhanced picture, the choice is almost random (see the third bar\nin sub\ufb01gures 10a-c). This means that the quality difference is\ninexistent or indistinguishable, and users resort to chance.\nSub\ufb01gure 10d shows user choices among our method, human\nartist work, and APE. Although human enhancement turns out to\nbe slightly preferred to the automatic APE, the images enhanced\nby our method are picked more often, outperforming even man-\nual retouching.\nWe can conclude that our results are of on pair quality com-\npared to DSLR images, while starting from low quality phone\ncameras. The human subjects are unable to distinguish between\nthem \u2013 the preferences are equally distributed.\n4.4 Limitations\nSince the proposed enhancement process is fully-automated,\nsome \ufb02aws are inevitable. Two typical artifacts that can\nappear on the processed images are color deviations (see\nground/mountains in \ufb01rst image of Fig. 12) and too high contrast\nlevels (second image). Although they often cause rather plau-\nsible visual effects, in some situations this can lead to content\nchanges that may look arti\ufb01cial, i.e. greenish asphalt in the sec-\nond image of Fig. 12. Another notable problem is noise ampli\ufb01-\ncation \u2013 due to the nature of GANs, they can effectively restore\nhigh frequency-components. However, high-frequency noise is\nemphasized too. Fig. 12 (2nd and 3rd images) shows that a high\nnoise in the original image is ampli\ufb01ed in the enhanced image.\nNote that this noise issue occurs mostly on the lowest-quality\nphotos (i.e., from the iPhone), not on the better phone cameras.\nFinally, the need of a strong supervision in the form of\nmatched source/target training image pairs makes the process\ntedious to repeat for other cameras. To overcome this, we pro-\npose a weakly-supervised approach in [7] that does not require\nthe mentioned correspondence.\n7\n\n[PAGE 9]\n\n(a) BlackBerry phone (b) iPhone (c) Sony phone (d) Enhanced iPhone pictures\nFigure 10: User study: results of pairwise comparisons. In every sub\ufb01gure, the \ufb01rst three bars show the result of the pairwise\nexperiments, while the last bar shows the distribution of the aggregated scores.\nFigure 11: The 9 scenes shown to the participants of the user study. Here: BlackBerry images enhanced using our technique.\nFigure 12: Typical artifacts generated by our method (2nd row) compared with original iPhone images (1st row)\n5 Conclusions\nWe proposed a photo enhancement solution to effectively\ntransform cameras from common smartphones into high quality\nDSLR cameras. Our end-to-end deep learning approach uses\na composite perceptual error function that combines content,\ncolor and texture losses. To train and evaluate our method we\nintroduced DPED \u2013 a large-scale dataset that consists of real\nphotos captured from three different phones and one high-end\nre\ufb02ex camera, and suggested an ef\ufb01cient way of calibrating the\nimages so that they are suitable for image-to-image learning.\nOur quantitative and qualitative assessments reveal that the\nenhanced images demonstrate a quality comparable to DSLR-\ntaken photos, and the method itself can be applied to cameras of\nvarious quality levels.\nAcknowledgments. Work supported by the ETH Zurich Gen-\neral Fund (OK), Toyota via the project TRACE-Zurich, the ERC\ngrant VarCity, and an NVidia GPU grant.\nReferences\n[1] H. A. Aly and E. Dubois. Image up-sampling using total-\nvariation regularization with a new observation model.\nIEEE Transactions on Image Processing , 14(10):1647\u2013\n1659, Oct 2005. 5\n[2] B. Cai, X. Xu, K. Jia, C. Qing, and D. Tao. Dehazenet:\nAn end-to-end system for single image haze removal.\nIEEE Transactions on Image Processing , 25(11):5187\u2013\n5198, Nov 2016. 2\n[3] Z. Cheng, Q. Yang, and B. Sheng. Deep colorization. In\nThe IEEE International Conference on Computer Vision\n(ICCV), December 2015. 2\n[4] C. Dong, C. C. Loy, K. He, and X. Tang. Learning a Deep\nConvolutional Network for Image Super-Resolution, pages\n184\u2013199. Springer International Publishing, Cham, 2014.\n2, 5, 6\n[5] I. Goodfellow, J. Pouget-Abadie, M. Mirza, B. Xu,\nD. Warde-Farley, S. Ozair, A. Courville, and Y . Bengio.\nGenerative adversarial nets. In Z. Ghahramani, M. Welling,\n8\n\n[PAGE 10]\n\nC. Cortes, N. D. Lawrence, and K. Q. Weinberger, edi-\ntors, Advances in Neural Information Processing Systems\n27, pages 2672\u20132680. Curran Associates, Inc., 2014. 4\n[6] M. Hradi \u02c7s, J. Kotera, P. Zem \u02c7c\u00b4\u0131k, and F. \u02c7Sroubek. Con-\nvolutional neural networks for direct text deblurring. In\nProceedings of BMVC 2015 . The British Machine Vision\nAssociation and Society for Pattern Recognition, 2015. 2\n[7] A. Ignatov, N. Kobyshev, R. Timofte, K. Vanhoey, and\nL. Van Gool. Wespe: Weakly supervised photo enhancer\nfor digital cameras. 2017. 7\n[8] P. Isola, J.-Y . Zhu, T. Zhou, and A. A. Efros. Image-to-\nimage translation with conditional adversarial networks.\narxiv, 2016. 2\n[9] J. Johnson, A. Alahi, and L. Fei-Fei. Perceptual Losses\nfor Real-Time Style Transfer and Super-Resolution , pages\n694\u2013711. Springer International Publishing, Cham, 2016.\n2, 4, 6\n[10] J. Kim, J. K. Lee, and K. M. Lee. Accurate image super-\nresolution using very deep convolutional networks. In2016\nIEEE Conference on Computer Vision and Pattern Recog-\nnition (CVPR), pages 1646\u20131654, June 2016. 2\n[11] D. P. Kingma and J. Ba. Adam: A method for stochastic\noptimization. CoRR, abs/1412.6980, 2014. 5\n[12] C. Ledig, L. Theis, F. Huszar, J. Caballero, A. Cunning-\nham, A. Acosta, A. Aitken, A. Tejani, J. Totz, Z. Wang, and\nW. Shi. Photo-realistic single image super-resolution using\na generative adversarial network. In The IEEE Conference\non Computer Vision and Pattern Recognition (CVPR), July\n2017. 2, 4\n[13] J.-Y . Lee, K. Sunkavalli, Z. Lin, X. Shen, and I. So Kweon.\nAutomatic content-aware color and tone stylization. InThe\nIEEE Conference on Computer Vision and Pattern Recog-\nnition (CVPR), June 2016. 2\n[14] Z. Ling, G. Fan, Y . Wang, and X. Lu. Learning deep trans-\nmission network for single image dehazing. In 2016 IEEE\nInternational Conference on Image Processing (ICIP) ,\npages 2296\u20132300, Sept 2016. 2\n[15] D. G. Lowe. Distinctive image features from scale-\ninvariant keypoints. International Journal of Computer Vi-\nsion, 60(2):91\u2013110, 2004. 3\n[16] X. Mao, C. Shen, and Y .-B. Yang. Image restoration using\nvery deep convolutional encoder-decoder networks with\nsymmetric skip connections. In D. D. Lee, M. Sugiyama,\nU. V . Luxburg, I. Guyon, and R. Garnett, editors,Advances\nin Neural Information Processing Systems 29, pages 2802\u2013\n2810. Curran Associates, Inc., 2016. 2\n[17] W. Ren, S. Liu, H. Zhang, J. Pan, X. Cao, and M.-H. Yang.\nSingle Image Dehazing via Multi-scale Convolutional Neu-\nral Networks, pages 154\u2013169. Springer International Pub-\nlishing, Cham, 2016. 2\n[18] W. Shi, J. Caballero, F. Huszar, J. Totz, A. P. Aitken,\nR. Bishop, D. Rueckert, and Z. Wang. Real-time single\nimage and video super-resolution using an ef\ufb01cient sub-\npixel convolutional neural network. In The IEEE Confer-\nence on Computer Vision and Pattern Recognition (CVPR),\nJune 2016. 2\n[19] P. Svoboda, M. Hradis, D. Barina, and P. Zemc \u00b4\u0131k. Com-\npression artifacts removal using convolutional neural net-\nworks. CoRR, abs/1605.00366, 2016. 2\n[20] R. Timofte, V . De Smet, and L. Van Gool. A+: Ad-\njusted Anchored Neighborhood Regression for Fast Super-\nResolution, pages 111\u2013126. Springer International Pub-\nlishing, Cham, 2015. 2\n[21] A. Vedaldi and B. Fulkerson. VLFeat: An open and\nportable library of computer vision algorithms, 2008. 3\n[22] Z. Wang, A. C. Bovik, H. R. Sheikh, and E. P. Simoncelli.\nImage quality assessment: from error visibility to struc-\ntural similarity. IEEE Transactions on Image Processing,\n13(4):600\u2013612, April 2004. 6\n[23] Z. Yan, H. Zhang, B. Wang, S. Paris, and Y . Yu. Automatic\nphoto adjustment using deep neural networks. ACM Trans.\nGraph., 35(2):11:1\u201311:15, Feb. 2016. 2\n[24] W. Yang, R. T. Tan, J. Feng, J. Liu, Z. Guo, and S. Yan.\nJoint rain detection and removal via iterative region depen-\ndent multi-task learning. CoRR, abs/1609.07769, 2016. 2\n[25] L. Yuan and J. Sun. Automatic Exposure Correction of\nConsumer Photographs, pages 771\u2013785. Springer Berlin\nHeidelberg, Berlin, Heidelberg, 2012. 2\n[26] K. Zhang, W. Zuo, Y . Chen, D. Meng, and L. Zhang. Be-\nyond a gaussian denoiser: Residual learning of deep CNN\nfor image denoising. IEEE Transactions on Image Process-\ning, 2017. 2\n[27] R. Zhang, P. Isola, and A. A. Efros. Colorful image col-\norization. ECCV, 2016. 2\n[28] X. Zhang and R. Wu. Fast depth image denoising and en-\nhancement using a deep convolutional network. In 2016\nIEEE International Conference on Acoustics, Speech and\nSignal Processing (ICASSP) , pages 2499\u20132503, March\n2016. 2\n[29] E. Zhou, H. Fan, Z. Cao, Y . Jiang, and Q. Yin. Learn-\ning face hallucination in the wild. In Proceedings of the\nTwenty-Ninth AAAI Conference on Arti\ufb01cial Intelligence ,\nAAAI\u201915, pages 3871\u20133877. AAAI Press, 2015. 2\n9\n\n[PAGE 11]\n\n6 Appendix. Results of the proposed method: iPhone 3\niPhone original Enhanced with our method\nFigure 13: Image results of our method for iPhone DPED test images.\n3All visual results for iPhone are available at http://people.ee.ethz.ch/\u02dcihnatova/dped_iphone.html\n10\n\n[PAGE 12]\n\niPhone original Enhanced with our method\nFigure 14: Image results of our method for iPhone DPED test images.\n11\n\n[PAGE 13]\n\n7 Appendix. Results of the proposed method: BlackBerry 4\nBlackBerry original Enhanced with our method\nFigure 15: Image results of our method for BlackBerry DPED test images.\n4All visual results for BlackBerry are available at http://people.ee.ethz.ch/\u02dcihnatova/dped_blackberry.html\n12\n\n[PAGE 14]\n\nBlackBerry original Enhanced with our method\nFigure 16: Image results of our method for BlackBerry DPED test images.\n13\n\n[PAGE 15]\n\n8 Appendix. Results of the proposed method: Sony 5\nSony original Enhanced with our method\nFigure 17: Image results of our method for Sony DPED test images.\n5All visual results for Sony are available at http://people.ee.ethz.ch/\u02dcihnatova/dped_sony.html\n14\n\n[PAGE 16]\n\nSony original Enhanced with our method\nFigure 18: Image results of our method for Sony DPED test images.\n15\n\n[PAGE 17]\n\n9 Appendix. Loss analysis\nIn this section, we study the contribution of different terms of the proposed perceptual loss function. For this purpose, we consider\nfour different loss combinations: 1) the proposed one [color + content + texture], 2) [content + texture] loss, 3) [MSE + texture]\nloss and 4) [MSE] loss. For each of these target loss combinations, a CNN was trained on the DPED dataset and validated on its test\nsubset. The results of this experiment are provided in Table 3 and visual results are shown in Fig. 19. As one can see, the adversarial\nnetwork that stands behind the texture loss can cause signi\ufb01cant color deviations, and the additional MSE term cannot effectively\nsuppress them since it is not precise in this task (images are not perfectly aligned). Content loss shows better results in this case\nsince it is less sensitive to image mismatches. Adding an extra color term further improves the resulting images, making the colors\nmore saturated and closer to the target. Single MSE demonstrates high PSNR and SSIM values and natural color rendition while\ncausing strong artifacts and slightly degrading image sharpness. Overall our proposed [color + content + texture] loss leads to the\nbest visual results while at the same time achieves top SSIM scores.\nTable 3: PSNR/SSIM scores for different loss functions.\nPhone Color + Content + Texture Content + Texture MSE + Texture MSE\nPSNR SSIM PSNR SSIM PSNR SSIM PSNR SSIM\niPhone 20.08 0.9201 19.05 0.9166 20.11 0.9125 20.56 0.9198\nBlackBerry 20.07 0.9328 19.64 0.9312 20.13 0.9241 20.15 0.9292\nSony 21.81 0.9437 21.59 0.9426 21.72 0.9416 21.35 0.9453\nColor + Content + Texture Content + Texture MSE + Texture MSE\nFigure 19: Result images for iPhone camera for 4 different target loss functions.\n16\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_01f8db04d110",
+    "document_id": "doc_01f8db04d110",
+    "file_name": "arXiv.pdf",
+    "file_type": "pdf",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

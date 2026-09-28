@@ -1,0 +1,83 @@
+{
+  "document_id": "doc_be1d2109aaa2",
+  "metadata": {
+    "title": "tmpoismgqug",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\knowledge_bases\\default\\artifacts\\raw\\doc_be1d2109aaa2\\tmpoismgqug.txt",
+    "file_type": "txt",
+    "file_size_bytes": 16,
+    "source_hash": "8e94cb4c356bd93aa46b4c68def83d5e0e0d5ce5f0cc0892643ddb15268f7932",
+    "author": null,
+    "created_at": "2026-09-25 13:09:47.581073+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_be1d2109aaa2_main",
+      "title": "tmpoismgqug",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_de0d7c9d",
+          "block_type": "text",
+          "content": "Hello OpenWorker",
+          "provenance": {
+            "file_id": "doc_be1d2109aaa2",
+            "document_id": "doc_be1d2109aaa2",
+            "file_name": "tmpoismgqug.txt",
+            "file_type": "txt",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_be1d2109aaa2",
+        "document_id": "doc_be1d2109aaa2",
+        "file_name": "tmpoismgqug.txt",
+        "file_type": "txt",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "Hello OpenWorker",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_be1d2109aaa2",
+    "document_id": "doc_be1d2109aaa2",
+    "file_name": "tmpoismgqug.txt",
+    "file_type": "txt",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}
