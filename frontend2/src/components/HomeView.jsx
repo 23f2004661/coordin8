@@ -1,5 +1,5 @@
 import React from 'react';
-import { FolderKanban, Plus, Calendar, Clock, Sparkles } from 'lucide-react';
+import { FolderKanban, Plus, Calendar, Clock, Layers } from 'lucide-react';
 import ProjectCard from './ProjectCard';
 import MeetingsWidget from './MeetingsWidget';
 import DeliverablesWidget from './DeliverablesWidget';
@@ -12,6 +12,9 @@ export default function HomeView({
   onOpenNewProjectModal,
   onOpenNewMeetingModal,
   onOpenNewDeliverableModal,
+  onOpenGoogleCalendarModal,
+  onAssignMeetingsToProject,
+  gcalSession = null,
   onToggleDeliverableStatus,
   onSelectPrepDoc,
 }) {
@@ -21,12 +24,12 @@ export default function HomeView({
       <section className="home-hero-section">
         <div className="hero-text-content">
           <div className="hero-pill">
-            <Sparkles size={14} className="sparkle-icon" />
-            <span>Autonomous Project Management & Multimodal RAG</span>
+            <Layers size={13} className="sparkle-icon" />
+            <span>Workspace Management & Multimodal Knowledge Base</span>
           </div>
-          <h1 className="hero-heading">Welcome to your Workspaces</h1>
+          <h1 className="hero-heading">Projects & Knowledge Hub</h1>
           <p className="hero-description">
-            Organize documents, track project meetings across your Google Calendar feeds, and monitor deliverable deadlines in one centralized command center.
+            Organize documents, track project meetings across your Google Calendar feeds, and monitor deliverable deadlines in one centralized workspace.
           </p>
         </div>
 
@@ -75,7 +78,7 @@ export default function HomeView({
         <div className="projects-grid">
           {projects.map((project) => (
             <ProjectCard
-              key={project.id}
+              key={project.id || project.project_id}
               project={project}
               onSelectProject={onSelectProject}
             />
@@ -86,7 +89,9 @@ export default function HomeView({
             <div className="create-icon-circle">
               <Plus size={24} />
             </div>
-            <span className="create-card-title">Add Another Project</span>
+            <span className="create-card-title">
+              {projects.length === 0 ? 'Create First Project' : 'Add Another Project'}
+            </span>
             <span className="create-card-sub">Create folder & initialize isolated vector space</span>
           </div>
         </div>
@@ -99,8 +104,12 @@ export default function HomeView({
           <div className="widget-column">
             <MeetingsWidget
               meetings={allMeetings}
+              projects={projects}
               isProjectSpecific={false}
               onOpenNewMeetingModal={onOpenNewMeetingModal}
+              onOpenGoogleCalendarModal={onOpenGoogleCalendarModal}
+              onAssignMeetingsToProject={onAssignMeetingsToProject}
+              gcalSession={gcalSession}
               onSelectPrepDoc={onSelectPrepDoc}
             />
           </div>

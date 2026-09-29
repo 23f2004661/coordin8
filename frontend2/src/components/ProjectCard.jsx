@@ -16,11 +16,11 @@ export default function ProjectCard({ project, onSelectProject }) {
     <div
       className="project-folder-card"
       onClick={() => onSelectProject(project)}
-      style={{ '--card-accent': project.color || '#6366f1' }}
+      style={{ '--card-accent': project.color || '#0066cc' }}
     >
       <div className="project-card-top">
-        <div className="project-folder-icon-box" style={{ backgroundColor: `${project.color}20` }}>
-          <Folder size={26} style={{ color: project.color || '#6366f1' }} />
+        <div className="project-folder-icon-box" style={{ backgroundColor: `${project.color || '#0066cc'}18` }}>
+          <Folder size={20} style={{ color: project.color || '#0066cc' }} />
         </div>
         <div className="project-card-meta">
           <span className="project-code">{project.code}</span>

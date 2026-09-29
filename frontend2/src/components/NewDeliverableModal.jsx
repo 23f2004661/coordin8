@@ -9,7 +9,9 @@ export default function NewDeliverableModal({
   onAddDeliverable,
 }) {
   const [title, setTitle] = useState('');
-  const [projectId, setProjectId] = useState(activeProject?.id || projects[0]?.id || '');
+  const [projectId, setProjectId] = useState(
+    activeProject?.id || activeProject?.project_id || projects[0]?.id || projects[0]?.project_id || ''
+  );
   const [dueDate, setDueDate] = useState('2026-10-06');
   const [priority, setPriority] = useState('high');
   const [owner, setOwner] = useState('Srinath');
@@ -21,12 +23,13 @@ export default function NewDeliverableModal({
     e.preventDefault();
     if (!title.trim()) return;
 
-    const selectedProj = projects.find((p) => p.id === (activeProject?.id || projectId));
+    const currentProjId = activeProject?.id || activeProject?.project_id || projectId;
+    const selectedProj = projects.find((p) => (p.id || p.project_id) === currentProjId);
 
     const newDel = {
       id: `del_${Date.now()}`,
       title: title.trim(),
-      projectId: selectedProj?.id,
+      projectId: selectedProj?.id || selectedProj?.project_id,
       projectName: selectedProj?.name,
       projectColor: selectedProj?.color,
       dueDate,
@@ -75,7 +78,7 @@ export default function NewDeliverableModal({
                 <label>Associated Project</label>
                 <select value={projectId} onChange={(e) => setProjectId(e.target.value)}>
                   {projects.map((p) => (
-                    <option key={p.id} value={p.id}>
+                    <option key={p.id || p.project_id} value={p.id || p.project_id}>
                       {p.name} ({p.code})
                     </option>
                   ))}
@@ -125,7 +128,7 @@ export default function NewDeliverableModal({
           </div>
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-outline" onClick={onClose}>
+            <button type="button" className="btn btn-secondary" onClick={onClose}>
               Cancel
             </button>
             <button type="submit" className="btn btn-primary">

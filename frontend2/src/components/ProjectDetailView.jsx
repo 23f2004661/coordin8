@@ -18,6 +18,7 @@ import DeliverablesWidget from './DeliverablesWidget';
 
 export default function ProjectDetailView({
   project,
+  projects = [],
   backendDocs = [],
   onBack,
   onSelectDoc,
@@ -25,6 +26,9 @@ export default function ProjectDetailView({
   onRescanProject,
   onOpenNewMeetingModal,
   onOpenNewDeliverableModal,
+  onOpenGoogleCalendarModal,
+  onAssignMeetingsToProject,
+  gcalSession = null,
   onToggleDeliverableStatus,
   onSelectPrepDoc,
 }) {
@@ -172,9 +176,13 @@ export default function ProjectDetailView({
           {/* Widget 1: Project-Specific Upcoming Meetings */}
           <MeetingsWidget
             meetings={projectMeetings}
+            projects={projects}
             isProjectSpecific={true}
             project={project}
             onOpenNewMeetingModal={onOpenNewMeetingModal}
+            onOpenGoogleCalendarModal={onOpenGoogleCalendarModal}
+            onAssignMeetingsToProject={onAssignMeetingsToProject}
+            gcalSession={gcalSession}
             onSelectPrepDoc={onSelectPrepDoc}
           />
 

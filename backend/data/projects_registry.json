@@ -1,53 +1,60 @@
 {
   "home_folder": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home",
-  "updated_at": "2026-09-28T20:32:31.185582",
-  "projects": {
-    "proj_alpha_test_project": {
-      "project_id": "proj_alpha_test_project",
-      "name": "Alpha Test Project",
-      "code": "ATP",
-      "description": "Demo project",
-      "category": "General",
-      "color": "#6366f1",
-      "folder_path": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Alpha Test Project",
-      "kb_id": "kb_alpha_test_project",
-      "creation_mode": "scratch",
-      "created_at": "2026-09-28T19:57:53.347385",
-      "progress": 0,
-      "meetings": [],
-      "deliverables": [],
-      "ingested_count": 0
+  "updated_at": "2026-09-29T13:19:52.147018",
+  "projects": {},
+  "unassigned_meetings": [
+    {
+      "id": "gcal_7oirgqai7v9scee9m6hgkgvaep",
+      "title": "Random meet",
+      "startTime": "2026-09-29T18:00:00+05:30",
+      "endTime": "2026-09-29T19:00:00+05:30",
+      "platform": "Google Meet",
+      "meetUrl": "https://meet.google.com/hdd-jvkd-pns",
+      "attendees": [
+        "ssrini2002@gmail.com",
+        "pfbotbeta@gmail.com"
+      ],
+      "agenda": "Just a test event",
+      "prepDoc": "",
+      "isGcal": true,
+      "gcalId": "7oirgqai7v9scee9m6hgkgvaep",
+      "projectId": null,
+      "projectName": null,
+      "projectColor": "#94a3b8",
+      "duration": "30 min",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=N29pcmdxYWk3djlzY2VlOW02aGdrZ3ZhZXAgcGZib3RiZXRhQG0"
     },
-    "proj_existing_research_project": {
-      "project_id": "proj_existing_research_project",
-      "name": "Existing Research Project",
-      "code": "ERP",
-      "description": "Imported project",
-      "category": "General",
-      "color": "#6366f1",
-      "folder_path": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Existing Research Docs",
-      "kb_id": "kb_existing_research_project",
-      "creation_mode": "existing_folder",
-      "created_at": "2026-09-28T19:58:30.651883",
-      "progress": 0,
-      "meetings": [],
-      "deliverables": [],
-      "ingested_count": 2
-    },
-    "proj_learning_robotics_hf": {
-      "project_id": "proj_learning_robotics_hf",
-      "name": "Learning Robotics HF",
-      "code": "LEA",
-      "description": "The goal is to become a robotics researcher",
-      "category": "Core Infrastructure",
-      "color": "#10b981",
-      "folder_path": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Learning Robotics HF",
-      "kb_id": "kb_learning_robotics_hf",
-      "creation_mode": "existing_folder",
-      "created_at": "2026-09-28T20:32:31.185573",
-      "progress": 0,
-      "meetings": [],
-      "deliverables": []
+    {
+      "id": "gcal_1bskh5cj5brd2d4t0dvg768et8",
+      "title": "Meet with Tarang",
+      "startTime": "2026-09-29T16:00:00+05:30",
+      "endTime": "2026-09-29T17:00:00+05:30",
+      "platform": "Google Meet",
+      "meetUrl": "https://meet.google.com/rmt-ryga-dtw",
+      "attendees": [
+        "pfbotbeta@gmail.com",
+        "Tarang Jhaveri"
+      ],
+      "agenda": "We will discuss important stuff",
+      "prepDoc": "",
+      "isGcal": true,
+      "gcalId": "1bskh5cj5brd2d4t0dvg768et8",
+      "projectId": null,
+      "projectName": null,
+      "projectColor": "#94a3b8",
+      "duration": "30 min",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=MWJza2g1Y2o1YnJkMmQ0dDBkdmc3NjhldDggcGZib3RiZXRhQG0"
     }
+  ],
+  "google_account": {
+    "connected": true,
+    "email": "pfbotbeta@gmail.com",
+    "name": "pfbotsupport",
+    "picture": "https://lh3.googleusercontent.com/a/ACg8ocIi9ZLHaRyleqzYvr8vy091vtOS2WfxvonOA-vBwCJxE1K7yxA=s96-c",
+    "mode": "real",
+    "lastSync": "2026-09-29T06:50:31.426Z",
+    "syncedCount": 3
   }
 }

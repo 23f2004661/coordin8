@@ -15,7 +15,7 @@ export default function DeliverablesWidget({
       return { label: 'Completed', cls: 'badge-completed' };
     }
     const dueTime = new Date(dueDate).getTime();
-    const nowTime = new Date('2026-09-28T19:00:00').getTime();
+    const nowTime = Date.now();
     const diffDays = Math.round((dueTime - nowTime) / (1000 * 60 * 60 * 24));
 
     if (diffDays < 0) {

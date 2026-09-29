@@ -68,10 +68,70 @@ export async function fetchProjectsFromBackend() {
     const res = await fetch(`${API_BASE}/projects`, { signal: AbortSignal.timeout(4000) });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    return data.projects || [];
+    const projects = (data.projects || []).map((p) => ({
+      ...p,
+      id: p.project_id || p.id,
+    }));
+    const unassigned_meetings = data.unassigned_meetings || [];
+    return { projects, unassigned_meetings };
   } catch (err) {
     console.warn('Could not fetch projects from backend:', err.message);
     return null; // indicates offline / fallback
+  }
+}
+
+export async function fetchUnassignedMeetings() {
+  try {
+    const res = await fetch(`${API_BASE}/projects/meetings/unassigned`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return data.meetings || [];
+  } catch (err) {
+    console.warn('Could not fetch unassigned meetings:', err.message);
+    return [];
+  }
+}
+
+export async function addUnassignedMeeting(meeting) {
+  try {
+    const res = await fetch(`${API_BASE}/projects/meetings/unassigned`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(meeting),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not add unassigned meeting:', err.message);
+    return null;
+  }
+}
+
+export async function batchAddUnassignedMeetings(meetings) {
+  try {
+    const res = await fetch(`${API_BASE}/projects/meetings/unassigned/batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(meetings),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not batch add unassigned meetings:', err.message);
+    return null;
+  }
+}
+
+export async function deleteUnassignedMeeting(meetingId) {
+  try {
+    const res = await fetch(`${API_BASE}/projects/meetings/unassigned/${encodeURIComponent(meetingId)}`, {
+      method: 'DELETE',
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not delete unassigned meeting:', err.message);
+    return null;
   }
 }
 
@@ -102,3 +162,89 @@ export async function searchProjectKnowledge(projectId, query) {
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return await res.json();
 }
+
+export async function addProjectMeeting(projectId, meeting) {
+  try {
+    const res = await fetch(`${API_BASE}/projects/${projectId}/meetings`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(meeting),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not persist meeting to backend:', err.message);
+    return null;
+  }
+}
+
+export async function batchAddProjectMeetings(projectId, meetings) {
+  try {
+    const res = await fetch(`${API_BASE}/projects/${projectId}/meetings/batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(meetings),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not batch persist meetings to backend:', err.message);
+    return null;
+  }
+}
+
+export async function deleteProjectMeeting(projectId, meetingId) {
+  try {
+    const res = await fetch(`${API_BASE}/projects/${projectId}/meetings/${encodeURIComponent(meetingId)}`, {
+      method: 'DELETE',
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not delete meeting on backend:', err.message);
+    return null;
+  }
+}
+
+export async function fetchGcalAccount() {
+  try {
+    const res = await fetch(`${API_BASE}/projects/gcal_account`, { signal: AbortSignal.timeout(3000) });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.account || null;
+  } catch (err) {
+    console.warn('Could not fetch gcal account from backend:', err.message);
+    return null;
+  }
+}
+
+export async function saveGcalAccount(accountData) {
+  try {
+    const res = await fetch(`${API_BASE}/projects/gcal_account`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(accountData),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not persist gcal account to backend:', err.message);
+    return null;
+  }
+}
+
+export async function deleteGcalAccount() {
+  try {
+    const res = await fetch(`${API_BASE}/projects/gcal_account`, {
+      method: 'DELETE',
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not delete gcal account on backend:', err.message);
+    return null;
+  }
+}
+
+
+

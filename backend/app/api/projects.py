@@ -1,5 +1,6 @@
 """API endpoints for project workspaces and dedicated KnowledgeBases."""
 
+from datetime import datetime
 from typing import Any
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
@@ -20,14 +21,26 @@ class CreateProjectRequest(BaseModel):
 
 
 class MeetingPayload(BaseModel):
+    id: str | None = None
     title: str
     startTime: str
     endTime: str | None = None
+    duration: str = "30 min"
     platform: str = "Google Meet"
     meetUrl: str | None = None
     attendees: list[str] = []
     agenda: str = ""
     prepDoc: str = ""
+    status: str = "confirmed"
+    isGcal: bool = False
+    gcalId: str | None = None
+    htmlLink: str | None = None
+    projectId: str | None = None
+    projectName: str | None = None
+    projectColor: str | None = None
+
+    class Config:
+        extra = "allow"
 
 
 class DeliverablePayload(BaseModel):
@@ -49,9 +62,12 @@ def get_home_folder():
 
 @router.get("")
 def list_projects():
-    """List all registered projects with live file trees and stats."""
+    """List all registered projects with live file trees and stats, plus unassigned meetings."""
     mgr = ProjectManager.get_instance()
-    return {"projects": mgr.list_projects()}
+    return {
+        "projects": mgr.list_projects(),
+        "unassigned_meetings": mgr.get_unassigned_meetings(),
+    }
 
 
 @router.post("", status_code=201)
@@ -75,6 +91,68 @@ def create_project(req: CreateProjectRequest):
         raise HTTPException(status_code=400, detail=str(exc))
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Failed to create project: {exc}")
+
+
+@router.get("/gcal_account")
+def get_gcal_account():
+    """Retrieve connected Google Account metadata."""
+    mgr = ProjectManager.get_instance()
+    return {"account": mgr.get_google_account()}
+
+
+@router.post("/gcal_account")
+def set_gcal_account(payload: dict[str, Any]):
+    """Persist connected Google Account metadata."""
+    mgr = ProjectManager.get_instance()
+    account = mgr.set_google_account(payload)
+    return {"account": account}
+
+
+@router.delete("/gcal_account")
+def clear_gcal_account():
+    """Clear connected Google Account metadata."""
+    mgr = ProjectManager.get_instance()
+    mgr.clear_google_account()
+    return {"status": "ok"}
+
+
+@router.get("/meetings/unassigned")
+def get_unassigned_meetings():
+    """Return all unassigned meetings."""
+    mgr = ProjectManager.get_instance()
+    return {"meetings": mgr.get_unassigned_meetings()}
+
+
+@router.post("/meetings/unassigned", status_code=201)
+def add_unassigned_meeting(meeting: MeetingPayload):
+    """Add or update an unassigned meeting."""
+    mgr = ProjectManager.get_instance()
+    data = meeting.dict()
+    if not data.get("id"):
+        data["id"] = f"m_{int(datetime.now().timestamp() * 1000)}"
+    return mgr.add_meeting(None, data)
+
+
+@router.post("/meetings/unassigned/batch", status_code=201)
+def add_unassigned_meetings_batch(meetings: list[MeetingPayload]):
+    """Batch upsert unassigned meetings."""
+    mgr = ProjectManager.get_instance()
+    added = []
+    for m in meetings:
+        data = m.dict()
+        if not data.get("id"):
+            data["id"] = f"m_{int(datetime.now().timestamp() * 1000)}"
+        mgr.add_meeting(None, data)
+        added.append(data)
+    return {"synced_count": len(added), "meetings": added}
+
+
+@router.delete("/meetings/unassigned/{meeting_id}")
+def delete_unassigned_meeting(meeting_id: str):
+    """Delete a meeting from the unassigned list."""
+    mgr = ProjectManager.get_instance()
+    removed = mgr.delete_unassigned_meeting(meeting_id)
+    return {"success": removed, "meeting_id": meeting_id}
 
 
 @router.get("/{project_id}")
@@ -122,3 +200,46 @@ def delete_project(project_id: str, delete_folder: bool = False):
     if not success:
         raise HTTPException(status_code=404, detail="Project not found")
     return {"success": True, "project_id": project_id}
+
+
+@router.post("/{project_id}/meetings", status_code=201)
+def add_project_meeting(project_id: str, meeting: MeetingPayload):
+    """Add a scheduled or Google Calendar-synced meeting to the project."""
+    mgr = ProjectManager.get_instance()
+    try:
+        data = meeting.dict()
+        if not data.get("id"):
+            data["id"] = f"m_{int(datetime.now().timestamp() * 1000)}"
+        return mgr.add_meeting(project_id, data)
+    except KeyError:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+
+@router.post("/{project_id}/meetings/batch", status_code=201)
+def add_project_meetings_batch(project_id: str, meetings: list[MeetingPayload]):
+    """Add a batch of Google Calendar-synced meetings to the project."""
+    mgr = ProjectManager.get_instance()
+    try:
+        added = []
+        for m in meetings:
+            data = m.dict()
+            if not data.get("id"):
+                data["id"] = f"m_{int(datetime.now().timestamp() * 1000)}"
+            mgr.add_meeting(project_id, data)
+            added.append(data)
+        return {"project_id": project_id, "synced_count": len(added), "meetings": added}
+    except KeyError:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+
+@router.delete("/{project_id}/meetings/{meeting_id}")
+def delete_project_meeting(project_id: str, meeting_id: str):
+    """Delete a meeting from a project."""
+    mgr = ProjectManager.get_instance()
+    try:
+        removed = mgr.delete_meeting(project_id, meeting_id)
+        return {"success": removed, "project_id": project_id, "meeting_id": meeting_id}
+    except KeyError:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+

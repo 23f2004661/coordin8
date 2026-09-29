@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { X, Calendar } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, Calendar, Video, Loader2, AlertCircle } from 'lucide-react';
+import { createGoogleCalendarEvent, getSavedSession } from '../services/googleCalendar';
 
 export default function NewMeetingModal({
   isOpen,
@@ -7,45 +8,93 @@ export default function NewMeetingModal({
   projects = [],
   activeProject = null,
   onAddMeeting,
+  gcalSession = null,
+  setGcalSession = null,
 }) {
+  const getTodayDate = () => {
+    const d = new Date();
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  };
+
+  const getUpcomingTime = () => {
+    const d = new Date();
+    d.setHours(d.getHours() + 1, 0, 0, 0);
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  };
+
   const [title, setTitle] = useState('');
-  const [projectId, setProjectId] = useState(activeProject?.id || projects[0]?.id || '');
-  const [date, setDate] = useState('2026-09-30');
-  const [time, setTime] = useState('11:00');
-  const [duration, setDuration] = useState('45 min');
-  const [attendees, setAttendees] = useState('Srinath, Priya');
-  const [meetUrl, setMeetUrl] = useState('https://meet.google.com/new-sync');
+  const [projectId, setProjectId] = useState(
+    activeProject?.id || activeProject?.project_id || ''
+  );
+  const [date, setDate] = useState(getTodayDate());
+  const [time, setTime] = useState(getUpcomingTime());
+  const [duration, setDuration] = useState('30 min');
+  const [attendees, setAttendees] = useState('');
   const [agenda, setAgenda] = useState('');
   const [prepDoc, setPrepDoc] = useState('');
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    if (isOpen) {
+      setProjectId(activeProject?.id || activeProject?.project_id || '');
+      setTitle('');
+      setDate(getTodayDate());
+      setTime(getUpcomingTime());
+      setDuration('30 min');
+      setAttendees('');
+      setAgenda('');
+      setPrepDoc('');
+      setErrorMessage('');
+      setIsSubmitting(false);
+    }
+  }, [isOpen, activeProject]);
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const currentSession = gcalSession || getSavedSession();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title.trim()) return;
 
-    const selectedProj = projects.find((p) => p.id === (activeProject?.id || projectId));
-    const startIso = `${date}T${time}:00`;
+    setIsSubmitting(true);
+    setErrorMessage('');
 
-    const newMeeting = {
-      id: `m_${Date.now()}`,
-      title: title.trim(),
-      projectId: selectedProj?.id,
-      projectName: selectedProj?.name,
-      projectColor: selectedProj?.color,
-      startTime: startIso,
-      endTime: startIso,
-      duration,
-      platform: 'Google Meet',
-      meetUrl: meetUrl.trim(),
-      attendees: attendees.split(',').map((s) => s.trim()).filter(Boolean),
-      agenda: agenda.trim(),
-      prepDoc: prepDoc.trim(),
-      status: 'confirmed',
-    };
+    const currentProjId = activeProject?.id || activeProject?.project_id || projectId;
+    const selectedProj = projects.find((p) => (p.id || p.project_id) === currentProjId) || null;
 
-    onAddMeeting(newMeeting);
-    onClose();
+    try {
+      // Call Google Calendar API to create event + Google Meet
+      const { meeting, session: newSession } = await createGoogleCalendarEvent({
+        title: title.trim(),
+        date,
+        time,
+        duration,
+        attendees,
+        agenda: agenda.trim(),
+        prepDoc: prepDoc.trim(),
+        targetProject: selectedProj,
+        allProjects: projects,
+      });
+
+      if (newSession && setGcalSession) {
+        setGcalSession(newSession);
+      }
+
+      onAddMeeting(meeting);
+      onClose();
+    } catch (err) {
+      console.error('Error creating Google Calendar meeting:', err);
+      setErrorMessage(
+        err.message || 'Failed to create Google Calendar event and Google Meet link.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -56,22 +105,56 @@ export default function NewMeetingModal({
             <Calendar size={20} className="modal-icon meetings-accent" />
             <div>
               <h3 className="modal-title">Schedule Project Meeting</h3>
-              <span className="modal-subtitle">Connect calendar sync & link prep documents</span>
+              <span className="modal-subtitle">Auto-generate Google Meet & sync to calendar</span>
             </div>
           </div>
-          <button className="modal-close-btn" onClick={onClose}>
+          <button className="modal-close-btn" onClick={onClose} disabled={isSubmitting}>
             <X size={18} />
           </button>
         </div>
 
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
+            {errorMessage && (
+              <div className="modal-error-banner">
+                <AlertCircle size={16} />
+                <div className="error-banner-content">
+                  <span>{errorMessage}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Google Meet Auto-Creation Indicator */}
+            <div className="gmeet-auto-card">
+              <div className="gmeet-auto-header">
+                <div className="gmeet-badge-icon">
+                  <Video size={16} />
+                </div>
+                <div className="gmeet-auto-info">
+                  <div className="gmeet-auto-title">Google Meet Integration</div>
+                  <div className="gmeet-auto-sub">
+                    A new Google Meet link will be automatically generated and added to this event.
+                  </div>
+                </div>
+              </div>
+
+              {currentSession?.connected ? (
+                <div className="gmeet-account-status connected">
+                  <span className="live-pulse-dot" />
+                  <span>Google Account: <strong>{currentSession.user?.email}</strong></span>
+                </div>
+              ) : (
+                <div className="gmeet-account-status prompt">
+                  <span>You will be prompted to authorize your Google Account when scheduling.</span>
+                </div>
+              )}
+            </div>
+
             <div className="form-group">
               <label>Meeting Title *</label>
               <input
                 type="text"
                 required
-                placeholder="e.g. Sprint Architecture Sync"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -81,8 +164,9 @@ export default function NewMeetingModal({
               <div className="form-group">
                 <label>Associated Project</label>
                 <select value={projectId} onChange={(e) => setProjectId(e.target.value)}>
+                  <option value="">Unassigned (No Project)</option>
                   {projects.map((p) => (
-                    <option key={p.id} value={p.id}>
+                    <option key={p.id || p.project_id} value={p.id || p.project_id}>
                       {p.name} ({p.code})
                     </option>
                   ))}
@@ -113,7 +197,6 @@ export default function NewMeetingModal({
                 <label>Duration</label>
                 <input
                   type="text"
-                  placeholder="30 min"
                   value={duration}
                   onChange={(e) => setDuration(e.target.value)}
                 />
@@ -121,22 +204,11 @@ export default function NewMeetingModal({
             </div>
 
             <div className="form-group">
-              <label>Attendees (comma separated)</label>
+              <label>Attendee Emails (comma-separated)</label>
               <input
                 type="text"
-                placeholder="Srinath, Priya, Alex"
                 value={attendees}
                 onChange={(e) => setAttendees(e.target.value)}
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Google Meet URL</label>
-              <input
-                type="url"
-                placeholder="https://meet.google.com/..."
-                value={meetUrl}
-                onChange={(e) => setMeetUrl(e.target.value)}
               />
             </div>
 
@@ -144,7 +216,6 @@ export default function NewMeetingModal({
               <label>Agenda / Discussion Topics</label>
               <textarea
                 rows={2}
-                placeholder="Main points to cover in this session..."
                 value={agenda}
                 onChange={(e) => setAgenda(e.target.value)}
               />
@@ -154,7 +225,6 @@ export default function NewMeetingModal({
               <label>Linked Context / Prep Document</label>
               <input
                 type="text"
-                placeholder="e.g. ProjectDetails.md or Architecture_Review_Q3.vtt"
                 value={prepDoc}
                 onChange={(e) => setPrepDoc(e.target.value)}
               />
@@ -162,11 +232,30 @@ export default function NewMeetingModal({
           </div>
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-outline" onClick={onClose}>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={onClose}
+              disabled={isSubmitting}
+            >
               Cancel
             </button>
-            <button type="submit" className="btn btn-primary">
-              Schedule Event
+            <button
+              type="submit"
+              className="btn btn-primary btn-submit-meeting"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 size={15} className="spinner-icon" />
+                  <span>Creating Google Meet...</span>
+                </>
+              ) : (
+                <>
+                  <Video size={15} />
+                  <span>Schedule & Create Meet</span>
+                </>
+              )}
             </button>
           </div>
         </form>

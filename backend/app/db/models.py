@@ -78,3 +78,23 @@ class AssetRecord(Base):
     visual_description = Column(Text, nullable=True)
     retrieval_description = Column(Text, nullable=True)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class IntegrationRecord(Base):
+    """Stores third-party integrations and authenticated account states (e.g. Google Calendar)."""
+    __tablename__ = "integrations"
+
+    provider = Column(String(64), primary_key=True, index=True)
+    account_email = Column(String(255), nullable=True)
+    account_name = Column(String(255), nullable=True)
+    picture_url = Column(String(512), nullable=True)
+    is_connected = Column(Integer, default=1)
+    extra_json = Column(Text, nullable=True)
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+
+    def get_extra(self) -> dict[str, Any]:
+        return json.loads(self.extra_json) if self.extra_json else {}
+
+    def set_extra(self, data: dict[str, Any]) -> None:
+        self.extra_json = json.dumps(data)
+

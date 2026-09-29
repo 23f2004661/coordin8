@@ -8,7 +8,7 @@ export default function NewProjectModal({ isOpen, onClose, onAddProject }) {
   const [code, setCode] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('Core Infrastructure');
-  const [color, setColor] = useState('#6366f1');
+  const [color, setColor] = useState('#0066cc');
   const [folderPath, setFolderPath] = useState('');
   const [homeInfo, setHomeInfo] = useState({
     home_folder: 'C:\\Users\\ssrin\\Desktop\\Coordin8 Home',
@@ -60,7 +60,7 @@ export default function NewProjectModal({ isOpen, onClose, onAddProject }) {
     }
   };
 
-  const colors = ['#6366f1', '#06b6d4', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6'];
+  const colors = ['#0066cc', '#0284c7', '#16a34a', '#d97706', '#dc2626', '#7c3aed'];
   const previewPath =
     creationMode === 'scratch'
       ? `${homeInfo.home_folder}\\${name.trim() || '<project-name>'}`
@@ -234,7 +234,7 @@ export default function NewProjectModal({ isOpen, onClose, onAddProject }) {
           </div>
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-outline" onClick={onClose} disabled={isSubmitting}>
+            <button type="button" className="btn btn-secondary" onClick={onClose} disabled={isSubmitting}>
               Cancel
             </button>
             <button type="submit" className="btn btn-primary" disabled={isSubmitting}>

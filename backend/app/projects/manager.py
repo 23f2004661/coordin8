@@ -10,6 +10,8 @@ from typing import Any
 
 from app.core.config import get_settings
 from app.core.logging import logger
+from app.db.models import IntegrationRecord
+from app.db.session import SessionLocal
 from app.knowledge_base import KnowledgeBase, KnowledgeBaseManager
 from app.projects.watcher import SUPPORTED_EXTENSIONS, IGNORED_PATTERNS, ProjectWatcherManager
 
@@ -41,6 +43,8 @@ class ProjectManager:
         self.watcher = ProjectWatcherManager(on_file_detected=self._on_watched_file_detected)
 
         self._projects: dict[str, dict[str, Any]] = {}
+        self._unassigned_meetings: list[dict[str, Any]] = []
+        self._google_account: dict[str, Any] | None = None
         self._load_registry()
 
     @classmethod
@@ -54,11 +58,68 @@ class ProjectManager:
             try:
                 data = json.loads(self.registry_file.read_text(encoding="utf-8"))
                 self._projects = data.get("projects", {})
+                self._unassigned_meetings = data.get("unassigned_meetings", [])
+                self._google_account = data.get("google_account", None)
+                # Filter out any simulated/demo meetings automatically
+                for pid, proj in self._projects.items():
+                    if "meetings" in proj and isinstance(proj["meetings"], list):
+                        proj["meetings"] = [
+                            m for m in proj["meetings"]
+                            if not (str(m.get("id", "")).startswith(("sim_", "gcal_sim_")) or
+                                    str(m.get("gcalId", "")).startswith(("sim_", "gcal_sim_")))
+                        ]
+                self._unassigned_meetings = [
+                    m for m in self._unassigned_meetings
+                    if not (str(m.get("id", "")).startswith(("sim_", "gcal_sim_")) or
+                            str(m.get("gcalId", "")).startswith(("sim_", "gcal_sim_")))
+                ]
             except Exception as exc:
                 logger.error("Error loading project registry: %s", exc)
                 self._projects = {}
+                self._unassigned_meetings = []
+                self._google_account = None
         else:
             self._projects = {}
+            self._unassigned_meetings = []
+            self._google_account = None
+
+        # Global deduplication across all projects and unassigned meetings
+        seen_keys: set[str] = set()
+        for pid, proj in self._projects.items():
+            unique_meetings = []
+            for m in proj.get("meetings", []):
+                key = m.get("gcalId") or m.get("id") or f"{m.get('title')}_{m.get('startTime')}"
+                if key and key not in seen_keys:
+                    seen_keys.add(key)
+                    unique_meetings.append(m)
+            proj["meetings"] = unique_meetings
+
+        # Also deduplicate unassigned meetings against projects
+        unique_unassigned = []
+        for m in self._unassigned_meetings:
+            key = m.get("gcalId") or m.get("id") or f"{m.get('title')}_{m.get('startTime')}"
+            if key and key not in seen_keys:
+                seen_keys.add(key)
+                unique_unassigned.append(m)
+        self._unassigned_meetings = unique_unassigned
+
+        # 1. Primary source: check SQLite database integrations table
+        try:
+            with SessionLocal() as db:
+                rec = db.query(IntegrationRecord).filter_by(provider="google_calendar").first()
+                if rec and rec.is_connected and rec.account_email:
+                    extra = rec.get_extra()
+                    self._google_account = {
+                        "connected": True,
+                        "email": rec.account_email,
+                        "name": rec.account_name or rec.account_email.split("@")[0],
+                        "picture": rec.picture_url or "",
+                        "mode": extra.get("mode", "real"),
+                        "lastSync": extra.get("lastSync", datetime.now().isoformat()),
+                        "syncedCount": extra.get("syncedCount", 0),
+                    }
+        except Exception as db_exc:
+            logger.warning("Could not read integration from db on startup: %s", db_exc)
 
     def _save_registry(self) -> None:
         try:
@@ -66,10 +127,76 @@ class ProjectManager:
                 "home_folder": str(self.home_folder),
                 "updated_at": datetime.now().isoformat(),
                 "projects": self._projects,
+                "unassigned_meetings": self._unassigned_meetings,
+                "google_account": self._google_account,
             }
             self.registry_file.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         except Exception as exc:
             logger.error("Error saving project registry: %s", exc)
+
+    def get_google_account(self) -> dict[str, Any] | None:
+        """Return connected Google account metadata from DB or cache."""
+        try:
+            with SessionLocal() as db:
+                rec = db.query(IntegrationRecord).filter_by(provider="google_calendar").first()
+                if rec:
+                    if not rec.is_connected:
+                        return None
+                    extra = rec.get_extra()
+                    return {
+                        "connected": True,
+                        "email": rec.account_email,
+                        "name": rec.account_name or (rec.account_email.split("@")[0] if rec.account_email else ""),
+                        "picture": rec.picture_url or "",
+                        "mode": extra.get("mode", "real"),
+                        "lastSync": extra.get("lastSync", datetime.now().isoformat()),
+                        "syncedCount": extra.get("syncedCount", 0),
+                    }
+        except Exception as exc:
+            logger.warning("Could not read integration from db: %s", exc)
+
+        return self._google_account
+
+    def set_google_account(self, account_data: dict[str, Any]) -> dict[str, Any]:
+        """Save connected Google account metadata to both SQLite database and registry."""
+        self._google_account = account_data
+        self._save_registry()
+
+        try:
+            with SessionLocal() as db:
+                rec = db.query(IntegrationRecord).filter_by(provider="google_calendar").first()
+                if not rec:
+                    rec = IntegrationRecord(provider="google_calendar")
+                    db.add(rec)
+                rec.account_email = account_data.get("email")
+                rec.account_name = account_data.get("name")
+                rec.picture_url = account_data.get("picture", "")
+                rec.is_connected = 1 if account_data.get("connected", True) else 0
+                rec.set_extra({
+                    "mode": account_data.get("mode", "real"),
+                    "lastSync": account_data.get("lastSync", datetime.now().isoformat()),
+                    "syncedCount": account_data.get("syncedCount", 0),
+                })
+                db.commit()
+        except Exception as exc:
+            logger.warning("Could not persist integration to db: %s", exc)
+
+        return self._google_account
+
+    def clear_google_account(self) -> None:
+        """Clear connected Google account metadata in SQLite database and registry."""
+        self._google_account = None
+        self._save_registry()
+
+        try:
+            with SessionLocal() as db:
+                rec = db.query(IntegrationRecord).filter_by(provider="google_calendar").first()
+                if rec:
+                    rec.is_connected = 0
+                    rec.account_email = None
+                    db.commit()
+        except Exception as exc:
+            logger.warning("Could not clear integration from db: %s", exc)
 
     def start_service(self) -> None:
         """Start the watchdog observer and watch all registered project folders."""
@@ -318,6 +445,7 @@ class ProjectManager:
 
     def list_projects(self) -> list[dict[str, Any]]:
         """Return summary of all registered projects with live file counts."""
+        self._load_registry()
         result = []
         for project_id in self._projects:
             try:
@@ -348,16 +476,124 @@ class ProjectManager:
         self._save_registry()
         return True
 
-    def add_meeting(self, project_id: str, meeting_data: dict[str, Any]) -> dict[str, Any]:
-        """Add a scheduled meeting to a project."""
-        proj = self._projects.get(project_id)
-        if not proj:
+    def get_unassigned_meetings(self) -> list[dict[str, Any]]:
+        """Return all meetings not assigned to any specific project."""
+        return self._unassigned_meetings
+
+    def delete_unassigned_meeting(self, meeting_id: str) -> bool:
+        """Remove a meeting from the unassigned list."""
+        before_count = len(self._unassigned_meetings)
+        self._unassigned_meetings = [
+            m for m in self._unassigned_meetings
+            if m.get("id") != meeting_id and m.get("gcalId") != meeting_id
+        ]
+        if len(self._unassigned_meetings) < before_count:
+            self._save_registry()
+            return True
+        return False
+
+    def batch_add_unassigned_meetings(self, meetings: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Batch upsert unassigned meetings, removing duplicates across projects."""
+        added = []
+        for m in meetings:
+            res = self.add_meeting(None, m)
+            added.append(res)
+        return added
+
+    def add_meeting(self, project_id: str | None, meeting_data: dict[str, Any]) -> dict[str, Any]:
+        """Add or update a scheduled meeting in a project or unassigned list, removing from any other project."""
+        # Ignore any simulated meetings
+        m_id = str(meeting_data.get("id", ""))
+        g_id = str(meeting_data.get("gcalId", ""))
+        if m_id.startswith(("sim_", "gcal_sim_")) or g_id.startswith(("sim_", "gcal_sim_")):
+            return meeting_data
+
+        meeting_id = meeting_data.get("id")
+        gcal_id = meeting_data.get("gcalId")
+        title = meeting_data.get("title")
+        start_time = meeting_data.get("startTime")
+
+        def is_match(m):
+            if gcal_id and m.get("gcalId") == gcal_id:
+                return True
+            if meeting_id and m.get("id") == meeting_id:
+                return True
+            if title and start_time and m.get("title") == title and m.get("startTime") == start_time:
+                return True
+            return False
+
+        # If project_id is empty or "unassigned", target is unassigned_meetings
+        is_unassigned = not project_id or str(project_id).lower() in ("unassigned", "null", "none", "")
+
+        if is_unassigned:
+            # Remove from all projects to prevent duplicates
+            for pid, p in self._projects.items():
+                if "meetings" in p and isinstance(p["meetings"], list):
+                    p["meetings"] = [m for m in p["meetings"] if not is_match(m)]
+
+            # Upsert into unassigned_meetings
+            meeting_copy = {
+                **meeting_data,
+                "projectId": None,
+                "projectName": None,
+                "projectColor": "#94a3b8",
+            }
+            existing_idx = next((i for i, m in enumerate(self._unassigned_meetings) if is_match(m)), None)
+            if existing_idx is not None:
+                self._unassigned_meetings[existing_idx] = {**self._unassigned_meetings[existing_idx], **meeting_copy}
+            else:
+                self._unassigned_meetings.insert(0, meeting_copy)
+
+            self._save_registry()
+            return meeting_copy
+
+        target_proj = self._projects.get(project_id)
+        if not target_proj:
             raise KeyError(f"Project '{project_id}' not found")
-        if "meetings" not in proj:
-            proj["meetings"] = []
-        proj["meetings"].insert(0, meeting_data)
+
+        # Remove from unassigned_meetings
+        self._unassigned_meetings = [m for m in self._unassigned_meetings if not is_match(m)]
+
+        # Remove from any other project to prevent cross-project duplicates
+        for pid, p in self._projects.items():
+            if pid != project_id and "meetings" in p and isinstance(p["meetings"], list):
+                p["meetings"] = [m for m in p["meetings"] if not is_match(m)]
+
+        if "meetings" not in target_proj or not isinstance(target_proj["meetings"], list):
+            target_proj["meetings"] = []
+
+        # Find existing meeting in target project
+        existing_idx = next((i for i, m in enumerate(target_proj["meetings"]) if is_match(m)), None)
+        if existing_idx is not None:
+            # Update existing meeting in-place
+            target_proj["meetings"][existing_idx] = {**target_proj["meetings"][existing_idx], **meeting_data}
+        else:
+            # Insert at beginning
+            target_proj["meetings"].insert(0, meeting_data)
+
         self._save_registry()
         return meeting_data
+
+    def delete_meeting(self, project_id: str | None, meeting_id: str) -> bool:
+        """Remove a meeting from a project or unassigned list by meeting ID or gcalId."""
+        if not project_id or str(project_id).lower() in ("unassigned", "null", "none", ""):
+            return self.delete_unassigned_meeting(meeting_id)
+
+        proj = self._projects.get(project_id)
+        if not proj:
+            # If project not found, try unassigned
+            return self.delete_unassigned_meeting(meeting_id)
+
+        meetings = proj.get("meetings", [])
+        before_count = len(meetings)
+        proj["meetings"] = [
+            m for m in meetings
+            if m.get("id") != meeting_id and m.get("gcalId") != meeting_id
+        ]
+        if len(proj["meetings"]) < before_count:
+            self._save_registry()
+            return True
+        return False
 
     def add_deliverable(self, project_id: str, deliverable_data: dict[str, Any]) -> dict[str, Any]:
         """Add a milestone deliverable to a project."""
