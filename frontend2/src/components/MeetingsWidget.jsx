@@ -11,8 +11,10 @@ import {
   CheckSquare,
   Square,
   ArrowRight,
+  UploadCloud,
 } from 'lucide-react';
 import { cleanAgendaText } from '../services/googleCalendar';
+import UploadTranscriptModal from './UploadTranscriptModal';
 
 export default function MeetingsWidget({
   meetings = [],
@@ -24,6 +26,7 @@ export default function MeetingsWidget({
   onAssignMeetingsToProject,
   gcalSession = null,
   onSelectPrepDoc,
+  onTranscriptUploaded,
 }) {
   const [filter, setFilter] = useState('all'); // 'all', 'today', 'upcoming'
   const [selectedMeetingIds, setSelectedMeetingIds] = useState([]);
@@ -33,6 +36,15 @@ export default function MeetingsWidget({
 
   // Live dynamic clock updated every 30 seconds
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [uploadTranscriptMeeting, setUploadTranscriptMeeting] = useState(null);
+
+  const isMeetingCompleted = (m) => {
+    if (m.status === 'completed') return true;
+    const meetingEnd = m.endTime
+      ? new Date(m.endTime).getTime()
+      : new Date(m.startTime).getTime() + (m.durationMinutes || 30) * 60000;
+    return meetingEnd < currentTime.getTime();
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -396,7 +408,7 @@ export default function MeetingsWidget({
                       )}
                     </div>
 
-                    {meeting.prepDoc && (
+                    {meeting.prepDoc && !meeting.hasTranscript && (
                       <div
                         className="meeting-prep-doc"
                         onClick={() => onSelectPrepDoc && onSelectPrepDoc(meeting.prepDoc)}
@@ -406,6 +418,48 @@ export default function MeetingsWidget({
                         <span>Context: <strong>{meeting.prepDoc}</strong></span>
                       </div>
                     )}
+
+                    {/* Completed Meeting Transcript Action */}
+                    {isMeetingCompleted(meeting) && (
+                      <div className="meeting-transcript-section">
+                        {meeting.transcriptFile || (meeting.prepDoc && meeting.hasTranscript) ? (
+                          <div
+                            className="meeting-transcript-pill"
+                            onClick={() => {
+                              if (onSelectPrepDoc) onSelectPrepDoc(meeting.transcriptFile || meeting.prepDoc);
+                              else setUploadTranscriptMeeting(meeting);
+                            }}
+                            title="Transcript indexed into knowledge base. Click to view or replace."
+                          >
+                            <FileText size={13} className="text-success" />
+                            <span className="transcript-name">
+                              Transcript: <strong>{meeting.transcriptFile || meeting.prepDoc}</strong>
+                            </span>
+                            <button
+                              type="button"
+                              className="btn-replace-transcript"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setUploadTranscriptMeeting(meeting);
+                              }}
+                              title="Replace transcript file"
+                            >
+                              Replace
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-upload-transcript"
+                            onClick={() => setUploadTranscriptMeeting(meeting)}
+                            title="Upload transcript or notes for this completed meeting"
+                          >
+                            <UploadCloud size={13} />
+                            <span>Upload Transcript</span>
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               );
@@ -413,6 +467,21 @@ export default function MeetingsWidget({
           </div>
         )}
       </div>
+
+      {uploadTranscriptMeeting && (
+        <UploadTranscriptModal
+          isOpen={Boolean(uploadTranscriptMeeting)}
+          onClose={() => setUploadTranscriptMeeting(null)}
+          meeting={uploadTranscriptMeeting}
+          projects={projects}
+          onUploadSuccess={(result) => {
+            if (onTranscriptUploaded) {
+              onTranscriptUploaded(result);
+            }
+            setUploadTranscriptMeeting(null);
+          }}
+        />
+      )}
     </div>
   );
 }

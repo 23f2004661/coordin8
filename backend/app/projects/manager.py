@@ -45,6 +45,7 @@ class ProjectManager:
         self._projects: dict[str, dict[str, Any]] = {}
         self._unassigned_meetings: list[dict[str, Any]] = []
         self._google_account: dict[str, Any] | None = None
+        self._synced_emails: list[dict[str, Any]] = []
         self._load_registry()
 
     @classmethod
@@ -60,6 +61,7 @@ class ProjectManager:
                 self._projects = data.get("projects", {})
                 self._unassigned_meetings = data.get("unassigned_meetings", [])
                 self._google_account = data.get("google_account", None)
+                self._synced_emails = data.get("synced_emails", [])
                 # Filter out any simulated/demo meetings automatically
                 for pid, proj in self._projects.items():
                     if "meetings" in proj and isinstance(proj["meetings"], list):
@@ -78,10 +80,12 @@ class ProjectManager:
                 self._projects = {}
                 self._unassigned_meetings = []
                 self._google_account = None
+                self._synced_emails = []
         else:
             self._projects = {}
             self._unassigned_meetings = []
             self._google_account = None
+            self._synced_emails = []
 
         # Global deduplication across all projects and unassigned meetings
         seen_keys: set[str] = set()
@@ -129,6 +133,7 @@ class ProjectManager:
                 "projects": self._projects,
                 "unassigned_meetings": self._unassigned_meetings,
                 "google_account": self._google_account,
+                "synced_emails": self._synced_emails,
             }
             self.registry_file.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         except Exception as exc:
@@ -247,6 +252,15 @@ class ProjectManager:
             kb_id=kb_id,
             storage_dir=kb_storage,
             collection_prefix=f"kb_{project_id.replace('-', '_')}",
+        )
+
+    def get_general_kb(self) -> KnowledgeBase:
+        """Retrieve or instantiate the global / general KnowledgeBase for unassigned or cross-project artifacts."""
+        kb_storage = self.storage_root / "projects_kbs" / "general"
+        return self.kb_manager.get_or_create(
+            kb_id="general",
+            storage_dir=kb_storage,
+            collection_prefix="kb_general",
         )
 
     def create_project(
@@ -621,3 +635,133 @@ class ProjectManager:
             raise KeyError(f"Deliverable '{deliverable_id}' not found")
         self._save_registry()
         return found
+
+    def upload_meeting_transcript(
+        self,
+        meeting_id: str,
+        filename: str,
+        content: bytes,
+        target_project_id: str | None = None,
+    ) -> dict[str, Any]:
+        """Save and index a meeting transcript into the project's KB or general KB."""
+        # Find meeting across projects or unassigned
+        meeting = None
+        current_project_id = None
+        for pid, p in self._projects.items():
+            for m in p.get("meetings", []):
+                if m.get("id") == meeting_id or m.get("gcalId") == meeting_id:
+                    meeting = m
+                    current_project_id = pid
+                    break
+            if meeting:
+                break
+
+        if not meeting:
+            for m in self._unassigned_meetings:
+                if m.get("id") == meeting_id or m.get("gcalId") == meeting_id:
+                    meeting = m
+                    current_project_id = None
+                    break
+
+        if not meeting:
+            raise KeyError(f"Meeting '{meeting_id}' not found")
+
+        # Determine effective project ID
+        effective_project_id = target_project_id if target_project_id is not None else current_project_id
+        if effective_project_id in ("unassigned", "null", "none", "", "general"):
+            effective_project_id = None
+
+        # Sanitize filename
+        safe_filename = Path(filename).name.replace(" ", "_")
+        if not any(safe_filename.endswith(ext) for ext in (".txt", ".vtt", ".docx", ".pdf", ".md")):
+            safe_filename += ".txt"
+
+        # Determine target folder and KB
+        if effective_project_id and effective_project_id in self._projects:
+            proj = self._projects[effective_project_id]
+            target_dir = Path(proj["folder_path"]) / "transcripts"
+            target_dir.mkdir(parents=True, exist_ok=True)
+            saved_path = target_dir / safe_filename
+            saved_path.write_bytes(content)
+
+            kb = self.get_project_kb(effective_project_id)
+            doc_res = kb.ingest_file(saved_path, title=f"Transcript: {meeting.get('title', 'Meeting')}")
+
+            # Reassign meeting to project if changed
+            if current_project_id != effective_project_id:
+                if current_project_id:
+                    self._projects[current_project_id]["meetings"] = [
+                        m for m in self._projects[current_project_id].get("meetings", [])
+                        if m.get("id") != meeting_id and m.get("gcalId") != meeting_id
+                    ]
+                else:
+                    self._unassigned_meetings = [
+                        m for m in self._unassigned_meetings
+                        if m.get("id") != meeting_id and m.get("gcalId") != meeting_id
+                    ]
+
+                meeting["projectId"] = effective_project_id
+                meeting["projectName"] = proj.get("name")
+                meeting["projectColor"] = proj.get("color", "#6366f1")
+
+                if "meetings" not in proj:
+                    proj["meetings"] = []
+                proj["meetings"].insert(0, meeting)
+        else:
+            # General / Unassigned folder
+            general_dir = self.home_folder / "general" / "transcripts"
+            general_dir.mkdir(parents=True, exist_ok=True)
+            saved_path = general_dir / safe_filename
+            saved_path.write_bytes(content)
+
+            general_kb = self.get_general_kb()
+            doc_res = general_kb.ingest_file(saved_path, title=f"Transcript: {meeting.get('title', 'Meeting')}")
+
+            # If it was assigned before, move to unassigned
+            if current_project_id and current_project_id in self._projects:
+                self._projects[current_project_id]["meetings"] = [
+                    m for m in self._projects[current_project_id].get("meetings", [])
+                    if m.get("id") != meeting_id and m.get("gcalId") != meeting_id
+                ]
+                meeting["projectId"] = None
+                meeting["projectName"] = None
+                meeting["projectColor"] = "#94a3b8"
+                self._unassigned_meetings.insert(0, meeting)
+
+        # Update meeting metadata
+        meeting["hasTranscript"] = True
+        meeting["transcriptFile"] = safe_filename
+        meeting["transcriptPath"] = str(saved_path)
+        meeting["transcriptDocId"] = doc_res.get("document_id")
+        meeting["prepDoc"] = safe_filename
+
+        self._save_registry()
+        return {
+            "success": True,
+            "meeting": meeting,
+            "document": doc_res,
+            "project_id": effective_project_id or "general",
+            "saved_path": str(saved_path),
+        }
+
+    def get_synced_emails(self) -> list[dict[str, Any]]:
+        """Return all synchronized email messages."""
+        return self._synced_emails
+
+    def save_synced_emails(self, emails: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Upsert synchronized emails in the registry."""
+        existing_ids = {e.get("id") for e in self._synced_emails if e.get("id")}
+        for email in emails:
+            e_id = email.get("id")
+            if not e_id:
+                continue
+            if e_id not in existing_ids:
+                self._synced_emails.insert(0, email)
+                existing_ids.add(e_id)
+            else:
+                for idx, existing in enumerate(self._synced_emails):
+                    if existing.get("id") == e_id:
+                        self._synced_emails[idx] = {**existing, **email}
+                        break
+        self._save_registry()
+        return self._synced_emails

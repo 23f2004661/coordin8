@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Layers, Activity, Calendar, Clock, Plus, FolderKanban } from 'lucide-react';
 import { checkBackendHealth } from '../api';
 
-export default function Navbar({ activeProject, onSelectProject, onOpenNewProjectModal }) {
+export default function Navbar({
+  activeProject,
+  onSelectProject,
+  onOpenNewProjectModal,
+  ambientSync = null,
+}) {
   const [backendStatus, setBackendStatus] = useState({ online: false, checking: true });
   const [time, setTime] = useState('');
 
@@ -84,6 +89,22 @@ export default function Navbar({ activeProject, onSelectProject, onOpenNewProjec
           <span className="status-indicator-dot" />
           <span>{backendStatus.online ? 'Backend Live' : 'Local Mode'}</span>
         </div>
+
+        {ambientSync?.isActive && (
+          <div
+            className={`ambient-stream-badge ${ambientSync.isSyncing ? 'syncing' : 'active'}`}
+            title={`Gmail Ambient Stream: Active (Silent Background Ingestion)\n${
+              ambientSync.isSyncing
+                ? 'Scanning recent inbox messages...'
+                : ambientSync.lastSyncedAt
+                ? `Last scanned: ${new Date(ambientSync.lastSyncedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+                : 'Ambient scan initialized'
+            }`}
+          >
+            <span className={`ambient-dot ${ambientSync.isSyncing ? 'pulsing' : ''}`} />
+            <span>{ambientSync.isSyncing ? 'Scanning Gmail...' : 'Gmail Ambient'}</span>
+          </div>
+        )}
 
         {!activeProject && (
           <button className="btn btn-primary btn-sm" onClick={onOpenNewProjectModal}>

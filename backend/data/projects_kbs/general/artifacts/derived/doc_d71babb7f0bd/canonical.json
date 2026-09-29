@@ -1,0 +1,83 @@
+{
+  "document_id": "doc_d71babb7f0bd",
+  "metadata": {
+    "title": "meeting_with_tarang_notes",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\general\\artifacts\\raw\\doc_d71babb7f0bd\\meeting_with_tarang_notes.txt",
+    "file_type": "txt",
+    "file_size_bytes": 138,
+    "source_hash": "82c765f7c67001e16c10b0b774e53b2002b2e5c6a28c8fd36e5571c95a749117",
+    "author": null,
+    "created_at": "2026-09-29 09:52:57.458836+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_d71babb7f0bd_main",
+      "title": "meeting_with_tarang_notes",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_fdee70e9",
+          "block_type": "text",
+          "content": "Discussion with Tarang:\n1. Deliverable: Finish OAuth Gmail integration by Wednesday.\n2. Srinath to prepare slide deck for investor review.",
+          "provenance": {
+            "file_id": "doc_d71babb7f0bd",
+            "document_id": "doc_d71babb7f0bd",
+            "file_name": "meeting_with_tarang_notes.txt",
+            "file_type": "txt",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_d71babb7f0bd",
+        "document_id": "doc_d71babb7f0bd",
+        "file_name": "meeting_with_tarang_notes.txt",
+        "file_type": "txt",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "Discussion with Tarang:\n1. Deliverable: Finish OAuth Gmail integration by Wednesday.\n2. Srinath to prepare slide deck for investor review.",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_d71babb7f0bd",
+    "document_id": "doc_d71babb7f0bd",
+    "file_name": "meeting_with_tarang_notes.txt",
+    "file_type": "txt",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

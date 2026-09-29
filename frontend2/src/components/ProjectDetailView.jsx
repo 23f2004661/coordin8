@@ -31,6 +31,7 @@ export default function ProjectDetailView({
   gcalSession = null,
   onToggleDeliverableStatus,
   onSelectPrepDoc,
+  onTranscriptUploaded,
 }) {
   const [isRescanning, setIsRescanning] = useState(false);
 
@@ -184,6 +185,7 @@ export default function ProjectDetailView({
             onAssignMeetingsToProject={onAssignMeetingsToProject}
             gcalSession={gcalSession}
             onSelectPrepDoc={onSelectPrepDoc}
+            onTranscriptUploaded={onTranscriptUploaded}
           />
 
           {/* Widget 2: Project-Specific Deliverables & Deadlines Timeline */}

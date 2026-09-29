@@ -1,6 +1,6 @@
 {
   "home_folder": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home",
-  "updated_at": "2026-09-29T13:19:52.147018",
+  "updated_at": "2026-09-29T17:45:11.644448",
   "projects": {},
   "unassigned_meetings": [
     {
@@ -37,7 +37,7 @@
         "Tarang Jhaveri"
       ],
       "agenda": "We will discuss important stuff",
-      "prepDoc": "",
+      "prepDoc": "meeting_with_tarang_notes.txt",
       "isGcal": true,
       "gcalId": "1bskh5cj5brd2d4t0dvg768et8",
       "projectId": null,
@@ -45,7 +45,11 @@
       "projectColor": "#94a3b8",
       "duration": "30 min",
       "status": "confirmed",
-      "htmlLink": "https://www.google.com/calendar/event?eid=MWJza2g1Y2o1YnJkMmQ0dDBkdmc3NjhldDggcGZib3RiZXRhQG0"
+      "htmlLink": "https://www.google.com/calendar/event?eid=MWJza2g1Y2o1YnJkMmQ0dDBkdmc3NjhldDggcGZib3RiZXRhQG0",
+      "hasTranscript": true,
+      "transcriptFile": "meeting_with_tarang_notes.txt",
+      "transcriptPath": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\general\\transcripts\\meeting_with_tarang_notes.txt",
+      "transcriptDocId": "doc_d71babb7f0bd"
     }
   ],
   "google_account": {
@@ -54,7 +58,180 @@
     "name": "pfbotsupport",
     "picture": "https://lh3.googleusercontent.com/a/ACg8ocIi9ZLHaRyleqzYvr8vy091vtOS2WfxvonOA-vBwCJxE1K7yxA=s96-c",
     "mode": "real",
-    "lastSync": "2026-09-29T06:50:31.426Z",
-    "syncedCount": 3
-  }
+    "lastSync": "2026-09-29T11:38:41.512Z",
+    "syncedCount": 1
+  },
+  "synced_emails": [
+    {
+      "id": "1a0ecf82c86627e3",
+      "threadId": "1a0ecf82c86627e3",
+      "subject": "Vision Language action models",
+      "from": "Srinivasan S <ssrini2002@gmail.com>",
+      "senderName": "Srinivasan S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "An important component of modern robot architectures are VLAs. Regards, Boss",
+      "receivedAt": "2026-09-29T11:41:10.000Z",
+      "unread": true,
+      "labels": [
+        "UNREAD",
+        "CATEGORY_PERSONAL",
+        "INBOX"
+      ],
+      "projectId": null,
+      "projectName": null,
+      "projectColor": "#94a3b8"
+    },
+    {
+      "id": "1a0ecf6e157b8603",
+      "threadId": "1a0ecf6e157b8603",
+      "subject": "Robotics",
+      "from": "Srinivasan S <ssrini2002@gmail.com>",
+      "senderName": "Srinivasan S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "I just wanted to tell you I plan to learn robotics using hugging face Regards, Boss",
+      "receivedAt": "2026-09-29T11:39:45.000Z",
+      "unread": true,
+      "labels": [
+        "UNREAD",
+        "CATEGORY_PERSONAL",
+        "INBOX"
+      ],
+      "projectId": "proj_learning_robotics_hf",
+      "projectName": "Learning Robotics HF",
+      "projectColor": "#10b981"
+    },
+    {
+      "id": "1a0cb8c63b15f8ce",
+      "threadId": "1a0cb8c63b15f8ce",
+      "subject": "[Action Advised] Manage your unused OAuth clients and protect your information",
+      "from": "Google Developers <googledevelopers-noreply@google.com>",
+      "senderName": "Google Developers",
+      "senderEmail": "googledevelopers-noreply@google.com",
+      "snippet": "Your projects have inactive OAuth clients that are subject to automatic deletion. Hello Google Developer, In accordance with OAuth 2.0 Policies, the following projects that you manage have OAuth",
+      "receivedAt": "2026-09-22T23:56:10.000Z",
+      "unread": true,
+      "labels": [
+        "UNREAD",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "projectId": "proj_alpha_test_project",
+      "projectName": "Alpha Test Project",
+      "projectColor": "#6366f1"
+    },
+    {
+      "id": "1a0e7f0833aa1df3",
+      "threadId": "1a0e7f0833aa1df3",
+      "subject": "You shared some Google Account data with auth0.com",
+      "from": "Google <noreply-accounts@google.com>",
+      "senderName": "Google",
+      "senderEmail": "noreply-accounts@google.com",
+      "snippet": "Keep track of your Google Account data pfbotbeta@gmail.com You&#39;re receiving this email because you used Sign in with Google to sign in to auth0.com on September 28 at 5:44 PM. This email summarizes",
+      "receivedAt": "2026-09-28T12:14:53.000Z",
+      "unread": true,
+      "labels": [
+        "UNREAD",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "projectId": null,
+      "projectName": null,
+      "projectColor": "#94a3b8"
+    },
+    {
+      "id": "1a0eb5ec418dda4e",
+      "threadId": "1a0eb5ec418dda4e",
+      "subject": "Security alert",
+      "from": "Google <no-reply@accounts.google.com>",
+      "senderName": "Google",
+      "senderEmail": "no-reply@accounts.google.com",
+      "snippet": "A new sign-in on Windows pfbotbeta@gmail.com We noticed a new sign-in to your Google Account on a Windows device. If this was you, you don&#39;t need to do anything. If not, we&#39;ll help you secure",
+      "receivedAt": "2026-09-29T04:14:08.000Z",
+      "unread": true,
+      "labels": [
+        "UNREAD",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "projectId": null,
+      "projectName": null,
+      "projectColor": "#94a3b8"
+    },
+    {
+      "id": "1a0eb5fb85495ceb",
+      "threadId": "1a0eb5fb85495ceb",
+      "subject": "\u2705 Pfbotsupport, finish setting up your Windows with Google",
+      "from": "Google <no-reply@google.com>",
+      "senderName": "Google",
+      "senderEmail": "no-reply@google.com",
+      "snippet": "Finish your setup \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c",
+      "receivedAt": "2026-09-29T04:15:14.000Z",
+      "unread": true,
+      "labels": [
+        "UNREAD",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "projectId": null,
+      "projectName": null,
+      "projectColor": "#94a3b8"
+    },
+    {
+      "id": "1a0ec048800d6b12",
+      "threadId": "1a0ec048800d6b12",
+      "subject": "Accepted: Earlier meet with boss @ Tue Sep 29, 2026 1pm - 1:30pm (IST) (pfbotbeta@gmail.com)",
+      "from": "xtreme fireblaze <xtremefireblaze@gmail.com>",
+      "senderName": "xtreme fireblaze",
+      "senderEmail": "xtremefireblaze@gmail.com",
+      "snippet": "Earlier meet with boss xtreme fireblaze has accepted this invitation. Join with Google Meet Meeting link meet.google.com/ynp-yiup-myd Agenda: I&#39;m the boss Scheduled via Coordin8 Workspace When",
+      "receivedAt": "2026-09-29T07:15:14.000Z",
+      "unread": true,
+      "labels": [
+        "UNREAD",
+        "CATEGORY_PERSONAL",
+        "INBOX"
+      ],
+      "projectId": null,
+      "projectName": null,
+      "projectColor": "#94a3b8"
+    },
+    {
+      "id": "1a0ec1f1a2edcf01",
+      "threadId": "1a0ec1f1a2edcf01",
+      "subject": "Quarterly reminder about YouTube\u2019s Terms of Service, Community Guidelines and Privacy Policy\r\n",
+      "from": "YouTube <no-reply@youtube.com>",
+      "senderName": "YouTube",
+      "senderEmail": "no-reply@youtube.com",
+      "snippet": "\u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c",
+      "receivedAt": "2026-09-29T07:44:16.000Z",
+      "unread": true,
+      "labels": [
+        "UNREAD",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "projectId": null,
+      "projectName": null,
+      "projectColor": "#94a3b8"
+    },
+    {
+      "id": "1a0ecf4b6f9ac0e2",
+      "threadId": "1a0ecf4b6f9ac0e2",
+      "subject": "Hello",
+      "from": "Srinivasan S <ssrini2002@gmail.com>",
+      "senderName": "Srinivasan S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "This is an email to test whether the application is working as intended Regards, Boss",
+      "receivedAt": "2026-09-29T11:37:23.000Z",
+      "unread": true,
+      "labels": [
+        "UNREAD",
+        "CATEGORY_PERSONAL",
+        "INBOX"
+      ],
+      "projectId": "proj_alpha_test_project",
+      "projectName": "Alpha Test Project",
+      "projectColor": "#6366f1"
+    }
+  ]
 }

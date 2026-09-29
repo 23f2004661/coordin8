@@ -9,6 +9,7 @@ import NewDeliverableModal from './components/NewDeliverableModal';
 import GoogleCalendarModal from './components/GoogleCalendarModal';
 import { INITIAL_PROJECTS } from './data/initialData';
 import { getSavedSession, saveSession, clearSession, fetchCalendarEventsWithToken } from './services/googleCalendar';
+import { useAmbientSync } from './services/ambientSync';
 import {
   fetchBackendDocuments,
   fetchProjectsFromBackend,
@@ -103,6 +104,7 @@ export default function App() {
   const [isNewDeliverableModalOpen, setIsNewDeliverableModalOpen] = useState(false);
   const [isGoogleCalendarModalOpen, setIsGoogleCalendarModalOpen] = useState(false);
   const [gcalSession, setGcalSession] = useState(getSavedSession());
+  const ambientSync = useAmbientSync({ session: gcalSession, projects });
 
   // Sync projects and unassigned meetings to localStorage
   useEffect(() => {
@@ -815,6 +817,7 @@ export default function App() {
         activeProject={activeProject}
         onSelectProject={(p) => setActiveProjectId(p ? p.id || p.project_id : null)}
         onOpenNewProjectModal={() => setIsNewProjectModalOpen(true)}
+        ambientSync={ambientSync}
       />
 
       <main className="main-content">
@@ -832,6 +835,7 @@ export default function App() {
             gcalSession={gcalSession}
             onToggleDeliverableStatus={handleToggleDeliverableStatus}
             onSelectPrepDoc={handleSelectPrepDoc}
+            onTranscriptUploaded={() => loadFromBackend()}
           />
         ) : (
           <ProjectDetailView
@@ -849,6 +853,7 @@ export default function App() {
             gcalSession={gcalSession}
             onToggleDeliverableStatus={handleToggleDeliverableStatus}
             onSelectPrepDoc={handleSelectPrepDoc}
+            onTranscriptUploaded={() => loadFromBackend()}
           />
         )}
       </main>

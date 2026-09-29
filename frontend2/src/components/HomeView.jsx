@@ -17,6 +17,7 @@ export default function HomeView({
   gcalSession = null,
   onToggleDeliverableStatus,
   onSelectPrepDoc,
+  onTranscriptUploaded,
 }) {
   return (
     <div className="home-view-layout">
@@ -111,6 +112,7 @@ export default function HomeView({
               onAssignMeetingsToProject={onAssignMeetingsToProject}
               gcalSession={gcalSession}
               onSelectPrepDoc={onSelectPrepDoc}
+              onTranscriptUploaded={onTranscriptUploaded}
             />
           </div>
 

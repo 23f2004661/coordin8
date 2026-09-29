@@ -173,6 +173,53 @@
   background-color: currentColor;
 }
 
+.ambient-stream-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  user-select: none;
+  transition: all var(--transition-fast);
+}
+
+.ambient-stream-badge.active {
+  background-color: #f5f3ff;
+  color: #6d28d9;
+  border: 1px solid #ddd6fe;
+}
+
+.ambient-stream-badge.syncing {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.ambient-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: currentColor;
+}
+
+.ambient-dot.pulsing {
+  animation: pulse-dot 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
 /* --------------------------------------------------------------------------
    2. Home View Hero & Projects Window
    -------------------------------------------------------------------------- */
@@ -2843,5 +2890,442 @@
 
 .spinner-icon {
   animation: spin 1s linear infinite;
+}
+
+/* ==========================================================================
+   Meeting Transcript & Upload Modal Styles
+   ========================================================================== */
+
+.meeting-transcript-section {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-upload-transcript {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+  font-weight: 500;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-upload-transcript:hover {
+  background-color: #dcfce7;
+  border-color: #86efac;
+  color: #166534;
+}
+
+.meeting-transcript-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  font-size: 11px;
+  color: #166534;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.meeting-transcript-pill:hover {
+  background-color: #dcfce7;
+  border-color: #86efac;
+}
+
+.meeting-transcript-pill .transcript-name {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-replace-transcript {
+  background: transparent;
+  border: none;
+  color: #15803d;
+  text-decoration: underline;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 2px;
+}
+
+.btn-replace-transcript:hover {
+  color: #14532d;
+}
+
+/* Upload Transcript Modal */
+.upload-transcript-modal {
+  max-width: 580px;
+}
+
+.meeting-context-banner {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.context-banner-info .context-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  font-weight: 600;
+  display: block;
+}
+
+.context-banner-info .context-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 2px 0 4px 0;
+}
+
+.context-banner-info .context-time {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.assignment-choice-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.assignment-prompt-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background-color: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: var(--radius-sm);
+  font-size: 11.5px;
+  color: #92400e;
+}
+
+.choice-cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.choice-card {
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 11px 13px;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+}
+
+.choice-card:hover {
+  border-color: #cbd5e1;
+  background-color: #fafafa;
+}
+
+.choice-card.is-selected {
+  border-color: #6366f1;
+  background-color: #f5f3ff;
+}
+
+.choice-card-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.choice-title {
+  color: var(--text-primary);
+}
+
+.choice-description {
+  font-size: 11px;
+  color: #64748b;
+  margin: 6px 0 0 0;
+  line-height: 1.35;
+  flex: 1;
+}
+
+.choice-project-select-wrapper {
+  margin-top: 8px;
+}
+
+.assigned-destination-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+/* Transcript Dropzone */
+.transcript-dropzone {
+  border: 2px dashed #cbd5e1;
+  border-radius: var(--radius-md);
+  padding: 22px 16px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fbfbfb;
+  transition: all var(--transition-fast);
+}
+
+.transcript-dropzone:hover {
+  border-color: #94a3b8;
+  background-color: #f8fafc;
+}
+
+.transcript-dropzone.is-drag-active {
+  border-color: #6366f1;
+  background-color: #f5f3ff;
+}
+
+.transcript-dropzone.has-file {
+  border-style: solid;
+  border-color: #bbf7d0;
+  background-color: #f0fdf4;
+  padding: 12px 14px;
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.dropzone-empty-content .dropzone-icon {
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.dropzone-empty-content .dropzone-text {
+  font-size: 12.5px;
+  color: #334155;
+  margin: 0 0 4px 0;
+}
+
+.dropzone-empty-content .dropzone-text span {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.dropzone-empty-content .dropzone-sub {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.selected-file-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.selected-file-preview .file-badge-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background-color: #dcfce7;
+  color: #166534;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.selected-file-preview .file-info-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.selected-file-preview .file-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #14532d;
+}
+
+.selected-file-preview .file-size {
+  font-size: 11px;
+  color: #166534;
+}
+
+/* ==========================================================================
+   Google Workspace Modal (Tabs & Gmail Ingestion)
+   ========================================================================== */
+
+.workspace-tabs-strip {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--border-medium);
+  padding: 0 2px;
+  margin-top: 6px;
+  margin-bottom: 14px;
+}
+
+.workspace-nav-tab {
+  padding: 8px 14px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.workspace-nav-tab:hover {
+  color: var(--text-primary);
+}
+
+.workspace-nav-tab.is-active {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+  font-weight: 600;
+}
+
+/* Gmail Panel */
+.emails-assignment-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.emails-list-container {
+  min-height: 250px;
+}
+
+.emails-grid-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.email-assignment-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all var(--transition-fast);
+}
+
+.email-assignment-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.email-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.email-sender-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.email-avatar-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.email-sender-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.email-sender-name {
+  font-size: 12px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.email-sender-addr {
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.email-date-badge {
+  font-size: 11px;
+  color: var(--text-muted);
+  background-color: #f1f5f9;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.email-card-body .email-subject {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 3px 0;
+}
+
+.email-card-body .email-snippet {
+  font-size: 11.5px;
+  color: #475569;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.email-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 6px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.email-assign-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
 }
 

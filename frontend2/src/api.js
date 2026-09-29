@@ -246,5 +246,99 @@ export async function deleteGcalAccount() {
   }
 }
 
+/**
+ * Upload a meeting transcript and index it in project or general KB.
+ */
+export async function uploadMeetingTranscript(meetingId, file, projectId = null) {
+  const formData = new FormData();
+  formData.append('file', file);
+  if (projectId) {
+    formData.append('project_id', projectId);
+  }
+
+  const res = await fetch(`${API_BASE}/projects/meetings/${encodeURIComponent(meetingId)}/transcript`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail || `Upload failed with HTTP ${res.status}`);
+  }
+  return await res.json();
+}
+
+/**
+ * Retrieve synchronized emails from backend.
+ */
+export async function fetchSyncedEmails() {
+  try {
+    const res = await fetch(`${API_BASE}/projects/emails`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.emails || [];
+  } catch (err) {
+    console.warn('Could not fetch emails from backend:', err.message);
+    return [];
+  }
+}
+
+/**
+ * Persist synchronized emails to backend.
+ */
+export async function syncEmailsWithBackend(emails) {
+  try {
+    const res = await fetch(`${API_BASE}/projects/emails/sync`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ emails }),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not sync emails to backend:', err.message);
+    return null;
+  }
+}
+
+/**
+ * Create a deliverable on backend.
+ */
+export async function createProjectDeliverable(projectId, deliverable) {
+  try {
+    const res = await fetch(`${API_BASE}/projects/${encodeURIComponent(projectId)}/deliverables`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(deliverable),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not create deliverable on backend:', err.message);
+    return null;
+  }
+}
+
+/**
+ * Update a deliverable status on backend.
+ */
+export async function updateProjectDeliverable(projectId, deliverableId, updates) {
+  try {
+    const res = await fetch(
+      `${API_BASE}/projects/${encodeURIComponent(projectId)}/deliverables/${encodeURIComponent(deliverableId)}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updates),
+      }
+    );
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not update deliverable on backend:', err.message);
+    return null;
+  }
+}
+
 
 

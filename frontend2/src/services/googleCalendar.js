@@ -190,7 +190,7 @@ export async function fetchGoogleUserProfile(accessToken) {
  * Supports options: { prompt: 'consent' | 'select_account' | '', hint: 'user@email.com' }
  */
 export const GCAL_SCOPES =
-  'https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
+  'https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
 
 /**
  * Parses user duration text (e.g. "45 min", "1 hr", "90 minutes", "30") into integer minutes.

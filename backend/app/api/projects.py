@@ -1,8 +1,8 @@
 """API endpoints for project workspaces and dedicated KnowledgeBases."""
 
 from datetime import datetime
-from typing import Any
-from fastapi import APIRouter, HTTPException, Query
+from typing import Any, Optional
+from fastapi import APIRouter, HTTPException, Query, File, Form, UploadFile
 from pydantic import BaseModel, Field
 
 from app.projects.manager import ProjectManager
@@ -241,5 +241,70 @@ def delete_project_meeting(project_id: str, meeting_id: str):
         return {"success": removed, "project_id": project_id, "meeting_id": meeting_id}
     except KeyError:
         raise HTTPException(status_code=404, detail="Project not found")
+
+
+@router.post("/meetings/{meeting_id}/transcript", status_code=200)
+async def upload_meeting_transcript(
+    meeting_id: str,
+    file: UploadFile = File(...),
+    project_id: Optional[str] = Form(None),
+):
+    """Upload and index a meeting transcript into the project KB or general workspace KB."""
+    mgr = ProjectManager.get_instance()
+    content = await file.read()
+    if not content:
+        raise HTTPException(status_code=400, detail="Transcript file is empty")
+
+    try:
+        result = mgr.upload_meeting_transcript(
+            meeting_id=meeting_id,
+            filename=file.filename or "transcript.txt",
+            content=content,
+            target_project_id=project_id,
+        )
+        return result
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Failed to index transcript: {exc}")
+
+
+@router.get("/emails")
+def get_synced_emails():
+    """Retrieve all synchronized Gmail messages."""
+    mgr = ProjectManager.get_instance()
+    return {"emails": mgr.get_synced_emails()}
+
+
+@router.post("/emails/sync")
+def sync_emails(payload: dict[str, Any]):
+    """Save or merge newly synchronized Gmail messages."""
+    mgr = ProjectManager.get_instance()
+    emails = payload.get("emails", [])
+    synced = mgr.save_synced_emails(emails)
+    return {"status": "ok", "count": len(synced), "emails": synced}
+
+
+@router.post("/{project_id}/deliverables", status_code=201)
+def add_project_deliverable(project_id: str, payload: dict[str, Any]):
+    """Add a milestone deliverable to a project."""
+    mgr = ProjectManager.get_instance()
+    try:
+        data = payload.copy()
+        if not data.get("id"):
+            data["id"] = f"del_{int(datetime.now().timestamp() * 1000)}"
+        return mgr.add_deliverable(project_id, data)
+    except KeyError:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+
+@router.patch("/{project_id}/deliverables/{deliverable_id}")
+def update_project_deliverable(project_id: str, deliverable_id: str, updates: dict[str, Any]):
+    """Update a deliverable's status, progress, or attributes."""
+    mgr = ProjectManager.get_instance()
+    try:
+        return mgr.update_deliverable(project_id, deliverable_id, updates)
+    except KeyError:
+        raise HTTPException(status_code=404, detail="Deliverable or project not found")
 
 
