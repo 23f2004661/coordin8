@@ -1,0 +1,113 @@
+{
+  "document_id": "doc_3ab3973ee445",
+  "metadata": {
+    "title": "OMNI-VIS_System_Architecture_Topology",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_omnicommerce_retail_visual_search_engine\\artifacts\\raw\\doc_3ab3973ee445\\OMNI-VIS_System_Architecture_Topology.png",
+    "file_type": "image",
+    "file_size_bytes": 131703,
+    "source_hash": "f24c8783fda21103fe4d7128204d5e084323b14daa33c1e006053362da61b45a",
+    "author": null,
+    "created_at": "2026-09-29 16:26:26.143688+00:00",
+    "page_count": null,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_3ab3973ee445_image",
+      "title": "OMNI-VIS_System_Architecture_Topology",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_0088d062",
+          "block_type": "image",
+          "content": "![Image OMNI-VIS_System_Architecture_Topology.png](OMNI-VIS_System_Architecture_Topology.png)",
+          "provenance": {
+            "file_id": "doc_3ab3973ee445",
+            "document_id": "doc_3ab3973ee445",
+            "file_name": "OMNI-VIS_System_Architecture_Topology.png",
+            "file_type": "image",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": "ast_d6f128de",
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_3ab3973ee445",
+        "document_id": "doc_3ab3973ee445",
+        "file_name": "OMNI-VIS_System_Architecture_Topology.png",
+        "file_type": "image",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [
+    {
+      "asset_id": "ast_d6f128de",
+      "document_id": "doc_3ab3973ee445",
+      "asset_type": "embedded_image",
+      "file_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_omnicommerce_retail_visual_search_engine\\artifacts\\raw\\doc_3ab3973ee445\\OMNI-VIS_System_Architecture_Topology.png",
+      "mime_type": "image/png",
+      "description": {
+        "caption": "Image OMNI-VIS_System_Architecture_Topology.png",
+        "visual_description": "Visual asset loaded from OMNI-VIS_System_Architecture_Topology.png",
+        "retrieval_description": "Visual content representation for OMNI-VIS_System_Architecture_Topology",
+        "entities": [],
+        "key_labels": []
+      },
+      "provenance": {
+        "file_id": "doc_3ab3973ee445",
+        "document_id": "doc_3ab3973ee445",
+        "file_name": "OMNI-VIS_System_Architecture_Topology.png",
+        "file_type": "image",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "summary": null,
+  "normalized_markdown": "# Image: OMNI-VIS_System_Architecture_Topology\n\n![Image OMNI-VIS_System_Architecture_Topology.png](OMNI-VIS_System_Architecture_Topology.png)\n\nVisual asset loaded from OMNI-VIS_System_Architecture_Topology.png\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_3ab3973ee445",
+    "document_id": "doc_3ab3973ee445",
+    "file_name": "OMNI-VIS_System_Architecture_Topology.png",
+    "file_type": "image",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

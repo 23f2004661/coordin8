@@ -49,3 +49,33 @@ class LLMClient:
                 f"Evidence regarding '{query}' was identified in the canonical knowledge base. "
                 f"Please ensure LM Studio or your local LLM service is running at {self.base_url}."
             )
+
+    def chat_completion(
+        self,
+        messages: list[dict[str, str]],
+        temperature: float | None = None,
+        max_tokens: int | None = 2048,
+        json_mode: bool = False,
+    ) -> str:
+        """Execute a direct chat completion with OpenAI-compatible endpoint."""
+        headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
+        payload: dict[str, Any] = {
+            "model": self.model,
+            "messages": messages,
+            "temperature": temperature if temperature is not None else self.temperature,
+        }
+        if max_tokens:
+            payload["max_tokens"] = max_tokens
+        if json_mode:
+            payload["response_format"] = {"type": "json_object"}
+
+        try:
+            with httpx.Client(timeout=90.0) as client:
+                res = client.post(f"{self.base_url}/chat/completions", json=payload, headers=headers)
+                res.raise_for_status()
+                data = res.json()
+                return data["choices"][0]["message"]["content"]
+        except Exception as exc:
+            logger.error("LLM chat completion call failed: %s", exc)
+            raise exc
+

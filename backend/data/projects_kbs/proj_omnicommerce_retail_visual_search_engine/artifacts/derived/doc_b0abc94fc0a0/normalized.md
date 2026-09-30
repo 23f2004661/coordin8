@@ -1,0 +1,3 @@
+Srinivasan S (Client): Good to see you all. For our upcoming holiday shopping season, users must be able to upload a photo and find identical or matching outfits within 60 milliseconds.
+Coordin8 Lead: We have set up the ViT-H/14 two-tower pipeline and verified index recall above 94% on our sample catalog.
+Srinivasan S (Client): That is impressive. One critical feature: when a requested SKU is out of stock, we must automatically recommend stylistically similar in-stock alternatives. Please add that deliverable.

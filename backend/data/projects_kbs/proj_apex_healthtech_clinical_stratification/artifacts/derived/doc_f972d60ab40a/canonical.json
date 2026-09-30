@@ -1,0 +1,83 @@
+{
+  "document_id": "doc_f972d60ab40a",
+  "metadata": {
+    "title": "gcal_apex_kickoff_01_transcript",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_apex_healthtech_clinical_stratification\\artifacts\\raw\\doc_f972d60ab40a\\gcal_apex_kickoff_01_transcript.txt",
+    "file_type": "txt",
+    "file_size_bytes": 544,
+    "source_hash": "0dcab5bdd82bdd6c3659b695f6a7b146663cad50ac4a15ff8cdfd8bc57343caa",
+    "author": null,
+    "created_at": "2026-09-29 16:26:12.263971+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_f972d60ab40a_main",
+      "title": "gcal_apex_kickoff_01_transcript",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_800e9a94",
+          "block_type": "text",
+          "content": "Dr. Srinivasan S (Client): Thank you team. In our upcoming Phase II trial, speed of screening is critical. We cannot afford patient dropouts due to misclassified genomic variants.\nCoordin8 Lead: Understood Dr. Srinivasan. We have developed the variant filtering pipeline for EGFR and KRAS mutations and built the automated Adverse Event tracking workbook.\nDr. Srinivasan S (Client): That aligns with our IRB requirements. Please ensure we also prepare a formal Companion Diagnostic Validation Protocol before the FDA pre-IND meeting next month.",
+          "provenance": {
+            "file_id": "doc_f972d60ab40a",
+            "document_id": "doc_f972d60ab40a",
+            "file_name": "gcal_apex_kickoff_01_transcript.txt",
+            "file_type": "txt",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_f972d60ab40a",
+        "document_id": "doc_f972d60ab40a",
+        "file_name": "gcal_apex_kickoff_01_transcript.txt",
+        "file_type": "txt",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "Dr. Srinivasan S (Client): Thank you team. In our upcoming Phase II trial, speed of screening is critical. We cannot afford patient dropouts due to misclassified genomic variants.\nCoordin8 Lead: Understood Dr. Srinivasan. We have developed the variant filtering pipeline for EGFR and KRAS mutations and built the automated Adverse Event tracking workbook.\nDr. Srinivasan S (Client): That aligns with our IRB requirements. Please ensure we also prepare a formal Companion Diagnostic Validation Protocol before the FDA pre-IND meeting next month.",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_f972d60ab40a",
+    "document_id": "doc_f972d60ab40a",
+    "file_name": "gcal_apex_kickoff_01_transcript.txt",
+    "file_type": "txt",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

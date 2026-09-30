@@ -17,7 +17,7 @@ import {
   HardDrive,
   ExternalLink,
 } from 'lucide-react';
-import { uploadDocumentToBackend } from '../api';
+import { uploadDocumentToBackend, openFileInNativeApp } from '../api';
 
 export default function FileExplorer({
   project,
@@ -29,8 +29,35 @@ export default function FileExplorer({
   const [searchQuery, setSearchQuery] = useState('');
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
+  const [openingFileId, setOpeningFileId] = useState(null);
+  const [openNotice, setOpenNotice] = useState(null);
   const [activeTab, setActiveTab] = useState('project'); // 'project' or 'backend'
   const fileInputRef = useRef(null);
+
+  const handleOpenFile = async (file) => {
+    setOpeningFileId(file.id || file.name);
+    setOpenNotice(null);
+    try {
+      await openFileInNativeApp({
+        filePath: file.path || null,
+        projectId: project.id || project.project_id || null,
+        fileName: file.name,
+      });
+      setOpenNotice({
+        type: 'success',
+        msg: `Opened ${file.name}`,
+      });
+      setTimeout(() => setOpenNotice(null), 3000);
+    } catch (err) {
+      setOpenNotice({
+        type: 'error',
+        msg: `Could not open ${file.name}: ${err.message}`,
+      });
+      setTimeout(() => setOpenNotice(null), 4000);
+    } finally {
+      setOpeningFileId(null);
+    }
+  };
 
   const folders = project.folders || [];
   const activeFolder = folders.find((f) => f.id === selectedFolderId);
@@ -176,6 +203,12 @@ export default function FileExplorer({
         <div className="upload-alert error">{uploadError}</div>
       )}
 
+      {openNotice && (
+        <div className={`upload-alert ${openNotice.type === 'success' ? 'success' : 'error'}`} style={{ marginTop: '8px' }}>
+          <span>{openNotice.msg}</span>
+        </div>
+      )}
+
       {/* Subfolder Chips / Navigation */}
       <div className="subfolder-chips-bar">
         <button
@@ -262,11 +295,22 @@ export default function FileExplorer({
                   <td>
                     <div className="file-actions-cell">
                       <button
-                        className="btn btn-ghost btn-sm"
+                        type="button"
+                        className="btn btn-secondary btn-xs open-file-native-btn"
+                        onClick={() => handleOpenFile(file)}
+                        disabled={openingFileId === (file.id || file.name)}
+                        title={`Open ${file.name}`}
+                      >
+                        <ExternalLink size={12} className={openingFileId === (file.id || file.name) ? 'spin-anim' : ''} />
+                        <span>{openingFileId === (file.id || file.name) ? 'Opening...' : 'Open File'}</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-ghost btn-xs"
                         onClick={() => onSelectDoc(file)}
                         title="Inspect Document Provenance & Summary"
                       >
-                        <Eye size={14} />
+                        <Eye size={12} />
                         <span>Preview</span>
                       </button>
                     </div>

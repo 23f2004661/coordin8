@@ -1,8 +1,31 @@
-import React from 'react';
-import { X, FileText, CheckCircle2, Hash, Calendar, Layers, HardDrive } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, FileText, CheckCircle2, Hash, Calendar, Layers, HardDrive, ExternalLink } from 'lucide-react';
+import { openFileInNativeApp } from '../api';
 
 export default function DocumentModal({ doc, onClose }) {
+  const [isOpening, setIsOpening] = useState(false);
+  const [openNotice, setOpenNotice] = useState(null);
+
   if (!doc) return null;
+
+  const handleOpenInApp = async () => {
+    setIsOpening(true);
+    setOpenNotice(null);
+    try {
+      await openFileInNativeApp({
+        filePath: doc.path || null,
+        projectId: doc.projectId || doc.project_id || null,
+        fileName: doc.name,
+      });
+      setOpenNotice({ type: 'success', text: `Opened ${doc.name}` });
+      setTimeout(() => setOpenNotice(null), 3000);
+    } catch (err) {
+      setOpenNotice({ type: 'error', text: `Could not open file: ${err.message}` });
+      setTimeout(() => setOpenNotice(null), 4000);
+    } finally {
+      setIsOpening(false);
+    }
+  };
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
@@ -15,9 +38,21 @@ export default function DocumentModal({ doc, onClose }) {
               <span className="modal-subtitle">Document Metadata & Retrieval Summary</span>
             </div>
           </div>
-          <button className="modal-close-btn" onClick={onClose}>
-            <X size={18} />
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <button
+              type="button"
+              className="btn btn-secondary btn-sm"
+              onClick={handleOpenInApp}
+              disabled={isOpening}
+              title={`Open ${doc.name}`}
+            >
+              <ExternalLink size={13} className={isOpening ? 'spin-anim' : ''} />
+              <span>{isOpening ? 'Opening...' : 'Open File'}</span>
+            </button>
+            <button className="modal-close-btn" onClick={onClose}>
+              <X size={18} />
+            </button>
+          </div>
         </div>
 
         <div className="modal-body">
@@ -69,8 +104,25 @@ export default function DocumentModal({ doc, onClose }) {
           </div>
         </div>
 
-        <div className="modal-footer">
-          <button className="btn btn-primary" onClick={onClose}>
+        <div className="modal-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleOpenInApp}
+              disabled={isOpening}
+              title={`Open ${doc.name}`}
+            >
+              <ExternalLink size={14} className={isOpening ? 'spin-anim' : ''} />
+              <span>{isOpening ? 'Opening...' : 'Open File'}</span>
+            </button>
+            {openNotice && (
+              <span style={{ marginLeft: 12, fontSize: '0.82rem', color: openNotice.type === 'error' ? '#ef4444' : '#10b981', fontWeight: 500 }}>
+                {openNotice.text}
+              </span>
+            )}
+          </div>
+          <button className="btn btn-secondary" onClick={onClose}>
             Done
           </button>
         </div>

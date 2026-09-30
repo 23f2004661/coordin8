@@ -1,0 +1,144 @@
+{
+  "document_id": "doc_a769cde187de",
+  "metadata": {
+    "title": "OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_omnicommerce_retail_visual_search_engine\\artifacts\\raw\\doc_a769cde187de\\OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL.xlsx",
+    "file_type": "xlsx",
+    "file_size_bytes": 7144,
+    "source_hash": "c9dc2e64ec4688db51dee4978cc12c91ad8db555b13688344a07dc9c6fc36b6f",
+    "author": null,
+    "created_at": "2026-09-29 16:26:31.961165+00:00",
+    "page_count": null,
+    "slide_count": null,
+    "sheet_count": 2,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_a769cde187de_Executive_Summary",
+      "title": "Sheet: Executive_Summary",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_80d307d3",
+          "block_type": "table",
+          "content": "OMNI-VIS COMPREHENSIVE STRESS MODEL & FINANCIAL FORECAST  \u2022  EXECUTIVE_SUMMARY |  |  |  |  |  | \nClient: OmniCommerce Brands  |  Project: OmniCommerce Retail - Visual Search Engine  |  Generated: 2026-09-29 21:55 |  |  |  |  |  | \nPortfolio Tested | Stressed Capital Adequacy | Model ROC-AUC |  |  |  | \n$250.0M | 18.4% | 0.914 |  |  |  | \nMacro Scenario | Portfolio Value | Loss Severity Rate | Stressed Loss | Capital Buffer | Reserve Status | \nBaseline (Current Economy) | 250000000 | 0.018 |  | 45000000 | ADEQUATE | \nModerate Recession (+200bps) | 250000000 | 0.042 |  | 45000000 | ADEQUATE | \nSevere Stagflation (+450bps) | 250000000 | 0.078 |  | 45000000 | ADEQUATE | \nSupply Shock & Inflation | 250000000 | 0.061 |  | 45000000 | ADEQUATE | \nTOTAL / SUMMARY |  |  |  |  |  | ",
+          "provenance": {
+            "file_id": "doc_a769cde187de",
+            "document_id": "doc_a769cde187de",
+            "file_name": "OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL.xlsx",
+            "file_type": "xlsx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": {
+              "sheet_name": "Executive_Summary",
+              "cell_range": "A1:Z12"
+            },
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_a769cde187de",
+        "document_id": "doc_a769cde187de",
+        "file_name": "OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL.xlsx",
+        "file_type": "xlsx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": {
+          "sheet_name": "Executive_Summary",
+          "cell_range": "A1:Z12"
+        },
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_a769cde187de_Cohort_Drilldown",
+      "title": "Sheet: Cohort_Drilldown",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_435722d2",
+          "block_type": "table",
+          "content": "OMNI-VIS COMPREHENSIVE STRESS MODEL & FINANCIAL FORECAST  \u2022  COHORT_DRILLDOWN |  |  |  |  |  | \nClient: OmniCommerce Brands  |  Project: OmniCommerce Retail - Visual Search Engine  |  Generated: 2026-09-29 21:55 |  |  |  |  |  | \nCohort Name | Sample Size | Mean Score | Approval Rate | False Positive Rate |  | \nTier 1 Prime | 14500 | 782 | 0.94 | 0.012 |  | \nTier 2 Near Prime | 28000 | 715 | 0.78 | 0.028 |  | \nTier 3 Emerging SME | 35000 | 668 | 0.54 | 0.045 |  | \nTier 4 Micro Business | 12500 | 620 | 0.31 | 0.062 |  | ",
+          "provenance": {
+            "file_id": "doc_a769cde187de",
+            "document_id": "doc_a769cde187de",
+            "file_name": "OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL.xlsx",
+            "file_type": "xlsx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": {
+              "sheet_name": "Cohort_Drilldown",
+              "cell_range": "A1:Z8"
+            },
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_a769cde187de",
+        "document_id": "doc_a769cde187de",
+        "file_name": "OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL.xlsx",
+        "file_type": "xlsx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": {
+          "sheet_name": "Cohort_Drilldown",
+          "cell_range": "A1:Z8"
+        },
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL\n\n## Sheet: Executive_Summary\n\nOMNI-VIS COMPREHENSIVE STRESS MODEL & FINANCIAL FORECAST  \u2022  EXECUTIVE_SUMMARY |  |  |  |  |  | \nClient: OmniCommerce Brands  |  Project: OmniCommerce Retail - Visual Search Engine  |  Generated: 2026-09-29 21:55 |  |  |  |  |  | \nPortfolio Tested | Stressed Capital Adequacy | Model ROC-AUC |  |  |  | \n$250.0M | 18.4% | 0.914 |  |  |  | \nMacro Scenario | Portfolio Value | Loss Severity Rate | Stressed Loss | Capital Buffer | Reserve Status | \nBaseline (Current Economy) | 250000000 | 0.018 |  | 45000000 | ADEQUATE | \nModerate Recession (+200bps) | 250000000 | 0.042 |  | 45000000 | ADEQUATE | \nSevere Stagflation (+450bps) | 250000000 | 0.078 |  | 45000000 | ADEQUATE | \nSupply Shock & Inflation | 250000000 | 0.061 |  | 45000000 | ADEQUATE | \nTOTAL / SUMMARY |  |  |  |  |  | \n\n## Sheet: Cohort_Drilldown\n\nOMNI-VIS COMPREHENSIVE STRESS MODEL & FINANCIAL FORECAST  \u2022  COHORT_DRILLDOWN |  |  |  |  |  | \nClient: OmniCommerce Brands  |  Project: OmniCommerce Retail - Visual Search Engine  |  Generated: 2026-09-29 21:55 |  |  |  |  |  | \nCohort Name | Sample Size | Mean Score | Approval Rate | False Positive Rate |  | \nTier 1 Prime | 14500 | 782 | 0.94 | 0.012 |  | \nTier 2 Near Prime | 28000 | 715 | 0.78 | 0.028 |  | \nTier 3 Emerging SME | 35000 | 668 | 0.54 | 0.045 |  | \nTier 4 Micro Business | 12500 | 620 | 0.31 | 0.062 |  | \n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_a769cde187de",
+    "document_id": "doc_a769cde187de",
+    "file_name": "OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL.xlsx",
+    "file_type": "xlsx",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": {
+      "sheet_name": "Executive_Summary",
+      "cell_range": "A1:Z12"
+    },
+    "timestamp": null,
+    "extra": {}
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Folder, FileText, Calendar, Clock, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Folder, FileText, Calendar, Clock, ArrowRight, Building2, Briefcase } from 'lucide-react';
 
 export default function ProjectCard({ project, onSelectProject }) {
   // Count total files across subfolders
@@ -11,6 +11,9 @@ export default function ProjectCard({ project, onSelectProject }) {
   const activeDeliverables = (project.deliverables || []).filter(
     (d) => d.status !== 'completed'
   ).length;
+
+  const isClient = project.project_type === 'client';
+  const problemStatement = project.problem_statement || project.description || '';
 
   return (
     <div
@@ -24,25 +27,36 @@ export default function ProjectCard({ project, onSelectProject }) {
         </div>
         <div className="project-card-meta">
           <span className="project-code">{project.code}</span>
+          {isClient ? (
+            <span className="project-type-chip client-chip" title={`Client: ${project.client_name || 'External'}`}>
+              <Building2 size={11} />
+              <span>{project.client_name || 'Client'}</span>
+            </span>
+          ) : (
+            <span className="project-type-chip internal-chip">
+              <Briefcase size={11} />
+              <span>Internal</span>
+            </span>
+          )}
           <span className="project-category-pill">{project.category}</span>
         </div>
       </div>
 
       <div className="project-card-info">
         <h3 className="project-name">{project.name}</h3>
-        <p className="project-desc">{project.description}</p>
+        <p className="project-desc">{problemStatement}</p>
       </div>
 
       <div className="project-progress-container">
         <div className="project-progress-header">
           <span>Overall Health</span>
-          <span className="progress-percent">{project.progress}%</span>
+          <span className="progress-percent">{project.progress || 0}%</span>
         </div>
         <div className="progress-bar-track">
           <div
             className="progress-bar-indicator"
             style={{
-              width: `${project.progress}%`,
+              width: `${project.progress || 0}%`,
               backgroundColor: project.color || '#6366f1',
             }}
           />

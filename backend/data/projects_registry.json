@@ -1,7 +1,1694 @@
 {
   "home_folder": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home",
-  "updated_at": "2026-09-29T17:45:11.644448",
-  "projects": {},
+  "updated_at": "2026-09-30T09:38:26.588774",
+  "projects": {
+    "proj_finedge_ai_automated_credit_underwriting": {
+      "project_id": "proj_finedge_ai_automated_credit_underwriting",
+      "name": "FinEdge AI - Automated Credit Underwriting",
+      "code": "FE-RISK",
+      "description": "Deploy an automated multi-factor credit underwriting and default risk estimation pipeline for SME commercial loans ($50k",
+      "category": "FinTech AI",
+      "color": "#4f46e5",
+      "folder_path": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\FinEdge AI - Automated Credit Underwriting",
+      "kb_id": "kb_finedge_ai_automated_credit_underwriting",
+      "creation_mode": "scratch",
+      "created_at": "2026-09-29T21:50:54.583089",
+      "progress": 75,
+      "project_type": "client",
+      "client_name": "FinEdge Capital Partners",
+      "client_email": "ssrini2002@gmail.com",
+      "problem_statement": "Deploy an automated multi-factor credit underwriting and default risk estimation pipeline for SME commercial loans ($50k - $2M). Replace legacy 14-day manual underwriting with an explainable ML scoring engine achieving <400ms decision latency, ROC-AUC > 0.88, and full compliance with Federal Fair Lending (ECOA) standards.",
+      "overall_context": "Executive sponsorship by Srinath Srinivasan, Managing Partner. Target delivery timeline Q4 2026.",
+      "meetings": [
+        {
+          "id": "gcal_fe_review_02",
+          "title": "FE-RISK Model Validation & Stress Test Review",
+          "startTime": "2026-10-02T14:00:00+05:30",
+          "endTime": "2026-10-02T15:00:00+05:30",
+          "duration": "60 min",
+          "platform": "Google Meet",
+          "meetUrl": "https://meet.google.com/fe-risk-rev",
+          "attendees": [
+            "ssrini2002@gmail.com",
+            "pfbotbeta@gmail.com"
+          ],
+          "agenda": "Review multi-scenario portfolio stress testing results, ROC-AUC calibration, and SHAP feature attribution.",
+          "prepDoc": "gcal_fe_review_02_transcript.txt",
+          "status": "confirmed",
+          "isGcal": true,
+          "gcalId": null,
+          "htmlLink": null,
+          "projectId": "proj_finedge_ai_automated_credit_underwriting",
+          "projectName": "FinEdge AI - Automated Credit Underwriting",
+          "projectColor": "#4f46e5",
+          "hasTranscript": true,
+          "transcriptFile": "gcal_fe_review_02_transcript.txt",
+          "transcriptPath": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\FinEdge AI - Automated Credit Underwriting\\transcripts\\gcal_fe_review_02_transcript.txt",
+          "transcriptDocId": "doc_9b008807c5c8"
+        },
+        {
+          "id": "gcal_fe_kickoff_01",
+          "title": "FE-RISK Kickoff & Governance Architecture Review",
+          "startTime": "2026-09-24T10:00:00+05:30",
+          "endTime": "2026-09-24T11:00:00+05:30",
+          "duration": "60 min",
+          "platform": "Google Meet",
+          "meetUrl": "https://meet.google.com/fe-risk-kick",
+          "attendees": [
+            "ssrini2002@gmail.com",
+            "pfbotbeta@gmail.com"
+          ],
+          "agenda": "Review SME underwriting dataset, credit risk thresholds, and explainability governance requirements.",
+          "prepDoc": "gcal_fe_kickoff_01_transcript.txt",
+          "status": "confirmed",
+          "isGcal": true,
+          "gcalId": null,
+          "htmlLink": null,
+          "projectId": "proj_finedge_ai_automated_credit_underwriting",
+          "projectName": "FinEdge AI - Automated Credit Underwriting",
+          "projectColor": "#4f46e5",
+          "hasTranscript": true,
+          "transcriptFile": "gcal_fe_kickoff_01_transcript.txt",
+          "transcriptPath": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\FinEdge AI - Automated Credit Underwriting\\transcripts\\gcal_fe_kickoff_01_transcript.txt",
+          "transcriptDocId": "doc_864c4560588e"
+        }
+      ],
+      "deliverables": [
+        {
+          "id": "del_1790699215487",
+          "title": "Financial Audit Model",
+          "description": "A financial audit model to be integrated into the underwriting engine.",
+          "dueDate": "2026-10-15",
+          "status": "pending",
+          "priority": "medium",
+          "progress": 0,
+          "owner": "Team",
+          "source": "email",
+          "sourceEvidence": "Client email from John requesting the financial audit model.",
+          "evidenceFiles": [],
+          "aiAudit": {
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "There is no evidence of progress on this deliverable.",
+            "evidenceFiles": [],
+            "blockers": "The team needs to start working on this deliverable.",
+            "evaluatedAt": "2026-09-29T22:03:39.720203"
+          }
+        },
+        {
+          "id": "del_1790699215483",
+          "title": "Regulatory Compliance Fair Lending Dossier & Bias Audit Matrix",
+          "description": "A formal deliverable to satisfy ECOA regulators, including a bias audit matrix and a fair lending dossier.",
+          "dueDate": "2026-10-25",
+          "status": "pending",
+          "priority": "high",
+          "progress": 0,
+          "owner": "Team",
+          "source": "email",
+          "sourceEvidence": "Client email from Srinath Srinivasan requesting the deliverable by October 25.",
+          "evidenceFiles": [],
+          "aiAudit": {
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "There is no evidence of progress on this deliverable.",
+            "evidenceFiles": [],
+            "blockers": "The team needs to start working on this deliverable.",
+            "evaluatedAt": "2026-09-29T22:03:39.720211"
+          }
+        },
+        {
+          "id": "del_fe_3",
+          "title": "Real-Time Decisioning Pipeline & SHAP Explainability Engine",
+          "dueDate": "2026-10-24",
+          "status": "in_progress",
+          "priority": "medium",
+          "progress": 75,
+          "owner": "Coordin8 ML Engineer",
+          "description": "Production inference pipeline with SHAP explanation attribution for automated adverse action notices.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with FinEdge Capital Partners",
+          "tasks": [
+            {
+              "title": "Define Real-Time Decisioning Pipeline Requirements",
+              "description": "Document pipeline architecture, data flow, and performance metrics (ROC-AUC, latency) in a Word document. Include a detailed table outlining the pipeline's components, data sources, and expected outcomes.",
+              "targetArtifact": "FE-RISK_Real-Time_Decisioning_Pipeline_Requirements.docx",
+              "artifactType": "docx",
+              "priority": "high",
+              "estimatedHours": 8,
+              "assignedTo": "Senior Technical Project Manager",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790698884838_1",
+              "deliverableId": "del_fe_3",
+              "createdAt": "2026-09-29T21:51:24.838118"
+            },
+            {
+              "title": "Design SHAP Explainability Engine",
+              "description": "Create a PowerPoint presentation outlining the SHAP explanation attribution approach, including a detailed diagram of the engine's architecture and a table explaining the SHAP values' interpretation.",
+              "targetArtifact": "FE-RISK_SHAP_Explainability_Engine_Design.pptx",
+              "artifactType": "pptx",
+              "priority": "high",
+              "estimatedHours": 12,
+              "assignedTo": "Senior ML Engineer",
+              "status": "in_progress",
+              "stage": "review_iteration",
+              "id": "tsk_1790698884838_2",
+              "deliverableId": "del_fe_3",
+              "createdAt": "2026-09-29T21:51:24.838124"
+            },
+            {
+              "title": "Develop SHAP Explainability Engine Implementation",
+              "description": "Implement the SHAP explanation attribution engine using Python and a popular ML library (e.g., scikit-learn, TensorFlow). Create a Python script that generates SHAP values for the automated credit underwriting model.",
+              "targetArtifact": "FE-RISK_SHAP_Explainability_Engine_Implementation.py",
+              "artifactType": "py",
+              "priority": "high",
+              "estimatedHours": 24,
+              "assignedTo": "Senior ML Engineer",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790698884838_3",
+              "deliverableId": "del_fe_3",
+              "createdAt": "2026-09-29T21:51:24.838126"
+            },
+            {
+              "title": "Integrate SHAP Explainability Engine with Real-Time Decisioning Pipeline",
+              "description": "Integrate the SHAP explanation attribution engine with the real-time decisioning pipeline using a containerization framework (e.g., Docker). Create a Dockerfile and a containerized deployment script.",
+              "targetArtifact": "FE-RISK_Integrated_Pipeline_Dockerfile.txt",
+              "artifactType": "txt",
+              "priority": "high",
+              "estimatedHours": 20,
+              "assignedTo": "Senior DevOps Engineer",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790698884838_4",
+              "deliverableId": "del_fe_3",
+              "createdAt": "2026-09-29T21:51:24.838127"
+            },
+            {
+              "title": "Create Adverse Action Notice Template",
+              "description": "Design an adverse action notice template in Word, including placeholders for SHAP values and explanations. Create a table outlining the template's components and expected outcomes.",
+              "targetArtifact": "FE-RISK_Adverse_Action_Notice_Template.docx",
+              "artifactType": "docx",
+              "priority": "medium",
+              "estimatedHours": 4,
+              "assignedTo": "Senior Technical Project Manager",
+              "status": "completed",
+              "stage": "final_approved",
+              "id": "tsk_1790698884838_5",
+              "deliverableId": "del_fe_3",
+              "createdAt": "2026-09-29T21:51:24.838129"
+            }
+          ],
+          "aiAudit": {
+            "estimatedProgress": 75,
+            "recommendedStatus": "in_progress",
+            "evidence": "The production inference pipeline with SHAP explanation attribution for automated adverse action notices is in progress, as mentioned in the meeting transcript 'gcal_fe_review_02_transcript.txt'.",
+            "evidenceFiles": [
+              "gcal_fe_review_02_transcript.txt"
+            ],
+            "blockers": "The team needs to finalize the SHAP explainability engine and complete the real-time decisioning pipeline.",
+            "evaluatedAt": "2026-09-29T22:03:39.720216"
+          }
+        },
+        {
+          "id": "del_fe_2",
+          "title": "Historical Portfolio Stress-Testing & Backtesting Model",
+          "dueDate": "2026-10-17",
+          "status": "completed",
+          "priority": "high",
+          "progress": 100,
+          "owner": "Senior Analytics Lead",
+          "description": "Quantitative multi-scenario stress-testing workbook analyzing default rates across macroeconomic shocks.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with FinEdge Capital Partners",
+          "tasks": [
+            {
+              "title": "Define Stress-Testing Scenarios & Macro-Economic Shocks",
+              "description": "Identify key macro-economic indicators (e.g., GDP, inflation, interest rates) and define 5-7 stress-testing scenarios (e.g., recession, high inflation, interest rate hike). Document the rationale behind each scenario.",
+              "targetArtifact": "Stress_Testing_Scenarios.pdf",
+              "artifactType": "pdf",
+              "priority": "high",
+              "estimatedHours": 8,
+              "assignedTo": "Senior Quantitative Analyst",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790698878447_1",
+              "deliverableId": "del_fe_2",
+              "createdAt": "2026-09-29T21:51:18.447811"
+            },
+            {
+              "title": "Develop Default Rate Forecasting Model",
+              "description": "Design and implement a statistical model to forecast default rates under each stress-testing scenario. Utilize historical portfolio data and macro-economic indicators as inputs.",
+              "targetArtifact": "Default_Rate_Forecasting_Model.xlsx",
+              "artifactType": "xlsx",
+              "priority": "high",
+              "estimatedHours": 24,
+              "assignedTo": "Senior Data Scientist",
+              "status": "in_progress",
+              "stage": "review_iteration",
+              "id": "tsk_1790698878447_2",
+              "deliverableId": "del_fe_2",
+              "createdAt": "2026-09-29T21:51:18.447823"
+            },
+            {
+              "title": "Create Stress-Testing Workbook",
+              "description": "Develop an Excel-based workbook that integrates the default rate forecasting model and allows for easy scenario analysis and sensitivity testing.",
+              "targetArtifact": "Stress_Testing_Workbook.xlsx",
+              "artifactType": "xlsx",
+              "priority": "medium",
+              "estimatedHours": 16,
+              "assignedTo": "Junior Data Analyst",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790698878447_3",
+              "deliverableId": "del_fe_2",
+              "createdAt": "2026-09-29T21:51:18.447826"
+            },
+            {
+              "title": "Document Model Assumptions & Limitations",
+              "description": "Document the assumptions and limitations of the default rate forecasting model and stress-testing scenarios. Provide recommendations for future model enhancements.",
+              "targetArtifact": "Model_Assumptions_Limitations.docx",
+              "artifactType": "docx",
+              "priority": "low",
+              "estimatedHours": 4,
+              "assignedTo": "Senior Quantitative Analyst",
+              "status": "completed",
+              "stage": "final_approved",
+              "id": "tsk_1790698878447_4",
+              "deliverableId": "del_fe_2",
+              "createdAt": "2026-09-29T21:51:18.447829"
+            }
+          ],
+          "aiAudit": {
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The quantitative multi-scenario stress-testing workbook analyzing default rates across macroeconomic shocks is available in the document 'FE-RISK_Portfolio_Stress_Test_v1.0_FINAL.xlsx'.",
+            "evidenceFiles": [
+              "FE-RISK_Portfolio_Stress_Test_v1.0_FINAL.xlsx"
+            ],
+            "blockers": "",
+            "evaluatedAt": "2026-09-29T22:03:39.720220"
+          }
+        },
+        {
+          "id": "del_fe_1",
+          "title": "System Architecture & Model Risk Governance Specification",
+          "dueDate": "2026-10-11",
+          "status": "completed",
+          "priority": "high",
+          "progress": 100,
+          "owner": "Coordin8 AI Lead",
+          "description": "Comprehensive technical architecture spec defining feature stores, model risk framework, and low-latency decisioning.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with FinEdge Capital Partners",
+          "aiAudit": {
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The technical architecture spec defining feature stores, model risk framework, and low-latency decisioning is available in the document 'FE-RISK_Architecture_Spec_v1.0_FINAL.docx'.",
+            "evidenceFiles": [
+              "FE-RISK_Architecture_Spec_v1.0_FINAL.docx"
+            ],
+            "blockers": "",
+            "evaluatedAt": "2026-09-29T22:03:39.720224"
+          }
+        }
+      ],
+      "discovered_deliverables": [
+        {
+          "title": "Regulatory Compliance Fair Lending Dossier & Bias Audit Matrix",
+          "description": "A formal deliverable to satisfy ECOA regulators, including a bias audit matrix and a fair lending dossier.",
+          "suggestedDueDate": "2026-10-25",
+          "priority": "high",
+          "source": "email",
+          "sourceEvidence": "Client email from Srinath Srinivasan requesting the Regulatory Compliance Fair Lending Dossier & Bias Audit Matrix by October 25."
+        },
+        {
+          "title": "Financial Audit Model",
+          "description": "A financial audit model to be integrated into the underwriting engine.",
+          "suggestedDueDate": "2026-10-15",
+          "priority": "medium",
+          "source": "email",
+          "sourceEvidence": "Client email from Srinath Srinivasan requesting the Financial Audit Model by October 15."
+        }
+      ],
+      "ai_analysis": {
+        "lastAnalyzedAt": "2026-09-29T22:03:39.720177",
+        "overallCompletion": 75,
+        "health": "on_track",
+        "executiveSummary": "The project is progressing well, with several key deliverables completed or in progress. However, some deliverables are still pending, and the team needs to focus on completing the remaining tasks to meet the project deadlines.",
+        "deliverableAudits": [
+          {
+            "id": "del_fe_1",
+            "title": "System Architecture & Model Risk Governance Specification",
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The technical architecture spec defining feature stores, model risk framework, and low-latency decisioning is available in the document 'FE-RISK_Architecture_Spec_v1.0_FINAL.docx'.",
+            "evidenceFiles": [
+              "FE-RISK_Architecture_Spec_v1.0_FINAL.docx"
+            ],
+            "blockers": ""
+          },
+          {
+            "id": "del_fe_2",
+            "title": "Historical Portfolio Stress-Testing & Backtesting Model",
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The quantitative multi-scenario stress-testing workbook analyzing default rates across macroeconomic shocks is available in the document 'FE-RISK_Portfolio_Stress_Test_v1.0_FINAL.xlsx'.",
+            "evidenceFiles": [
+              "FE-RISK_Portfolio_Stress_Test_v1.0_FINAL.xlsx"
+            ],
+            "blockers": ""
+          },
+          {
+            "id": "del_fe_3",
+            "title": "Real-Time Decisioning Pipeline & SHAP Explainability Engine",
+            "estimatedProgress": 75,
+            "recommendedStatus": "in_progress",
+            "evidence": "The production inference pipeline with SHAP explanation attribution for automated adverse action notices is in progress, as mentioned in the meeting transcript 'gcal_fe_review_02_transcript.txt'.",
+            "evidenceFiles": [
+              "gcal_fe_review_02_transcript.txt"
+            ],
+            "blockers": "The team needs to finalize the SHAP explainability engine and complete the real-time decisioning pipeline."
+          },
+          {
+            "id": "del_1790699215487",
+            "title": "Financial Audit Model",
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "There is no evidence of progress on this deliverable.",
+            "evidenceFiles": [],
+            "blockers": "The team needs to start working on this deliverable."
+          },
+          {
+            "id": "del_1790699215483",
+            "title": "Regulatory Compliance Fair Lending Dossier & Bias Audit Matrix",
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "There is no evidence of progress on this deliverable.",
+            "evidenceFiles": [],
+            "blockers": "The team needs to start working on this deliverable."
+          }
+        ],
+        "discoveredDeliverables": [
+          {
+            "title": "Regulatory Compliance Fair Lending Dossier & Bias Audit Matrix",
+            "description": "A formal deliverable to satisfy ECOA regulators, including a bias audit matrix and a fair lending dossier.",
+            "suggestedDueDate": "2026-10-25",
+            "priority": "high",
+            "source": "email",
+            "sourceEvidence": "Client email from Srinath Srinivasan requesting the Regulatory Compliance Fair Lending Dossier & Bias Audit Matrix by October 25."
+          },
+          {
+            "title": "Financial Audit Model",
+            "description": "A financial audit model to be integrated into the underwriting engine.",
+            "suggestedDueDate": "2026-10-15",
+            "priority": "medium",
+            "source": "email",
+            "sourceEvidence": "Client email from Srinath Srinivasan requesting the Financial Audit Model by October 15."
+          }
+        ],
+        "reportFile": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\FinEdge AI - Automated Credit Underwriting\\audit_reports\\Deliverable_Audit_2026-09-29_22-03-39.md",
+        "reportFilename": "Deliverable_Audit_2026-09-29_22-03-39.md",
+        "latestReportPath": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\FinEdge AI - Automated Credit Underwriting\\audit_reports\\latest_audit_report.md",
+        "markdownReport": "# Coordin8 AI Deliverable & Progress Audit Report\n\n- **Project:** FinEdge AI - Automated Credit Underwriting\n- **Code:** FE-RISK\n- **Type:** CLIENT (FinEdge Capital Partners)\n- **Audit Timestamp:** 2026-09-29 22:03:39\n- **Overall Completion:** 75%\n- **Project Health:** ON_TRACK\n\n## Problem Statement & Strategic Objective\n> Deploy an automated multi-factor credit underwriting and default risk estimation pipeline for SME commercial loans ($50k - $2M). Replace legacy 14-day manual underwriting with an explainable ML scoring engine achieving <400ms decision latency, ROC-AUC > 0.88, and full compliance with Federal Fair Lending (ECOA) standards.\n\n## Executive Status Briefing\nThe project is progressing well, with several key deliverables completed or in progress. However, some deliverables are still pending, and the team needs to focus on completing the remaining tasks to meet the project deadlines.\n\n## Evidence-Anchored Deliverable Evaluations\n\n### Financial Audit Model\n- **Current Status:** `pending` (0% progress)\n- **Due Date:** 2026-10-15\n- **Owner:** Team\n- **Provenance / Source:** email (Client email from John requesting the financial audit model.)\n- **AI Evidence Assessment:** There is no evidence of progress on this deliverable.\n- **Evidence Files Cited:** None\n- **Identified Blockers:** The team needs to start working on this deliverable.\n\n### Regulatory Compliance Fair Lending Dossier & Bias Audit Matrix\n- **Current Status:** `pending` (0% progress)\n- **Due Date:** 2026-10-25\n- **Owner:** Team\n- **Provenance / Source:** email (Client email from Srinath Srinivasan requesting the deliverable by October 25.)\n- **AI Evidence Assessment:** There is no evidence of progress on this deliverable.\n- **Evidence Files Cited:** None\n- **Identified Blockers:** The team needs to start working on this deliverable.\n\n### Real-Time Decisioning Pipeline & SHAP Explainability Engine\n- **Current Status:** `in_progress` (75% progress)\n- **Due Date:** 2026-10-24\n- **Owner:** Coordin8 ML Engineer\n- **Provenance / Source:** client_sow (Statement of Work signed with FinEdge Capital Partners)\n- **AI Evidence Assessment:** The production inference pipeline with SHAP explanation attribution for automated adverse action notices is in progress, as mentioned in the meeting transcript 'gcal_fe_review_02_transcript.txt'.\n- **Evidence Files Cited:** gcal_fe_review_02_transcript.txt\n- **Identified Blockers:** The team needs to finalize the SHAP explainability engine and complete the real-time decisioning pipeline.\n\n### Historical Portfolio Stress-Testing & Backtesting Model\n- **Current Status:** `completed` (100% progress)\n- **Due Date:** 2026-10-17\n- **Owner:** Senior Analytics Lead\n- **Provenance / Source:** client_sow (Statement of Work signed with FinEdge Capital Partners)\n- **AI Evidence Assessment:** The quantitative multi-scenario stress-testing workbook analyzing default rates across macroeconomic shocks is available in the document 'FE-RISK_Portfolio_Stress_Test_v1.0_FINAL.xlsx'.\n- **Evidence Files Cited:** FE-RISK_Portfolio_Stress_Test_v1.0_FINAL.xlsx\n- **Identified Blockers:** None identified\n\n### System Architecture & Model Risk Governance Specification\n- **Current Status:** `completed` (100% progress)\n- **Due Date:** 2026-10-11\n- **Owner:** Coordin8 AI Lead\n- **Provenance / Source:** client_sow (Statement of Work signed with FinEdge Capital Partners)\n- **AI Evidence Assessment:** The technical architecture spec defining feature stores, model risk framework, and low-latency decisioning is available in the document 'FE-RISK_Architecture_Spec_v1.0_FINAL.docx'.\n- **Evidence Files Cited:** FE-RISK_Architecture_Spec_v1.0_FINAL.docx\n- **Identified Blockers:** None identified\n\n## Candidate Deliverables Discovered from Communications & Transcripts\n\n- **Regulatory Compliance Fair Lending Dossier & Bias Audit Matrix** (Priority: `high`, Due: `2026-10-25`)\n  - Scope: A formal deliverable to satisfy ECOA regulators, including a bias audit matrix and a fair lending dossier.\n  - Origin Citation: Client email from Srinath Srinivasan requesting the Regulatory Compliance Fair Lending Dossier & Bias Audit Matrix by October 25.\n\n- **Financial Audit Model** (Priority: `medium`, Due: `2026-10-15`)\n  - Scope: A financial audit model to be integrated into the underwriting engine.\n  - Origin Citation: Client email from Srinath Srinivasan requesting the Financial Audit Model by October 15.\n\n## Ingested Artifacts Evaluated\n- **Documents (13):** , , , , , , , , , , , , \n- **Meetings (2):** FE-RISK Model Validation & Stress Test Review, FE-RISK Kickoff & Governance Architecture Review\n- **Emails (5):** FinEdge Underwriting Engine Phase 1 Deliverables Accepted, Underwriting Engine v0.8 & Model Drift Presentation Shared, Urgent: Add Federal Fair Lending Dossier & Bias Audit Matrix for Q4 Committee, FinEdge Underwriting Architecture & Historical Backtesting Framework, FinEdge Underwriting Engine - Engagement Scope & SLA Requirements\n\n---\n*Generated autonomously by Coordin8 AI Deliverables Auditor*"
+      },
+      "ingested_count": 0
+    },
+    "proj_apex_healthtech_clinical_stratification": {
+      "project_id": "proj_apex_healthtech_clinical_stratification",
+      "name": "Apex HealthTech - Clinical Stratification",
+      "code": "APEX-CLIN",
+      "description": "Build an automated genomic biomarker cohort stratification platform for Oncology Phase II clinical trials. Ingest somati",
+      "category": "Bioinformatics",
+      "color": "#0ea5e9",
+      "folder_path": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Apex HealthTech - Clinical Stratification",
+      "kb_id": "kb_apex_healthtech_clinical_stratification",
+      "creation_mode": "scratch",
+      "created_at": "2026-09-29T21:51:24.884005",
+      "progress": 75,
+      "project_type": "client",
+      "client_name": "Apex Therapeutics & Genomics",
+      "client_email": "ssrini2002@gmail.com",
+      "problem_statement": "Build an automated genomic biomarker cohort stratification platform for Oncology Phase II clinical trials. Ingest somatic variant call formats (VCF), EHR clinical records, and Kaplan-Meier survival data to match qualifying patient cohorts against FDA trial inclusion protocols, accelerating trial patient recruitment by 60%.",
+      "overall_context": "Executive sponsorship by Dr. Srinivasan S, Chief Medical Officer. Target delivery timeline Q4 2026.",
+      "meetings": [
+        {
+          "id": "gcal_apex_kickoff_01",
+          "title": "APEX-CLIN Trial Protocol & Genomic Pipeline Alignment",
+          "startTime": "2026-09-23T11:00:00+05:30",
+          "endTime": "2026-09-23T12:00:00+05:30",
+          "duration": "60 min",
+          "platform": "Google Meet",
+          "meetUrl": "https://meet.google.com/apex-clin-kick",
+          "attendees": [
+            "ssrini2002@gmail.com",
+            "pfbotbeta@gmail.com"
+          ],
+          "agenda": "Review genomic inclusion criteria, VCF parsing pipelines, and patient safety titration bounds.",
+          "prepDoc": "gcal_apex_kickoff_01_transcript.txt",
+          "status": "confirmed",
+          "isGcal": true,
+          "gcalId": null,
+          "htmlLink": null,
+          "projectId": "proj_apex_healthtech_clinical_stratification",
+          "projectName": "Apex HealthTech - Clinical Stratification",
+          "projectColor": "#0ea5e9",
+          "hasTranscript": true,
+          "transcriptFile": "gcal_apex_kickoff_01_transcript.txt",
+          "transcriptPath": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Apex HealthTech - Clinical Stratification\\transcripts\\gcal_apex_kickoff_01_transcript.txt",
+          "transcriptDocId": "doc_f972d60ab40a"
+        }
+      ],
+      "deliverables": [
+        {
+          "id": "del_1790699235017",
+          "title": "Clinical Investigator Deck & Adverse Event Risk Workbook",
+          "description": "The project team needs to develop a clinical investigator deck and adverse event risk workbook for the internal review board.",
+          "dueDate": "2026-10-21",
+          "status": "pending",
+          "priority": "medium",
+          "progress": 0,
+          "owner": "Team",
+          "source": "email",
+          "sourceEvidence": "Client email from Dr. Srinivasan S confirming the acceptance of the clinical investigator deck and adverse event risk workbook by the internal review board.",
+          "evidenceFiles": [],
+          "aiAudit": {
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "No evidence of completion or progress exists in the indexed files, meeting minutes, or emails.",
+            "evidenceFiles": [],
+            "blockers": "Awaiting client feedback and approval for the clinical investigator deck and adverse event risk workbook.",
+            "evaluatedAt": "2026-09-29T22:03:49.393637"
+          }
+        },
+        {
+          "id": "del_1790699235011",
+          "title": "Companion Diagnostic Validation Protocol & FDA Brief",
+          "description": "The project team needs to develop a companion diagnostic validation protocol and FDA brief to support the clinical trial.",
+          "dueDate": "2026-10-15",
+          "status": "pending",
+          "priority": "high",
+          "progress": 0,
+          "owner": "Team",
+          "source": "email",
+          "sourceEvidence": "Client email from Dr. Srinivasan S requesting the addition of the companion diagnostic validation protocol to the tracked deliverables list.",
+          "evidenceFiles": [],
+          "aiAudit": {
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "No evidence of completion or progress exists in the indexed files, meeting minutes, or emails.",
+            "evidenceFiles": [],
+            "blockers": "Awaiting client request for the companion diagnostic validation protocol and FDA brief.",
+            "evaluatedAt": "2026-09-29T22:03:49.393642"
+          }
+        },
+        {
+          "id": "del_apex_3",
+          "title": "FDA 21 CFR Part 11 Compliance & Clinical Investigator Dossier",
+          "dueDate": "2026-10-21",
+          "status": "in_progress",
+          "priority": "medium",
+          "progress": 70,
+          "owner": "Regulatory Compliance Specialist",
+          "description": "Regulatory submission dossier validating data audit trails, electronic signatures, and patient privacy security.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with Apex Therapeutics & Genomics",
+          "aiAudit": {
+            "estimatedProgress": 70,
+            "recommendedStatus": "in_progress",
+            "evidence": "The project team has completed 70% of the FDA 21 CFR Part 11 compliance and clinical investigator dossier, as evidenced by the 'APEX-CLIN_Model_Validation_Audit_Report_FINAL.pdf' file.",
+            "evidenceFiles": [
+              "APEX-CLIN_Model_Validation_Audit_Report_FINAL.pdf"
+            ],
+            "blockers": "Awaiting completion of the remaining 30% of the dossier.",
+            "evaluatedAt": "2026-09-29T22:03:49.393645"
+          }
+        },
+        {
+          "id": "del_apex_2",
+          "title": "Patient Cohort Adverse Event & Dosage Risk Workbook",
+          "dueDate": "2026-10-15",
+          "status": "completed",
+          "priority": "high",
+          "progress": 100,
+          "owner": "Clinical Data Scientist",
+          "description": "Multi-cohort clinical spreadsheet tracking adverse event grading (CTCAE v5.0), dosage titration, and biomarker frequency.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with Apex Therapeutics & Genomics",
+          "aiAudit": {
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The project team has completed the patient cohort adverse event and dosage risk workbook, as evidenced by the 'del_apex_2.xlsx' file.",
+            "evidenceFiles": [
+              "del_apex_2.xlsx"
+            ],
+            "blockers": "None.",
+            "evaluatedAt": "2026-09-29T22:03:49.393648"
+          }
+        },
+        {
+          "id": "del_apex_1",
+          "title": "Biomarker Inclusion Protocol & Variant Stratification Pipeline",
+          "dueDate": "2026-10-09",
+          "status": "completed",
+          "priority": "high",
+          "progress": 100,
+          "owner": "Coordin8 Bioinformatics Lead",
+          "description": "Formal protocol matching EGFR, KRAS, and TP53 somatic mutation variants against Phase II trial inclusion criteria.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with Apex Therapeutics & Genomics",
+          "aiAudit": {
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The project team has completed the biomarker inclusion protocol and variant stratification pipeline, as evidenced by the 'del_apex_1.xlsx' file.",
+            "evidenceFiles": [
+              "del_apex_1.xlsx"
+            ],
+            "blockers": "None.",
+            "evaluatedAt": "2026-09-29T22:03:49.393651"
+          }
+        }
+      ],
+      "discovered_deliverables": [
+        {
+          "title": "Companion Diagnostic Validation Protocol & FDA Brief",
+          "description": "Develop a companion diagnostic validation protocol and FDA brief to support the clinical trial.",
+          "suggestedDueDate": "2026-10-15",
+          "priority": "high",
+          "source": "email",
+          "sourceEvidence": "Client email from Dr. Srinivasan S requesting the companion diagnostic validation protocol and FDA brief."
+        },
+        {
+          "title": "Patient Cohort Adverse Event & Dosage Risk Workbook Update",
+          "description": "Update the patient cohort adverse event and dosage risk workbook to reflect changes in the clinical trial protocol.",
+          "suggestedDueDate": "2026-10-22",
+          "priority": "medium",
+          "source": "meeting_transcript",
+          "sourceEvidence": "Meeting transcript from the 'APEX-CLIN Trial Protocol & Genomic Pipeline Alignment' meeting on 2026-09-23."
+        },
+        {
+          "title": "Clinical Investigator Dossier Update",
+          "description": "Update the clinical investigator dossier to reflect changes in the FDA 21 CFR Part 11 compliance and clinical investigator dossier.",
+          "suggestedDueDate": "2026-10-25",
+          "priority": "low",
+          "source": "document",
+          "sourceEvidence": "Document 'APEX-CLIN_Architecture_Spec_v1.0_FINAL.docx' from the project workspace."
+        }
+      ],
+      "ai_analysis": {
+        "lastAnalyzedAt": "2026-09-29T22:03:49.393614",
+        "overallCompletion": 75,
+        "health": "on_track",
+        "executiveSummary": "The project is progressing well, with several deliverables completed or in progress. However, some client requests and commitments remain unlogged, and the project team should prioritize these to ensure timely completion.",
+        "deliverableAudits": [
+          {
+            "id": "del_1790699235017",
+            "title": "Clinical Investigator Deck & Adverse Event Risk Workbook",
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "No evidence of completion or progress exists in the indexed files, meeting minutes, or emails.",
+            "evidenceFiles": [],
+            "blockers": "Awaiting client feedback and approval for the clinical investigator deck and adverse event risk workbook."
+          },
+          {
+            "id": "del_1790699235011",
+            "title": "Companion Diagnostic Validation Protocol & FDA Brief",
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "No evidence of completion or progress exists in the indexed files, meeting minutes, or emails.",
+            "evidenceFiles": [],
+            "blockers": "Awaiting client request for the companion diagnostic validation protocol and FDA brief."
+          },
+          {
+            "id": "del_apex_3",
+            "title": "FDA 21 CFR Part 11 Compliance & Clinical Investigator Dossier",
+            "estimatedProgress": 70,
+            "recommendedStatus": "in_progress",
+            "evidence": "The project team has completed 70% of the FDA 21 CFR Part 11 compliance and clinical investigator dossier, as evidenced by the 'APEX-CLIN_Model_Validation_Audit_Report_FINAL.pdf' file.",
+            "evidenceFiles": [
+              "APEX-CLIN_Model_Validation_Audit_Report_FINAL.pdf"
+            ],
+            "blockers": "Awaiting completion of the remaining 30% of the dossier."
+          },
+          {
+            "id": "del_apex_2",
+            "title": "Patient Cohort Adverse Event & Dosage Risk Workbook",
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The project team has completed the patient cohort adverse event and dosage risk workbook, as evidenced by the 'del_apex_2.xlsx' file.",
+            "evidenceFiles": [
+              "del_apex_2.xlsx"
+            ],
+            "blockers": "None."
+          },
+          {
+            "id": "del_apex_1",
+            "title": "Biomarker Inclusion Protocol & Variant Stratification Pipeline",
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The project team has completed the biomarker inclusion protocol and variant stratification pipeline, as evidenced by the 'del_apex_1.xlsx' file.",
+            "evidenceFiles": [
+              "del_apex_1.xlsx"
+            ],
+            "blockers": "None."
+          }
+        ],
+        "discoveredDeliverables": [
+          {
+            "title": "Companion Diagnostic Validation Protocol & FDA Brief",
+            "description": "Develop a companion diagnostic validation protocol and FDA brief to support the clinical trial.",
+            "suggestedDueDate": "2026-10-15",
+            "priority": "high",
+            "source": "email",
+            "sourceEvidence": "Client email from Dr. Srinivasan S requesting the companion diagnostic validation protocol and FDA brief."
+          },
+          {
+            "title": "Patient Cohort Adverse Event & Dosage Risk Workbook Update",
+            "description": "Update the patient cohort adverse event and dosage risk workbook to reflect changes in the clinical trial protocol.",
+            "suggestedDueDate": "2026-10-22",
+            "priority": "medium",
+            "source": "meeting_transcript",
+            "sourceEvidence": "Meeting transcript from the 'APEX-CLIN Trial Protocol & Genomic Pipeline Alignment' meeting on 2026-09-23."
+          },
+          {
+            "title": "Clinical Investigator Dossier Update",
+            "description": "Update the clinical investigator dossier to reflect changes in the FDA 21 CFR Part 11 compliance and clinical investigator dossier.",
+            "suggestedDueDate": "2026-10-25",
+            "priority": "low",
+            "source": "document",
+            "sourceEvidence": "Document 'APEX-CLIN_Architecture_Spec_v1.0_FINAL.docx' from the project workspace."
+          }
+        ],
+        "reportFile": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Apex HealthTech - Clinical Stratification\\audit_reports\\Deliverable_Audit_2026-09-29_22-03-49.md",
+        "reportFilename": "Deliverable_Audit_2026-09-29_22-03-49.md",
+        "latestReportPath": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Apex HealthTech - Clinical Stratification\\audit_reports\\latest_audit_report.md",
+        "markdownReport": "# Coordin8 AI Deliverable & Progress Audit Report\n\n- **Project:** Apex HealthTech - Clinical Stratification\n- **Code:** APEX-CLIN\n- **Type:** CLIENT (Apex Therapeutics & Genomics)\n- **Audit Timestamp:** 2026-09-29 22:03:49\n- **Overall Completion:** 75%\n- **Project Health:** ON_TRACK\n\n## Problem Statement & Strategic Objective\n> Build an automated genomic biomarker cohort stratification platform for Oncology Phase II clinical trials. Ingest somatic variant call formats (VCF), EHR clinical records, and Kaplan-Meier survival data to match qualifying patient cohorts against FDA trial inclusion protocols, accelerating trial patient recruitment by 60%.\n\n## Executive Status Briefing\nThe project is progressing well, with several deliverables completed or in progress. However, some client requests and commitments remain unlogged, and the project team should prioritize these to ensure timely completion.\n\n## Evidence-Anchored Deliverable Evaluations\n\n### Clinical Investigator Deck & Adverse Event Risk Workbook\n- **Current Status:** `pending` (0% progress)\n- **Due Date:** 2026-10-21\n- **Owner:** Team\n- **Provenance / Source:** email (Client email from Dr. Srinivasan S confirming the acceptance of the clinical investigator deck and adverse event risk workbook by the internal review board.)\n- **AI Evidence Assessment:** No evidence of completion or progress exists in the indexed files, meeting minutes, or emails.\n- **Evidence Files Cited:** None\n- **Identified Blockers:** Awaiting client feedback and approval for the clinical investigator deck and adverse event risk workbook.\n\n### Companion Diagnostic Validation Protocol & FDA Brief\n- **Current Status:** `pending` (0% progress)\n- **Due Date:** 2026-10-15\n- **Owner:** Team\n- **Provenance / Source:** email (Client email from Dr. Srinivasan S requesting the addition of the companion diagnostic validation protocol to the tracked deliverables list.)\n- **AI Evidence Assessment:** No evidence of completion or progress exists in the indexed files, meeting minutes, or emails.\n- **Evidence Files Cited:** None\n- **Identified Blockers:** Awaiting client request for the companion diagnostic validation protocol and FDA brief.\n\n### FDA 21 CFR Part 11 Compliance & Clinical Investigator Dossier\n- **Current Status:** `in_progress` (70% progress)\n- **Due Date:** 2026-10-21\n- **Owner:** Regulatory Compliance Specialist\n- **Provenance / Source:** client_sow (Statement of Work signed with Apex Therapeutics & Genomics)\n- **AI Evidence Assessment:** The project team has completed 70% of the FDA 21 CFR Part 11 compliance and clinical investigator dossier, as evidenced by the 'APEX-CLIN_Model_Validation_Audit_Report_FINAL.pdf' file.\n- **Evidence Files Cited:** APEX-CLIN_Model_Validation_Audit_Report_FINAL.pdf\n- **Identified Blockers:** Awaiting completion of the remaining 30% of the dossier.\n\n### Patient Cohort Adverse Event & Dosage Risk Workbook\n- **Current Status:** `completed` (100% progress)\n- **Due Date:** 2026-10-15\n- **Owner:** Clinical Data Scientist\n- **Provenance / Source:** client_sow (Statement of Work signed with Apex Therapeutics & Genomics)\n- **AI Evidence Assessment:** The project team has completed the patient cohort adverse event and dosage risk workbook, as evidenced by the 'del_apex_2.xlsx' file.\n- **Evidence Files Cited:** del_apex_2.xlsx\n- **Identified Blockers:** None.\n\n### Biomarker Inclusion Protocol & Variant Stratification Pipeline\n- **Current Status:** `completed` (100% progress)\n- **Due Date:** 2026-10-09\n- **Owner:** Coordin8 Bioinformatics Lead\n- **Provenance / Source:** client_sow (Statement of Work signed with Apex Therapeutics & Genomics)\n- **AI Evidence Assessment:** The project team has completed the biomarker inclusion protocol and variant stratification pipeline, as evidenced by the 'del_apex_1.xlsx' file.\n- **Evidence Files Cited:** del_apex_1.xlsx\n- **Identified Blockers:** None.\n\n## Candidate Deliverables Discovered from Communications & Transcripts\n\n- **Companion Diagnostic Validation Protocol & FDA Brief** (Priority: `high`, Due: `2026-10-15`)\n  - Scope: Develop a companion diagnostic validation protocol and FDA brief to support the clinical trial.\n  - Origin Citation: Client email from Dr. Srinivasan S requesting the companion diagnostic validation protocol and FDA brief.\n\n- **Patient Cohort Adverse Event & Dosage Risk Workbook Update** (Priority: `medium`, Due: `2026-10-22`)\n  - Scope: Update the patient cohort adverse event and dosage risk workbook to reflect changes in the clinical trial protocol.\n  - Origin Citation: Meeting transcript from the 'APEX-CLIN Trial Protocol & Genomic Pipeline Alignment' meeting on 2026-09-23.\n\n- **Clinical Investigator Dossier Update** (Priority: `low`, Due: `2026-10-25`)\n  - Scope: Update the clinical investigator dossier to reflect changes in the FDA 21 CFR Part 11 compliance and clinical investigator dossier.\n  - Origin Citation: Document 'APEX-CLIN_Architecture_Spec_v1.0_FINAL.docx' from the project workspace.\n\n## Ingested Artifacts Evaluated\n- **Documents (10):** , , , , , , , , , \n- **Meetings (1):** APEX-CLIN Trial Protocol & Genomic Pipeline Alignment\n- **Emails (3):** Stratification Protocol Approved for IRB Submission, Request: Add Companion Diagnostic Validation Protocol for FDA submission, Apex Phase II Trial Patient Stratification - Clinical Protocol Spec\n\n---\n*Generated autonomously by Coordin8 AI Deliverables Auditor*"
+      },
+      "ingested_count": 0
+    },
+    "proj_nexus_logistics_autonomous_fleet_telematics": {
+      "project_id": "proj_nexus_logistics_autonomous_fleet_telematics",
+      "name": "Nexus Logistics - Autonomous Fleet Telematics",
+      "code": "NEX-ROUTE",
+      "description": "Engineer an edge-to-cloud fleet telematics ingestion engine and real-time dynamic route optimizer for 1,200 heavy-duty d",
+      "category": "Autonomous IoT",
+      "color": "#10b981",
+      "folder_path": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Nexus Logistics - Autonomous Fleet Telematics",
+      "kb_id": "kb_nexus_logistics_autonomous_fleet_telematics",
+      "creation_mode": "scratch",
+      "created_at": "2026-09-29T21:52:20.609979",
+      "progress": 65,
+      "project_type": "client",
+      "client_name": "Nexus Supply Chain Global",
+      "client_email": "ssrini2002@gmail.com",
+      "problem_statement": "Engineer an edge-to-cloud fleet telematics ingestion engine and real-time dynamic route optimizer for 1,200 heavy-duty delivery vehicles. Minimize empty-haul miles by 24%, dynamically balance battery state-of-charge (SoC) for Class 8 electric trucks, and provide automated rerouting around municipal congestion zones.",
+      "overall_context": "Executive sponsorship by Srinath S, VP of Global Logistics. Target delivery timeline Q4 2026.",
+      "meetings": [
+        {
+          "id": "gcal_nex_kickoff_01",
+          "title": "NEX-ROUTE Telematics Telemetry Ingestion Architecture",
+          "startTime": "2026-09-22T15:00:00+05:30",
+          "endTime": "2026-09-22T16:00:00+05:30",
+          "duration": "60 min",
+          "platform": "Google Meet",
+          "meetUrl": "https://meet.google.com/nex-route-kick",
+          "attendees": [
+            "ssrini2002@gmail.com",
+            "pfbotbeta@gmail.com"
+          ],
+          "agenda": "Review CAN-bus edge streaming latency, battery telemetry ingestion, and geo-fence constraints.",
+          "prepDoc": "gcal_nex_kickoff_01_transcript.txt",
+          "status": "confirmed",
+          "isGcal": true,
+          "gcalId": null,
+          "htmlLink": null,
+          "projectId": "proj_nexus_logistics_autonomous_fleet_telematics",
+          "projectName": "Nexus Logistics - Autonomous Fleet Telematics",
+          "projectColor": "#10b981",
+          "hasTranscript": true,
+          "transcriptFile": "gcal_nex_kickoff_01_transcript.txt",
+          "transcriptPath": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Nexus Logistics - Autonomous Fleet Telematics\\transcripts\\gcal_nex_kickoff_01_transcript.txt",
+          "transcriptDocId": "doc_2af0ee4b4079"
+        }
+      ],
+      "deliverables": [
+        {
+          "id": "del_1790699240960",
+          "title": "Nexus Fleet Optimization - Telematics API Specs & Sensor Topology",
+          "description": "CAN-bus telemetry schemas for Peterbilt and Freightliner EV tractors.",
+          "dueDate": "2026-10-10",
+          "status": "pending",
+          "priority": "medium",
+          "progress": 0,
+          "owner": "Team",
+          "source": "email",
+          "sourceEvidence": "Email from Srinath S (2026-09-20T21:50:54.520643Z) mentioning the upload of CAN-bus telemetry schemas.",
+          "evidenceFiles": [],
+          "aiAudit": {
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "No evidence of completion or progress exists in the indexed files, meeting minutes, or emails.",
+            "evidenceFiles": [],
+            "blockers": "No blockers or missing pieces identified.",
+            "evaluatedAt": "2026-09-29T22:03:58.981297"
+          }
+        },
+        {
+          "id": "del_1790699240956",
+          "title": "Cold-Chain Refrigerated Cargo Telemetry & Automated Fallback",
+          "description": "Automated fallback system for refrigerated cargo in case of sensor failure or network outage.",
+          "dueDate": "2026-10-22",
+          "status": "pending",
+          "priority": "high",
+          "progress": 0,
+          "owner": "Team",
+          "source": "email",
+          "sourceEvidence": "Email from Srinath S (2026-09-27T21:50:54.520645Z) requesting the addition of this deliverable milestone.",
+          "evidenceFiles": [],
+          "aiAudit": {
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "No evidence of completion or progress exists in the indexed files, meeting minutes, or emails.",
+            "evidenceFiles": [],
+            "blockers": "No blockers or missing pieces identified.",
+            "evaluatedAt": "2026-09-29T22:03:58.981302"
+          }
+        },
+        {
+          "id": "del_nex_3",
+          "title": "Real-Time Geo-Fence Dynamic Dispatch Engine",
+          "dueDate": "2026-10-27",
+          "status": "in_progress",
+          "priority": "medium",
+          "progress": 80,
+          "owner": "Optimization Specialist",
+          "description": "Low-latency dispatch algorithm optimizing route assignment with dynamic geofence congestion bypass.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with Nexus Supply Chain Global",
+          "aiAudit": {
+            "estimatedProgress": 80,
+            "recommendedStatus": "in_progress",
+            "evidence": "The meeting transcript 'NEX-ROUTE Telematics Telemetry Ingestion Architecture' (2026-09-22T15:00:00+05:30) mentions the review of the low-latency dispatch algorithm.",
+            "evidenceFiles": [
+              "gcal_nex_kickoff_01_transcript.txt"
+            ],
+            "blockers": "No blockers or missing pieces identified.",
+            "evaluatedAt": "2026-09-29T22:03:58.981305"
+          }
+        },
+        {
+          "id": "del_nex_2",
+          "title": "Fleet Fuel Economy & EV Battery Degradation Simulation Matrix",
+          "dueDate": "2026-10-19",
+          "status": "completed",
+          "priority": "high",
+          "progress": 100,
+          "owner": "Fleet Analytics Engineer",
+          "description": "Simulation workbook calculating kWh/mile consumption, charge cycle degradation, and diesel-to-EV fuel savings.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with Nexus Supply Chain Global",
+          "tasks": [
+            {
+              "title": "Define Fleet Fuel Economy & EV Battery Degradation Simulation Matrix Requirements",
+              "description": "Document the simulation workbook's requirements, including kWh/mile consumption, charge cycle degradation, and diesel-to-EV fuel savings. Identify key performance indicators (KPIs) and data sources.",
+              "targetArtifact": "NEX-ROUTE_Fleet_Simulation_Requirements.docx",
+              "artifactType": "docx",
+              "priority": "high",
+              "estimatedHours": 8,
+              "assignedTo": "Senior Technical Project Manager",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790698952530_1",
+              "deliverableId": "del_nex_2",
+              "createdAt": "2026-09-29T21:52:32.530406"
+            },
+            {
+              "title": "Develop Fleet Fuel Economy Simulation Model",
+              "description": "Create an Excel-based simulation model to calculate kWh/mile consumption for heavy-duty delivery vehicles. Integrate data from vehicle manufacturers and industry reports.",
+              "targetArtifact": "NEX-ROUTE_Fleet_Fuel_Economy_Model.xlsx",
+              "artifactType": "xlsx",
+              "priority": "high",
+              "estimatedHours": 24,
+              "assignedTo": "Senior Data Analyst",
+              "status": "in_progress",
+              "stage": "review_iteration",
+              "id": "tsk_1790698952530_2",
+              "deliverableId": "del_nex_2",
+              "createdAt": "2026-09-29T21:52:32.530413"
+            },
+            {
+              "title": "Design EV Battery Degradation Simulation Model",
+              "description": "Develop an Excel-based simulation model to calculate charge cycle degradation for Class 8 electric trucks. Integrate data from battery manufacturers and industry reports.",
+              "targetArtifact": "NEX-ROUTE_EV_Battery_Degradation_Model.xlsx",
+              "artifactType": "xlsx",
+              "priority": "medium",
+              "estimatedHours": 16,
+              "assignedTo": "Senior Data Analyst",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790698952530_3",
+              "deliverableId": "del_nex_2",
+              "createdAt": "2026-09-29T21:52:32.530416"
+            },
+            {
+              "title": "Create Diesel-to-EV Fuel Savings Simulation Model",
+              "description": "Develop an Excel-based simulation model to calculate diesel-to-EV fuel savings for heavy-duty delivery vehicles. Integrate data from vehicle manufacturers and industry reports.",
+              "targetArtifact": "NEX-ROUTE_Diesel_to_EV_Fuel_Savings_Model.xlsx",
+              "artifactType": "xlsx",
+              "priority": "high",
+              "estimatedHours": 20,
+              "assignedTo": "Senior Data Analyst",
+              "status": "in_progress",
+              "stage": "review_iteration",
+              "id": "tsk_1790698952530_4",
+              "deliverableId": "del_nex_2",
+              "createdAt": "2026-09-29T21:52:32.530417"
+            },
+            {
+              "title": "Develop Fleet Fuel Economy & EV Battery Degradation Simulation Workbook",
+              "description": "Integrate the simulation models into a comprehensive Excel-based workbook. Include data visualization and KPI tracking.",
+              "targetArtifact": "NEX-ROUTE_Fleet_Simulation_Workbook.xlsx",
+              "artifactType": "xlsx",
+              "priority": "high",
+              "estimatedHours": 32,
+              "assignedTo": "Senior Data Analyst",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790698952530_5",
+              "deliverableId": "del_nex_2",
+              "createdAt": "2026-09-29T21:52:32.530420"
+            }
+          ],
+          "aiAudit": {
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The XLSX document 'NEX-ROUTE_Portfolio_Stress_Test_v1.0_FINAL' contains the simulation workbook.",
+            "evidenceFiles": [
+              "NEX-ROUTE_Portfolio_Stress_Test_v1.0_FINAL.xlsx"
+            ],
+            "blockers": "No blockers or missing pieces identified.",
+            "evaluatedAt": "2026-09-29T22:03:58.981308"
+          }
+        },
+        {
+          "id": "del_nex_1",
+          "title": "Telematics Streaming Architecture & Kalman State Estimation Spec",
+          "dueDate": "2026-10-13",
+          "status": "completed",
+          "priority": "high",
+          "progress": 100,
+          "owner": "Coordin8 IoT Architect",
+          "description": "High-throughput CAN-bus & MQTT edge telemetry ingestion specification with vehicle state Kalman filtering.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with Nexus Supply Chain Global",
+          "aiAudit": {
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The DOCX document 'NEX-ROUTE_Architecture_Spec_v1.0_FINAL' contains the high-throughput CAN-bus & MQTT edge telemetry ingestion specification.",
+            "evidenceFiles": [
+              "NEX-ROUTE_Architecture_Spec_v1.0_FINAL.docx"
+            ],
+            "blockers": "No blockers or missing pieces identified.",
+            "evaluatedAt": "2026-09-29T22:03:58.981311"
+          }
+        }
+      ],
+      "discovered_deliverables": [
+        {
+          "title": "Nexus Fleet Fuel Savings & EV Battery Degradation Analysis",
+          "description": "Analysis of fleet fuel savings and EV battery degradation to optimize fleet operations.",
+          "suggestedDueDate": "2026-10-20",
+          "priority": "high",
+          "source": "email",
+          "sourceEvidence": "Client email from Srinath S requesting analysis of fleet fuel savings and EV battery degradation."
+        },
+        {
+          "title": "Cold-Chain Refrigerated Cargo Telemetry & Automated Fallback",
+          "description": "Automated fallback system for refrigerated cargo in case of sensor failure or network outage.",
+          "suggestedDueDate": "2026-10-22",
+          "priority": "high",
+          "source": "email",
+          "sourceEvidence": "Client email from Srinath S requesting automated fallback system for refrigerated cargo."
+        },
+        {
+          "title": "Nexus Fleet Optimization - Telematics API Specs & Sensor Topology",
+          "description": "CAN-bus telemetry schemas for Peterbilt and Freightliner EV tractors.",
+          "suggestedDueDate": "2026-10-10",
+          "priority": "medium",
+          "source": "email",
+          "sourceEvidence": "Client email from Srinath S requesting CAN-bus telemetry schemas for Peterbilt and Freightliner EV tractors."
+        }
+      ],
+      "ai_analysis": {
+        "lastAnalyzedAt": "2026-09-29T22:03:58.981273",
+        "overallCompletion": 65,
+        "health": "on_track",
+        "executiveSummary": "The project is progressing well, with several deliverables completed and in progress. However, some deliverables are pending, and additional unlogged deliverables have been identified.",
+        "deliverableAudits": [
+          {
+            "id": "del_1790699240960",
+            "title": "Nexus Fleet Optimization - Telematics API Specs & Sensor Topology",
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "No evidence of completion or progress exists in the indexed files, meeting minutes, or emails.",
+            "evidenceFiles": [],
+            "blockers": "No blockers or missing pieces identified."
+          },
+          {
+            "id": "del_1790699240956",
+            "title": "Cold-Chain Refrigerated Cargo Telemetry & Automated Fallback",
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "No evidence of completion or progress exists in the indexed files, meeting minutes, or emails.",
+            "evidenceFiles": [],
+            "blockers": "No blockers or missing pieces identified."
+          },
+          {
+            "id": "del_nex_3",
+            "title": "Real-Time Geo-Fence Dynamic Dispatch Engine",
+            "estimatedProgress": 80,
+            "recommendedStatus": "in_progress",
+            "evidence": "The meeting transcript 'NEX-ROUTE Telematics Telemetry Ingestion Architecture' (2026-09-22T15:00:00+05:30) mentions the review of the low-latency dispatch algorithm.",
+            "evidenceFiles": [
+              "gcal_nex_kickoff_01_transcript.txt"
+            ],
+            "blockers": "No blockers or missing pieces identified."
+          },
+          {
+            "id": "del_nex_2",
+            "title": "Fleet Fuel Economy & EV Battery Degradation Simulation Matrix",
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The XLSX document 'NEX-ROUTE_Portfolio_Stress_Test_v1.0_FINAL' contains the simulation workbook.",
+            "evidenceFiles": [
+              "NEX-ROUTE_Portfolio_Stress_Test_v1.0_FINAL.xlsx"
+            ],
+            "blockers": "No blockers or missing pieces identified."
+          },
+          {
+            "id": "del_nex_1",
+            "title": "Telematics Streaming Architecture & Kalman State Estimation Spec",
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The DOCX document 'NEX-ROUTE_Architecture_Spec_v1.0_FINAL' contains the high-throughput CAN-bus & MQTT edge telemetry ingestion specification.",
+            "evidenceFiles": [
+              "NEX-ROUTE_Architecture_Spec_v1.0_FINAL.docx"
+            ],
+            "blockers": "No blockers or missing pieces identified."
+          }
+        ],
+        "discoveredDeliverables": [
+          {
+            "title": "Nexus Fleet Fuel Savings & EV Battery Degradation Analysis",
+            "description": "Analysis of fleet fuel savings and EV battery degradation to optimize fleet operations.",
+            "suggestedDueDate": "2026-10-20",
+            "priority": "high",
+            "source": "email",
+            "sourceEvidence": "Client email from Srinath S requesting analysis of fleet fuel savings and EV battery degradation."
+          },
+          {
+            "title": "Cold-Chain Refrigerated Cargo Telemetry & Automated Fallback",
+            "description": "Automated fallback system for refrigerated cargo in case of sensor failure or network outage.",
+            "suggestedDueDate": "2026-10-22",
+            "priority": "high",
+            "source": "email",
+            "sourceEvidence": "Client email from Srinath S requesting automated fallback system for refrigerated cargo."
+          },
+          {
+            "title": "Nexus Fleet Optimization - Telematics API Specs & Sensor Topology",
+            "description": "CAN-bus telemetry schemas for Peterbilt and Freightliner EV tractors.",
+            "suggestedDueDate": "2026-10-10",
+            "priority": "medium",
+            "source": "email",
+            "sourceEvidence": "Client email from Srinath S requesting CAN-bus telemetry schemas for Peterbilt and Freightliner EV tractors."
+          }
+        ],
+        "reportFile": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Nexus Logistics - Autonomous Fleet Telematics\\audit_reports\\Deliverable_Audit_2026-09-29_22-03-58.md",
+        "reportFilename": "Deliverable_Audit_2026-09-29_22-03-58.md",
+        "latestReportPath": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\Nexus Logistics - Autonomous Fleet Telematics\\audit_reports\\latest_audit_report.md",
+        "markdownReport": "# Coordin8 AI Deliverable & Progress Audit Report\n\n- **Project:** Nexus Logistics - Autonomous Fleet Telematics\n- **Code:** NEX-ROUTE\n- **Type:** CLIENT (Nexus Supply Chain Global)\n- **Audit Timestamp:** 2026-09-29 22:03:58\n- **Overall Completion:** 65%\n- **Project Health:** ON_TRACK\n\n## Problem Statement & Strategic Objective\n> Engineer an edge-to-cloud fleet telematics ingestion engine and real-time dynamic route optimizer for 1,200 heavy-duty delivery vehicles. Minimize empty-haul miles by 24%, dynamically balance battery state-of-charge (SoC) for Class 8 electric trucks, and provide automated rerouting around municipal congestion zones.\n\n## Executive Status Briefing\nThe project is progressing well, with several deliverables completed and in progress. However, some deliverables are pending, and additional unlogged deliverables have been identified.\n\n## Evidence-Anchored Deliverable Evaluations\n\n### Nexus Fleet Optimization - Telematics API Specs & Sensor Topology\n- **Current Status:** `pending` (0% progress)\n- **Due Date:** 2026-10-10\n- **Owner:** Team\n- **Provenance / Source:** email (Email from Srinath S (2026-09-20T21:50:54.520643Z) mentioning the upload of CAN-bus telemetry schemas.)\n- **AI Evidence Assessment:** No evidence of completion or progress exists in the indexed files, meeting minutes, or emails.\n- **Evidence Files Cited:** None\n- **Identified Blockers:** No blockers or missing pieces identified.\n\n### Cold-Chain Refrigerated Cargo Telemetry & Automated Fallback\n- **Current Status:** `pending` (0% progress)\n- **Due Date:** 2026-10-22\n- **Owner:** Team\n- **Provenance / Source:** email (Email from Srinath S (2026-09-27T21:50:54.520645Z) requesting the addition of this deliverable milestone.)\n- **AI Evidence Assessment:** No evidence of completion or progress exists in the indexed files, meeting minutes, or emails.\n- **Evidence Files Cited:** None\n- **Identified Blockers:** No blockers or missing pieces identified.\n\n### Real-Time Geo-Fence Dynamic Dispatch Engine\n- **Current Status:** `in_progress` (80% progress)\n- **Due Date:** 2026-10-27\n- **Owner:** Optimization Specialist\n- **Provenance / Source:** client_sow (Statement of Work signed with Nexus Supply Chain Global)\n- **AI Evidence Assessment:** The meeting transcript 'NEX-ROUTE Telematics Telemetry Ingestion Architecture' (2026-09-22T15:00:00+05:30) mentions the review of the low-latency dispatch algorithm.\n- **Evidence Files Cited:** gcal_nex_kickoff_01_transcript.txt\n- **Identified Blockers:** No blockers or missing pieces identified.\n\n### Fleet Fuel Economy & EV Battery Degradation Simulation Matrix\n- **Current Status:** `completed` (100% progress)\n- **Due Date:** 2026-10-19\n- **Owner:** Fleet Analytics Engineer\n- **Provenance / Source:** client_sow (Statement of Work signed with Nexus Supply Chain Global)\n- **AI Evidence Assessment:** The XLSX document 'NEX-ROUTE_Portfolio_Stress_Test_v1.0_FINAL' contains the simulation workbook.\n- **Evidence Files Cited:** NEX-ROUTE_Portfolio_Stress_Test_v1.0_FINAL.xlsx\n- **Identified Blockers:** No blockers or missing pieces identified.\n\n### Telematics Streaming Architecture & Kalman State Estimation Spec\n- **Current Status:** `completed` (100% progress)\n- **Due Date:** 2026-10-13\n- **Owner:** Coordin8 IoT Architect\n- **Provenance / Source:** client_sow (Statement of Work signed with Nexus Supply Chain Global)\n- **AI Evidence Assessment:** The DOCX document 'NEX-ROUTE_Architecture_Spec_v1.0_FINAL' contains the high-throughput CAN-bus & MQTT edge telemetry ingestion specification.\n- **Evidence Files Cited:** NEX-ROUTE_Architecture_Spec_v1.0_FINAL.docx\n- **Identified Blockers:** No blockers or missing pieces identified.\n\n## Candidate Deliverables Discovered from Communications & Transcripts\n\n- **Nexus Fleet Fuel Savings & EV Battery Degradation Analysis** (Priority: `high`, Due: `2026-10-20`)\n  - Scope: Analysis of fleet fuel savings and EV battery degradation to optimize fleet operations.\n  - Origin Citation: Client email from Srinath S requesting analysis of fleet fuel savings and EV battery degradation.\n\n- **Cold-Chain Refrigerated Cargo Telemetry & Automated Fallback** (Priority: `high`, Due: `2026-10-22`)\n  - Scope: Automated fallback system for refrigerated cargo in case of sensor failure or network outage.\n  - Origin Citation: Client email from Srinath S requesting automated fallback system for refrigerated cargo.\n\n- **Nexus Fleet Optimization - Telematics API Specs & Sensor Topology** (Priority: `medium`, Due: `2026-10-10`)\n  - Scope: CAN-bus telemetry schemas for Peterbilt and Freightliner EV tractors.\n  - Origin Citation: Client email from Srinath S requesting CAN-bus telemetry schemas for Peterbilt and Freightliner EV tractors.\n\n## Ingested Artifacts Evaluated\n- **Documents (10):** , , , , , , , , , \n- **Meetings (1):** NEX-ROUTE Telematics Telemetry Ingestion Architecture\n- **Emails (3):** Pilot Dispatch Results Approved for Regional Rollout, Critical Add: Cold-Chain Sensor Telemetry and Spoiled Goods Fallback, Nexus Fleet Optimization - Telematics API Specs & Sensor Topology\n\n---\n*Generated autonomously by Coordin8 AI Deliverables Auditor*"
+      },
+      "ingested_count": 0
+    },
+    "proj_cybershield_defense_fedramp_zero_trust": {
+      "project_id": "proj_cybershield_defense_fedramp_zero_trust",
+      "name": "CyberShield Defense - FedRAMP Zero Trust",
+      "code": "CS-FEDRAMP",
+      "description": "Architect, harden, and audit an enterprise multi-region Kubernetes infrastructure to achieve FedRAMP Moderate Authorizat",
+      "category": "Cloud Security",
+      "color": "#f59e0b",
+      "folder_path": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\CyberShield Defense - FedRAMP Zero Trust",
+      "kb_id": "kb_cybershield_defense_fedramp_zero_trust",
+      "creation_mode": "scratch",
+      "created_at": "2026-09-29T21:52:37.916866",
+      "progress": 65,
+      "project_type": "client",
+      "client_name": "CyberShield Federal Technologies",
+      "client_email": "ssrini2002@gmail.com",
+      "problem_statement": "Architect, harden, and audit an enterprise multi-region Kubernetes infrastructure to achieve FedRAMP Moderate Authorization to Operate (ATO). Implement NIST 800-53 Rev 5 zero-trust microsegmentation, mTLS service mesh, continuous vulnerability scanning, and cryptographic HSM key rotation.",
+      "overall_context": "Executive sponsorship by Srinath S, Chief Information Security Officer. Target delivery timeline Q4 2026.",
+      "meetings": [
+        {
+          "id": "gcal_cs_kickoff_01",
+          "title": "CS-FEDRAMP System Security Plan & Boundary Scoping",
+          "startTime": "2026-09-21T13:00:00+05:30",
+          "endTime": "2026-09-21T14:00:00+05:30",
+          "duration": "60 min",
+          "platform": "Google Meet",
+          "meetUrl": "https://meet.google.com/cs-fed-kick",
+          "attendees": [
+            "ssrini2002@gmail.com",
+            "pfbotbeta@gmail.com"
+          ],
+          "agenda": "Review FedRAMP authorization boundary, zero-trust mTLS mesh, and NIST 800-53 control mappings.",
+          "prepDoc": "gcal_cs_kickoff_01_transcript.txt",
+          "status": "confirmed",
+          "isGcal": true,
+          "gcalId": null,
+          "htmlLink": null,
+          "projectId": "proj_cybershield_defense_fedramp_zero_trust",
+          "projectName": "CyberShield Defense - FedRAMP Zero Trust",
+          "projectColor": "#f59e0b",
+          "hasTranscript": true,
+          "transcriptFile": "gcal_cs_kickoff_01_transcript.txt",
+          "transcriptPath": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\CyberShield Defense - FedRAMP Zero Trust\\transcripts\\gcal_cs_kickoff_01_transcript.txt",
+          "transcriptDocId": "doc_2cf180457083"
+        }
+      ],
+      "deliverables": [
+        {
+          "id": "del_1790699291737",
+          "title": "FedRAMP Moderate Certification Scope & 3PAO Audit Schedule",
+          "description": "Develop a comprehensive scope for FedRAMP Moderate certification and schedule the 3PAO audit to ensure compliance with the certification requirements.",
+          "dueDate": "2026-10-15",
+          "status": "pending",
+          "priority": "high",
+          "progress": 0,
+          "owner": "Team",
+          "source": "email",
+          "sourceEvidence": "Client email from Srinath S (2026-09-19T21:50:54.520669Z) requesting the development of a comprehensive scope for FedRAMP Moderate certification and scheduling the 3PAO audit.",
+          "evidenceFiles": [],
+          "aiAudit": {
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "Email from Srinath S on 2026-09-19T21:50:54.520669Z requesting FedRAMP Moderate certification scope and 3PAO audit schedule.",
+            "evidenceFiles": [],
+            "blockers": "Deliverable requires completion of System Security Plan and NIST control matrices.",
+            "evaluatedAt": "2026-09-29T22:04:29.152092"
+          }
+        },
+        {
+          "id": "del_1790699291732",
+          "title": "Third-Party Penetration Testing Remediation Plan & Vulnerability Audit",
+          "description": "Develop a comprehensive plan for third-party penetration testing remediation and vulnerability audit to ensure compliance with FedRAMP Moderate certification.",
+          "dueDate": "2026-10-15",
+          "status": "pending",
+          "priority": "high",
+          "progress": 0,
+          "owner": "Team",
+          "source": "email",
+          "sourceEvidence": "Client email from Srinath S (2026-09-26T21:50:54.520672Z) requesting the development of a third-party penetration testing remediation plan and vulnerability audit.",
+          "evidenceFiles": [],
+          "aiAudit": {
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "Email from Srinath S on 2026-09-26T21:50:54.520672Z requesting Third-Party Penetration Testing Remediation Plan & Vulnerability Audit.",
+            "evidenceFiles": [],
+            "blockers": "Deliverable requires completion of penetration testing remediation plan and vulnerability audit.",
+            "evaluatedAt": "2026-09-29T22:04:29.152098"
+          }
+        },
+        {
+          "id": "del_cs_3",
+          "title": "Automated Infrastructure-as-Code Terraform Security Hardening",
+          "dueDate": "2026-10-29",
+          "status": "in_progress",
+          "priority": "high",
+          "progress": 75,
+          "owner": "DevSecOps Specialist",
+          "description": "Production Terraform modules implementing automated CIS benchmark hardening and zero-trust service mesh.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with CyberShield Federal Technologies",
+          "tasks": [
+            {
+              "title": "Task 1: CIS Benchmark Hardening Requirements Documentation",
+              "description": "Research and document CIS benchmark requirements for Terraform modules, including configuration and compliance standards. Create a comprehensive document outlining the hardening requirements for the Kubernetes infrastructure.",
+              "targetArtifact": "CIS_Benchmark_Hardening_Requirements.docx",
+              "artifactType": "docx",
+              "priority": "high",
+              "estimatedHours": 8,
+              "assignedTo": "Senior Security Consultant",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790699045141_1",
+              "deliverableId": "del_cs_3",
+              "createdAt": "2026-09-29T21:54:05.141127"
+            },
+            {
+              "title": "Task 2: Terraform Module Design and Implementation",
+              "description": "Design and implement Terraform modules for CIS benchmark hardening, including configuration management, network segmentation, and identity and access management. Ensure modules are modular, reusable, and follow best practices.",
+              "targetArtifact": "Terraform_Module_Design.pdf",
+              "artifactType": "pdf",
+              "priority": "high",
+              "estimatedHours": 24,
+              "assignedTo": "Senior DevOps Engineer",
+              "status": "in_progress",
+              "stage": "review_iteration",
+              "id": "tsk_1790699045141_2",
+              "deliverableId": "del_cs_3",
+              "createdAt": "2026-09-29T21:54:05.141136"
+            },
+            {
+              "title": "Task 3: Zero-Trust Service Mesh Design and Implementation",
+              "description": "Design and implement a zero-trust service mesh using mTLS, including configuration management, network segmentation, and identity and access management. Ensure the service mesh is integrated with the Terraform modules.",
+              "targetArtifact": "Zero_Trust_Service_Mesh_Design.png",
+              "artifactType": "png",
+              "priority": "high",
+              "estimatedHours": 20,
+              "assignedTo": "Senior Network Engineer",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790699045141_3",
+              "deliverableId": "del_cs_3",
+              "createdAt": "2026-09-29T21:54:05.141139"
+            },
+            {
+              "title": "Task 4: Automated Infrastructure-as-Code Terraform Configuration",
+              "description": "Create an automated Terraform configuration that integrates the CIS benchmark hardening modules and zero-trust service mesh. Ensure the configuration is modular, reusable, and follows best practices.",
+              "targetArtifact": "Automated_Terraform_Configuration.tf",
+              "artifactType": "tf",
+              "priority": "high",
+              "estimatedHours": 16,
+              "assignedTo": "Senior DevOps Engineer",
+              "status": "in_progress",
+              "stage": "review_iteration",
+              "id": "tsk_1790699045141_4",
+              "deliverableId": "del_cs_3",
+              "createdAt": "2026-09-29T21:54:05.141142"
+            },
+            {
+              "title": "Task 5: Security Hardening and Compliance Report",
+              "description": "Create a comprehensive report outlining the security hardening and compliance of the Kubernetes infrastructure, including CIS benchmark compliance and zero-trust service mesh configuration.",
+              "targetArtifact": "Security_Hardening_Report.pdf",
+              "artifactType": "pdf",
+              "priority": "medium",
+              "estimatedHours": 12,
+              "assignedTo": "Senior Security Consultant",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790699045141_5",
+              "deliverableId": "del_cs_3",
+              "createdAt": "2026-09-29T21:54:05.141145"
+            }
+          ],
+          "aiAudit": {
+            "estimatedProgress": 75,
+            "recommendedStatus": "in_progress",
+            "evidence": "Meeting transcript from CS-FEDRAMP System Security Plan & Boundary Scoping on 2026-09-21T13:00:00+05:30.",
+            "evidenceFiles": [
+              "CS-FEDRAMP_System_Architecture_Topology"
+            ],
+            "blockers": "Deliverable requires completion of Terraform modules implementing automated CIS benchmark hardening and zero-trust service mesh.",
+            "evaluatedAt": "2026-09-29T22:04:29.152102"
+          }
+        },
+        {
+          "id": "del_cs_2",
+          "title": "NIST SP 800-53 Rev 5 Control Implementation & Gap Matrix",
+          "dueDate": "2026-10-20",
+          "status": "completed",
+          "priority": "high",
+          "progress": 100,
+          "owner": "FedRAMP Assessor Lead",
+          "description": "Complete Excel matrix evaluating 325 FedRAMP Moderate controls with test procedures and evidence references.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with CyberShield Federal Technologies",
+          "aiAudit": {
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "Email from Srinath S on 2026-09-29T16:50:54.520676Z stating that the CISO steering deck and NIST 800-53 matrix have been approved by federal compliance officers.",
+            "evidenceFiles": [
+              "CS-FEDRAMP_Model_Validation_Audit_Report_FINAL"
+            ],
+            "blockers": "Deliverable is already completed.",
+            "evaluatedAt": "2026-09-29T22:04:29.152107"
+          }
+        },
+        {
+          "id": "del_cs_1",
+          "title": "System Security Plan (SSP) & Zero-Trust Boundary Specification",
+          "dueDate": "2026-10-14",
+          "status": "completed",
+          "priority": "high",
+          "progress": 100,
+          "owner": "Principal Security Architect",
+          "description": "Comprehensive 325-page equivalent FedRAMP System Security Plan defining authorization boundary and cryptographic controls.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with CyberShield Federal Technologies",
+          "aiAudit": {
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "Meeting transcript from CS-FEDRAMP System Security Plan & Boundary Scoping on 2026-09-21T13:00:00+05:30.",
+            "evidenceFiles": [
+              "gcal_cs_kickoff_01_transcript"
+            ],
+            "blockers": "Deliverable is already completed.",
+            "evaluatedAt": "2026-09-29T22:04:29.152111"
+          }
+        }
+      ],
+      "discovered_deliverables": [
+        {
+          "title": "Third-Party Penetration Testing Remediation Plan & Vulnerability Audit",
+          "description": "Develop a comprehensive plan for third-party penetration testing remediation and vulnerability audit to ensure compliance with FedRAMP Moderate certification.",
+          "suggestedDueDate": "2026-10-15",
+          "priority": "high",
+          "source": "email",
+          "sourceEvidence": "Email from Srinath S on 2026-09-26T21:50:54.520672Z requesting Third-Party Penetration Testing Remediation Plan & Vulnerability Audit."
+        },
+        {
+          "title": "FedRAMP Moderate Certification Scope & 3PAO Audit Schedule",
+          "description": "Develop a comprehensive scope for FedRAMP Moderate certification and schedule the 3PAO audit to ensure compliance with the certification requirements.",
+          "suggestedDueDate": "2026-10-15",
+          "priority": "high",
+          "source": "email",
+          "sourceEvidence": "Email from Srinath S on 2026-09-19T21:50:54.520669Z requesting FedRAMP Moderate certification scope and 3PAO audit schedule."
+        },
+        {
+          "title": "Automated Infrastructure-as-Code Terraform Security Hardening",
+          "description": "Production Terraform modules implementing automated CIS benchmark hardening and zero-trust service mesh.",
+          "suggestedDueDate": "2026-10-29",
+          "priority": "medium",
+          "source": "meeting_transcript",
+          "sourceEvidence": "Meeting transcript from CS-FEDRAMP System Security Plan & Boundary Scoping on 2026-09-21T13:00:00+05:30."
+        }
+      ],
+      "ai_analysis": {
+        "lastAnalyzedAt": "2026-09-29T22:04:29.152064",
+        "overallCompletion": 65,
+        "health": "on_track",
+        "executiveSummary": "The project is on track, with 65% completion. However, there are some deliverables that require further progress and some unlogged deliverables that need to be tracked.",
+        "deliverableAudits": [
+          {
+            "id": "del_1790699291737",
+            "title": "FedRAMP Moderate Certification Scope & 3PAO Audit Schedule",
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "Email from Srinath S on 2026-09-19T21:50:54.520669Z requesting FedRAMP Moderate certification scope and 3PAO audit schedule.",
+            "evidenceFiles": [],
+            "blockers": "Deliverable requires completion of System Security Plan and NIST control matrices."
+          },
+          {
+            "id": "del_1790699291732",
+            "title": "Third-Party Penetration Testing Remediation Plan & Vulnerability Audit",
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "Email from Srinath S on 2026-09-26T21:50:54.520672Z requesting Third-Party Penetration Testing Remediation Plan & Vulnerability Audit.",
+            "evidenceFiles": [],
+            "blockers": "Deliverable requires completion of penetration testing remediation plan and vulnerability audit."
+          },
+          {
+            "id": "del_cs_3",
+            "title": "Automated Infrastructure-as-Code Terraform Security Hardening",
+            "estimatedProgress": 75,
+            "recommendedStatus": "in_progress",
+            "evidence": "Meeting transcript from CS-FEDRAMP System Security Plan & Boundary Scoping on 2026-09-21T13:00:00+05:30.",
+            "evidenceFiles": [
+              "CS-FEDRAMP_System_Architecture_Topology"
+            ],
+            "blockers": "Deliverable requires completion of Terraform modules implementing automated CIS benchmark hardening and zero-trust service mesh."
+          },
+          {
+            "id": "del_cs_2",
+            "title": "NIST SP 800-53 Rev 5 Control Implementation & Gap Matrix",
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "Email from Srinath S on 2026-09-29T16:50:54.520676Z stating that the CISO steering deck and NIST 800-53 matrix have been approved by federal compliance officers.",
+            "evidenceFiles": [
+              "CS-FEDRAMP_Model_Validation_Audit_Report_FINAL"
+            ],
+            "blockers": "Deliverable is already completed."
+          },
+          {
+            "id": "del_cs_1",
+            "title": "System Security Plan (SSP) & Zero-Trust Boundary Specification",
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "Meeting transcript from CS-FEDRAMP System Security Plan & Boundary Scoping on 2026-09-21T13:00:00+05:30.",
+            "evidenceFiles": [
+              "gcal_cs_kickoff_01_transcript"
+            ],
+            "blockers": "Deliverable is already completed."
+          }
+        ],
+        "discoveredDeliverables": [
+          {
+            "title": "Third-Party Penetration Testing Remediation Plan & Vulnerability Audit",
+            "description": "Develop a comprehensive plan for third-party penetration testing remediation and vulnerability audit to ensure compliance with FedRAMP Moderate certification.",
+            "suggestedDueDate": "2026-10-15",
+            "priority": "high",
+            "source": "email",
+            "sourceEvidence": "Email from Srinath S on 2026-09-26T21:50:54.520672Z requesting Third-Party Penetration Testing Remediation Plan & Vulnerability Audit."
+          },
+          {
+            "title": "FedRAMP Moderate Certification Scope & 3PAO Audit Schedule",
+            "description": "Develop a comprehensive scope for FedRAMP Moderate certification and schedule the 3PAO audit to ensure compliance with the certification requirements.",
+            "suggestedDueDate": "2026-10-15",
+            "priority": "high",
+            "source": "email",
+            "sourceEvidence": "Email from Srinath S on 2026-09-19T21:50:54.520669Z requesting FedRAMP Moderate certification scope and 3PAO audit schedule."
+          },
+          {
+            "title": "Automated Infrastructure-as-Code Terraform Security Hardening",
+            "description": "Production Terraform modules implementing automated CIS benchmark hardening and zero-trust service mesh.",
+            "suggestedDueDate": "2026-10-29",
+            "priority": "medium",
+            "source": "meeting_transcript",
+            "sourceEvidence": "Meeting transcript from CS-FEDRAMP System Security Plan & Boundary Scoping on 2026-09-21T13:00:00+05:30."
+          }
+        ],
+        "reportFile": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\CyberShield Defense - FedRAMP Zero Trust\\audit_reports\\Deliverable_Audit_2026-09-29_22-04-29.md",
+        "reportFilename": "Deliverable_Audit_2026-09-29_22-04-29.md",
+        "latestReportPath": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\CyberShield Defense - FedRAMP Zero Trust\\audit_reports\\latest_audit_report.md",
+        "markdownReport": "# Coordin8 AI Deliverable & Progress Audit Report\n\n- **Project:** CyberShield Defense - FedRAMP Zero Trust\n- **Code:** CS-FEDRAMP\n- **Type:** CLIENT (CyberShield Federal Technologies)\n- **Audit Timestamp:** 2026-09-29 22:04:29\n- **Overall Completion:** 65%\n- **Project Health:** ON_TRACK\n\n## Problem Statement & Strategic Objective\n> Architect, harden, and audit an enterprise multi-region Kubernetes infrastructure to achieve FedRAMP Moderate Authorization to Operate (ATO). Implement NIST 800-53 Rev 5 zero-trust microsegmentation, mTLS service mesh, continuous vulnerability scanning, and cryptographic HSM key rotation.\n\n## Executive Status Briefing\nThe project is on track, with 65% completion. However, there are some deliverables that require further progress and some unlogged deliverables that need to be tracked.\n\n## Evidence-Anchored Deliverable Evaluations\n\n### FedRAMP Moderate Certification Scope & 3PAO Audit Schedule\n- **Current Status:** `pending` (0% progress)\n- **Due Date:** 2026-10-15\n- **Owner:** Team\n- **Provenance / Source:** email (Client email from Srinath S (2026-09-19T21:50:54.520669Z) requesting the development of a comprehensive scope for FedRAMP Moderate certification and scheduling the 3PAO audit.)\n- **AI Evidence Assessment:** Email from Srinath S on 2026-09-19T21:50:54.520669Z requesting FedRAMP Moderate certification scope and 3PAO audit schedule.\n- **Evidence Files Cited:** None\n- **Identified Blockers:** Deliverable requires completion of System Security Plan and NIST control matrices.\n\n### Third-Party Penetration Testing Remediation Plan & Vulnerability Audit\n- **Current Status:** `pending` (0% progress)\n- **Due Date:** 2026-10-15\n- **Owner:** Team\n- **Provenance / Source:** email (Client email from Srinath S (2026-09-26T21:50:54.520672Z) requesting the development of a third-party penetration testing remediation plan and vulnerability audit.)\n- **AI Evidence Assessment:** Email from Srinath S on 2026-09-26T21:50:54.520672Z requesting Third-Party Penetration Testing Remediation Plan & Vulnerability Audit.\n- **Evidence Files Cited:** None\n- **Identified Blockers:** Deliverable requires completion of penetration testing remediation plan and vulnerability audit.\n\n### Automated Infrastructure-as-Code Terraform Security Hardening\n- **Current Status:** `in_progress` (75% progress)\n- **Due Date:** 2026-10-29\n- **Owner:** DevSecOps Specialist\n- **Provenance / Source:** client_sow (Statement of Work signed with CyberShield Federal Technologies)\n- **AI Evidence Assessment:** Meeting transcript from CS-FEDRAMP System Security Plan & Boundary Scoping on 2026-09-21T13:00:00+05:30.\n- **Evidence Files Cited:** CS-FEDRAMP_System_Architecture_Topology\n- **Identified Blockers:** Deliverable requires completion of Terraform modules implementing automated CIS benchmark hardening and zero-trust service mesh.\n\n### NIST SP 800-53 Rev 5 Control Implementation & Gap Matrix\n- **Current Status:** `completed` (100% progress)\n- **Due Date:** 2026-10-20\n- **Owner:** FedRAMP Assessor Lead\n- **Provenance / Source:** client_sow (Statement of Work signed with CyberShield Federal Technologies)\n- **AI Evidence Assessment:** Email from Srinath S on 2026-09-29T16:50:54.520676Z stating that the CISO steering deck and NIST 800-53 matrix have been approved by federal compliance officers.\n- **Evidence Files Cited:** CS-FEDRAMP_Model_Validation_Audit_Report_FINAL\n- **Identified Blockers:** Deliverable is already completed.\n\n### System Security Plan (SSP) & Zero-Trust Boundary Specification\n- **Current Status:** `completed` (100% progress)\n- **Due Date:** 2026-10-14\n- **Owner:** Principal Security Architect\n- **Provenance / Source:** client_sow (Statement of Work signed with CyberShield Federal Technologies)\n- **AI Evidence Assessment:** Meeting transcript from CS-FEDRAMP System Security Plan & Boundary Scoping on 2026-09-21T13:00:00+05:30.\n- **Evidence Files Cited:** gcal_cs_kickoff_01_transcript\n- **Identified Blockers:** Deliverable is already completed.\n\n## Candidate Deliverables Discovered from Communications & Transcripts\n\n- **Third-Party Penetration Testing Remediation Plan & Vulnerability Audit** (Priority: `high`, Due: `2026-10-15`)\n  - Scope: Develop a comprehensive plan for third-party penetration testing remediation and vulnerability audit to ensure compliance with FedRAMP Moderate certification.\n  - Origin Citation: Email from Srinath S on 2026-09-26T21:50:54.520672Z requesting Third-Party Penetration Testing Remediation Plan & Vulnerability Audit.\n\n- **FedRAMP Moderate Certification Scope & 3PAO Audit Schedule** (Priority: `high`, Due: `2026-10-15`)\n  - Scope: Develop a comprehensive scope for FedRAMP Moderate certification and schedule the 3PAO audit to ensure compliance with the certification requirements.\n  - Origin Citation: Email from Srinath S on 2026-09-19T21:50:54.520669Z requesting FedRAMP Moderate certification scope and 3PAO audit schedule.\n\n- **Automated Infrastructure-as-Code Terraform Security Hardening** (Priority: `medium`, Due: `2026-10-29`)\n  - Scope: Production Terraform modules implementing automated CIS benchmark hardening and zero-trust service mesh.\n  - Origin Citation: Meeting transcript from CS-FEDRAMP System Security Plan & Boundary Scoping on 2026-09-21T13:00:00+05:30.\n\n## Ingested Artifacts Evaluated\n- **Documents (10):** , , , , , , , , , \n- **Meetings (1):** CS-FEDRAMP System Security Plan & Boundary Scoping\n- **Emails (3):** SSP and NIST Control Matrix Approved for FedRAMP Submission, Action Required: Third-Party Pen Test Remediation Roadmap needed for 3PAO, FedRAMP Moderate Certification Scope & 3PAO Audit Schedule\n\n---\n*Generated autonomously by Coordin8 AI Deliverables Auditor*"
+      },
+      "ingested_count": 0
+    },
+    "proj_omnicommerce_retail_visual_search_engine": {
+      "project_id": "proj_omnicommerce_retail_visual_search_engine",
+      "name": "OmniCommerce Retail - Visual Search Engine",
+      "code": "OMNI-VIS",
+      "description": "Develop a multimodal vector visual search and personalized recommendation system across 4.5 million apparel SKUs. Combin",
+      "category": "Computer Vision",
+      "color": "#ec4899",
+      "folder_path": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\OmniCommerce Retail - Visual Search Engine",
+      "kb_id": "kb_omnicommerce_retail_visual_search_engine",
+      "creation_mode": "scratch",
+      "created_at": "2026-09-29T21:54:05.196136",
+      "progress": 75,
+      "project_type": "client",
+      "client_name": "OmniCommerce Brands",
+      "client_email": "ssrini2002@gmail.com",
+      "problem_statement": "Develop a multimodal vector visual search and personalized recommendation system across 4.5 million apparel SKUs. Combine ViT-H/14 visual embeddings and fine-tuned text query representations into a two-tower neural recommender to deliver sub-60ms approximate nearest neighbor (ANN) retrieval and an 18% lift in checkout conversion.",
+      "overall_context": "Executive sponsorship by Srinivasan S, Chief Technology Officer. Target delivery timeline Q4 2026.",
+      "meetings": [
+        {
+          "id": "gcal_omni_kickoff_01",
+          "title": "OMNI-VIS Multimodal Visual Search Architecture Kickoff",
+          "startTime": "2026-09-23T14:00:00+05:30",
+          "endTime": "2026-09-23T15:00:00+05:30",
+          "duration": "60 min",
+          "platform": "Google Meet",
+          "meetUrl": "https://meet.google.com/omni-vis-kick",
+          "attendees": [
+            "ssrini2002@gmail.com",
+            "pfbotbeta@gmail.com"
+          ],
+          "agenda": "Review vision transformer embedding models, SKU catalog ingestion, and conversion lift KPIs.",
+          "prepDoc": "gcal_omni_kickoff_01_transcript.txt",
+          "status": "confirmed",
+          "isGcal": true,
+          "gcalId": null,
+          "htmlLink": null,
+          "projectId": "proj_omnicommerce_retail_visual_search_engine",
+          "projectName": "OmniCommerce Retail - Visual Search Engine",
+          "projectColor": "#ec4899",
+          "hasTranscript": true,
+          "transcriptFile": "gcal_omni_kickoff_01_transcript.txt",
+          "transcriptPath": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\OmniCommerce Retail - Visual Search Engine\\transcripts\\gcal_omni_kickoff_01_transcript.txt",
+          "transcriptDocId": "doc_b0abc94fc0a0"
+        }
+      ],
+      "deliverables": [
+        {
+          "id": "del_1790699312276",
+          "title": "Visual Out-of-Stock Fallback & Stylistic Similarity Model",
+          "description": "Develop a model that can handle stylistic similarity when the requested SKU is out of stock.",
+          "dueDate": "2026-10-15",
+          "status": "pending",
+          "priority": "high",
+          "progress": 0,
+          "owner": "Team",
+          "source": "email",
+          "sourceEvidence": "Client email from Srinivasan S requesting the development of this model.",
+          "evidenceFiles": [],
+          "aiAudit": {
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "There is no evidence of completion or progress in the indexed files, meeting minutes, or emails. The client requested this deliverable in an email on 2026-09-27, but it has not been logged or started.",
+            "evidenceFiles": [],
+            "blockers": "Client request, missing in project scope",
+            "evaluatedAt": "2026-09-29T22:04:37.222306"
+          }
+        },
+        {
+          "id": "del_omni_3",
+          "title": "Real-Time Vector Indexing & Inverted File Scalability Benchmark",
+          "dueDate": "2026-10-23",
+          "status": "in_progress",
+          "priority": "medium",
+          "progress": 70,
+          "owner": "Search Infrastructure Lead",
+          "description": "Benchmarking report evaluating Qdrant vector index scaling across 10,000 queries per second.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with OmniCommerce Brands",
+          "tasks": [
+            {
+              "title": "Define Benchmarking Requirements & Scope Document",
+              "description": "Create a detailed document outlining the benchmarking requirements, scope, and assumptions for Qdrant vector index scaling. Include the evaluation criteria, performance metrics, and testing environment specifications.",
+              "targetArtifact": "OMNI-VIS_Benchmarking_Requirements_Scope.docx",
+              "artifactType": "docx",
+              "priority": "high",
+              "estimatedHours": 8,
+              "assignedTo": "Senior Technical Project Manager",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790699115910_1",
+              "deliverableId": "del_omni_3",
+              "createdAt": "2026-09-29T21:55:15.910591"
+            },
+            {
+              "title": "Develop Qdrant Vector Index Scaling Test Plan",
+              "description": "Create a comprehensive test plan outlining the steps to evaluate Qdrant vector index scaling under various loads and workloads. Include the test scenarios, data preparation, and performance measurement procedures.",
+              "targetArtifact": "OMNI-VIS_Qdrant_Vector_Index_Scaling_Test_Plan.xlsx",
+              "artifactType": "xlsx",
+              "priority": "high",
+              "estimatedHours": 12,
+              "assignedTo": "Senior QA Engineer",
+              "status": "in_progress",
+              "stage": "review_iteration",
+              "id": "tsk_1790699115910_2",
+              "deliverableId": "del_omni_3",
+              "createdAt": "2026-09-29T21:55:15.910598"
+            },
+            {
+              "title": "Conduct Qdrant Vector Index Scaling Benchmarking",
+              "description": "Execute the test plan to evaluate Qdrant vector index scaling under various loads and workloads. Collect and analyze performance data to determine the scalability and efficiency of the vector index.",
+              "targetArtifact": "OMNI-VIS_Qdrant_Vector_Index_Scaling_Benchmarking_Report.pdf",
+              "artifactType": "pdf",
+              "priority": "high",
+              "estimatedHours": 24,
+              "assignedTo": "Senior DevOps Engineer",
+              "status": "todo",
+              "stage": "initial_draft",
+              "id": "tsk_1790699115910_3",
+              "deliverableId": "del_omni_3",
+              "createdAt": "2026-09-29T21:55:15.910600"
+            },
+            {
+              "title": "Create Scalability Benchmarking Report",
+              "description": "Compile the results of the benchmarking exercise into a comprehensive report highlighting the key findings, performance metrics, and recommendations for improving the scalability of the Qdrant vector index.",
+              "targetArtifact": "OMNI-VIS_Scalability_Benchmarking_Report.pptx",
+              "artifactType": "pptx",
+              "priority": "medium",
+              "estimatedHours": 16,
+              "assignedTo": "Senior Technical Project Manager",
+              "status": "completed",
+              "stage": "final_approved",
+              "id": "tsk_1790699115910_4",
+              "deliverableId": "del_omni_3",
+              "createdAt": "2026-09-29T21:55:15.910602"
+            },
+            {
+              "title": "Visualize Benchmarking Results Diagram",
+              "description": "Create a diagram illustrating the scalability benchmarking results, including the performance metrics and key findings.",
+              "targetArtifact": "OMNI-VIS_Scalability_Benchmarking_Results.png",
+              "artifactType": "png",
+              "priority": "low",
+              "estimatedHours": 4,
+              "assignedTo": "Junior Data Analyst",
+              "status": "completed",
+              "stage": "final_approved",
+              "id": "tsk_1790699115910_5",
+              "deliverableId": "del_omni_3",
+              "createdAt": "2026-09-29T21:55:15.910603"
+            }
+          ],
+          "aiAudit": {
+            "estimatedProgress": 70,
+            "recommendedStatus": "in_progress",
+            "evidence": "The team has made significant progress in this deliverable, with a 70% completion rate. The evidence can be found in the 'OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL.xlsx' file, specifically in the 'Executive_Summary' sheet.",
+            "evidenceFiles": [
+              "OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL.xlsx"
+            ],
+            "blockers": "Scalability testing and benchmarking",
+            "evaluatedAt": "2026-09-29T22:04:37.222313"
+          }
+        },
+        {
+          "id": "del_omni_2",
+          "title": "A/B Testing Cohort Simulation & SKU Conversion Matrix",
+          "dueDate": "2026-10-16",
+          "status": "completed",
+          "priority": "high",
+          "progress": 100,
+          "owner": "Recommender Scientist",
+          "description": "Simulation model evaluating click-through rate (CTR), gross merchandise value (GMV) lift, and latency across search cohorts.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with OmniCommerce Brands",
+          "aiAudit": {
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The team has completed this deliverable, with a 100% completion rate. The evidence can be found in the 'OMNI-VIS_Model_Validation_Audit_Report_FINAL.pdf' file, specifically in the 'Page 1' section.",
+            "evidenceFiles": [
+              "OMNI-VIS_Model_Validation_Audit_Report_FINAL.pdf"
+            ],
+            "blockers": "None",
+            "evaluatedAt": "2026-09-29T22:04:37.222318"
+          }
+        },
+        {
+          "id": "del_omni_1",
+          "title": "Multimodal Two-Tower Architecture & Approximate Nearest Neighbor Spec",
+          "dueDate": "2026-10-10",
+          "status": "completed",
+          "priority": "high",
+          "progress": 100,
+          "owner": "Coordin8 CV Architect",
+          "description": "Engineering specification for ViT-H/14 vision transformer embeddings and HNSW vector index pipeline.",
+          "source": "client_sow",
+          "sourceEvidence": "Statement of Work signed with OmniCommerce Brands",
+          "aiAudit": {
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The team has completed this deliverable, with a 100% completion rate. The evidence can be found in the 'OMNI-VIS_Architecture_Spec_v1.0_FINAL.docx' file, specifically in the 'OMNI-VIS_Architecture_Spec_v1.0_FINAL' section.",
+            "evidenceFiles": [
+              "OMNI-VIS_Architecture_Spec_v1.0_FINAL.docx"
+            ],
+            "blockers": "None",
+            "evaluatedAt": "2026-09-29T22:04:37.222322"
+          }
+        }
+      ],
+      "discovered_deliverables": [
+        {
+          "title": "Visual Recommender Architecture Approved for Black Friday Launch",
+          "description": "Client approval for production rollout of visual recommender architecture",
+          "suggestedDueDate": "2026-10-31",
+          "priority": "high",
+          "source": "email",
+          "sourceEvidence": "Email from Srinivasan S on 2026-09-29"
+        },
+        {
+          "title": "Stylistic Similarity Fallback when requested SKU is out of stock",
+          "description": "Client request for stylistic similarity fallback model when requested SKU is out of stock",
+          "suggestedDueDate": "2026-10-15",
+          "priority": "high",
+          "source": "email",
+          "sourceEvidence": "Email from Srinivasan S on 2026-09-27"
+        },
+        {
+          "title": "OmniCommerce Visual Search - Requirements & Conversion Targets",
+          "description": "Client requirements and conversion targets for OMNI-VIS project",
+          "suggestedDueDate": "2026-10-01",
+          "priority": "medium",
+          "source": "email",
+          "sourceEvidence": "Email from Srinivasan S on 2026-09-21"
+        }
+      ],
+      "ai_analysis": {
+        "lastAnalyzedAt": "2026-09-29T22:04:37.222276",
+        "overallCompletion": 75,
+        "health": "on_track",
+        "executiveSummary": "The project is on track with 75% completion. The team has made significant progress in developing the multimodal two-tower architecture and approximate nearest neighbor specification. However, there are some unlogged deliverables that need to be addressed.",
+        "deliverableAudits": [
+          {
+            "id": "del_1790699312276",
+            "title": "Visual Out-of-Stock Fallback & Stylistic Similarity Model",
+            "estimatedProgress": 0,
+            "recommendedStatus": "pending",
+            "evidence": "There is no evidence of completion or progress in the indexed files, meeting minutes, or emails. The client requested this deliverable in an email on 2026-09-27, but it has not been logged or started.",
+            "evidenceFiles": [],
+            "blockers": "Client request, missing in project scope"
+          },
+          {
+            "id": "del_omni_3",
+            "title": "Real-Time Vector Indexing & Inverted File Scalability Benchmark",
+            "estimatedProgress": 70,
+            "recommendedStatus": "in_progress",
+            "evidence": "The team has made significant progress in this deliverable, with a 70% completion rate. The evidence can be found in the 'OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL.xlsx' file, specifically in the 'Executive_Summary' sheet.",
+            "evidenceFiles": [
+              "OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL.xlsx"
+            ],
+            "blockers": "Scalability testing and benchmarking"
+          },
+          {
+            "id": "del_omni_2",
+            "title": "A/B Testing Cohort Simulation & SKU Conversion Matrix",
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The team has completed this deliverable, with a 100% completion rate. The evidence can be found in the 'OMNI-VIS_Model_Validation_Audit_Report_FINAL.pdf' file, specifically in the 'Page 1' section.",
+            "evidenceFiles": [
+              "OMNI-VIS_Model_Validation_Audit_Report_FINAL.pdf"
+            ],
+            "blockers": "None"
+          },
+          {
+            "id": "del_omni_1",
+            "title": "Multimodal Two-Tower Architecture & Approximate Nearest Neighbor Spec",
+            "estimatedProgress": 100,
+            "recommendedStatus": "completed",
+            "evidence": "The team has completed this deliverable, with a 100% completion rate. The evidence can be found in the 'OMNI-VIS_Architecture_Spec_v1.0_FINAL.docx' file, specifically in the 'OMNI-VIS_Architecture_Spec_v1.0_FINAL' section.",
+            "evidenceFiles": [
+              "OMNI-VIS_Architecture_Spec_v1.0_FINAL.docx"
+            ],
+            "blockers": "None"
+          }
+        ],
+        "discoveredDeliverables": [
+          {
+            "title": "Visual Recommender Architecture Approved for Black Friday Launch",
+            "description": "Client approval for production rollout of visual recommender architecture",
+            "suggestedDueDate": "2026-10-31",
+            "priority": "high",
+            "source": "email",
+            "sourceEvidence": "Email from Srinivasan S on 2026-09-29"
+          },
+          {
+            "title": "Stylistic Similarity Fallback when requested SKU is out of stock",
+            "description": "Client request for stylistic similarity fallback model when requested SKU is out of stock",
+            "suggestedDueDate": "2026-10-15",
+            "priority": "high",
+            "source": "email",
+            "sourceEvidence": "Email from Srinivasan S on 2026-09-27"
+          },
+          {
+            "title": "OmniCommerce Visual Search - Requirements & Conversion Targets",
+            "description": "Client requirements and conversion targets for OMNI-VIS project",
+            "suggestedDueDate": "2026-10-01",
+            "priority": "medium",
+            "source": "email",
+            "sourceEvidence": "Email from Srinivasan S on 2026-09-21"
+          }
+        ],
+        "reportFile": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\OmniCommerce Retail - Visual Search Engine\\audit_reports\\Deliverable_Audit_2026-09-29_22-04-37.md",
+        "reportFilename": "Deliverable_Audit_2026-09-29_22-04-37.md",
+        "latestReportPath": "C:\\Users\\ssrin\\Desktop\\Coordin8 Home\\OmniCommerce Retail - Visual Search Engine\\audit_reports\\latest_audit_report.md",
+        "markdownReport": "# Coordin8 AI Deliverable & Progress Audit Report\n\n- **Project:** OmniCommerce Retail - Visual Search Engine\n- **Code:** OMNI-VIS\n- **Type:** CLIENT (OmniCommerce Brands)\n- **Audit Timestamp:** 2026-09-29 22:04:37\n- **Overall Completion:** 75%\n- **Project Health:** ON_TRACK\n\n## Problem Statement & Strategic Objective\n> Develop a multimodal vector visual search and personalized recommendation system across 4.5 million apparel SKUs. Combine ViT-H/14 visual embeddings and fine-tuned text query representations into a two-tower neural recommender to deliver sub-60ms approximate nearest neighbor (ANN) retrieval and an 18% lift in checkout conversion.\n\n## Executive Status Briefing\nThe project is on track with 75% completion. The team has made significant progress in developing the multimodal two-tower architecture and approximate nearest neighbor specification. However, there are some unlogged deliverables that need to be addressed.\n\n## Evidence-Anchored Deliverable Evaluations\n\n### Visual Out-of-Stock Fallback & Stylistic Similarity Model\n- **Current Status:** `pending` (0% progress)\n- **Due Date:** 2026-10-15\n- **Owner:** Team\n- **Provenance / Source:** email (Client email from Srinivasan S requesting the development of this model.)\n- **AI Evidence Assessment:** There is no evidence of completion or progress in the indexed files, meeting minutes, or emails. The client requested this deliverable in an email on 2026-09-27, but it has not been logged or started.\n- **Evidence Files Cited:** None\n- **Identified Blockers:** Client request, missing in project scope\n\n### Real-Time Vector Indexing & Inverted File Scalability Benchmark\n- **Current Status:** `in_progress` (70% progress)\n- **Due Date:** 2026-10-23\n- **Owner:** Search Infrastructure Lead\n- **Provenance / Source:** client_sow (Statement of Work signed with OmniCommerce Brands)\n- **AI Evidence Assessment:** The team has made significant progress in this deliverable, with a 70% completion rate. The evidence can be found in the 'OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL.xlsx' file, specifically in the 'Executive_Summary' sheet.\n- **Evidence Files Cited:** OMNI-VIS_Portfolio_Stress_Test_v1.0_FINAL.xlsx\n- **Identified Blockers:** Scalability testing and benchmarking\n\n### A/B Testing Cohort Simulation & SKU Conversion Matrix\n- **Current Status:** `completed` (100% progress)\n- **Due Date:** 2026-10-16\n- **Owner:** Recommender Scientist\n- **Provenance / Source:** client_sow (Statement of Work signed with OmniCommerce Brands)\n- **AI Evidence Assessment:** The team has completed this deliverable, with a 100% completion rate. The evidence can be found in the 'OMNI-VIS_Model_Validation_Audit_Report_FINAL.pdf' file, specifically in the 'Page 1' section.\n- **Evidence Files Cited:** OMNI-VIS_Model_Validation_Audit_Report_FINAL.pdf\n- **Identified Blockers:** None\n\n### Multimodal Two-Tower Architecture & Approximate Nearest Neighbor Spec\n- **Current Status:** `completed` (100% progress)\n- **Due Date:** 2026-10-10\n- **Owner:** Coordin8 CV Architect\n- **Provenance / Source:** client_sow (Statement of Work signed with OmniCommerce Brands)\n- **AI Evidence Assessment:** The team has completed this deliverable, with a 100% completion rate. The evidence can be found in the 'OMNI-VIS_Architecture_Spec_v1.0_FINAL.docx' file, specifically in the 'OMNI-VIS_Architecture_Spec_v1.0_FINAL' section.\n- **Evidence Files Cited:** OMNI-VIS_Architecture_Spec_v1.0_FINAL.docx\n- **Identified Blockers:** None\n\n## Candidate Deliverables Discovered from Communications & Transcripts\n\n- **Visual Recommender Architecture Approved for Black Friday Launch** (Priority: `high`, Due: `2026-10-31`)\n  - Scope: Client approval for production rollout of visual recommender architecture\n  - Origin Citation: Email from Srinivasan S on 2026-09-29\n\n- **Stylistic Similarity Fallback when requested SKU is out of stock** (Priority: `high`, Due: `2026-10-15`)\n  - Scope: Client request for stylistic similarity fallback model when requested SKU is out of stock\n  - Origin Citation: Email from Srinivasan S on 2026-09-27\n\n- **OmniCommerce Visual Search - Requirements & Conversion Targets** (Priority: `medium`, Due: `2026-10-01`)\n  - Scope: Client requirements and conversion targets for OMNI-VIS project\n  - Origin Citation: Email from Srinivasan S on 2026-09-21\n\n## Ingested Artifacts Evaluated\n- **Documents (10):** , , , , , , , , , \n- **Meetings (1):** OMNI-VIS Multimodal Visual Search Architecture Kickoff\n- **Emails (3):** Visual Recommender Architecture Approved for Black Friday Launch, Critical Feature: Stylistic Similarity Fallback when requested SKU is out of stock, OmniCommerce Visual Search - Requirements & Conversion Targets\n\n---\n*Generated autonomously by Coordin8 AI Deliverables Auditor*"
+      },
+      "ingested_count": 0
+    }
+  },
   "unassigned_meetings": [
     {
       "id": "gcal_7oirgqai7v9scee9m6hgkgvaep",
@@ -63,6 +1750,249 @@
   },
   "synced_emails": [
     {
+      "id": "em_omni_03",
+      "subject": "Visual Recommender Architecture Approved for Black Friday Launch",
+      "from": "Srinivasan S <ssrini2002@gmail.com>",
+      "senderName": "Srinivasan S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "The A/B conversion simulation and vector search benchmark report meet all our SLA criteria. Approved for production rollout.",
+      "receivedAt": "2026-09-29T19:50:54.520706Z",
+      "projectId": "proj_omnicommerce_retail_visual_search_engine",
+      "projectName": "OmniCommerce Retail - Visual Search Engine",
+      "projectColor": "#ec4899",
+      "archetype": "Feedback / Approval",
+      "actionTag": "Visual Recommender Architecture Approved",
+      "aiSummary": "Client approved visual recommender architecture for Black Friday launch."
+    },
+    {
+      "id": "em_omni_02",
+      "subject": "Critical Feature: Stylistic Similarity Fallback when requested SKU is out of stock",
+      "from": "Srinivasan S <ssrini2002@gmail.com>",
+      "senderName": "Srinivasan S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "Please log 'Visual Out-of-Stock Fallback & Stylistic Similarity Model' into our project deliverables queue for the Q4 launch.",
+      "receivedAt": "2026-09-27T21:50:54.520704Z",
+      "projectId": "proj_omnicommerce_retail_visual_search_engine",
+      "projectName": "OmniCommerce Retail - Visual Search Engine",
+      "projectColor": "#ec4899",
+      "archetype": "Blocker / Action Required",
+      "actionTag": "Visual Out-of-Stock Fallback & Stylistic Similarity Model",
+      "aiSummary": "Client requests logging of 'Visual Out-of-Stock Fallback & Stylistic Similarity Model' into project deliverables queue for Q4 launch."
+    },
+    {
+      "id": "em_omni_01",
+      "subject": "OmniCommerce Visual Search - Requirements & Conversion Targets",
+      "from": "Srinivasan S <ssrini2002@gmail.com>",
+      "senderName": "Srinivasan S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "We are initiating OMNI-VIS. Our target is 18% conversion lift on mobile app search and sub-60ms p95 latency. Catalog metadata is ready for ingestion.",
+      "receivedAt": "2026-09-21T21:50:54.520702Z",
+      "projectId": "proj_omnicommerce_retail_visual_search_engine",
+      "projectName": "OmniCommerce Retail - Visual Search Engine",
+      "projectColor": "#ec4899"
+    },
+    {
+      "id": "em_cs_03",
+      "subject": "SSP and NIST Control Matrix Approved for FedRAMP Submission",
+      "from": "Srinath S <ssrini2002@gmail.com>",
+      "senderName": "Srinath S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "The CISO steering deck and NIST 800-53 matrix have been approved by federal compliance officers. Proceed with submission.",
+      "receivedAt": "2026-09-29T16:50:54.520676Z",
+      "projectId": "proj_cybershield_defense_fedramp_zero_trust",
+      "projectName": "CyberShield Defense - FedRAMP Zero Trust",
+      "projectColor": "#f59e0b",
+      "archetype": "Feedback / Approval",
+      "actionTag": "FedRAMP Submission Approved",
+      "aiSummary": "CISO steering deck and NIST 800-53 matrix approved for FedRAMP submission."
+    },
+    {
+      "id": "em_cs_02",
+      "subject": "Action Required: Third-Party Pen Test Remediation Roadmap needed for 3PAO",
+      "from": "Srinath S <ssrini2002@gmail.com>",
+      "senderName": "Srinath S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "Please log 'Third-Party Penetration Testing Remediation Plan & Vulnerability Audit' as an official deliverable so our board can track completion.",
+      "receivedAt": "2026-09-26T21:50:54.520672Z",
+      "projectId": "proj_cybershield_defense_fedramp_zero_trust",
+      "projectName": "CyberShield Defense - FedRAMP Zero Trust",
+      "projectColor": "#f59e0b",
+      "archetype": "Data / Assets Provided",
+      "actionTag": "Third-Party Pen Test Remediation Plan",
+      "aiSummary": "Client requests official deliverable for Third-Party Penetration Testing Remediation Plan & Vulnerability Audit."
+    },
+    {
+      "id": "em_cs_01",
+      "subject": "FedRAMP Moderate Certification Scope & 3PAO Audit Schedule",
+      "from": "Srinath S <ssrini2002@gmail.com>",
+      "senderName": "Srinath S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "We have secured our 3PAO audit slot for November. All System Security Plan documents and NIST control matrices must be finalized by end of month.",
+      "receivedAt": "2026-09-19T21:50:54.520669Z",
+      "projectId": "proj_cybershield_defense_fedramp_zero_trust",
+      "projectName": "CyberShield Defense - FedRAMP Zero Trust",
+      "projectColor": "#f59e0b",
+      "archetype": "Status Inquiry",
+      "actionTag": "Audit Schedule Confirmation",
+      "aiSummary": "3PAO audit slot secured for November, documents must be finalized by end of month."
+    },
+    {
+      "id": "em_nex_03",
+      "subject": "Pilot Dispatch Results Approved for Regional Rollout",
+      "from": "Srinath S <ssrini2002@gmail.com>",
+      "senderName": "Srinath S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "The simulated route dispatch sheet shows a 21.4% reduction in deadhead miles. Authorized to proceed with regional pilot.",
+      "receivedAt": "2026-09-29T17:50:54.520647Z",
+      "projectId": "proj_nexus_logistics_autonomous_fleet_telematics",
+      "projectName": "Nexus Logistics - Autonomous Fleet Telematics",
+      "projectColor": "#10b981"
+    },
+    {
+      "id": "em_nex_02",
+      "subject": "Critical Add: Cold-Chain Sensor Telemetry and Spoiled Goods Fallback",
+      "from": "Srinath S <ssrini2002@gmail.com>",
+      "senderName": "Srinath S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "Please add 'Cold-Chain Refrigerated Cargo Telemetry & Automated Fallback' as an official deliverable milestone.",
+      "receivedAt": "2026-09-27T21:50:54.520645Z",
+      "projectId": "proj_nexus_logistics_autonomous_fleet_telematics",
+      "projectName": "Nexus Logistics - Autonomous Fleet Telematics",
+      "projectColor": "#10b981",
+      "archetype": "Requirement / Scope",
+      "actionTag": "Critical Deliverable Addition",
+      "aiSummary": "Client requests addition of Cold-Chain Refrigerated Cargo Telemetry & Automated Fallback as an official deliverable milestone."
+    },
+    {
+      "id": "em_nex_01",
+      "subject": "Nexus Fleet Optimization - Telematics API Specs & Sensor Topology",
+      "from": "Srinath S <ssrini2002@gmail.com>",
+      "senderName": "Srinath S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "We have uploaded the CAN-bus telemetry schemas for our Peterbilt and Freightliner EV tractors. Ready to initiate the pipeline.",
+      "receivedAt": "2026-09-20T21:50:54.520643Z",
+      "projectId": "proj_nexus_logistics_autonomous_fleet_telematics",
+      "projectName": "Nexus Logistics - Autonomous Fleet Telematics",
+      "projectColor": "#10b981",
+      "archetype": "Data / Assets Provided",
+      "actionTag": "Data Upload Initiated",
+      "aiSummary": "Client uploaded CAN-bus telemetry schemas for EV tractors to initiate pipeline."
+    },
+    {
+      "id": "em_apex_03",
+      "subject": "Stratification Protocol Approved for IRB Submission",
+      "from": "Dr. Srinivasan S <ssrini2002@gmail.com>",
+      "senderName": "Dr. Srinivasan S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "The clinical investigator deck and adverse event risk workbook have been accepted by our internal review board. Ready for deployment.",
+      "receivedAt": "2026-09-29T15:50:54.520622Z",
+      "projectId": "proj_apex_healthtech_clinical_stratification",
+      "projectName": "Apex HealthTech - Clinical Stratification",
+      "projectColor": "#0ea5e9",
+      "archetype": "Feedback / Approval",
+      "actionTag": "Protocol Approved for IRB",
+      "aiSummary": "Clinical investigator deck and adverse event risk workbook approved for IRB submission."
+    },
+    {
+      "id": "em_apex_02",
+      "subject": "Request: Add Companion Diagnostic Validation Protocol for FDA submission",
+      "from": "Dr. Srinivasan S <ssrini2002@gmail.com>",
+      "senderName": "Dr. Srinivasan S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "Following our clinical safety review, please add 'Companion Diagnostic Validation Protocol & FDA Brief' to our tracked deliverables list.",
+      "receivedAt": "2026-09-26T21:50:54.520620Z",
+      "projectId": "proj_apex_healthtech_clinical_stratification",
+      "projectName": "Apex HealthTech - Clinical Stratification",
+      "projectColor": "#0ea5e9",
+      "archetype": "Feedback / Approval",
+      "actionTag": "Companion Diagnostic Validation Protocol Added",
+      "aiSummary": "Client approved addition of Companion Diagnostic Validation Protocol to tracked deliverables list for FDA submission."
+    },
+    {
+      "id": "em_apex_01",
+      "subject": "Apex Phase II Trial Patient Stratification - Clinical Protocol Spec",
+      "from": "Dr. Srinivasan S <ssrini2002@gmail.com>",
+      "senderName": "Dr. Srinivasan S",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "We are kicking off the APEX-CLIN platform. Attached are the Phase II oncology trial criteria and genomic biomarker sequencing standards.",
+      "receivedAt": "2026-09-21T21:50:54.520617Z",
+      "projectId": "proj_apex_healthtech_clinical_stratification",
+      "projectName": "Apex HealthTech - Clinical Stratification",
+      "projectColor": "#0ea5e9",
+      "archetype": "Data / Assets Provided",
+      "actionTag": "Clinical Protocol Spec Received",
+      "aiSummary": "Client provided Phase II oncology trial criteria and genomic biomarker sequencing standards for APEX-CLIN platform development."
+    },
+    {
+      "id": "em_fe_05",
+      "subject": "FinEdge Underwriting Engine Phase 1 Deliverables Accepted",
+      "from": "Srinath Srinivasan <ssrini2002@gmail.com>",
+      "senderName": "Srinath Srinivasan",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "The executive deck and stress-testing models have been reviewed and approved by the partners. Fantastic progress team!",
+      "receivedAt": "2026-09-29T18:50:54.520592Z",
+      "projectId": "proj_finedge_ai_automated_credit_underwriting",
+      "projectName": "FinEdge AI - Automated Credit Underwriting",
+      "projectColor": "#4f46e5"
+    },
+    {
+      "id": "em_fe_04",
+      "subject": "Underwriting Engine v0.8 & Model Drift Presentation Shared",
+      "from": "Coordin8 Enterprise Solutions <pfbotbeta@gmail.com>",
+      "senderName": "Coordin8 Enterprise Solutions",
+      "senderEmail": "pfbotbeta@gmail.com",
+      "snippet": "We have incorporated the Fair Lending audit requirements and prepared the Executive Board Presentation Deck summarizing portfolio stress test results.",
+      "receivedAt": "2026-09-28T21:50:54.520590Z",
+      "projectId": "proj_finedge_ai_automated_credit_underwriting",
+      "projectName": "FinEdge AI - Automated Credit Underwriting",
+      "projectColor": "#4f46e5",
+      "archetype": "Data / Assets Provided",
+      "actionTag": "Model Drift Presentation Shared",
+      "aiSummary": "Client shared underwriting engine v0.8 and model drift presentation for review and compliance."
+    },
+    {
+      "id": "em_fe_03",
+      "subject": "Urgent: Add Federal Fair Lending Dossier & Bias Audit Matrix for Q4 Committee",
+      "from": "Srinath Srinivasan <ssrini2002@gmail.com>",
+      "senderName": "Srinath Srinivasan",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "Our compliance committee met today. We need an additional formal deliverable: 'Regulatory Compliance Fair Lending Dossier & Bias Audit Matrix' by October 25 to satisfy ECOA regulators.",
+      "receivedAt": "2026-09-27T21:50:54.520588Z",
+      "projectId": "proj_finedge_ai_automated_credit_underwriting",
+      "projectName": "FinEdge AI - Automated Credit Underwriting",
+      "projectColor": "#4f46e5",
+      "archetype": "Data / Assets Provided",
+      "actionTag": "Compliance Deliverable Request",
+      "aiSummary": "Client requires an additional formal deliverable: 'Regulatory Compliance Fair Lending Dossier & Bias Audit Matrix' by October 25."
+    },
+    {
+      "id": "em_fe_02",
+      "subject": "FinEdge Underwriting Architecture & Historical Backtesting Framework",
+      "from": "Coordin8 Enterprise Solutions <pfbotbeta@gmail.com>",
+      "senderName": "Coordin8 Enterprise Solutions",
+      "senderEmail": "pfbotbeta@gmail.com",
+      "snippet": "We have completed the initial architectural blueprint and deployed the historical loan stress-testing matrix. The model incorporates multi-factor SME balance sheet telemetry.",
+      "receivedAt": "2026-09-25T21:50:54.520585Z",
+      "projectId": "proj_finedge_ai_automated_credit_underwriting",
+      "projectName": "FinEdge AI - Automated Credit Underwriting",
+      "projectColor": "#4f46e5",
+      "archetype": "Data / Assets Provided",
+      "actionTag": "Financial Model Received",
+      "aiSummary": "Client provided the initial architectural blueprint and historical loan stress-testing matrix for underwriting pipeline development."
+    },
+    {
+      "id": "em_fe_01",
+      "subject": "FinEdge Underwriting Engine - Engagement Scope & SLA Requirements",
+      "from": "Srinath Srinivasan <ssrini2002@gmail.com>",
+      "senderName": "Srinath Srinivasan",
+      "senderEmail": "ssrini2002@gmail.com",
+      "snippet": "We are initiating the FE-RISK engagement. Our target is <400ms decision latency and automated SME credit risk scoring for our $250M loan book. Attached are our legacy credit scoring guidelines.",
+      "receivedAt": "2026-09-22T21:50:54.520578Z",
+      "projectId": "proj_finedge_ai_automated_credit_underwriting",
+      "projectName": "FinEdge AI - Automated Credit Underwriting",
+      "projectColor": "#4f46e5"
+    },
+    {
       "id": "1a0ecf82c86627e3",
       "threadId": "1a0ecf82c86627e3",
       "subject": "Vision Language action models",
@@ -79,7 +2009,10 @@
       ],
       "projectId": null,
       "projectName": null,
-      "projectColor": "#94a3b8"
+      "projectColor": "#94a3b8",
+      "archetype": "Data / Assets Provided",
+      "actionTag": "Vision Model Provided",
+      "aiSummary": "Client provided VLAs for integration into Project Acme Robotics Intelligence."
     },
     {
       "id": "1a0ecf6e157b8603",
@@ -96,9 +2029,9 @@
         "CATEGORY_PERSONAL",
         "INBOX"
       ],
-      "projectId": "proj_learning_robotics_hf",
-      "projectName": "Learning Robotics HF",
-      "projectColor": "#10b981"
+      "projectId": "proj_acme_robotics_intelligence",
+      "projectName": "Acme Robotics Intelligence",
+      "projectColor": "#6366f1"
     },
     {
       "id": "1a0cb8c63b15f8ce",
@@ -115,7 +2048,7 @@
         "CATEGORY_UPDATES",
         "INBOX"
       ],
-      "projectId": "proj_alpha_test_project",
+      "projectId": null,
       "projectName": "Alpha Test Project",
       "projectColor": "#6366f1"
     },
@@ -134,9 +2067,9 @@
         "CATEGORY_UPDATES",
         "INBOX"
       ],
-      "projectId": null,
-      "projectName": null,
-      "projectColor": "#94a3b8"
+      "projectId": "proj_acme_robotics_intelligence",
+      "projectName": "Acme Robotics Intelligence",
+      "projectColor": "#6366f1"
     },
     {
       "id": "1a0eb5ec418dda4e",

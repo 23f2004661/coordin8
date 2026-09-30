@@ -1,0 +1,83 @@
+{
+  "document_id": "doc_2cf180457083",
+  "metadata": {
+    "title": "gcal_cs_kickoff_01_transcript",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_cybershield_defense_fedramp_zero_trust\\artifacts\\raw\\doc_2cf180457083\\gcal_cs_kickoff_01_transcript.txt",
+    "file_type": "txt",
+    "file_size_bytes": 479,
+    "source_hash": "830986739f0e851acf84aadb7b741f68053ec0b229a79063859f70ddce1a4ef8",
+    "author": null,
+    "created_at": "2026-09-29 16:26:25.990709+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_2cf180457083_main",
+      "title": "gcal_cs_kickoff_01_transcript",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_e9c2ab4e",
+          "block_type": "text",
+          "content": "Srinath S (Client): Good afternoon. The federal agency sponsors are waiting on our FedRAMP Moderate package. Zero-trust compliance must be watertight.\nCoordin8 Lead: We have completed the System Security Plan and mapped all 325 NIST controls. The Kubernetes microsegmentation policies are in place.\nSrinath S (Client): Excellent. Our third-party assessment organization (3PAO) will require a dedicated Penetration Test Remediation Plan. Please add that to our milestone schedule.",
+          "provenance": {
+            "file_id": "doc_2cf180457083",
+            "document_id": "doc_2cf180457083",
+            "file_name": "gcal_cs_kickoff_01_transcript.txt",
+            "file_type": "txt",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_2cf180457083",
+        "document_id": "doc_2cf180457083",
+        "file_name": "gcal_cs_kickoff_01_transcript.txt",
+        "file_type": "txt",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "Srinath S (Client): Good afternoon. The federal agency sponsors are waiting on our FedRAMP Moderate package. Zero-trust compliance must be watertight.\nCoordin8 Lead: We have completed the System Security Plan and mapped all 325 NIST controls. The Kubernetes microsegmentation policies are in place.\nSrinath S (Client): Excellent. Our third-party assessment organization (3PAO) will require a dedicated Penetration Test Remediation Plan. Please add that to our milestone schedule.",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_2cf180457083",
+    "document_id": "doc_2cf180457083",
+    "file_name": "gcal_cs_kickoff_01_transcript.txt",
+    "file_type": "txt",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

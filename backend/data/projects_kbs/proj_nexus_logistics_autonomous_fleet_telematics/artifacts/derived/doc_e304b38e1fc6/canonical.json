@@ -1,0 +1,594 @@
+{
+  "document_id": "doc_e304b38e1fc6",
+  "metadata": {
+    "title": "NEX-ROUTE_Midterm_Progress_Review",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_nexus_logistics_autonomous_fleet_telematics\\artifacts\\raw\\doc_e304b38e1fc6\\NEX-ROUTE_Midterm_Progress_Review.pptx",
+    "file_type": "pptx",
+    "file_size_bytes": 30598,
+    "source_hash": "cb88386616db5560807a0f951ff8e61ebd54e3484070d71216facaf8e1065370",
+    "author": null,
+    "created_at": "2026-09-29 16:26:18.628205+00:00",
+    "page_count": null,
+    "slide_count": 2,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_e304b38e1fc6_slide_1",
+      "title": "Slide 1: Slide 1",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_0141f1f5",
+          "block_type": "text",
+          "content": "COORDIN8 EXECUTIVE STRATEGY  \u2022  NEXUS LOGISTICS - AUTONOMOUS FLEET TELEMATICS  \u2022  MIDTERM PROGRESS (STAGE 2)",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_d2c387dc",
+          "block_type": "text",
+          "content": "NEX-ROUTE Mid-Sprint Architecture Review",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_e42f3c34",
+          "block_type": "text",
+          "content": "Sprint 2 Progress & Technical Walkthrough",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_ba8ee0b3",
+          "block_type": "text",
+          "content": "Client: Nexus Supply Chain Global   |   Date: September 29, 2026   |   Status: Midterm Progress (Stage 2)",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_e304b38e1fc6",
+        "document_id": "doc_e304b38e1fc6",
+        "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+        "file_type": "pptx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": {
+          "slide_number": 1,
+          "slide_title": "Slide 1"
+        },
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_e304b38e1fc6_slide_2",
+      "title": "Slide 2: Slide 2",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_218d014e",
+          "block_type": "text",
+          "content": "Executive Progress Highlights",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_55826fe9",
+          "block_type": "text",
+          "content": "SPRINT PROGRESS",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_ef7de175",
+          "block_type": "text",
+          "content": "Architecture Validation",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_b234bc98",
+          "block_type": "text",
+          "content": "Completed core microservices specification and security boundary definitions.",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_04820b34",
+          "block_type": "text",
+          "content": "\u2022 mTLS configuration ready",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_e5d38145",
+          "block_type": "text",
+          "content": "\u2022 Ingestion latency <100ms",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_13d4afe0",
+          "block_type": "text",
+          "content": "Quantitative Modeling",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_3f0d15f6",
+          "block_type": "text",
+          "content": "91.4%",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_ae0a54bb",
+          "block_type": "text",
+          "content": "ROC-AUC achieved across test benchmark splits.",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_57c7cd1f",
+          "block_type": "text",
+          "content": "\u2022 Evaluated 90k records",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_42baeb0b",
+          "block_type": "text",
+          "content": "\u2022 Zero data leakage detected",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_6860d1b7",
+          "block_type": "text",
+          "content": "Client Feedback",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_398d4191",
+          "block_type": "text",
+          "content": "Incorporated requests from latest Google Meet session.",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_67e19cf0",
+          "block_type": "text",
+          "content": "\u2022 Added Fair Lending compliance",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_fc06b399",
+          "block_type": "text",
+          "content": "\u2022 IRB criteria verified",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_76a8e021",
+          "block_type": "text",
+          "content": "Coordin8 Delivery System  \u2022  Confidential for Nexus Supply Chain Global  \u2022  Midterm Progress (Stage 2)",
+          "provenance": {
+            "file_id": "doc_e304b38e1fc6",
+            "document_id": "doc_e304b38e1fc6",
+            "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_e304b38e1fc6",
+        "document_id": "doc_e304b38e1fc6",
+        "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+        "file_type": "pptx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": {
+          "slide_number": 2,
+          "slide_title": "Slide 2"
+        },
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# NEX-ROUTE_Midterm_Progress_Review\n\n## Slide 1: Slide 1\n\nCOORDIN8 EXECUTIVE STRATEGY  \u2022  NEXUS LOGISTICS - AUTONOMOUS FLEET TELEMATICS  \u2022  MIDTERM PROGRESS (STAGE 2)\n\nNEX-ROUTE Mid-Sprint Architecture Review\n\nSprint 2 Progress & Technical Walkthrough\n\nClient: Nexus Supply Chain Global   |   Date: September 29, 2026   |   Status: Midterm Progress (Stage 2)\n\n## Slide 2: Slide 2\n\nExecutive Progress Highlights\n\nSPRINT PROGRESS\n\nArchitecture Validation\n\nCompleted core microservices specification and security boundary definitions.\n\n\u2022 mTLS configuration ready\n\n\u2022 Ingestion latency <100ms\n\nQuantitative Modeling\n\n91.4%\n\nROC-AUC achieved across test benchmark splits.\n\n\u2022 Evaluated 90k records\n\n\u2022 Zero data leakage detected\n\nClient Feedback\n\nIncorporated requests from latest Google Meet session.\n\n\u2022 Added Fair Lending compliance\n\n\u2022 IRB criteria verified\n\nCoordin8 Delivery System  \u2022  Confidential for Nexus Supply Chain Global  \u2022  Midterm Progress (Stage 2)\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_e304b38e1fc6",
+    "document_id": "doc_e304b38e1fc6",
+    "file_name": "NEX-ROUTE_Midterm_Progress_Review.pptx",
+    "file_type": "pptx",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": {
+      "slide_number": 1,
+      "slide_title": "Slide 1"
+    },
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

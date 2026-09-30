@@ -1,0 +1,92 @@
+{
+  "document_id": "doc_30a8e20a37b6",
+  "metadata": {
+    "title": "FE-RISK_Stress_Testing_Matrix_v0.2_Draft",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_finedge_ai_automated_credit_underwriting\\artifacts\\raw\\doc_30a8e20a37b6\\FE-RISK_Stress_Testing_Matrix_v0.2_Draft.xlsx",
+    "file_type": "xlsx",
+    "file_size_bytes": 5615,
+    "source_hash": "36d11157f60f55e9574f958bba4b9332ca24d93f64d6953eaa3e3fb4c6b82130",
+    "author": null,
+    "created_at": "2026-09-29 16:26:04.887907+00:00",
+    "page_count": null,
+    "slide_count": null,
+    "sheet_count": 1,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_30a8e20a37b6_Raw_Inputs",
+      "title": "Sheet: Raw_Inputs",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_b14b4fa2",
+          "block_type": "table",
+          "content": "FE-RISK PRELIMINARY STRESS MODEL  \u2022  RAW_INPUTS |  |  |  |  |  | \nClient: FinEdge Capital Partners  |  Project: FinEdge AI - Automated Credit Underwriting  |  Generated: 2026-09-29 21:55 |  |  |  |  |  | \nScenario_ID | Baseline_Volume | Default_Rate | Expected_Loss |  |  | \nSCEN-01-MILD | 5000000 | 0.021 | 105000 |  |  | \nSCEN-02-MODERATE | 7500000 | 0.045 | 337500 |  |  | \nSCEN-03-SEVERE | 12000000 | 0.082 | 984000 |  |  | ",
+          "provenance": {
+            "file_id": "doc_30a8e20a37b6",
+            "document_id": "doc_30a8e20a37b6",
+            "file_name": "FE-RISK_Stress_Testing_Matrix_v0.2_Draft.xlsx",
+            "file_type": "xlsx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": {
+              "sheet_name": "Raw_Inputs",
+              "cell_range": "A1:Z7"
+            },
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_30a8e20a37b6",
+        "document_id": "doc_30a8e20a37b6",
+        "file_name": "FE-RISK_Stress_Testing_Matrix_v0.2_Draft.xlsx",
+        "file_type": "xlsx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": {
+          "sheet_name": "Raw_Inputs",
+          "cell_range": "A1:Z7"
+        },
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# FE-RISK_Stress_Testing_Matrix_v0.2_Draft\n\n## Sheet: Raw_Inputs\n\nFE-RISK PRELIMINARY STRESS MODEL  \u2022  RAW_INPUTS |  |  |  |  |  | \nClient: FinEdge Capital Partners  |  Project: FinEdge AI - Automated Credit Underwriting  |  Generated: 2026-09-29 21:55 |  |  |  |  |  | \nScenario_ID | Baseline_Volume | Default_Rate | Expected_Loss |  |  | \nSCEN-01-MILD | 5000000 | 0.021 | 105000 |  |  | \nSCEN-02-MODERATE | 7500000 | 0.045 | 337500 |  |  | \nSCEN-03-SEVERE | 12000000 | 0.082 | 984000 |  |  | \n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_30a8e20a37b6",
+    "document_id": "doc_30a8e20a37b6",
+    "file_name": "FE-RISK_Stress_Testing_Matrix_v0.2_Draft.xlsx",
+    "file_type": "xlsx",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": {
+      "sheet_name": "Raw_Inputs",
+      "cell_range": "A1:Z7"
+    },
+    "timestamp": null,
+    "extra": {}
+  }
+}

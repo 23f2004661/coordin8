@@ -1,0 +1,3 @@
+Dr. Srinivasan S (Client): Thank you team. In our upcoming Phase II trial, speed of screening is critical. We cannot afford patient dropouts due to misclassified genomic variants.
+Coordin8 Lead: Understood Dr. Srinivasan. We have developed the variant filtering pipeline for EGFR and KRAS mutations and built the automated Adverse Event tracking workbook.
+Dr. Srinivasan S (Client): That aligns with our IRB requirements. Please ensure we also prepare a formal Companion Diagnostic Validation Protocol before the FDA pre-IND meeting next month.

@@ -1,0 +1,3 @@
+Srinath S (Client): Good afternoon. The federal agency sponsors are waiting on our FedRAMP Moderate package. Zero-trust compliance must be watertight.
+Coordin8 Lead: We have completed the System Security Plan and mapped all 325 NIST controls. The Kubernetes microsegmentation policies are in place.
+Srinath S (Client): Excellent. Our third-party assessment organization (3PAO) will require a dedicated Penetration Test Remediation Plan. Please add that to our milestone schedule.

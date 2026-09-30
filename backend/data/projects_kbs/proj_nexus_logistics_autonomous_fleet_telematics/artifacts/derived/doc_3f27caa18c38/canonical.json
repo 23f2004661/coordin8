@@ -1,0 +1,92 @@
+{
+  "document_id": "doc_3f27caa18c38",
+  "metadata": {
+    "title": "NEX-ROUTE_Stress_Testing_Matrix_v0.2_Draft",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_nexus_logistics_autonomous_fleet_telematics\\artifacts\\raw\\doc_3f27caa18c38\\NEX-ROUTE_Stress_Testing_Matrix_v0.2_Draft.xlsx",
+    "file_type": "xlsx",
+    "file_size_bytes": 5621,
+    "source_hash": "9095cd86a6724002f9d08466008966b1175327787fb616187378ebdca4ee4944",
+    "author": null,
+    "created_at": "2026-09-29 16:26:18.874885+00:00",
+    "page_count": null,
+    "slide_count": null,
+    "sheet_count": 1,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_3f27caa18c38_Raw_Inputs",
+      "title": "Sheet: Raw_Inputs",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_67faac8c",
+          "block_type": "table",
+          "content": "NEX-ROUTE PRELIMINARY STRESS MODEL  \u2022  RAW_INPUTS |  |  |  |  |  | \nClient: Nexus Supply Chain Global  |  Project: Nexus Logistics - Autonomous Fleet Telematics  |  Generated: 2026-09-29 21:55 |  |  |  |  |  | \nScenario_ID | Baseline_Volume | Default_Rate | Expected_Loss |  |  | \nSCEN-01-MILD | 5000000 | 0.021 | 105000 |  |  | \nSCEN-02-MODERATE | 7500000 | 0.045 | 337500 |  |  | \nSCEN-03-SEVERE | 12000000 | 0.082 | 984000 |  |  | ",
+          "provenance": {
+            "file_id": "doc_3f27caa18c38",
+            "document_id": "doc_3f27caa18c38",
+            "file_name": "NEX-ROUTE_Stress_Testing_Matrix_v0.2_Draft.xlsx",
+            "file_type": "xlsx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": {
+              "sheet_name": "Raw_Inputs",
+              "cell_range": "A1:Z7"
+            },
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_3f27caa18c38",
+        "document_id": "doc_3f27caa18c38",
+        "file_name": "NEX-ROUTE_Stress_Testing_Matrix_v0.2_Draft.xlsx",
+        "file_type": "xlsx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": {
+          "sheet_name": "Raw_Inputs",
+          "cell_range": "A1:Z7"
+        },
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# NEX-ROUTE_Stress_Testing_Matrix_v0.2_Draft\n\n## Sheet: Raw_Inputs\n\nNEX-ROUTE PRELIMINARY STRESS MODEL  \u2022  RAW_INPUTS |  |  |  |  |  | \nClient: Nexus Supply Chain Global  |  Project: Nexus Logistics - Autonomous Fleet Telematics  |  Generated: 2026-09-29 21:55 |  |  |  |  |  | \nScenario_ID | Baseline_Volume | Default_Rate | Expected_Loss |  |  | \nSCEN-01-MILD | 5000000 | 0.021 | 105000 |  |  | \nSCEN-02-MODERATE | 7500000 | 0.045 | 337500 |  |  | \nSCEN-03-SEVERE | 12000000 | 0.082 | 984000 |  |  | \n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_3f27caa18c38",
+    "document_id": "doc_3f27caa18c38",
+    "file_name": "NEX-ROUTE_Stress_Testing_Matrix_v0.2_Draft.xlsx",
+    "file_type": "xlsx",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": {
+      "sheet_name": "Raw_Inputs",
+      "cell_range": "A1:Z7"
+    },
+    "timestamp": null,
+    "extra": {}
+  }
+}

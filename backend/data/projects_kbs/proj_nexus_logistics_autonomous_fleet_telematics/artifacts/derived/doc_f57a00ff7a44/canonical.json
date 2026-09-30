@@ -1,0 +1,113 @@
+{
+  "document_id": "doc_f57a00ff7a44",
+  "metadata": {
+    "title": "NEX-ROUTE_System_Architecture_Topology",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_nexus_logistics_autonomous_fleet_telematics\\artifacts\\raw\\doc_f57a00ff7a44\\NEX-ROUTE_System_Architecture_Topology.png",
+    "file_type": "image",
+    "file_size_bytes": 131913,
+    "source_hash": "16daacf68df8bf0dc45c96f3d3de7ac1449b901c2b580bd77ea4698971f362b6",
+    "author": null,
+    "created_at": "2026-09-29 16:26:12.387155+00:00",
+    "page_count": null,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_f57a00ff7a44_image",
+      "title": "NEX-ROUTE_System_Architecture_Topology",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_ce6ae873",
+          "block_type": "image",
+          "content": "![Image NEX-ROUTE_System_Architecture_Topology.png](NEX-ROUTE_System_Architecture_Topology.png)",
+          "provenance": {
+            "file_id": "doc_f57a00ff7a44",
+            "document_id": "doc_f57a00ff7a44",
+            "file_name": "NEX-ROUTE_System_Architecture_Topology.png",
+            "file_type": "image",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": "ast_3a85376c",
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_f57a00ff7a44",
+        "document_id": "doc_f57a00ff7a44",
+        "file_name": "NEX-ROUTE_System_Architecture_Topology.png",
+        "file_type": "image",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [
+    {
+      "asset_id": "ast_3a85376c",
+      "document_id": "doc_f57a00ff7a44",
+      "asset_type": "embedded_image",
+      "file_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_nexus_logistics_autonomous_fleet_telematics\\artifacts\\raw\\doc_f57a00ff7a44\\NEX-ROUTE_System_Architecture_Topology.png",
+      "mime_type": "image/png",
+      "description": {
+        "caption": "Image NEX-ROUTE_System_Architecture_Topology.png",
+        "visual_description": "Visual asset loaded from NEX-ROUTE_System_Architecture_Topology.png",
+        "retrieval_description": "Visual content representation for NEX-ROUTE_System_Architecture_Topology",
+        "entities": [],
+        "key_labels": []
+      },
+      "provenance": {
+        "file_id": "doc_f57a00ff7a44",
+        "document_id": "doc_f57a00ff7a44",
+        "file_name": "NEX-ROUTE_System_Architecture_Topology.png",
+        "file_type": "image",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "summary": null,
+  "normalized_markdown": "# Image: NEX-ROUTE_System_Architecture_Topology\n\n![Image NEX-ROUTE_System_Architecture_Topology.png](NEX-ROUTE_System_Architecture_Topology.png)\n\nVisual asset loaded from NEX-ROUTE_System_Architecture_Topology.png\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_f57a00ff7a44",
+    "document_id": "doc_f57a00ff7a44",
+    "file_name": "NEX-ROUTE_System_Architecture_Topology.png",
+    "file_type": "image",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

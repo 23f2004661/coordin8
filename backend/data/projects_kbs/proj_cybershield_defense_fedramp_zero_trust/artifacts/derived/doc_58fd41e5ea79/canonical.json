@@ -1,0 +1,594 @@
+{
+  "document_id": "doc_58fd41e5ea79",
+  "metadata": {
+    "title": "CS-FEDRAMP_Midterm_Progress_Review",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_cybershield_defense_fedramp_zero_trust\\artifacts\\raw\\doc_58fd41e5ea79\\CS-FEDRAMP_Midterm_Progress_Review.pptx",
+    "file_type": "pptx",
+    "file_size_bytes": 30596,
+    "source_hash": "0b9db712df9e03ffa37793a07c9b9343212c4f9265a12bbd20949396c8a13925",
+    "author": null,
+    "created_at": "2026-09-29 16:26:25.271271+00:00",
+    "page_count": null,
+    "slide_count": 2,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_58fd41e5ea79_slide_1",
+      "title": "Slide 1: Slide 1",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_0b92964d",
+          "block_type": "text",
+          "content": "COORDIN8 EXECUTIVE STRATEGY  \u2022  CYBERSHIELD DEFENSE - FEDRAMP ZERO TRUST  \u2022  MIDTERM PROGRESS (STAGE 2)",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_3ee3b1ed",
+          "block_type": "text",
+          "content": "CS-FEDRAMP Mid-Sprint Architecture Review",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_732083b0",
+          "block_type": "text",
+          "content": "Sprint 2 Progress & Technical Walkthrough",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_cb2e9cee",
+          "block_type": "text",
+          "content": "Client: CyberShield Federal Technologies   |   Date: September 29, 2026   |   Status: Midterm Progress (Stage 2)",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_58fd41e5ea79",
+        "document_id": "doc_58fd41e5ea79",
+        "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+        "file_type": "pptx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": {
+          "slide_number": 1,
+          "slide_title": "Slide 1"
+        },
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_58fd41e5ea79_slide_2",
+      "title": "Slide 2: Slide 2",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_fd370e41",
+          "block_type": "text",
+          "content": "Executive Progress Highlights",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_59982064",
+          "block_type": "text",
+          "content": "SPRINT PROGRESS",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_a991b992",
+          "block_type": "text",
+          "content": "Architecture Validation",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_895c0f5a",
+          "block_type": "text",
+          "content": "Completed core microservices specification and security boundary definitions.",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_96b494fe",
+          "block_type": "text",
+          "content": "\u2022 mTLS configuration ready",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_3bf3356d",
+          "block_type": "text",
+          "content": "\u2022 Ingestion latency <100ms",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_d65c98da",
+          "block_type": "text",
+          "content": "Quantitative Modeling",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_1ef91106",
+          "block_type": "text",
+          "content": "91.4%",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_7c211573",
+          "block_type": "text",
+          "content": "ROC-AUC achieved across test benchmark splits.",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_6f7cff1a",
+          "block_type": "text",
+          "content": "\u2022 Evaluated 90k records",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_d5ee3f92",
+          "block_type": "text",
+          "content": "\u2022 Zero data leakage detected",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_c5c1c22f",
+          "block_type": "text",
+          "content": "Client Feedback",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_833a4d9e",
+          "block_type": "text",
+          "content": "Incorporated requests from latest Google Meet session.",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_7ca8e7ff",
+          "block_type": "text",
+          "content": "\u2022 Added Fair Lending compliance",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_d5993498",
+          "block_type": "text",
+          "content": "\u2022 IRB criteria verified",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_df72ba85",
+          "block_type": "text",
+          "content": "Coordin8 Delivery System  \u2022  Confidential for CyberShield Federal Technologies  \u2022  Midterm Progress (Stage 2)",
+          "provenance": {
+            "file_id": "doc_58fd41e5ea79",
+            "document_id": "doc_58fd41e5ea79",
+            "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_58fd41e5ea79",
+        "document_id": "doc_58fd41e5ea79",
+        "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+        "file_type": "pptx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": {
+          "slide_number": 2,
+          "slide_title": "Slide 2"
+        },
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# CS-FEDRAMP_Midterm_Progress_Review\n\n## Slide 1: Slide 1\n\nCOORDIN8 EXECUTIVE STRATEGY  \u2022  CYBERSHIELD DEFENSE - FEDRAMP ZERO TRUST  \u2022  MIDTERM PROGRESS (STAGE 2)\n\nCS-FEDRAMP Mid-Sprint Architecture Review\n\nSprint 2 Progress & Technical Walkthrough\n\nClient: CyberShield Federal Technologies   |   Date: September 29, 2026   |   Status: Midterm Progress (Stage 2)\n\n## Slide 2: Slide 2\n\nExecutive Progress Highlights\n\nSPRINT PROGRESS\n\nArchitecture Validation\n\nCompleted core microservices specification and security boundary definitions.\n\n\u2022 mTLS configuration ready\n\n\u2022 Ingestion latency <100ms\n\nQuantitative Modeling\n\n91.4%\n\nROC-AUC achieved across test benchmark splits.\n\n\u2022 Evaluated 90k records\n\n\u2022 Zero data leakage detected\n\nClient Feedback\n\nIncorporated requests from latest Google Meet session.\n\n\u2022 Added Fair Lending compliance\n\n\u2022 IRB criteria verified\n\nCoordin8 Delivery System  \u2022  Confidential for CyberShield Federal Technologies  \u2022  Midterm Progress (Stage 2)\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_58fd41e5ea79",
+    "document_id": "doc_58fd41e5ea79",
+    "file_name": "CS-FEDRAMP_Midterm_Progress_Review.pptx",
+    "file_type": "pptx",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": {
+      "slide_number": 1,
+      "slide_title": "Slide 1"
+    },
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

@@ -1,0 +1,594 @@
+{
+  "document_id": "doc_289792dda91d",
+  "metadata": {
+    "title": "OMNI-VIS_Midterm_Progress_Review",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_omnicommerce_retail_visual_search_engine\\artifacts\\raw\\doc_289792dda91d\\OMNI-VIS_Midterm_Progress_Review.pptx",
+    "file_type": "pptx",
+    "file_size_bytes": 30587,
+    "source_hash": "68e9cbd6bfaaa9a4fff5483d9ccf966e9f6d382f38f3c3a88378fbaa23526c57",
+    "author": null,
+    "created_at": "2026-09-29 16:26:31.853239+00:00",
+    "page_count": null,
+    "slide_count": 2,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_289792dda91d_slide_1",
+      "title": "Slide 1: Slide 1",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_c44477fd",
+          "block_type": "text",
+          "content": "COORDIN8 EXECUTIVE STRATEGY  \u2022  OMNICOMMERCE RETAIL - VISUAL SEARCH ENGINE  \u2022  MIDTERM PROGRESS (STAGE 2)",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_a847fff5",
+          "block_type": "text",
+          "content": "OMNI-VIS Mid-Sprint Architecture Review",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_482784ed",
+          "block_type": "text",
+          "content": "Sprint 2 Progress & Technical Walkthrough",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_c14d0419",
+          "block_type": "text",
+          "content": "Client: OmniCommerce Brands   |   Date: September 29, 2026   |   Status: Midterm Progress (Stage 2)",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_289792dda91d",
+        "document_id": "doc_289792dda91d",
+        "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+        "file_type": "pptx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": {
+          "slide_number": 1,
+          "slide_title": "Slide 1"
+        },
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_289792dda91d_slide_2",
+      "title": "Slide 2: Slide 2",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_211bd6cf",
+          "block_type": "text",
+          "content": "Executive Progress Highlights",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_9855711b",
+          "block_type": "text",
+          "content": "SPRINT PROGRESS",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_0fa5aa61",
+          "block_type": "text",
+          "content": "Architecture Validation",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_02188a79",
+          "block_type": "text",
+          "content": "Completed core microservices specification and security boundary definitions.",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_b97fb118",
+          "block_type": "text",
+          "content": "\u2022 mTLS configuration ready",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_5de704b1",
+          "block_type": "text",
+          "content": "\u2022 Ingestion latency <100ms",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_55aa2684",
+          "block_type": "text",
+          "content": "Quantitative Modeling",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_e667cf8c",
+          "block_type": "text",
+          "content": "91.4%",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_2291e5c3",
+          "block_type": "text",
+          "content": "ROC-AUC achieved across test benchmark splits.",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_609429c2",
+          "block_type": "text",
+          "content": "\u2022 Evaluated 90k records",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_96176a5f",
+          "block_type": "text",
+          "content": "\u2022 Zero data leakage detected",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_e550e203",
+          "block_type": "text",
+          "content": "Client Feedback",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_cba68d84",
+          "block_type": "text",
+          "content": "Incorporated requests from latest Google Meet session.",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_a8e40535",
+          "block_type": "text",
+          "content": "\u2022 Added Fair Lending compliance",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_42d55772",
+          "block_type": "text",
+          "content": "\u2022 IRB criteria verified",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_c5c9314b",
+          "block_type": "text",
+          "content": "Coordin8 Delivery System  \u2022  Confidential for OmniCommerce Brands  \u2022  Midterm Progress (Stage 2)",
+          "provenance": {
+            "file_id": "doc_289792dda91d",
+            "document_id": "doc_289792dda91d",
+            "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_289792dda91d",
+        "document_id": "doc_289792dda91d",
+        "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+        "file_type": "pptx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": {
+          "slide_number": 2,
+          "slide_title": "Slide 2"
+        },
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# OMNI-VIS_Midterm_Progress_Review\n\n## Slide 1: Slide 1\n\nCOORDIN8 EXECUTIVE STRATEGY  \u2022  OMNICOMMERCE RETAIL - VISUAL SEARCH ENGINE  \u2022  MIDTERM PROGRESS (STAGE 2)\n\nOMNI-VIS Mid-Sprint Architecture Review\n\nSprint 2 Progress & Technical Walkthrough\n\nClient: OmniCommerce Brands   |   Date: September 29, 2026   |   Status: Midterm Progress (Stage 2)\n\n## Slide 2: Slide 2\n\nExecutive Progress Highlights\n\nSPRINT PROGRESS\n\nArchitecture Validation\n\nCompleted core microservices specification and security boundary definitions.\n\n\u2022 mTLS configuration ready\n\n\u2022 Ingestion latency <100ms\n\nQuantitative Modeling\n\n91.4%\n\nROC-AUC achieved across test benchmark splits.\n\n\u2022 Evaluated 90k records\n\n\u2022 Zero data leakage detected\n\nClient Feedback\n\nIncorporated requests from latest Google Meet session.\n\n\u2022 Added Fair Lending compliance\n\n\u2022 IRB criteria verified\n\nCoordin8 Delivery System  \u2022  Confidential for OmniCommerce Brands  \u2022  Midterm Progress (Stage 2)\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_289792dda91d",
+    "document_id": "doc_289792dda91d",
+    "file_name": "OMNI-VIS_Midterm_Progress_Review.pptx",
+    "file_type": "pptx",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": {
+      "slide_number": 1,
+      "slide_title": "Slide 1"
+    },
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "document_id": "doc_864c4560588e",
+  "metadata": {
+    "title": "gcal_fe_kickoff_01_transcript",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_finedge_ai_automated_credit_underwriting\\artifacts\\raw\\doc_864c4560588e\\gcal_fe_kickoff_01_transcript.txt",
+    "file_type": "txt",
+    "file_size_bytes": 759,
+    "source_hash": "c40cc3b7c289e3d5fe8a14daf47ea1c00dd51f5e5fdf84505442c60b6896975a",
+    "author": null,
+    "created_at": "2026-09-29 16:26:05.334927+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_864c4560588e_main",
+      "title": "gcal_fe_kickoff_01_transcript",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_2243282c",
+          "block_type": "text",
+          "content": "Srinath Srinivasan (Client): Hello team, thank you for joining. Our primary goal with FE-RISK is reducing our underwriting turnaround from 14 days down to sub-second decisions without taking on excess default risk.\nCoordin8 Lead: Exactly Srinath. We have drafted the Model Risk Governance Architecture Spec and set up the backtesting framework for SME loans up to $2M.\nSrinath Srinivasan (Client): Excellent. Please ensure we include historical macroeconomic stress testing for recessionary shocks. Also, our risk committee will need a formal Fair Lending bias audit matrix before we go live in Q4.\nCoordin8 Lead: Understood. We will make the stress-testing workbook our priority deliverable and add the Fair Lending compliance dossier to the milestone queue.",
+          "provenance": {
+            "file_id": "doc_864c4560588e",
+            "document_id": "doc_864c4560588e",
+            "file_name": "gcal_fe_kickoff_01_transcript.txt",
+            "file_type": "txt",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_864c4560588e",
+        "document_id": "doc_864c4560588e",
+        "file_name": "gcal_fe_kickoff_01_transcript.txt",
+        "file_type": "txt",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "Srinath Srinivasan (Client): Hello team, thank you for joining. Our primary goal with FE-RISK is reducing our underwriting turnaround from 14 days down to sub-second decisions without taking on excess default risk.\nCoordin8 Lead: Exactly Srinath. We have drafted the Model Risk Governance Architecture Spec and set up the backtesting framework for SME loans up to $2M.\nSrinath Srinivasan (Client): Excellent. Please ensure we include historical macroeconomic stress testing for recessionary shocks. Also, our risk committee will need a formal Fair Lending bias audit matrix before we go live in Q4.\nCoordin8 Lead: Understood. We will make the stress-testing workbook our priority deliverable and add the Fair Lending compliance dossier to the milestone queue.",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_864c4560588e",
+    "document_id": "doc_864c4560588e",
+    "file_name": "gcal_fe_kickoff_01_transcript.txt",
+    "file_type": "txt",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

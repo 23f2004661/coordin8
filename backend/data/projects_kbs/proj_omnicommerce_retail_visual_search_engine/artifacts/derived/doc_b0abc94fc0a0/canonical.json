@@ -1,0 +1,83 @@
+{
+  "document_id": "doc_b0abc94fc0a0",
+  "metadata": {
+    "title": "gcal_omni_kickoff_01_transcript",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_omnicommerce_retail_visual_search_engine\\artifacts\\raw\\doc_b0abc94fc0a0\\gcal_omni_kickoff_01_transcript.txt",
+    "file_type": "txt",
+    "file_size_bytes": 515,
+    "source_hash": "6520cf486108e5aea3ecd694225600bbc3ffedaadbf203cb8e5340dfcfc938aa",
+    "author": null,
+    "created_at": "2026-09-29 16:26:32.595173+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_b0abc94fc0a0_main",
+      "title": "gcal_omni_kickoff_01_transcript",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_4c013e43",
+          "block_type": "text",
+          "content": "Srinivasan S (Client): Good to see you all. For our upcoming holiday shopping season, users must be able to upload a photo and find identical or matching outfits within 60 milliseconds.\nCoordin8 Lead: We have set up the ViT-H/14 two-tower pipeline and verified index recall above 94% on our sample catalog.\nSrinivasan S (Client): That is impressive. One critical feature: when a requested SKU is out of stock, we must automatically recommend stylistically similar in-stock alternatives. Please add that deliverable.",
+          "provenance": {
+            "file_id": "doc_b0abc94fc0a0",
+            "document_id": "doc_b0abc94fc0a0",
+            "file_name": "gcal_omni_kickoff_01_transcript.txt",
+            "file_type": "txt",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_b0abc94fc0a0",
+        "document_id": "doc_b0abc94fc0a0",
+        "file_name": "gcal_omni_kickoff_01_transcript.txt",
+        "file_type": "txt",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "Srinivasan S (Client): Good to see you all. For our upcoming holiday shopping season, users must be able to upload a photo and find identical or matching outfits within 60 milliseconds.\nCoordin8 Lead: We have set up the ViT-H/14 two-tower pipeline and verified index recall above 94% on our sample catalog.\nSrinivasan S (Client): That is impressive. One critical feature: when a requested SKU is out of stock, we must automatically recommend stylistically similar in-stock alternatives. Please add that deliverable.",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_b0abc94fc0a0",
+    "document_id": "doc_b0abc94fc0a0",
+    "file_name": "gcal_omni_kickoff_01_transcript.txt",
+    "file_type": "txt",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

@@ -1,0 +1,4 @@
+Srinath Srinivasan (Client): Hello team, thank you for joining. Our primary goal with FE-RISK is reducing our underwriting turnaround from 14 days down to sub-second decisions without taking on excess default risk.
+Coordin8 Lead: Exactly Srinath. We have drafted the Model Risk Governance Architecture Spec and set up the backtesting framework for SME loans up to $2M.
+Srinath Srinivasan (Client): Excellent. Please ensure we include historical macroeconomic stress testing for recessionary shocks. Also, our risk committee will need a formal Fair Lending bias audit matrix before we go live in Q4.
+Coordin8 Lead: Understood. We will make the stress-testing workbook our priority deliverable and add the Fair Lending compliance dossier to the milestone queue.

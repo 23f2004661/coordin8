@@ -1,0 +1,83 @@
+{
+  "document_id": "doc_2af0ee4b4079",
+  "metadata": {
+    "title": "gcal_nex_kickoff_01_transcript",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_nexus_logistics_autonomous_fleet_telematics\\artifacts\\raw\\doc_2af0ee4b4079\\gcal_nex_kickoff_01_transcript.txt",
+    "file_type": "txt",
+    "file_size_bytes": 493,
+    "source_hash": "fef6587c085e46887db773f02c606353e0842397c921945471fa2d313b732990",
+    "author": null,
+    "created_at": "2026-09-29 16:26:19.274158+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_2af0ee4b4079_main",
+      "title": "gcal_nex_kickoff_01_transcript",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_ab49f03b",
+          "block_type": "text",
+          "content": "Srinath S (Client): Welcome team. With fuel prices fluctuating and our rollout of 400 Class 8 electric trucks, NEX-ROUTE is critical to maintaining fleet margins.\nCoordin8 Lead: We have completed the edge telematics streaming architecture and verified sub-200ms latency on Kalman filter location updates.\nSrinath S (Client): Fantastic. Make sure you also track cold-chain temperature telemetry for pharmaceutical refrigerated cargo so we can trigger emergency rerouting if refrigeration fails.",
+          "provenance": {
+            "file_id": "doc_2af0ee4b4079",
+            "document_id": "doc_2af0ee4b4079",
+            "file_name": "gcal_nex_kickoff_01_transcript.txt",
+            "file_type": "txt",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_2af0ee4b4079",
+        "document_id": "doc_2af0ee4b4079",
+        "file_name": "gcal_nex_kickoff_01_transcript.txt",
+        "file_type": "txt",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "Srinath S (Client): Welcome team. With fuel prices fluctuating and our rollout of 400 Class 8 electric trucks, NEX-ROUTE is critical to maintaining fleet margins.\nCoordin8 Lead: We have completed the edge telematics streaming architecture and verified sub-200ms latency on Kalman filter location updates.\nSrinath S (Client): Fantastic. Make sure you also track cold-chain temperature telemetry for pharmaceutical refrigerated cargo so we can trigger emergency rerouting if refrigeration fails.",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_2af0ee4b4079",
+    "document_id": "doc_2af0ee4b4079",
+    "file_name": "gcal_nex_kickoff_01_transcript.txt",
+    "file_type": "txt",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

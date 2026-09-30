@@ -340,5 +340,186 @@ export async function updateProjectDeliverable(projectId, deliverableId, updates
   }
 }
 
+/**
+ * Delete a deliverable from a project.
+ */
+export async function deleteProjectDeliverable(projectId, deliverableId) {
+  try {
+    const res = await fetch(
+      `${API_BASE}/projects/${encodeURIComponent(projectId)}/deliverables/${encodeURIComponent(deliverableId)}`,
+      { method: 'DELETE' }
+    );
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not delete deliverable on backend:', err.message);
+    return null;
+  }
+}
 
+/**
+ * Trigger AI task breakdown on a deliverable.
+ */
+export async function breakdownDeliverable(projectId, deliverableId) {
+  const res = await fetch(
+    `${API_BASE}/projects/${encodeURIComponent(projectId)}/deliverables/${encodeURIComponent(deliverableId)}/breakdown`,
+    { method: 'POST' }
+  );
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail || `Breakdown failed with HTTP ${res.status}`);
+  }
+  return await res.json();
+}
 
+/**
+ * Fetch all execution tasks for a project.
+ */
+export async function fetchProjectTasks(projectId) {
+  try {
+    const res = await fetch(`${API_BASE}/projects/${encodeURIComponent(projectId)}/tasks`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not fetch project tasks:', err.message);
+    return { tasks: [] };
+  }
+}
+
+/**
+ * Update an execution task status or stage.
+ */
+export async function updateProjectTask(projectId, deliverableId, taskId, updates) {
+  try {
+    const res = await fetch(
+      `${API_BASE}/projects/${encodeURIComponent(projectId)}/deliverables/${encodeURIComponent(deliverableId)}/tasks/${encodeURIComponent(taskId)}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updates),
+      }
+    );
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not update task on backend:', err.message);
+    return null;
+  }
+}
+
+/**
+ * Update project strategic attributes (problem statement, background context, client info).
+ */
+export async function updateProjectOnBackend(projectId, updates) {
+  try {
+    const res = await fetch(`${API_BASE}/projects/${encodeURIComponent(projectId)}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updates),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Could not update project on backend:', err.message);
+    return null;
+  }
+}
+
+/**
+ * Trigger AI deliverable progress audit and candidate milestone discovery.
+ */
+export async function analyzeProjectDeliverables(projectId) {
+  const res = await fetch(`${API_BASE}/projects/${encodeURIComponent(projectId)}/analyze-deliverables`, {
+    method: 'POST',
+  });
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail || `Analysis failed with HTTP ${res.status}`);
+  }
+  return await res.json();
+}
+
+/**
+ * Accept an AI-discovered candidate deliverable into official project timeline.
+ */
+export async function acceptDiscoveredDeliverable(projectId, candidate) {
+  const res = await fetch(
+    `${API_BASE}/projects/${encodeURIComponent(projectId)}/deliverables/accept-discovered`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(candidate),
+    }
+  );
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail || `Failed to accept deliverable: HTTP ${res.status}`);
+  }
+  return await res.json();
+}
+
+/**
+ * Dismiss an AI-discovered candidate deliverable.
+ */
+export async function dismissDiscoveredDeliverable(projectId, title) {
+  const res = await fetch(
+    `${API_BASE}/projects/${encodeURIComponent(projectId)}/deliverables/dismiss-discovered`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title }),
+    }
+  );
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return await res.json();
+}
+
+/**
+ * Assign or unassign an email to a project and run AI archetype classification.
+ */
+export async function assignEmailToProject(emailId, projectId) {
+  const res = await fetch(`${API_BASE}/projects/emails/${encodeURIComponent(emailId)}/assign`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ projectId }),
+  });
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail || `Failed to assign email: HTTP ${res.status}`);
+  }
+  return await res.json();
+}
+
+/**
+ * Open any file (Excel, Word, PDF, text, markdown) in its native OS desktop application.
+ */
+export async function openFileInNativeApp({ filePath, projectId, fileName } = {}) {
+  const res = await fetch(`${API_BASE}/projects/open-file`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      file_path: filePath || null,
+      project_id: projectId || null,
+      file_name: fileName || null,
+    }),
+  });
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail || `Failed to open file: HTTP ${res.status}`);
+  }
+  return await res.json();
+}
+
+/**
+ * Open the physical project folder in Windows Explorer.
+ */
+export async function openProjectFolderInNativeOS(projectId) {
+  const res = await fetch(`${API_BASE}/projects/${encodeURIComponent(projectId)}/open-folder`, {
+    method: 'POST',
+  });
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail || `Failed to open project folder: HTTP ${res.status}`);
+  }
+  return await res.json();
+}

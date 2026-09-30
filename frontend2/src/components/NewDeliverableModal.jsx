@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Clock } from 'lucide-react';
+import { X, Clock, Link2 } from 'lucide-react';
 
 export default function NewDeliverableModal({
   isOpen,
@@ -12,10 +12,16 @@ export default function NewDeliverableModal({
   const [projectId, setProjectId] = useState(
     activeProject?.id || activeProject?.project_id || projects[0]?.id || projects[0]?.project_id || ''
   );
-  const [dueDate, setDueDate] = useState('2026-10-06');
+  const [dueDate, setDueDate] = useState(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 14);
+    return d.toISOString().split('T')[0];
+  });
   const [priority, setPriority] = useState('high');
   const [owner, setOwner] = useState('Srinath');
   const [description, setDescription] = useState('');
+  const [source, setSource] = useState('manual');
+  const [sourceEvidence, setSourceEvidence] = useState('');
 
   if (!isOpen) return null;
 
@@ -35,9 +41,11 @@ export default function NewDeliverableModal({
       dueDate,
       status: 'in_progress',
       priority,
-      progress: 10,
+      progress: 0,
       owner: owner.trim() || 'Team',
       description: description.trim(),
+      source,
+      sourceEvidence: sourceEvidence.trim() || (source === 'manual' ? 'Created manually by team' : ''),
     };
 
     onAddDeliverable(newDel);
@@ -52,7 +60,7 @@ export default function NewDeliverableModal({
             <Clock size={20} className="modal-icon deliverables-accent" />
             <div>
               <h3 className="modal-title">Add Milestone Deliverable</h3>
-              <span className="modal-subtitle">Track deadlines on the project timeline</span>
+              <span className="modal-subtitle">Track tangible commitments with evidence anchoring</span>
             </div>
           </div>
           <button className="modal-close-btn" onClick={onClose}>
@@ -67,7 +75,7 @@ export default function NewDeliverableModal({
               <input
                 type="text"
                 required
-                placeholder="e.g. Realtime WebSocket Notification Hub"
+                placeholder="e.g. Q3 Financial Projections Model & Client Deck"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -116,11 +124,33 @@ export default function NewDeliverableModal({
               </div>
             </div>
 
+            <div className="form-row">
+              <div className="form-group">
+                <label>Source / Provenance</label>
+                <select value={source} onChange={(e) => setSource(e.target.value)}>
+                  <option value="manual">Manual Entry</option>
+                  <option value="email">Client Email Communication</option>
+                  <option value="meeting_transcript">Meeting Transcript / Minutes</option>
+                  <option value="document">Client Engagement SOW / Spec</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>Origin Evidence / Citation</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Email from Tarang on Sept 29 / SOW Section 3"
+                  value={sourceEvidence}
+                  onChange={(e) => setSourceEvidence(e.target.value)}
+                />
+              </div>
+            </div>
+
             <div className="form-group">
               <label>Description & Acceptance Criteria</label>
               <textarea
                 rows={3}
-                placeholder="Key deliverables, testing benchmarks, and completion criteria..."
+                placeholder="Key deliverables, testing benchmarks, and tangible proof-of-work criteria..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />

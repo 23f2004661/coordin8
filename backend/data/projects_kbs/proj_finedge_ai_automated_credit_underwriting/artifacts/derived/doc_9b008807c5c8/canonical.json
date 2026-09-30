@@ -1,0 +1,83 @@
+{
+  "document_id": "doc_9b008807c5c8",
+  "metadata": {
+    "title": "gcal_fe_review_02_transcript",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_finedge_ai_automated_credit_underwriting\\artifacts\\raw\\doc_9b008807c5c8\\gcal_fe_review_02_transcript.txt",
+    "file_type": "txt",
+    "file_size_bytes": 366,
+    "source_hash": "e3101ab11ee33334f592453a3f9f03812957a0e5fa682b22f6642be03b9b94f8",
+    "author": null,
+    "created_at": "2026-09-29 16:26:05.488546+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_9b008807c5c8_main",
+      "title": "gcal_fe_review_02_transcript",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_a04c770b",
+          "block_type": "text",
+          "content": "Coordin8 Lead: In this review session, we walked through the backtested loan portfolio results. Under a 300bps rate hike scenario, our model maintained an ROC-AUC of 0.892.\nSrinath Srinivasan (Client): The numbers look very strong. The stress test workbook gives our investment committee immense confidence. Let us finalize the executive board deck for next Tuesday.",
+          "provenance": {
+            "file_id": "doc_9b008807c5c8",
+            "document_id": "doc_9b008807c5c8",
+            "file_name": "gcal_fe_review_02_transcript.txt",
+            "file_type": "txt",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_9b008807c5c8",
+        "document_id": "doc_9b008807c5c8",
+        "file_name": "gcal_fe_review_02_transcript.txt",
+        "file_type": "txt",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "Coordin8 Lead: In this review session, we walked through the backtested loan portfolio results. Under a 300bps rate hike scenario, our model maintained an ROC-AUC of 0.892.\nSrinath Srinivasan (Client): The numbers look very strong. The stress test workbook gives our investment committee immense confidence. Let us finalize the executive board deck for next Tuesday.",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_9b008807c5c8",
+    "document_id": "doc_9b008807c5c8",
+    "file_name": "gcal_fe_review_02_transcript.txt",
+    "file_type": "txt",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

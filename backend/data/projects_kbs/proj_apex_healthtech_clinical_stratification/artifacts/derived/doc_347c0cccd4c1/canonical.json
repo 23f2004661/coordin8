@@ -1,0 +1,89 @@
+{
+  "document_id": "doc_347c0cccd4c1",
+  "metadata": {
+    "title": "APEX-CLIN_Model_Validation_Audit_Report_FINAL",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_apex_healthtech_clinical_stratification\\artifacts\\raw\\doc_347c0cccd4c1\\APEX-CLIN_Model_Validation_Audit_Report_FINAL.pdf",
+    "file_type": "pdf",
+    "file_size_bytes": 3734,
+    "source_hash": "96d4ad3a64fea667942fb6dbb3531b32413bb904bc66682b71b54b817ddea986",
+    "author": null,
+    "created_at": "2026-09-29 16:26:11.290866+00:00",
+    "page_count": 1,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_347c0cccd4c1_p1",
+      "title": "Page 1",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_4272df46",
+          "block_type": "text",
+          "content": "COORDIN8 VERIFIED ARTIFACT \u007f APEX HEALTHTECH - CLINICAL STRATIFICATION \u007f OFFICIAL VERIFICATION (STAGE\n3)\nAPEX-CLIN Regulatory Model Validation &\nCompliance Dossier\nClient: Apex Therapeutics & Genomics\nAudit Date: September 29, 2026\nStatus: Official Verification (Stage\n3)\n1. Certification Statement\nThis formal audit dossier documents the complete independent validation of Apex HealthTech - Clinical Stratification\nfor Apex Therapeutics & Genomics. The methodology, quantitative performance, and risk controls have been verified\nin accordance with federal governance standards.\n \u007f Model risk governance verified pursuant to SR 11-7 / OCC 2011-12 standards.\n\u007f Bias and disparate impact testing confirmed no adverse demographic skew.\n\u007f Algorithmic explainability verified via Shapley additive explanations (SHAP).\n2. Independent Validation Findings\nSummary of quantitative validation testing executed by Coordin8 Enterprise Intelligence team:\nEvaluation Area\nTest Methodology\nStandard Threshold\nAudited Result\nFinding\nConceptual Soundness\nMathematical Proof &\nFeature Audit\nPeer-reviewed\nApproved\nSATISFACTORY\nDiscriminative Power\nROC-AUC on\nOut-of-Time Cohort\nAUC >= 0.88\nAUC = 0.914\nSUPERIOR\nModel Robustness\nMacro Stress Testing\n(+450bps)\nCapital buffer > 12%\nBuffer = 18.4%\nRESILIENT\nFair Lending Impact\nFour-Fifths Disparate\nRatio\nRatio >= 0.80\nRatio = 0.94\nCOMPLIANT\nExecutive Sign-off & Client Acceptance:\nAuthorized Signature for Apex Therapeutics & Genomics\n________________________________________\nDate: 2026-09-29\nCoordin8 Delivery & QA Certification:\nSrinath Srinivasan, Lead AI Architect\n________________________________________\nStatus: OFFICIAL VERIFICATION (STAGE 3)",
+          "provenance": {
+            "file_id": "doc_347c0cccd4c1",
+            "document_id": "doc_347c0cccd4c1",
+            "file_name": "APEX-CLIN_Model_Validation_Audit_Report_FINAL.pdf",
+            "file_type": "pdf",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": {
+              "page_number": 1,
+              "bounding_box": null
+            },
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_347c0cccd4c1",
+        "document_id": "doc_347c0cccd4c1",
+        "file_name": "APEX-CLIN_Model_Validation_Audit_Report_FINAL.pdf",
+        "file_type": "pdf",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": {
+          "page_number": 1,
+          "bounding_box": null
+        },
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# APEX-CLIN_Model_Validation_Audit_Report_FINAL\n\n[PAGE 1]\n\nCOORDIN8 VERIFIED ARTIFACT \u007f APEX HEALTHTECH - CLINICAL STRATIFICATION \u007f OFFICIAL VERIFICATION (STAGE\n3)\nAPEX-CLIN Regulatory Model Validation &\nCompliance Dossier\nClient: Apex Therapeutics & Genomics\nAudit Date: September 29, 2026\nStatus: Official Verification (Stage\n3)\n1. Certification Statement\nThis formal audit dossier documents the complete independent validation of Apex HealthTech - Clinical Stratification\nfor Apex Therapeutics & Genomics. The methodology, quantitative performance, and risk controls have been verified\nin accordance with federal governance standards.\n \u007f Model risk governance verified pursuant to SR 11-7 / OCC 2011-12 standards.\n\u007f Bias and disparate impact testing confirmed no adverse demographic skew.\n\u007f Algorithmic explainability verified via Shapley additive explanations (SHAP).\n2. Independent Validation Findings\nSummary of quantitative validation testing executed by Coordin8 Enterprise Intelligence team:\nEvaluation Area\nTest Methodology\nStandard Threshold\nAudited Result\nFinding\nConceptual Soundness\nMathematical Proof &\nFeature Audit\nPeer-reviewed\nApproved\nSATISFACTORY\nDiscriminative Power\nROC-AUC on\nOut-of-Time Cohort\nAUC >= 0.88\nAUC = 0.914\nSUPERIOR\nModel Robustness\nMacro Stress Testing\n(+450bps)\nCapital buffer > 12%\nBuffer = 18.4%\nRESILIENT\nFair Lending Impact\nFour-Fifths Disparate\nRatio\nRatio >= 0.80\nRatio = 0.94\nCOMPLIANT\nExecutive Sign-off & Client Acceptance:\nAuthorized Signature for Apex Therapeutics & Genomics\n________________________________________\nDate: 2026-09-29\nCoordin8 Delivery & QA Certification:\nSrinath Srinivasan, Lead AI Architect\n________________________________________\nStatus: OFFICIAL VERIFICATION (STAGE 3)\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_347c0cccd4c1",
+    "document_id": "doc_347c0cccd4c1",
+    "file_name": "APEX-CLIN_Model_Validation_Audit_Report_FINAL.pdf",
+    "file_type": "pdf",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

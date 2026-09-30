@@ -1,0 +1,594 @@
+{
+  "document_id": "doc_69922f874749",
+  "metadata": {
+    "title": "FE-RISK_Midterm_Progress_Review",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_finedge_ai_automated_credit_underwriting\\artifacts\\raw\\doc_69922f874749\\FE-RISK_Midterm_Progress_Review.pptx",
+    "file_type": "pptx",
+    "file_size_bytes": 30593,
+    "source_hash": "5c7caf2980a2e51e1de46a5bb870e084600ab5aba6fac3bb3e8cfca9820f2271",
+    "author": null,
+    "created_at": "2026-09-29 16:26:04.571622+00:00",
+    "page_count": null,
+    "slide_count": 2,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_69922f874749_slide_1",
+      "title": "Slide 1: Slide 1",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_30dfdea3",
+          "block_type": "text",
+          "content": "COORDIN8 EXECUTIVE STRATEGY  \u2022  FINEDGE AI - AUTOMATED CREDIT UNDERWRITING  \u2022  MIDTERM PROGRESS (STAGE 2)",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_a559e922",
+          "block_type": "text",
+          "content": "FE-RISK Mid-Sprint Architecture Review",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_d0307396",
+          "block_type": "text",
+          "content": "Sprint 2 Progress & Technical Walkthrough",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_a90abb63",
+          "block_type": "text",
+          "content": "Client: FinEdge Capital Partners   |   Date: September 29, 2026   |   Status: Midterm Progress (Stage 2)",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_69922f874749",
+        "document_id": "doc_69922f874749",
+        "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+        "file_type": "pptx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": {
+          "slide_number": 1,
+          "slide_title": "Slide 1"
+        },
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_69922f874749_slide_2",
+      "title": "Slide 2: Slide 2",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_2ebdb694",
+          "block_type": "text",
+          "content": "Executive Progress Highlights",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_9eb64301",
+          "block_type": "text",
+          "content": "SPRINT PROGRESS",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_0539e9e3",
+          "block_type": "text",
+          "content": "Architecture Validation",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_efa1d238",
+          "block_type": "text",
+          "content": "Completed core microservices specification and security boundary definitions.",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_d22aaaaa",
+          "block_type": "text",
+          "content": "\u2022 mTLS configuration ready",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_c1b8b4f0",
+          "block_type": "text",
+          "content": "\u2022 Ingestion latency <100ms",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_d9b6d5b6",
+          "block_type": "text",
+          "content": "Quantitative Modeling",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_29d50ff8",
+          "block_type": "text",
+          "content": "91.4%",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_185b22bf",
+          "block_type": "text",
+          "content": "ROC-AUC achieved across test benchmark splits.",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_fdf04602",
+          "block_type": "text",
+          "content": "\u2022 Evaluated 90k records",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_886554d9",
+          "block_type": "text",
+          "content": "\u2022 Zero data leakage detected",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_de3937fd",
+          "block_type": "text",
+          "content": "Client Feedback",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_dd4eedd7",
+          "block_type": "text",
+          "content": "Incorporated requests from latest Google Meet session.",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_a4fd5cb5",
+          "block_type": "text",
+          "content": "\u2022 Added Fair Lending compliance",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_c19eccea",
+          "block_type": "text",
+          "content": "\u2022 IRB criteria verified",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_09158a06",
+          "block_type": "text",
+          "content": "Coordin8 Delivery System  \u2022  Confidential for FinEdge Capital Partners  \u2022  Midterm Progress (Stage 2)",
+          "provenance": {
+            "file_id": "doc_69922f874749",
+            "document_id": "doc_69922f874749",
+            "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_69922f874749",
+        "document_id": "doc_69922f874749",
+        "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+        "file_type": "pptx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": {
+          "slide_number": 2,
+          "slide_title": "Slide 2"
+        },
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# FE-RISK_Midterm_Progress_Review\n\n## Slide 1: Slide 1\n\nCOORDIN8 EXECUTIVE STRATEGY  \u2022  FINEDGE AI - AUTOMATED CREDIT UNDERWRITING  \u2022  MIDTERM PROGRESS (STAGE 2)\n\nFE-RISK Mid-Sprint Architecture Review\n\nSprint 2 Progress & Technical Walkthrough\n\nClient: FinEdge Capital Partners   |   Date: September 29, 2026   |   Status: Midterm Progress (Stage 2)\n\n## Slide 2: Slide 2\n\nExecutive Progress Highlights\n\nSPRINT PROGRESS\n\nArchitecture Validation\n\nCompleted core microservices specification and security boundary definitions.\n\n\u2022 mTLS configuration ready\n\n\u2022 Ingestion latency <100ms\n\nQuantitative Modeling\n\n91.4%\n\nROC-AUC achieved across test benchmark splits.\n\n\u2022 Evaluated 90k records\n\n\u2022 Zero data leakage detected\n\nClient Feedback\n\nIncorporated requests from latest Google Meet session.\n\n\u2022 Added Fair Lending compliance\n\n\u2022 IRB criteria verified\n\nCoordin8 Delivery System  \u2022  Confidential for FinEdge Capital Partners  \u2022  Midterm Progress (Stage 2)\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_69922f874749",
+    "document_id": "doc_69922f874749",
+    "file_name": "FE-RISK_Midterm_Progress_Review.pptx",
+    "file_type": "pptx",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": {
+      "slide_number": 1,
+      "slide_title": "Slide 1"
+    },
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

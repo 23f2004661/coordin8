@@ -22,14 +22,36 @@ import {
   batchAddUnassignedMeetings,
   deleteUnassignedMeeting,
   fetchGcalAccount,
+  fetchSyncedEmails,
+  createProjectDeliverable,
+  updateProjectDeliverable,
+  deleteProjectDeliverable,
+  updateProjectOnBackend,
+  analyzeProjectDeliverables,
+  acceptDiscoveredDeliverable,
+  dismissDiscoveredDeliverable,
+  assignEmailToProject,
 } from './api';
 
-const STORAGE_KEY = 'coordin8_workspace_projects_v3';
-const STORAGE_UNASSIGNED_KEY = 'coordin8_workspace_unassigned_v3';
+
+const STORAGE_KEY = 'coordin8_workspace_projects_v4';
+const STORAGE_UNASSIGNED_KEY = 'coordin8_workspace_unassigned_v4';
+
+const DELETED_PROJECT_IDS = new Set([
+  'proj_acme_robotics_intelligence',
+  'proj_alpha_test_project',
+  'proj_existing_research_docs',
+  'proj_existing_research_project',
+  'proj_learning_robotics_hf',
+  'proj_rag_core',
+  'proj_openworker',
+  'proj_frontend',
+]);
 
 export default function App() {
   const [projects, setProjects] = useState(() => {
     try {
+      localStorage.removeItem('coordin8_workspace_projects_v3');
       localStorage.removeItem('coordin8_workspace_projects_v2');
       localStorage.removeItem('coordin8_workspace_projects');
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -38,12 +60,7 @@ export default function App() {
         if (Array.isArray(parsed)) {
           const globalSeen = new Set();
           return parsed
-            .filter(
-              (p) =>
-                !['proj_rag_core', 'proj_openworker', 'proj_frontend'].includes(
-                  p.id || p.project_id
-                )
-            )
+            .filter((p) => !DELETED_PROJECT_IDS.has(p.id || p.project_id))
             .map((p) => {
               const uniqueMeetings = [];
               for (const m of (p.meetings || [])) {
@@ -96,6 +113,7 @@ export default function App() {
   const [activeProjectId, setActiveProjectId] = useState(null);
   const [backendDocs, setBackendDocs] = useState([]);
   const [isBackendConnected, setIsBackendConnected] = useState(false);
+  const [allEmails, setAllEmails] = useState([]);
 
   // Modals state
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -104,7 +122,16 @@ export default function App() {
   const [isNewDeliverableModalOpen, setIsNewDeliverableModalOpen] = useState(false);
   const [isGoogleCalendarModalOpen, setIsGoogleCalendarModalOpen] = useState(false);
   const [gcalSession, setGcalSession] = useState(getSavedSession());
-  const ambientSync = useAmbientSync({ session: gcalSession, projects });
+  const ambientSync = useAmbientSync({
+    session: gcalSession,
+    projects,
+    onSyncComplete: () => {
+      fetchSyncedEmails().then((emails) => {
+        if (emails) setAllEmails(emails);
+      });
+    },
+  });
+
 
   // Sync projects and unassigned meetings to localStorage
   useEffect(() => {
@@ -182,25 +209,26 @@ export default function App() {
         }
       }
 
-      // 3. Update state cleanly and purely
+      // 3. Update state cleanly and purely from backend authoritative source
       setProjects((prev) => {
-        const backendIds = new Set(cleanProjects.map((bp) => bp.id));
-        const localCreated = prev.filter(
-          (p) =>
-            !backendIds.has(p.id || p.project_id) &&
-            !['proj_rag_core', 'proj_openworker', 'proj_frontend'].includes(p.id || p.project_id)
-        );
-        const merged = cleanProjects.map((bp) => {
+        return cleanProjects.map((bp) => {
           const existing = prev.find((p) => (p.id || p.project_id) === bp.id);
+          // Backend deliverables are authoritative (contains AI audits, evidence, updated progress)
+          const deliverables =
+            bp.deliverables && bp.deliverables.length > 0
+              ? bp.deliverables
+              : existing?.deliverables || [];
           return {
             ...bp,
-            deliverables:
-              existing?.deliverables && existing.deliverables.length > 0
-                ? existing.deliverables
-                : bp.deliverables || [],
+            deliverables,
           };
         });
-        return [...merged, ...localCreated];
+      });
+
+      // Clear activeProjectId if it pointed to a deleted project
+      setActiveProjectId((curr) => {
+        if (!curr) return null;
+        return cleanProjects.some((p) => (p.id || p.project_id) === curr) ? curr : null;
       });
 
       setUnassignedMeetings((prevUnassigned) => {
@@ -223,7 +251,11 @@ export default function App() {
 
     const docs = await fetchBackendDocuments();
     setBackendDocs(docs || []);
+
+    const emails = await fetchSyncedEmails();
+    if (emails) setAllEmails(emails);
   };
+
 
   useEffect(() => {
     loadFromBackend();
@@ -732,7 +764,7 @@ export default function App() {
   };
 
   // Add deliverable handler
-  const handleAddDeliverable = (newDel) => {
+  const handleAddDeliverable = async (newDel) => {
     setProjects((prev) =>
       prev.map((proj) => {
         const pId = proj.id || proj.project_id;
@@ -745,26 +777,144 @@ export default function App() {
         return proj;
       })
     );
+    if (newDel.projectId) {
+      await createProjectDeliverable(newDel.projectId, newDel);
+    }
   };
 
   // Toggle deliverable status
-  const handleToggleDeliverableStatus = (delId) => {
+  const handleToggleDeliverableStatus = async (delId) => {
+    let targetProjectId = null;
+    let updatedPayload = null;
+
     setProjects((prev) =>
       prev.map((proj) => ({
         ...proj,
         deliverables: (proj.deliverables || []).map((d) => {
           if (d.id === delId) {
+            targetProjectId = proj.id || proj.project_id;
             const nextStatus = d.status === 'completed' ? 'in_progress' : 'completed';
+            const nextProg = nextStatus === 'completed' ? 100 : Math.min(d.progress || 50, 90);
+            updatedPayload = { status: nextStatus, progress: nextProg };
             return {
               ...d,
-              status: nextStatus,
-              progress: nextStatus === 'completed' ? 100 : Math.min(d.progress || 50, 90),
+              ...updatedPayload,
             };
           }
           return d;
         }),
       }))
     );
+
+    if (targetProjectId && updatedPayload) {
+      await updateProjectDeliverable(targetProjectId, delId, updatedPayload);
+    }
+  };
+
+  // Delete deliverable handler
+  const handleDeleteDeliverable = async (projectId, delId) => {
+    setProjects((prev) =>
+      prev.map((proj) => {
+        const pId = proj.id || proj.project_id;
+        if (pId === projectId) {
+          return {
+            ...proj,
+            deliverables: (proj.deliverables || []).filter((d) => d.id !== delId),
+          };
+        }
+        return proj;
+      })
+    );
+    await deleteProjectDeliverable(projectId, delId);
+  };
+
+  // Update project strategic context (problem statement, client info, etc.)
+  const handleUpdateProject = async (projectId, updates) => {
+    setProjects((prev) =>
+      prev.map((p) => {
+        const pId = p.id || p.project_id;
+        if (pId === projectId) {
+          return { ...p, ...updates };
+        }
+        return p;
+      })
+    );
+    const updated = await updateProjectOnBackend(projectId, updates);
+    if (updated) {
+      setProjects((prev) =>
+        prev.map((p) =>
+          (p.id || p.project_id) === projectId
+            ? { ...p, ...updated, id: updated.project_id || updated.id }
+            : p
+        )
+      );
+    }
+  };
+
+  // AI deliverable audit handler
+  const handleAnalyzeDeliverables = async (projectId) => {
+    const res = await analyzeProjectDeliverables(projectId);
+    if (res && res.project) {
+      const normalized = {
+        ...res.project,
+        id: res.project.project_id || res.project.id,
+      };
+      setProjects((prev) =>
+        prev.map((p) => ((p.id || p.project_id) === projectId ? { ...p, ...normalized } : p))
+      );
+    }
+    return res;
+  };
+
+  // Accept discovered deliverable
+  const handleAcceptDiscoveredDeliverable = async (projectId, candidate) => {
+    const res = await acceptDiscoveredDeliverable(projectId, candidate);
+    if (res && res.deliverable) {
+      setProjects((prev) =>
+        prev.map((p) => {
+          const pId = p.id || p.project_id;
+          if (pId === projectId) {
+            return {
+              ...p,
+              deliverables: [res.deliverable, ...(p.deliverables || [])],
+              discovered_deliverables: (p.discovered_deliverables || []).filter(
+                (d) => d.title !== candidate.title
+              ),
+            };
+          }
+          return p;
+        })
+      );
+    }
+  };
+
+  // Dismiss discovered deliverable
+  const handleDismissDiscoveredDeliverable = async (projectId, title) => {
+    await dismissDiscoveredDeliverable(projectId, title);
+    setProjects((prev) =>
+      prev.map((p) => {
+        const pId = p.id || p.project_id;
+        if (pId === projectId) {
+          return {
+            ...p,
+            discovered_deliverables: (p.discovered_deliverables || []).filter(
+              (d) => d.title !== title
+            ),
+          };
+        }
+        return p;
+      })
+    );
+  };
+
+  // Assign email to project
+  const handleAssignEmailToProject = async (emailId, projectId) => {
+    const res = await assignEmailToProject(emailId, projectId);
+    if (res && res.email) {
+      setAllEmails((prev) =>
+        prev.map((e) => (e.id === emailId ? { ...e, ...res.email } : e))
+      );
+    }
   };
 
   // Add file to project folder
@@ -842,6 +992,7 @@ export default function App() {
             project={activeProject}
             projects={projects}
             backendDocs={backendDocs}
+            allEmails={allEmails}
             onBack={() => setActiveProjectId(null)}
             onSelectDoc={setSelectedDoc}
             onAddFileToProject={handleAddFileToProject}
@@ -854,9 +1005,16 @@ export default function App() {
             onToggleDeliverableStatus={handleToggleDeliverableStatus}
             onSelectPrepDoc={handleSelectPrepDoc}
             onTranscriptUploaded={() => loadFromBackend()}
+            onUpdateProject={handleUpdateProject}
+            onAnalyzeDeliverables={handleAnalyzeDeliverables}
+            onAcceptDiscoveredDeliverable={handleAcceptDiscoveredDeliverable}
+            onDismissDiscoveredDeliverable={handleDismissDiscoveredDeliverable}
+            onDeleteDeliverable={handleDeleteDeliverable}
+            onAssignEmailToProject={handleAssignEmailToProject}
           />
         )}
       </main>
+
 
       {/* Global Modals */}
       <DocumentModal doc={selectedDoc} onClose={() => setSelectedDoc(null)} />

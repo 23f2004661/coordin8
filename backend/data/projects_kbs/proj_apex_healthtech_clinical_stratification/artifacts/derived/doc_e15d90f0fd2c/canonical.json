@@ -1,0 +1,113 @@
+{
+  "document_id": "doc_e15d90f0fd2c",
+  "metadata": {
+    "title": "APEX-CLIN_System_Architecture_Topology",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_apex_healthtech_clinical_stratification\\artifacts\\raw\\doc_e15d90f0fd2c\\APEX-CLIN_System_Architecture_Topology.png",
+    "file_type": "image",
+    "file_size_bytes": 131148,
+    "source_hash": "d36ca2ac7bb3db65847f71e31fd14ee3fb76d2a45f77a434305d6c0189c20cf9",
+    "author": null,
+    "created_at": "2026-09-29 16:26:05.646231+00:00",
+    "page_count": null,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_e15d90f0fd2c_image",
+      "title": "APEX-CLIN_System_Architecture_Topology",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_7535295a",
+          "block_type": "image",
+          "content": "![Image APEX-CLIN_System_Architecture_Topology.png](APEX-CLIN_System_Architecture_Topology.png)",
+          "provenance": {
+            "file_id": "doc_e15d90f0fd2c",
+            "document_id": "doc_e15d90f0fd2c",
+            "file_name": "APEX-CLIN_System_Architecture_Topology.png",
+            "file_type": "image",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": "ast_20a1275c",
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_e15d90f0fd2c",
+        "document_id": "doc_e15d90f0fd2c",
+        "file_name": "APEX-CLIN_System_Architecture_Topology.png",
+        "file_type": "image",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [
+    {
+      "asset_id": "ast_20a1275c",
+      "document_id": "doc_e15d90f0fd2c",
+      "asset_type": "embedded_image",
+      "file_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_apex_healthtech_clinical_stratification\\artifacts\\raw\\doc_e15d90f0fd2c\\APEX-CLIN_System_Architecture_Topology.png",
+      "mime_type": "image/png",
+      "description": {
+        "caption": "Image APEX-CLIN_System_Architecture_Topology.png",
+        "visual_description": "Visual asset loaded from APEX-CLIN_System_Architecture_Topology.png",
+        "retrieval_description": "Visual content representation for APEX-CLIN_System_Architecture_Topology",
+        "entities": [],
+        "key_labels": []
+      },
+      "provenance": {
+        "file_id": "doc_e15d90f0fd2c",
+        "document_id": "doc_e15d90f0fd2c",
+        "file_name": "APEX-CLIN_System_Architecture_Topology.png",
+        "file_type": "image",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "summary": null,
+  "normalized_markdown": "# Image: APEX-CLIN_System_Architecture_Topology\n\n![Image APEX-CLIN_System_Architecture_Topology.png](APEX-CLIN_System_Architecture_Topology.png)\n\nVisual asset loaded from APEX-CLIN_System_Architecture_Topology.png\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_e15d90f0fd2c",
+    "document_id": "doc_e15d90f0fd2c",
+    "file_name": "APEX-CLIN_System_Architecture_Topology.png",
+    "file_type": "image",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

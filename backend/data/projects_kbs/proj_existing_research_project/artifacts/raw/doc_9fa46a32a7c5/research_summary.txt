@@ -1,1 +1,0 @@
-Research findings on multimodal RAG indexing.

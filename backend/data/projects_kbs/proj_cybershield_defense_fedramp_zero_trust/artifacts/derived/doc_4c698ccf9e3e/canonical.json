@@ -1,0 +1,113 @@
+{
+  "document_id": "doc_4c698ccf9e3e",
+  "metadata": {
+    "title": "CS-FEDRAMP_System_Architecture_Topology",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_cybershield_defense_fedramp_zero_trust\\artifacts\\raw\\doc_4c698ccf9e3e\\CS-FEDRAMP_System_Architecture_Topology.png",
+    "file_type": "image",
+    "file_size_bytes": 133278,
+    "source_hash": "d67d36af26731126cc4f78d3934be027b96ed43b9a074e28b912e3bb590026fe",
+    "author": null,
+    "created_at": "2026-09-29 16:26:19.383065+00:00",
+    "page_count": null,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_4c698ccf9e3e_image",
+      "title": "CS-FEDRAMP_System_Architecture_Topology",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_e950f400",
+          "block_type": "image",
+          "content": "![Image CS-FEDRAMP_System_Architecture_Topology.png](CS-FEDRAMP_System_Architecture_Topology.png)",
+          "provenance": {
+            "file_id": "doc_4c698ccf9e3e",
+            "document_id": "doc_4c698ccf9e3e",
+            "file_name": "CS-FEDRAMP_System_Architecture_Topology.png",
+            "file_type": "image",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": "ast_f2e589b2",
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_4c698ccf9e3e",
+        "document_id": "doc_4c698ccf9e3e",
+        "file_name": "CS-FEDRAMP_System_Architecture_Topology.png",
+        "file_type": "image",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [
+    {
+      "asset_id": "ast_f2e589b2",
+      "document_id": "doc_4c698ccf9e3e",
+      "asset_type": "embedded_image",
+      "file_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_cybershield_defense_fedramp_zero_trust\\artifacts\\raw\\doc_4c698ccf9e3e\\CS-FEDRAMP_System_Architecture_Topology.png",
+      "mime_type": "image/png",
+      "description": {
+        "caption": "Image CS-FEDRAMP_System_Architecture_Topology.png",
+        "visual_description": "Visual asset loaded from CS-FEDRAMP_System_Architecture_Topology.png",
+        "retrieval_description": "Visual content representation for CS-FEDRAMP_System_Architecture_Topology",
+        "entities": [],
+        "key_labels": []
+      },
+      "provenance": {
+        "file_id": "doc_4c698ccf9e3e",
+        "document_id": "doc_4c698ccf9e3e",
+        "file_name": "CS-FEDRAMP_System_Architecture_Topology.png",
+        "file_type": "image",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "summary": null,
+  "normalized_markdown": "# Image: CS-FEDRAMP_System_Architecture_Topology\n\n![Image CS-FEDRAMP_System_Architecture_Topology.png](CS-FEDRAMP_System_Architecture_Topology.png)\n\nVisual asset loaded from CS-FEDRAMP_System_Architecture_Topology.png\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_4c698ccf9e3e",
+    "document_id": "doc_4c698ccf9e3e",
+    "file_name": "CS-FEDRAMP_System_Architecture_Topology.png",
+    "file_type": "image",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

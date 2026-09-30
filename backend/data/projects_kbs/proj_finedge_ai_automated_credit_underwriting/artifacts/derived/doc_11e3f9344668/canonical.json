@@ -1,0 +1,113 @@
+{
+  "document_id": "doc_11e3f9344668",
+  "metadata": {
+    "title": "FE-RISK_System_Architecture_Topology",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_finedge_ai_automated_credit_underwriting\\artifacts\\raw\\doc_11e3f9344668\\FE-RISK_System_Architecture_Topology.png",
+    "file_type": "image",
+    "file_size_bytes": 130141,
+    "source_hash": "7e50c1d6795e3d397d75e2344eaab1218081c56f3832daed0aa09049e6bba0fe",
+    "author": null,
+    "created_at": "2026-09-29 16:25:58.083144+00:00",
+    "page_count": null,
+    "slide_count": null,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_11e3f9344668_image",
+      "title": "FE-RISK_System_Architecture_Topology",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_4ae5c6ef",
+          "block_type": "image",
+          "content": "![Image FE-RISK_System_Architecture_Topology.png](FE-RISK_System_Architecture_Topology.png)",
+          "provenance": {
+            "file_id": "doc_11e3f9344668",
+            "document_id": "doc_11e3f9344668",
+            "file_name": "FE-RISK_System_Architecture_Topology.png",
+            "file_type": "image",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": null,
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": "ast_2143e87e",
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_11e3f9344668",
+        "document_id": "doc_11e3f9344668",
+        "file_name": "FE-RISK_System_Architecture_Topology.png",
+        "file_type": "image",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [
+    {
+      "asset_id": "ast_2143e87e",
+      "document_id": "doc_11e3f9344668",
+      "asset_type": "embedded_image",
+      "file_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_finedge_ai_automated_credit_underwriting\\artifacts\\raw\\doc_11e3f9344668\\FE-RISK_System_Architecture_Topology.png",
+      "mime_type": "image/png",
+      "description": {
+        "caption": "Image FE-RISK_System_Architecture_Topology.png",
+        "visual_description": "Visual asset loaded from FE-RISK_System_Architecture_Topology.png",
+        "retrieval_description": "Visual content representation for FE-RISK_System_Architecture_Topology",
+        "entities": [],
+        "key_labels": []
+      },
+      "provenance": {
+        "file_id": "doc_11e3f9344668",
+        "document_id": "doc_11e3f9344668",
+        "file_name": "FE-RISK_System_Architecture_Topology.png",
+        "file_type": "image",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": null,
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "summary": null,
+  "normalized_markdown": "# Image: FE-RISK_System_Architecture_Topology\n\n![Image FE-RISK_System_Architecture_Topology.png](FE-RISK_System_Architecture_Topology.png)\n\nVisual asset loaded from FE-RISK_System_Architecture_Topology.png\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_11e3f9344668",
+    "document_id": "doc_11e3f9344668",
+    "file_name": "FE-RISK_System_Architecture_Topology.png",
+    "file_type": "image",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": null,
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

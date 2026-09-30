@@ -1,0 +1,594 @@
+{
+  "document_id": "doc_ab85bf866f22",
+  "metadata": {
+    "title": "APEX-CLIN_Midterm_Progress_Review",
+    "source_path": "C:\\Users\\ssrin\\Desktop\\1. Projects\\Coordin8\\coordin8\\backend\\data\\projects_kbs\\proj_apex_healthtech_clinical_stratification\\artifacts\\raw\\doc_ab85bf866f22\\APEX-CLIN_Midterm_Progress_Review.pptx",
+    "file_type": "pptx",
+    "file_size_bytes": 30595,
+    "source_hash": "f13f7563f5443047d6443e882f98ca27db4bece03a852e91b6cffd29ba51fe0c",
+    "author": null,
+    "created_at": "2026-09-29 16:26:11.580771+00:00",
+    "page_count": null,
+    "slide_count": 2,
+    "sheet_count": null,
+    "extra": {}
+  },
+  "sections": [
+    {
+      "section_id": "sec_doc_ab85bf866f22_slide_1",
+      "title": "Slide 1: Slide 1",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_3b5c7589",
+          "block_type": "text",
+          "content": "COORDIN8 EXECUTIVE STRATEGY  \u2022  APEX HEALTHTECH - CLINICAL STRATIFICATION  \u2022  MIDTERM PROGRESS (STAGE 2)",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_663c5d70",
+          "block_type": "text",
+          "content": "APEX-CLIN Mid-Sprint Architecture Review",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_8b3f420e",
+          "block_type": "text",
+          "content": "Sprint 2 Progress & Technical Walkthrough",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_677ef3e9",
+          "block_type": "text",
+          "content": "Client: Apex Therapeutics & Genomics   |   Date: September 29, 2026   |   Status: Midterm Progress (Stage 2)",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 1,
+              "slide_title": "Slide 1"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_ab85bf866f22",
+        "document_id": "doc_ab85bf866f22",
+        "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+        "file_type": "pptx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": {
+          "slide_number": 1,
+          "slide_title": "Slide 1"
+        },
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    },
+    {
+      "section_id": "sec_doc_ab85bf866f22_slide_2",
+      "title": "Slide 2: Slide 2",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "blk_ee56b74d",
+          "block_type": "text",
+          "content": "Executive Progress Highlights",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_c0617021",
+          "block_type": "text",
+          "content": "SPRINT PROGRESS",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_3197fba0",
+          "block_type": "text",
+          "content": "Architecture Validation",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_b731f8cd",
+          "block_type": "text",
+          "content": "Completed core microservices specification and security boundary definitions.",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_16236170",
+          "block_type": "text",
+          "content": "\u2022 mTLS configuration ready",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_fa8887d0",
+          "block_type": "text",
+          "content": "\u2022 Ingestion latency <100ms",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_a978276c",
+          "block_type": "text",
+          "content": "Quantitative Modeling",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_24b7d22b",
+          "block_type": "text",
+          "content": "91.4%",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_1f91211b",
+          "block_type": "text",
+          "content": "ROC-AUC achieved across test benchmark splits.",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_80aa9066",
+          "block_type": "text",
+          "content": "\u2022 Evaluated 90k records",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_88ebd412",
+          "block_type": "text",
+          "content": "\u2022 Zero data leakage detected",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_e69de3c7",
+          "block_type": "text",
+          "content": "Client Feedback",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_36468404",
+          "block_type": "text",
+          "content": "Incorporated requests from latest Google Meet session.",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_ef2860a7",
+          "block_type": "text",
+          "content": "\u2022 Added Fair Lending compliance",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_4aae13dc",
+          "block_type": "text",
+          "content": "\u2022 IRB criteria verified",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        },
+        {
+          "block_id": "blk_5e9afe14",
+          "block_type": "text",
+          "content": "Coordin8 Delivery System  \u2022  Confidential for Apex Therapeutics & Genomics  \u2022  Midterm Progress (Stage 2)",
+          "provenance": {
+            "file_id": "doc_ab85bf866f22",
+            "document_id": "doc_ab85bf866f22",
+            "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+            "file_type": "pptx",
+            "section_id": null,
+            "block_id": null,
+            "chunk_id": null,
+            "page": null,
+            "slide": {
+              "slide_number": 2,
+              "slide_title": "Slide 2"
+            },
+            "sheet": null,
+            "timestamp": null,
+            "extra": {}
+          },
+          "level": 1,
+          "asset_id": null,
+          "metadata": {}
+        }
+      ],
+      "summary": null,
+      "parent_section_id": null,
+      "provenance": {
+        "file_id": "doc_ab85bf866f22",
+        "document_id": "doc_ab85bf866f22",
+        "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+        "file_type": "pptx",
+        "section_id": null,
+        "block_id": null,
+        "chunk_id": null,
+        "page": null,
+        "slide": {
+          "slide_number": 2,
+          "slide_title": "Slide 2"
+        },
+        "sheet": null,
+        "timestamp": null,
+        "extra": {}
+      },
+      "metadata": {}
+    }
+  ],
+  "chunks": [],
+  "assets": [],
+  "summary": null,
+  "normalized_markdown": "# APEX-CLIN_Midterm_Progress_Review\n\n## Slide 1: Slide 1\n\nCOORDIN8 EXECUTIVE STRATEGY  \u2022  APEX HEALTHTECH - CLINICAL STRATIFICATION  \u2022  MIDTERM PROGRESS (STAGE 2)\n\nAPEX-CLIN Mid-Sprint Architecture Review\n\nSprint 2 Progress & Technical Walkthrough\n\nClient: Apex Therapeutics & Genomics   |   Date: September 29, 2026   |   Status: Midterm Progress (Stage 2)\n\n## Slide 2: Slide 2\n\nExecutive Progress Highlights\n\nSPRINT PROGRESS\n\nArchitecture Validation\n\nCompleted core microservices specification and security boundary definitions.\n\n\u2022 mTLS configuration ready\n\n\u2022 Ingestion latency <100ms\n\nQuantitative Modeling\n\n91.4%\n\nROC-AUC achieved across test benchmark splits.\n\n\u2022 Evaluated 90k records\n\n\u2022 Zero data leakage detected\n\nClient Feedback\n\nIncorporated requests from latest Google Meet session.\n\n\u2022 Added Fair Lending compliance\n\n\u2022 IRB criteria verified\n\nCoordin8 Delivery System  \u2022  Confidential for Apex Therapeutics & Genomics  \u2022  Midterm Progress (Stage 2)\n",
+  "signature": null,
+  "provenance": {
+    "file_id": "doc_ab85bf866f22",
+    "document_id": "doc_ab85bf866f22",
+    "file_name": "APEX-CLIN_Midterm_Progress_Review.pptx",
+    "file_type": "pptx",
+    "section_id": null,
+    "block_id": null,
+    "chunk_id": null,
+    "page": null,
+    "slide": {
+      "slide_number": 1,
+      "slide_title": "Slide 1"
+    },
+    "sheet": null,
+    "timestamp": null,
+    "extra": {}
+  }
+}

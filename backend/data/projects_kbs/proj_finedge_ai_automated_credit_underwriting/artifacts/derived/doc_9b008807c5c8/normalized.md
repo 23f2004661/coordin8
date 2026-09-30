@@ -1,0 +1,2 @@
+Coordin8 Lead: In this review session, we walked through the backtested loan portfolio results. Under a 300bps rate hike scenario, our model maintained an ROC-AUC of 0.892.
+Srinath Srinivasan (Client): The numbers look very strong. The stress test workbook gives our investment committee immense confidence. Let us finalize the executive board deck for next Tuesday.

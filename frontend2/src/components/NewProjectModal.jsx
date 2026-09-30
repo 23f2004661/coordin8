@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { X, FolderPlus, Folder, HardDrive, Sparkles, AlertCircle } from 'lucide-react';
+import { X, FolderPlus, Folder, HardDrive, Sparkles, AlertCircle, Building2, Briefcase } from 'lucide-react';
 import { fetchHomeFolder } from '../api';
 
 export default function NewProjectModal({ isOpen, onClose, onAddProject }) {
   const [creationMode, setCreationMode] = useState('scratch'); // 'scratch' or 'existing_folder'
+  const [projectType, setProjectType] = useState('internal'); // 'internal' or 'client'
   const [name, setName] = useState('');
   const [code, setCode] = useState('');
+  const [clientName, setClientName] = useState('');
+  const [clientEmail, setClientEmail] = useState('');
+  const [problemStatement, setProblemStatement] = useState('');
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('Core Infrastructure');
+  const [category, setCategory] = useState('Client Deliverable');
   const [color, setColor] = useState('#0066cc');
   const [folderPath, setFolderPath] = useState('');
   const [homeInfo, setHomeInfo] = useState({
@@ -43,7 +47,12 @@ export default function NewProjectModal({ isOpen, onClose, onAddProject }) {
     const payload = {
       name: name.trim(),
       code: (code.trim() || name.substring(0, 3)).toUpperCase(),
-      description: description.trim() || 'Project workspace with dedicated knowledge base.',
+      description: description.trim() || problemStatement.trim() || 'Project workspace with dedicated knowledge base.',
+      problem_statement: problemStatement.trim() || description.trim() || 'Core project objectives and work context.',
+      overall_context: problemStatement.trim(),
+      project_type: projectType,
+      client_name: projectType === 'client' ? clientName.trim() : '',
+      client_email: projectType === 'client' ? clientEmail.trim() : '',
       category,
       color,
       creation_mode: creationMode,
@@ -75,7 +84,7 @@ export default function NewProjectModal({ isOpen, onClose, onAddProject }) {
             <div>
               <h3 className="modal-title">Create Project Workspace</h3>
               <span className="modal-subtitle">
-                Isolated dedicated Knowledge Base with automatic file indexing
+                Set problem statement, client context, and initialize dedicated KnowledgeBase
               </span>
             </div>
           </div>
@@ -90,6 +99,67 @@ export default function NewProjectModal({ isOpen, onClose, onAddProject }) {
               <div className="form-alert-error">
                 <AlertCircle size={15} />
                 <span>{errorMsg}</span>
+              </div>
+            )}
+
+            {/* Project Classification: Internal vs Client Project */}
+            <div className="form-group">
+              <label>Project Type / Classification</label>
+              <div className="mode-toggle-group">
+                <button
+                  type="button"
+                  className={`mode-btn ${projectType === 'internal' ? 'active' : ''}`}
+                  onClick={() => {
+                    setProjectType('internal');
+                    setCategory('Core Infrastructure');
+                  }}
+                >
+                  <Briefcase size={16} />
+                  <div className="mode-btn-text">
+                    <span className="mode-title">Internal Initiative</span>
+                    <span className="mode-desc">Internal roadmap, R&D, or operations</span>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  className={`mode-btn ${projectType === 'client' ? 'active' : ''}`}
+                  onClick={() => {
+                    setProjectType('client');
+                    setCategory('Client Deliverable');
+                  }}
+                >
+                  <Building2 size={16} />
+                  <div className="mode-btn-text">
+                    <span className="mode-title">Client-Specific Project</span>
+                    <span className="mode-desc">Client emails & SOW act as ambient context</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            {/* Client Details (shown if client project) */}
+            {projectType === 'client' && (
+              <div className="form-row client-fields-row">
+                <div className="form-group">
+                  <label>Client / Organization Name *</label>
+                  <input
+                    type="text"
+                    required={projectType === 'client'}
+                    placeholder="e.g. Acme Corp, Tarang Jhaveri"
+                    value={clientName}
+                    onChange={(e) => setClientName(e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Client Contact Email (for auto-matching)</label>
+                  <input
+                    type="email"
+                    placeholder="e.g. client@acmecorp.com"
+                    value={clientEmail}
+                    onChange={(e) => setClientEmail(e.target.value)}
+                  />
+                </div>
               </div>
             )}
 
@@ -135,10 +205,25 @@ export default function NewProjectModal({ isOpen, onClose, onAddProject }) {
               <input
                 type="text"
                 required
-                placeholder="e.g. Coordin8 Core Engine"
+                placeholder="e.g. AI Delivery Orchestration Engine"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
+            </div>
+
+            {/* Problem Statement & Background Context */}
+            <div className="form-group">
+              <label>Main Problem Statement & Background Context *</label>
+              <textarea
+                rows={3}
+                required
+                placeholder="Describe what problem this project is solving, the background context, and what work is being done... (The AI Deliverable Auditor uses this to evaluate milestone progress)"
+                value={problemStatement}
+                onChange={(e) => setProblemStatement(e.target.value)}
+              />
+              <span className="field-hint">
+                Every project has a clear problem statement. The AI references this against Excel models, PDFs, and emails to verify deliverables.
+              </span>
             </div>
 
             {/* Existing Folder Selector (if mode is existing_folder) */}
@@ -199,22 +284,13 @@ export default function NewProjectModal({ isOpen, onClose, onAddProject }) {
               <div className="form-group">
                 <label>Category</label>
                 <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                  <option value="Client Deliverable">Client Deliverable</option>
                   <option value="Core Infrastructure">Core Infrastructure</option>
                   <option value="Agent Orchestration">Agent Orchestration</option>
                   <option value="User Experience">User Experience</option>
                   <option value="Research & Evals">Research & Evals</option>
                 </select>
               </div>
-            </div>
-
-            <div className="form-group">
-              <label>Description</label>
-              <textarea
-                rows={2}
-                placeholder="Objectives and scope for this project workspace..."
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
             </div>
 
             <div className="form-group">
@@ -238,7 +314,7 @@ export default function NewProjectModal({ isOpen, onClose, onAddProject }) {
               Cancel
             </button>
             <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-              {isSubmitting ? 'Initializing KnowledgeBase...' : 'Create Project'}
+              {isSubmitting ? 'Initializing Workspace...' : 'Create Project'}
             </button>
           </div>
         </form>
