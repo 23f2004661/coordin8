@@ -13,6 +13,7 @@ try:
         api_host: str = "127.0.0.1"
         api_port: int = 8000
         secret_key: str = "default-insecure-secret-key-coordin8"
+        access_token_expire_minutes: int = 60
 
         # Database
         database_url: str = "sqlite:///./data/coordin8.db"
@@ -60,6 +61,7 @@ except ImportError:
             self.api_host: str = os.getenv("API_HOST", "127.0.0.1")
             self.api_port: int = int(os.getenv("API_PORT", "8000"))
             self.secret_key: str = os.getenv("SECRET_KEY", "default-insecure-secret-key-coordin8")
+            self.access_token_expire_minutes: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "60"))
             self.database_url: str = os.getenv("DATABASE_URL", "sqlite:///./data/coordin8.db")
             self.qdrant_url: str = os.getenv("QDRANT_URL", "http://localhost:6333")
             self.qdrant_api_key: str | None = os.getenv("QDRANT_API_KEY")
@@ -85,3 +87,15 @@ except ImportError:
 @lru_cache
 def get_settings() -> Settings:
     return Settings()
+
+
+def validate_security_settings() -> None:
+    settings = get_settings()
+    if settings.app_env == "development":
+        return
+    if (
+        len(settings.secret_key) < 32
+        or settings.secret_key == "default-insecure-secret-key-coordin8"
+        or settings.secret_key.lower().startswith("replace-")
+    ):
+        raise ValueError("Set SECRET_KEY to a random value of at least 32 characters outside development")

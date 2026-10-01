@@ -121,6 +121,14 @@ To verify that the containers are healthy and running:
 docker compose ps
 ```
 
+### Optional: Seed the MVP Demo Accounts
+From the `backend/` directory, run:
+```powershell
+python scripts/seed_demo.py
+```
+
+The development accounts are `admin@coordin8.local` / `AdminDev!2026`, `manager@coordin8.local` / `ManagerDev!2026`, and `analyst@coordin8.local` / `AnalystDev!2026`. Change these demo credentials before sharing a development environment. The manager and team member are assigned only to Q3 Onboarding.
+
 ---
 
 ### Step 2: Start Backend Server (FastAPI)
@@ -143,6 +151,8 @@ python main.py
 - API Server: `http://localhost:8000`
 - Interactive Swagger UI: `http://localhost:8000/docs`
 - ReDoc UI: `http://localhost:8000/redoc`
+
+For staging or production, set `APP_ENV` and provide a random `SECRET_KEY` of at least 32 characters. Startup rejects the development default signing key outside development.
 
 ---
 
@@ -209,7 +219,7 @@ If you are setting up the project for the very first time on a new machine:
    cp .env.example .env
    cp .env.example backend/.env
    ```
-   *Edit `.env` or `backend/.env` to configure your LLM provider (`OPENAI_API_KEY` or local LM Studio endpoint).*
+   The backend reads `LLM_BASE_URL`, `LLM_API_KEY`, and `LLM_MODEL` from the process environment or `.env`. Defaults target LM Studio at `http://127.0.0.1:1234/v1` with model `meta-llama-3.1-8b-instruct` and the local placeholder key `not-needed-for-local`. For a hosted OpenAI-compatible provider, set all three values to that provider's documented base URL, secret API key, and model ID. Never commit a real API key. If the endpoint is unavailable, project Chat and MoM return HTTP 502 with an AI-service error rather than presenting a synthetic answer.
 
 3. **Set up backend virtual environment**:
    ```powershell

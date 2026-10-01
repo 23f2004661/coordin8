@@ -10,6 +10,7 @@ pydantic-settings>=2.2.0
 # Database & ORM
 sqlalchemy>=2.0.28
 aiosqlite>=0.20.0
+PyJWT>=2.8.0
 
 # Vector Database
 qdrant-client>=1.8.0

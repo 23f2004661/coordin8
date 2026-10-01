@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api import api_router
-from app.core.config import get_settings
+from app.core.config import get_settings, validate_security_settings
 from app.core.logging import logger
 from app.db.session import init_db
 from app.indexing.qdrant import QdrantManager
@@ -36,6 +36,7 @@ async def lifespan(app: FastAPI):
 
 def create_app() -> FastAPI:
     """Application factory."""
+    validate_security_settings()
     settings = get_settings()
     application = FastAPI(
         title="Coordin8 Knowledge API",

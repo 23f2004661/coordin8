@@ -23,29 +23,30 @@ class LLMClient:
         self.model = model or settings.llm_model
         self.temperature = temperature if temperature is not None else settings.llm_temperature
 
-    def generate_answer(self, query: str, context_text: str) -> str:
-        """Call LLM completion with system prompt and formatted context."""
+    def generate_completion(self, system_prompt: str, user_prompt: str) -> str:
+        """Generate text with caller-provided instructions using the configured chat model."""
         headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
-        prompt = build_rag_prompt(query, context_text)
         payload = {
             "model": self.model,
             "messages": [
-                {"role": "system", "content": RAG_SYSTEM_PROMPT},
-                {"role": "user", "content": prompt},
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
             ],
             "temperature": self.temperature,
         }
-
         try:
             with httpx.Client(timeout=60.0) as client:
-                res = client.post(f"{self.base_url}/chat/completions", json=payload, headers=headers)
-                res.raise_for_status()
-                data = res.json()
-                return data["choices"][0]["message"]["content"]
+                response = client.post(f"{self.base_url}/chat/completions", json=payload, headers=headers)
+                response.raise_for_status()
+                return response.json()["choices"][0]["message"]["content"]
         except Exception as exc:
-            logger.warning("LLM call to %s failed (%s). Returning synthesized response.", self.base_url, exc)
-            return (
-                f"Based on the retrieved evidence:\n\n"
-                f"Evidence regarding '{query}' was identified in the canonical knowledge base. "
-                f"Please ensure LM Studio or your local LLM service is running at {self.base_url}."
-            )
+            logger.warning("LLM completion to %s failed: %s", self.base_url, exc)
+            raise RuntimeError("AI service is currently unavailable. Please try again.") from exc
+
+    def generate_answer(self, query: str, context_text: str) -> str:
+        """Call LLM completion with system prompt and formatted context."""
+        prompt = build_rag_prompt(query, context_text)
+        try:
+            return self.generate_completion(RAG_SYSTEM_PROMPT, prompt)
+        except RuntimeError as exc:
+            raise RuntimeError("AI service is currently unavailable. Please try again.") from exc

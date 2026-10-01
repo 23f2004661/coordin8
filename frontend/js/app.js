@@ -3,19 +3,653 @@
  * Implements Dashboard, Document Management, Search & Grounded Answer, and Developer Inspector
  */
 
-const API_BASE = 'http://localhost:8000/api';
-
 // Global constants
-
+let appInitialized = false;
+let activeUser = null;
+let accessibleProjects = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-  initNavigation();
-  initDocumentsTable();
-  initSearchAndAnswer();
-  initInspectorView();
-  initUpload();
-  checkServerStatus();
+  initAuthentication();
 });
+
+function initAuthentication() {
+  const loginForm = document.getElementById('login-form');
+  const logoutButton = document.getElementById('logout-button');
+  if (loginForm) {
+    loginForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const form = new FormData(loginForm);
+      const error = document.getElementById('login-error');
+      if (error) error.textContent = '';
+      try {
+        const user = await Coordin8Api.login(form.get('email'), form.get('password'));
+        loginForm.reset();
+        await startAuthenticatedApp(user);
+      } catch (err) {
+        if (error) error.textContent = err.message;
+      }
+    });
+  }
+  if (logoutButton) logoutButton.addEventListener('click', logout);
+  window.addEventListener('coordin8-auth-expired', () => showLogin('Your session has expired. Please sign in again.'));
+  if (Coordin8Api.token) {
+    Coordin8Api.me().then(startAuthenticatedApp).catch(() => showLogin());
+  } else showLogin();
+}
+
+async function startAuthenticatedApp(user) {
+  activeUser = user;
+  accessibleProjects = user.projects || [];
+  document.body.classList.add('authenticated');
+  window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#/dashboard`);
+  const userName = document.getElementById('user-name');
+  const userRole = document.getElementById('user-role');
+  if (userName) userName.textContent = user.name;
+  if (userRole) userRole.textContent = user.role.replaceAll('_', ' ');
+
+  const projectSelect = document.getElementById('active-project');
+  const savedProject = Coordin8Api.activeProjectId;
+  if (projectSelect) {
+    projectSelect.innerHTML = accessibleProjects.map(project =>
+      `<option value="${escapeHtml(project.id)}">${escapeHtml(project.name)}</option>`
+    ).join('');
+    projectSelect.hidden = accessibleProjects.length === 0;
+    projectSelect.disabled = accessibleProjects.length < 2;
+    const selected = accessibleProjects.some(project => project.id === savedProject) ? savedProject : accessibleProjects[0]?.id;
+    Coordin8Api.setActiveProject(selected);
+    if (selected) projectSelect.value = selected;
+    if (!projectSelect.dataset.bound) {
+      projectSelect.addEventListener('change', async () => {
+        Coordin8Api.setActiveProject(projectSelect.value);
+        updateActiveProjectName();
+        clearProjectChat();
+        await refreshProjectViews();
+        if (activeUser.role === 'ADMIN') await loadAdminManagement();
+      });
+      projectSelect.dataset.bound = 'true';
+    }
+  }
+
+  applyRoleNavigation(user.role);
+  const documentDropzone = document.getElementById('file-dropzone');
+  if (documentDropzone) documentDropzone.hidden = !['ADMIN', 'MANAGER'].includes(user.role);
+  updateActiveProjectName();
+  if (!appInitialized) {
+    initNavigation();
+    initProjectChat();
+    initUpload();
+    initAdminManagement();
+    initProjectWorkflowViews();
+    appInitialized = true;
+  }
+  if (user.role === 'ADMIN') await loadAdminManagement();
+  await refreshProjectViews();
+  checkServerStatus();
+}
+
+function showLogin(message = '') {
+  document.body.classList.remove('authenticated');
+  window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#/login`);
+  const error = document.getElementById('login-error');
+  if (error) error.textContent = message;
+}
+
+function logout() {
+  Coordin8Api.logout();
+  showLogin();
+}
+
+function initAdminManagement() {
+  const projectForm = document.getElementById('create-project-form');
+  const employeeForm = document.getElementById('create-employee-form');
+  if (projectForm && !projectForm.dataset.bound) {
+    projectForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const fields = new FormData(projectForm);
+      try {
+        await Coordin8Api.createProject({ name: fields.get('name'), client: fields.get('client') || null });
+        projectForm.reset();
+        const user = await Coordin8Api.me();
+        renderProjectOptions(user.projects);
+        await refreshProjectViews();
+        await loadAdminManagement();
+      } catch (error) {
+        window.alert(error.message);
+      }
+    });
+    projectForm.dataset.bound = 'true';
+  }
+  if (employeeForm && !employeeForm.dataset.bound) {
+    employeeForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const fields = new FormData(employeeForm);
+      const status = document.getElementById('employee-form-status');
+      try {
+        await Coordin8Api.createEmployee({
+          name: fields.get('name'),
+          email: fields.get('email'),
+          temporary_password: fields.get('temporary_password'),
+          role: fields.get('role'),
+          project_ids: fields.getAll('project_ids'),
+        });
+        employeeForm.reset();
+        if (status) status.textContent = 'Employee created.';
+        await loadAdminManagement();
+      } catch (error) {
+        if (status) status.textContent = error.message;
+      }
+    });
+    employeeForm.dataset.bound = 'true';
+  }
+}
+
+async function loadAdminManagement() {
+  setViewState('admin-projects', 'loading', 'Loading tenant projects...');
+  setViewState('employees', 'loading', 'Loading employees...');
+  try {
+    const [projects, employees] = await Promise.all([Coordin8Api.projects(), Coordin8Api.employees()]);
+    const employeeProjects = document.getElementById('employee-projects');
+    const employeeRows = document.getElementById('employees-tbody');
+    const projectRows = document.getElementById('admin-projects-tbody');
+    const projectMembers = await Promise.all(projects.map(project => Coordin8Api.getProjectMembers(project.id).catch(() => [])));
+    if (projectRows) {
+      projectRows.innerHTML = projects.length ? projects.map((project, index) => {
+        const members = projectMembers[index];
+        const activeEmployees = employees.filter(employee => employee.is_active && !members.some(member => member.user_id === employee.id));
+        return `<tr>
+          <td><strong>${escapeHtml(project.name)}</strong></td>
+          <td>${escapeHtml(project.client || '—')}</td>
+          <td>${escapeHtml(project.status)}</td>
+          <td>${members.length ? members.map(member => `<span class="member-chip">${escapeHtml(member.name)}<button type="button" class="remove-member" data-project-id="${escapeHtml(project.id)}" data-user-id="${escapeHtml(member.user_id)}" aria-label="Remove ${escapeHtml(member.name)}">×</button></span>`).join('') : '<span class="muted-label">No members</span>'}</td>
+          <td><div class="member-assignment"><select class="input-text member-select" data-project-id="${escapeHtml(project.id)}"><option value="">Select employee</option>${activeEmployees.map(employee => `<option value="${escapeHtml(employee.id)}">${escapeHtml(employee.name)}</option>`).join('')}</select><button class="btn btn-secondary add-member" data-project-id="${escapeHtml(project.id)}" type="button" aria-label="Add member">Add</button></div></td>
+        </tr>`;
+      }).join('') : '<tr><td colspan="5" class="table-empty">No projects found for this tenant.</td></tr>';
+      projectRows.querySelectorAll('.add-member').forEach(button => button.addEventListener('click', async () => {
+        const select = projectRows.querySelector(`.member-select[data-project-id="${button.dataset.projectId}"]`);
+        if (!select?.value) return;
+        try {
+          await Coordin8Api.addProjectMember(button.dataset.projectId, select.value);
+          await loadAdminManagement();
+          await refreshProjectViews();
+        } catch (error) {
+          setViewState('admin-projects', 'error', error.message);
+        }
+      }));
+      projectRows.querySelectorAll('.remove-member').forEach(button => button.addEventListener('click', async () => {
+        try {
+          await Coordin8Api.removeProjectMember(button.dataset.projectId, button.dataset.userId);
+          await loadAdminManagement();
+          await refreshProjectViews();
+        } catch (error) {
+          setViewState('admin-projects', 'error', error.message);
+        }
+      }));
+      setViewState('admin-projects', projects.length ? 'clear' : 'empty', 'No projects found for this tenant.');
+    }
+    if (employeeProjects) {
+      employeeProjects.innerHTML = projects.map(project =>
+        `<option value="${escapeHtml(project.id)}">${escapeHtml(project.name)}</option>`
+      ).join('');
+    }
+    if (employeeRows) {
+      employeeRows.innerHTML = employees.map(employee => {
+        const names = projects.filter(project => employee.project_ids.includes(project.id)).map(project => project.name).join(', ');
+        const isCurrentUser = employee.id === activeUser.id;
+        const roleControl = employee.role === 'ADMIN' || isCurrentUser
+          ? escapeHtml(employee.role)
+          : `<select class="input-text employee-role" data-id="${escapeHtml(employee.id)}"><option value="MANAGER" ${employee.role === 'MANAGER' ? 'selected' : ''}>MANAGER</option><option value="TEAM_MEMBER" ${employee.role === 'TEAM_MEMBER' ? 'selected' : ''}>TEAM_MEMBER</option></select>`;
+        const accountAction = isCurrentUser ? '<span class="muted-label">Current account</span>' : `<button class="btn btn-secondary employee-toggle" data-id="${escapeHtml(employee.id)}" data-active="${employee.is_active}">${employee.is_active ? 'Deactivate' : 'Activate'}</button>`;
+        return `<tr><td>${escapeHtml(employee.name)}</td><td>${escapeHtml(employee.email)}</td><td>${roleControl}</td><td>${escapeHtml(names || '—')}</td><td>${employee.is_active ? 'Active' : 'Inactive'}</td><td>${accountAction}</td></tr>`;
+      }).join('');
+      employeeRows.querySelectorAll('.employee-role').forEach(select => {
+        select.addEventListener('change', async () => {
+          try {
+            await Coordin8Api.updateEmployee(select.dataset.id, { role: select.value });
+            await loadAdminManagement();
+          } catch (error) {
+            window.alert(error.message);
+          }
+        });
+      });
+      employeeRows.querySelectorAll('.employee-toggle').forEach(button => {
+        button.addEventListener('click', async () => {
+          try {
+            await Coordin8Api.updateEmployee(button.dataset.id, { is_active: button.dataset.active !== 'true' });
+            await loadAdminManagement();
+          } catch (error) {
+            window.alert(error.message);
+          }
+        });
+      });
+      setViewState('employees', employees.length ? 'clear' : 'empty', 'No employees found.');
+    }
+  } catch (error) {
+    setViewState('employees', 'error', 'Unable to load tenant administration. Please try again.');
+    setViewState('admin-projects', 'error', 'Unable to load tenant projects. Please try again.');
+  }
+}
+
+function renderProjectOptions(projects) {
+  accessibleProjects = projects;
+  const selector = document.getElementById('active-project');
+  if (!selector) return;
+  const current = Coordin8Api.activeProjectId;
+  selector.innerHTML = projects.map(project => `<option value="${escapeHtml(project.id)}">${escapeHtml(project.name)}</option>`).join('');
+  selector.hidden = projects.length === 0;
+  selector.disabled = projects.length < 2;
+  const selected = projects.some(project => project.id === current) ? current : projects[0]?.id;
+  Coordin8Api.setActiveProject(selected);
+  if (selected) selector.value = selected;
+  updateActiveProjectName();
+}
+
+function applyRoleNavigation(role) {
+  document.querySelectorAll('.nav-item[data-roles]').forEach(item => {
+    const roles = item.dataset.roles.split(',');
+    item.hidden = !roles.includes(role);
+  });
+  const firstVisible = [...document.querySelectorAll('.nav-item[data-view]')].find(item => !item.hidden);
+  if (firstVisible && !document.querySelector('.nav-item.active:not([hidden])')) firstVisible.click();
+}
+
+function updateActiveProjectName() {
+  const project = accessibleProjects.find(item => item.id === Coordin8Api.activeProjectId);
+  const projectLabel = document.getElementById('active-project-name');
+  const selector = document.getElementById('active-project');
+  const dashboardTitle = document.getElementById('dashboard-project-title');
+  const displayName = project?.name || 'Select a project';
+  if (projectLabel) projectLabel.textContent = displayName;
+  if (selector) selector.setAttribute('aria-label', `Active project: ${displayName}`);
+  if (dashboardTitle) dashboardTitle.textContent = displayName.toUpperCase();
+  ['documents-project-name', 'meetings-project-name', 'team-project-name', 'report-project-name', 'chat-project-name'].forEach(id => {
+    const node = document.getElementById(id);
+    if (node) node.textContent = project?.name || 'No project selected';
+  });
+}
+
+function initProjectWorkflowViews() {
+  const taskForm = document.getElementById('create-task-form');
+  const meetingForm = document.getElementById('meeting-upload-form');
+  if (taskForm && !taskForm.dataset.bound) {
+    taskForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const fields = new FormData(taskForm);
+      try {
+        await Coordin8Api.createTask({
+          title: fields.get('title'),
+          owner_id: fields.get('owner_id') || null,
+          due_date: fields.get('due_date') || null,
+        });
+        taskForm.reset();
+        await refreshProjectViews();
+        await initDocumentsTable();
+      } catch (error) {
+        window.alert(error.message);
+      }
+    });
+    taskForm.dataset.bound = 'true';
+  }
+  if (meetingForm && !meetingForm.dataset.bound) {
+    meetingForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const status = document.getElementById('meeting-form-status');
+      try {
+        await Coordin8Api.uploadMeeting(new FormData(meetingForm));
+        meetingForm.reset();
+        if (status) status.textContent = 'Transcript uploaded and indexed.';
+        await refreshProjectViews();
+      } catch (error) {
+        if (status) status.textContent = error.message;
+      }
+    });
+    meetingForm.dataset.bound = 'true';
+  }
+}
+
+async function refreshProjectViews() {
+  const projectId = Coordin8Api.activeProjectId;
+  const views = ['dashboard', 'deliverables', 'documents', 'meetings', 'team', 'reports', 'jira'];
+  if (!projectId) {
+    views.forEach(view => setViewState(view, 'empty', 'Select an accessible project to view this information.'));
+    if (activeUser?.role === 'ADMIN') {
+      setViewState('dashboard', 'loading', 'Loading tenant overview...');
+      try {
+        const tenantDashboard = await Coordin8Api.dashboard();
+        renderDashboard(
+          { tasks: { total: 0, backlog: 0, in_progress: 0, review: 0, done: 0, at_risk: 0 }, upcoming_tasks: [] },
+          tenantDashboard,
+          [],
+          [],
+        );
+        setViewState('dashboard', 'clear');
+      } catch {
+        setViewState('dashboard', 'error', 'Unable to load tenant dashboard. Please try again.');
+      }
+    }
+    return;
+  }
+  const canManage = activeUser && ['ADMIN', 'MANAGER'].includes(activeUser.role);
+  const taskForm = document.getElementById('create-task-form');
+  if (taskForm) taskForm.hidden = !canManage;
+  const meetingForm = document.getElementById('meeting-upload-form');
+  if (meetingForm) meetingForm.hidden = !canManage;
+  views.forEach(view => setViewState(view, 'loading', `Loading ${view === 'jira' ? 'Jira metrics' : view}...`));
+
+  const requests = [
+    Coordin8Api.projectDashboard(),
+    Coordin8Api.dashboard(),
+    Coordin8Api.tasks(),
+    Coordin8Api.meetings(),
+    Coordin8Api.projectMembers(),
+    Coordin8Api.weeklyReport(),
+    Coordin8Api.documents(),
+    activeUser?.role === 'MANAGER' ? Coordin8Api.jiraMetrics() : Promise.resolve(null),
+  ];
+  const results = await Promise.allSettled(requests);
+  const loaded = {};
+  const requestNames = ['projectDashboard', 'roleDashboard', 'tasks', 'meetings', 'members', 'report', 'documents', 'jira'];
+  results.forEach((item, index) => { loaded[requestNames[index]] = item; });
+
+  const tasks = loaded.tasks.status === 'fulfilled' ? loaded.tasks.value : [];
+  const meetings = loaded.meetings.status === 'fulfilled' ? loaded.meetings.value : [];
+  const members = loaded.members.status === 'fulfilled' ? loaded.members.value : [];
+  renderTasks(tasks);
+  renderMeetings(meetings, canManage);
+  renderTeam(members);
+  renderTaskOwners(members);
+  if (loaded.projectDashboard.status === 'fulfilled' && loaded.roleDashboard.status === 'fulfilled') {
+    renderDashboard(loaded.projectDashboard.value, loaded.roleDashboard.value, tasks, meetings);
+    setViewState('dashboard', tasks.length ? 'clear' : 'empty', 'No project tasks or meetings yet.');
+  } else {
+    setViewState('dashboard', 'error', 'Unable to load project dashboard. Please try again.');
+  }
+  if (loaded.tasks.status === 'fulfilled') {
+    setViewState('deliverables', tasks.length ? 'clear' : 'empty', 'No tasks found for this project.');
+    renderTimeline(tasks);
+  } else setViewState('deliverables', 'error', 'Unable to load project tasks. Please try again.');
+  if (loaded.meetings.status === 'fulfilled') setViewState('meetings', meetings.length ? 'clear' : 'empty', 'No meetings found for this project.');
+  else setViewState('meetings', 'error', 'Unable to load project meetings. Please try again.');
+  if (loaded.members.status === 'fulfilled') setViewState('team', members.length ? 'clear' : 'empty', 'No team members are assigned to this project.');
+  else setViewState('team', 'error', 'Unable to load project team. Please try again.');
+  if (loaded.report.status === 'fulfilled') {
+    renderWeeklyReport(loaded.report.value);
+    setViewState('reports', 'clear');
+  } else setViewState('reports', 'error', 'Unable to load the weekly report. Please try again.');
+  if (loaded.documents.status === 'fulfilled') {
+    renderDocumentsView(loaded.documents.value);
+    setViewState('documents', loaded.documents.value.length ? 'clear' : 'empty', 'No documents found for this project.');
+  } else setViewState('documents', 'error', 'Unable to load project documents. Please try again.');
+  if (activeUser?.role === 'MANAGER' && loaded.jira.status === 'fulfilled') {
+    renderJiraMetrics(loaded.jira.value);
+    setViewState('jira', 'clear');
+  } else if (activeUser?.role === 'MANAGER') setViewState('jira', 'error', 'Unable to load demo Jira metrics. Please try again.');
+}
+
+function setViewState(view, state, message = '') {
+  const node = document.getElementById(`${view}-state`);
+  if (!node) return;
+  node.hidden = state === 'clear';
+  node.dataset.state = state;
+  node.textContent = message;
+}
+
+function renderDashboard(projectDashboard, roleDashboard, tasks, meetings) {
+  const totals = { ...projectDashboard.tasks };
+  if (activeUser.role === 'ADMIN') Object.assign(totals, roleDashboard.tasks);
+  if (activeUser.role === 'TEAM_MEMBER') {
+    ['backlog', 'in_progress', 'review', 'done'].forEach(status => {
+      totals[status] = tasks.filter(task => task.status === status.toUpperCase()).length;
+    });
+    totals.total = tasks.length;
+    totals.at_risk = tasks.filter(task => task.risk).length;
+  }
+  const mine = tasks.filter(task => task.owner_id === activeUser.id);
+  const riskCount = activeUser.role === 'ADMIN'
+    ? roleDashboard.at_risk_projects.length
+    : tasks.filter(task => task.risk).length;
+  const riskIndicator = document.getElementById('dashboard-risk-indicator');
+  if (riskIndicator) {
+    riskIndicator.textContent = riskCount ? `${riskCount} ${activeUser.role === 'ADMIN' ? 'projects' : 'tasks'} at risk` : 'On track';
+    riskIndicator.classList.toggle('is-at-risk', riskCount > 0);
+  }
+
+  const myTaskCount = document.getElementById('my-task-count');
+  const myTaskTitle = document.getElementById('my-task-title');
+  const myTaskList = document.getElementById('my-task-list');
+  if (myTaskTitle) myTaskTitle.textContent = activeUser.role === 'ADMIN' ? 'Tenant Overview' : 'My Tasks';
+  if (myTaskCount) myTaskCount.textContent = activeUser.role === 'ADMIN' ? roleDashboard.employee_count : mine.length;
+  if (myTaskList) {
+    if (activeUser.role === 'ADMIN') {
+      myTaskList.innerHTML = `<div class="dashboard-metric-line"><span>Employees</span><strong>${roleDashboard.employee_count}</strong></div><div class="dashboard-metric-line"><span>Tenant projects</span><strong>${roleDashboard.project_count}</strong></div><div class="dashboard-metric-line"><span>Active projects</span><strong>${roleDashboard.active_projects}</strong></div>`;
+    } else if (!mine.length) {
+      myTaskList.innerHTML = '<div class="inline-empty">No tasks assigned to you.</div>';
+    } else {
+      myTaskList.innerHTML = mine.slice(0, 4).map(task => `<div class="task-progress-row"><span class="status-dot-sm status-${task.status.toLowerCase()}"></span><span class="task-progress-title">${escapeHtml(task.title)}</span><span class="muted-label">${escapeHtml(task.due_date || 'No due date')}</span></div>`).join('');
+    }
+  }
+
+  const total = totals.total || 0;
+  const statusCounts = [
+    ['BACKLOG', totals.backlog || 0, 'var(--status-backlog)'],
+    ['IN PROGRESS', totals.in_progress || 0, 'var(--status-progress)'],
+    ['REVIEW', totals.review || 0, 'var(--status-review)'],
+    ['DONE', totals.done || 0, 'var(--status-done)'],
+  ];
+  let cursor = 0;
+  const segments = statusCounts.map(([, count, color]) => {
+    const start = cursor;
+    cursor += total ? count / total * 100 : 0;
+    return `${color} ${start}% ${cursor}%`;
+  });
+  const donut = document.getElementById('task-donut');
+  if (donut) donut.style.background = total ? `conic-gradient(${segments.join(', ')})` : 'conic-gradient(var(--border-subtle) 0 100%)';
+  const donutTotal = document.getElementById('task-donut-total');
+  if (donutTotal) donutTotal.textContent = total;
+  const totalLabel = document.getElementById('task-total-label');
+  if (totalLabel) totalLabel.textContent = `${total} total`;
+  const legend = document.getElementById('task-chart-legend');
+  if (legend) legend.innerHTML = statusCounts.map(([label, count, color]) => `<div class="legend-row"><span class="legend-swatch" style="background:${color}"></span><span>${label}</span><strong>${count}</strong></div>`).join('');
+
+  const completion = total ? Math.round((totals.done || 0) / total * 100) : 0;
+  const completionPercent = document.getElementById('completion-percent');
+  const completionBar = document.getElementById('completion-bar');
+  const completionCaption = document.getElementById('completion-caption');
+  if (completionPercent) completionPercent.textContent = `${completion}%`;
+  if (completionBar) completionBar.style.width = `${completion}%`;
+  if (completionCaption) completionCaption.textContent = `${totals.done || 0} of ${total} deliverables complete`;
+  const breakdown = document.getElementById('completion-breakdown');
+  if (breakdown) breakdown.textContent = `${totals.at_risk || 0} at risk · ${projectDashboard.upcoming_tasks.length} due soon`;
+
+  const meetingsNode = document.getElementById('dashboard-meetings');
+  const meetingCount = document.getElementById('meeting-count');
+  if (meetingCount) meetingCount.textContent = meetings.length;
+  if (meetingsNode) meetingsNode.innerHTML = meetings.length
+    ? meetings.slice(0, 3).map(meeting => `<div class="dashboard-list-row"><strong>${escapeHtml(meeting.title)}</strong><span>${formatDate(meeting.created_at)}</span></div>`).join('')
+    : '<div class="inline-empty">No project meetings yet.</div>';
+
+  const needsReview = tasks.filter(task => task.status === 'REVIEW');
+  const reviewCount = document.getElementById('review-count');
+  const reviewList = document.getElementById('needs-review-list');
+  if (reviewCount) reviewCount.textContent = needsReview.length;
+  if (reviewList) reviewList.innerHTML = needsReview.length
+    ? needsReview.slice(0, 3).map(task => `<div class="dashboard-list-row"><strong>${escapeHtml(task.title)}</strong><span>${escapeHtml(task.owner_name || 'Unassigned')}</span></div>`).join('')
+    : '<div class="inline-empty">Nothing waiting for review.</div>';
+
+  const deliverables = document.getElementById('deliverables-overview');
+  if (deliverables) deliverables.innerHTML = statusCounts.map(([label, count, color]) => `<div class="deliverable-count-row"><span>${label}</span><span class="deliverable-count-track"><i style="width:${total ? Math.max(4, count / total * 100) : 0}%;background:${color}"></i></span><strong>${count}</strong></div>`).join('');
+
+  updateActiveProjectName();
+}
+
+function renderTimeline(tasks) {
+  const timeline = document.getElementById('task-timeline');
+  const totals = document.getElementById('deliverables-totals');
+  if (!timeline) return;
+  if (totals) totals.textContent = `${tasks.length} tasks · ${tasks.filter(task => task.risk).length} at risk`;
+  const dated = tasks.filter(task => task.due_date).sort((left, right) => left.due_date.localeCompare(right.due_date));
+  if (!dated.length) {
+    timeline.innerHTML = '<div class="inline-empty">No task due dates are scheduled.</div>';
+    return;
+  }
+  const day = 86400000;
+  const timestamps = dated.flatMap(task => [
+    task.created_at ? new Date(task.created_at).setHours(0, 0, 0, 0) : new Date(task.due_date).getTime(),
+    new Date(`${task.due_date}T00:00:00`).getTime(),
+  ]);
+  const rangeStart = Math.min(...timestamps);
+  const rangeEnd = Math.max(...timestamps, rangeStart + 7 * day);
+  const rangeDays = Math.max(1, Math.ceil((rangeEnd - rangeStart) / day));
+  const markers = Array.from({ length: Math.min(rangeDays + 1, 21) }, (_, index) => {
+    const date = new Date(rangeStart + index * day);
+    return `<span>${date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}</span>`;
+  }).join('');
+  timeline.innerHTML = `<div class="gantt-head"><span>Deliverable</span><div class="gantt-dates">${markers}</div></div>` + dated.map(task => {
+    const start = task.created_at ? new Date(task.created_at).setHours(0, 0, 0, 0) : new Date(`${task.due_date}T00:00:00`).getTime();
+    const end = new Date(`${task.due_date}T00:00:00`).getTime();
+    const left = Math.max(0, Math.min(100, (start - rangeStart) / (rangeDays * day) * 100));
+    const width = Math.max(3, Math.min(100 - left, (end - start) / (rangeDays * day) * 100));
+    return `<div class="gantt-row"><div class="gantt-task-label"><strong>${escapeHtml(task.title)}</strong><span>${escapeHtml(task.owner_name || 'Unassigned')} · ${escapeHtml(task.status.replaceAll('_', ' '))}</span></div><div class="gantt-track"><span class="gantt-bar status-${task.status.toLowerCase()}" style="left:${left}%;width:${width}%" title="Due ${escapeHtml(task.due_date)}"></span></div></div>`;
+  }).join('');
+}
+
+function renderDocumentsView(documents) {
+  const tbody = document.getElementById('panel-documents-tbody');
+  if (!tbody) return;
+  if (!documents.length) {
+    tbody.innerHTML = '<tr><td colspan="6" class="table-empty">No documents found for this project.</td></tr>';
+    return;
+  }
+  renderDocuments(documents, tbody);
+}
+
+function renderJiraMetrics(metrics) {
+  const values = [
+    ['jira-open', metrics.open],
+    ['jira-sprint', metrics.in_sprint],
+    ['jira-overdue', metrics.overdue],
+    ['jira-progress', `${metrics.sprint_progress}%`],
+  ];
+  values.forEach(([id, value]) => {
+    const node = document.getElementById(id);
+    if (node) node.textContent = value;
+  });
+  const bar = document.getElementById('jira-progress-bar');
+  if (bar) bar.style.width = `${metrics.sprint_progress}%`;
+}
+
+function formatDate(value) {
+  if (!value) return 'Date unavailable';
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? 'Date unavailable' : date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function renderTasks(tasks) {
+  const lanes = {
+    BACKLOG: 'tasks-backlog',
+    IN_PROGRESS: 'tasks-in-progress',
+    REVIEW: 'tasks-review',
+    DONE: 'tasks-done',
+  };
+  Object.values(lanes).forEach(id => {
+    const lane = document.getElementById(id);
+    if (lane) lane.innerHTML = '';
+  });
+  tasks.forEach(task => {
+    const lane = document.getElementById(lanes[task.status]);
+    if (!lane) return;
+    const canUpdate = activeUser && (['ADMIN', 'MANAGER'].includes(activeUser.role) || task.owner_id === activeUser.id);
+    const card = document.createElement('article');
+    card.className = 'kanban-task';
+    card.innerHTML = `
+      <strong>${escapeHtml(task.title)}</strong>
+      <div class="kanban-task-meta">${escapeHtml(task.owner_name || 'Unassigned')}${task.due_date ? ` · Due ${escapeHtml(task.due_date)}` : ''}</div>
+      ${task.risk ? `<span class="task-risk">At risk: ${escapeHtml(task.risk_reason || 'Needs attention')}</span>` : ''}
+      ${(task.source_meeting_id || task.source_document_id) ? `<div class="source-meta"><span class="source-chip">AI found</span>${task.source_document_id ? `<button type="button" class="text-button task-source" data-document-id="${escapeHtml(task.source_document_id)}">Source document</button>` : ''}${task.source_meeting_id ? '<span class="source-chip">Meeting action</span>' : ''}</div>` : ''}
+      <select class="input-text task-status-control" data-task-id="${escapeHtml(task.id)}" aria-label="Task status" ${canUpdate ? '' : 'disabled'}>
+        <option value="BACKLOG" ${task.status === 'BACKLOG' ? 'selected' : ''}>Backlog</option>
+        <option value="IN_PROGRESS" ${task.status === 'IN_PROGRESS' ? 'selected' : ''}>In Progress</option>
+        <option value="REVIEW" ${task.status === 'REVIEW' ? 'selected' : ''}>Review</option>
+        <option value="DONE" ${task.status === 'DONE' ? 'selected' : ''}>Done</option>
+      </select>`;
+    card.querySelector('.task-status-control').addEventListener('change', async event => {
+      try {
+        await Coordin8Api.updateTask(task.id, { status: event.target.value });
+        await refreshProjectViews();
+        await initDocumentsTable();
+      } catch (error) {
+        window.alert(error.message);
+      }
+    });
+    card.querySelector('.task-source')?.addEventListener('click', () => window.inspectDocument(task.source_document_id));
+    lane.appendChild(card);
+  });
+}
+
+function renderTaskOwners(members) {
+  const select = document.getElementById('task-owner');
+  if (!select) return;
+  select.innerHTML = '<option value="">Unassigned</option>' + members.map(member =>
+    `<option value="${escapeHtml(member.user_id)}">${escapeHtml(member.name)}</option>`
+  ).join('');
+}
+
+function renderMeetings(meetings, canManage) {
+  const container = document.getElementById('meetings-list');
+  if (!container) return;
+  if (meetings.length === 0) {
+    container.innerHTML = '<div class="card-panel">No project meetings yet.</div>';
+    return;
+  }
+  container.innerHTML = meetings.map(meeting => `
+    <article class="meeting-record">
+      <h3>${escapeHtml(meeting.title)}</h3>
+      <div class="meeting-meta">${formatDate(meeting.created_at)}</div>
+      ${meeting.summary ? `<p>${escapeHtml(meeting.summary)}</p>` : '<p>Minutes have not been generated.</p>'}
+      ${meeting.decisions.length ? `<h4>Decisions</h4><ul>${meeting.decisions.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : ''}
+      ${meeting.action_items.length ? `<h4>Action Items</h4><ul>${meeting.action_items.map(item => {
+        const overdue = item.due_date && new Date(`${item.due_date}T00:00:00`) < new Date(new Date().setHours(0, 0, 0, 0));
+        return `<li>${escapeHtml(item.text)}${item.owner_label ? ` · ${escapeHtml(item.owner_label)}` : ''}${item.due_date ? ` · ${escapeHtml(item.due_date)}` : ''}${overdue ? ' <span class="task-risk">Overdue</span>' : ''}${item.task_id ? ' · Task created' : ''}${canManage && !item.task_id ? ` <button class="btn btn-secondary action-to-task" data-id="${escapeHtml(item.id)}">Create Task</button>` : ''}</li>`;
+      }).join('')}</ul>` : ''}
+      ${canManage ? `<div class="meeting-actions"><button class="btn btn-secondary generate-mom" data-id="${escapeHtml(meeting.id)}">${meeting.summary ? 'Regenerate MoM' : 'Generate MoM'}</button></div>` : ''}
+    </article>`).join('');
+  container.querySelectorAll('.generate-mom').forEach(button => button.addEventListener('click', async () => {
+    try {
+      await Coordin8Api.generateMom(button.dataset.id);
+      await refreshProjectViews();
+    } catch (error) {
+      window.alert(error.message);
+    }
+  }));
+  container.querySelectorAll('.action-to-task').forEach(button => button.addEventListener('click', async () => {
+    try {
+      await Coordin8Api.actionItemToTask(button.dataset.id);
+      await refreshProjectViews();
+      await initDocumentsTable();
+    } catch (error) {
+      window.alert(error.message);
+    }
+  }));
+}
+
+function renderTeam(members) {
+  const tbody = document.getElementById('team-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = members.map(member =>
+    `<tr><td>${escapeHtml(member.name)}</td><td>${escapeHtml(member.role.replaceAll('_', ' '))}</td><td>${member.active_tasks}</td></tr>`
+  ).join('');
+}
+
+function renderWeeklyReport(report) {
+  const container = document.getElementById('weekly-report');
+  if (!container) return;
+  container.innerHTML = `
+    <p>Progress: <strong>${report.progress.completed} of ${report.progress.total} tasks complete</strong> (${report.progress.completion_percentage}%)</p>
+    <h3>Risks</h3>
+    ${report.risks.length ? `<ul>${report.risks.map(task => `<li>${escapeHtml(task.title)}: ${escapeHtml(task.risk_reason)}</li>`).join('')}</ul>` : '<p>No at-risk tasks.</p>'}
+    <h3>Next Steps</h3>
+    ${report.next_steps.length ? `<ul>${report.next_steps.map(task => `<li>${escapeHtml(task.title)}${task.due_date ? ` · ${escapeHtml(task.due_date)}` : ''}</li>`).join('')}</ul>` : '<p>No open tasks.</p>'}
+    <p>Meetings this week: ${report.meetings_this_week}</p>`;
+}
 
 // Navigation Handling
 function initNavigation() {
@@ -24,7 +658,10 @@ function initNavigation() {
   const pageTitle = document.getElementById('current-page-title');
 
   navItems.forEach(item => {
+    if (!item.dataset.navigationBound) item.dataset.navigationBound = 'true';
+    else return;
     item.addEventListener('click', () => {
+      if (item.hidden) return;
       const targetView = item.getAttribute('data-view');
       navItems.forEach(i => i.classList.remove('active'));
       panels.forEach(p => p.classList.remove('active'));
@@ -36,84 +673,49 @@ function initNavigation() {
       if (pageTitle) {
         pageTitle.textContent = item.querySelector('span').textContent;
       }
-
-      if (targetView === 'documents' || targetView === 'dashboard') {
-        initDocumentsTable();
-      }
+      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#/${targetView}`);
+      if (targetView === 'admin-projects' || targetView === 'admin-employees') loadAdminManagement();
+      if (targetView === 'documents' || targetView === 'dashboard' || targetView === 'deliverables' || targetView === 'meetings' || targetView === 'reports' || targetView === 'team' || targetView === 'jira') refreshProjectViews();
     });
+  });
+
+  document.querySelectorAll('[data-open-view]').forEach(button => {
+    button.addEventListener('click', () => document.querySelector(`[data-view="${button.dataset.openView}"]`)?.click());
   });
 }
 
 // Documents Table & Dashboard Metrics
 async function initDocumentsTable() {
-  const tbodies = document.querySelectorAll('#documents-tbody, #panel-documents-tbody');
-  const statDocs = document.getElementById('stat-docs');
-  const statChunks = document.getElementById('stat-chunks');
-  const statVectors = document.getElementById('stat-vectors');
-
-  if (!tbodies || tbodies.length === 0) return;
-
-  let docs = [];
-  try {
-    const res = await fetch(`${API_BASE}/documents`);
-    if (res.ok) {
-      docs = await res.json();
-    }
-  } catch (err) {
-    console.warn('Could not fetch documents from API:', err);
+  if (!Coordin8Api.activeProjectId) {
+    setViewState('documents', 'empty', 'Select an accessible project to view documents.');
+    return;
   }
-
-  tbodies.forEach(tbody => {
-    // If live backend returned documents, display them
-    if (docs && docs.length > 0) {
-      renderDocuments(docs, tbody);
-      if (statDocs) statDocs.textContent = docs.length;
-      if (statChunks) statChunks.textContent = docs.length * 8;
-      if (statVectors) statVectors.textContent = docs.length * 16;
-    } else if (docs && docs.length === 0) {
-      tbody.innerHTML = `
-        <tr>
-          <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 32px 16px;">
-            <div style="font-size: 15px; font-weight: 500; margin-bottom: 6px;">No documents ingested yet</div>
-            <div style="font-size: 12px; color: var(--text-dim);">Use the <strong>Upload & Ingestion</strong> tab to drop your first PDF, DOCX, PPTX, XLSX, or transcript!</div>
-          </td>
-        </tr>
-      `;
-      if (statDocs) statDocs.textContent = '0';
-      if (statChunks) statChunks.textContent = '0';
-      if (statVectors) statVectors.textContent = '0';
-    } else {
-      tbody.innerHTML = `
-        <tr>
-          <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 32px 16px;">
-            <div style="font-size: 14px; font-weight: 500; color: #f87171; margin-bottom: 4px;">⚠️ Backend Disconnected</div>
-            <div style="font-size: 12px; color: var(--text-dim);">Unable to fetch documents from <code>${API_BASE}/documents</code>. Please start the backend server.</div>
-          </td>
-        </tr>
-      `;
-      if (statDocs) statDocs.textContent = '—';
-      if (statChunks) statChunks.textContent = '—';
-      if (statVectors) statVectors.textContent = '—';
-    }
-  });
+  setViewState('documents', 'loading', 'Loading project documents...');
+  try {
+    const documents = await Coordin8Api.documents();
+    renderDocumentsView(documents);
+    setViewState('documents', documents.length ? 'clear' : 'empty', 'No documents found for this project.');
+  } catch {
+    setViewState('documents', 'error', 'Unable to load project documents. Please try again.');
+  }
 }
 
 function renderDocuments(documents, tbody) {
   tbody.innerHTML = '';
   documents.forEach(doc => {
     const tr = document.createElement('tr');
-    const sizeMb = doc.file_size_bytes ? (doc.file_size_bytes / 1024 / 1024).toFixed(2) : '0.10';
-    const summary = doc.summary || 'Summary generated during canonical ingestion pipeline.';
+    const sizeMb = doc.file_size_bytes ? (doc.file_size_bytes / 1024 / 1024).toFixed(2) : '0.00';
+    const summary = doc.summary || '—';
     const ftype = (doc.file_type || 'doc').toLowerCase();
 
     tr.innerHTML = `
       <td><strong>${escapeHtml(doc.title)}</strong><div style="font-size: 11px; color: var(--text-dim);">${doc.document_id}</div></td>
       <td><span class="badge badge-${ftype}">${ftype.toUpperCase()}</span></td>
       <td>${sizeMb} MB</td>
-      <td><span class="badge badge-ready">${doc.status || 'READY'}</span></td>
+      <td><span class="badge ${(doc.status || '').toUpperCase() === 'READY' ? 'badge-ready' : 'badge-processing'}">${escapeHtml(doc.status || 'REGISTERED')}</span></td>
       <td style="font-size: 12px; color: var(--text-muted); max-width: 340px;">${escapeHtml(summary)}</td>
       <td>
-        <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px;" onclick="inspectDocument('${doc.document_id}')">Inspect</button>
+        <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px;" onclick="inspectDocument('${escapeHtml(doc.document_id)}')">Source</button>
       </td>
     `;
     tbody.appendChild(tr);
@@ -122,47 +724,45 @@ function renderDocuments(documents, tbody) {
 
 function escapeHtml(str) {
   if (!str) return '';
-  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
-// Search & Grounded Answer Flow
-function initSearchAndAnswer() {
+function initProjectChat() {
+  const form = document.getElementById('project-chat-form');
   const searchInput = document.getElementById('search-query-input');
   const askBtn = document.getElementById('btn-ask-query');
-  if (!askBtn || !searchInput) return;
+  if (!form || !searchInput || !askBtn) return;
 
-  const handleQuery = async () => {
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
     const query = searchInput.value.trim();
     if (!query) return;
 
     appendChatMessage('user', query);
     searchInput.value = '';
+    searchInput.disabled = true;
+    askBtn.disabled = true;
+    setViewState('chat', 'loading', 'Searching this project...');
 
     try {
-      const response = await fetch(`${API_BASE}/answer`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query }),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        appendChatMessage('bot', data.answer, data.citations, query);
-        return;
-      } else {
-        const err = await response.json().catch(() => ({}));
-        appendChatMessage('bot', `⚠️ Backend error: ${err.detail || response.statusText || 'Unable to generate answer from knowledge base.'}`);
-        return;
-      }
+      const data = await Coordin8Api.chat(query);
+      appendChatMessage('bot', data.answer, data.citations, query);
+      setViewState('chat', 'clear');
     } catch (e) {
-      console.warn('API answer failed:', e);
-      appendChatMessage('bot', `⚠️ Could not reach the backend at ${API_BASE}/answer. Please verify the backend server is running on port 8000.`);
+      setViewState('chat', 'error', e.message || 'Unable to load project chat. Please try again.');
     }
-  };
-
-  askBtn.addEventListener('click', handleQuery);
-  searchInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') handleQuery();
+    finally {
+      searchInput.disabled = false;
+      askBtn.disabled = false;
+      searchInput.focus();
+    }
   });
+}
+
+function clearProjectChat() {
+  const history = document.getElementById('chat-history');
+  if (history) history.innerHTML = '<div class="chat-empty" id="chat-empty">Ask a question about this project’s documents, meetings, and deliverables.</div>';
+  setViewState('chat', 'clear');
 }
 
 function appendChatMessage(sender, text, citations = [], queryForInspector = '') {
@@ -172,23 +772,13 @@ function appendChatMessage(sender, text, citations = [], queryForInspector = '')
   const msgDiv = document.createElement('div');
   msgDiv.className = `chat-message chat-${sender}`;
 
-  let contentHtml = `<div>${text ? text.replace(/\n/g, '<br/>') : ''}</div>`;
+  let contentHtml = `<div>${text ? escapeHtml(text).replace(/\n/g, '<br/>') : ''}</div>`;
   if (citations && citations.length > 0) {
     contentHtml += `<div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">`;
     citations.forEach(c => {
-      contentHtml += `<span class="citation-pill" title="Click to trace provenance in Developer Inspector" onclick="openInspectorWithQuery('${escapeHtml(c)}')">🔖 ${escapeHtml(c)}</span>`;
+      contentHtml += `<span class="citation-pill" title="Project source citation">🔖 ${escapeHtml(c)}</span>`;
     });
     contentHtml += `</div>`;
-  }
-
-  if (sender === 'bot' && queryForInspector) {
-    contentHtml += `
-      <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid hsla(220, 20%, 25%, 0.4);">
-        <button class="btn btn-secondary" style="font-size: 11px; padding: 4px 10px;" onclick="openInspectorWithQuery('${escapeHtml(queryForInspector)}')">
-          🔍 Inspect Retrieval Lineage in Inspector &rarr;
-        </button>
-      </div>
-    `;
   }
 
   msgDiv.innerHTML = contentHtml;
@@ -271,18 +861,15 @@ async function populateDocSelect() {
   if (!docSelect) return;
 
   try {
-    const res = await fetch(`${API_BASE}/documents`);
-    if (res.ok) {
-      const docs = await res.json();
-      if (docs && docs.length > 0) {
-        docSelect.innerHTML = docs.map(d =>
-          `<option value="${d.document_id}">${escapeHtml(d.title)} (${(d.file_type || 'doc').toUpperCase()}) — ${d.document_id}</option>`
-        ).join('');
-        return;
-      } else {
-        docSelect.innerHTML = '<option value="">No documents found in knowledge base</option>';
-        return;
-      }
+    const docs = await Coordin8Api.documents();
+    if (docs.length > 0) {
+      docSelect.innerHTML = docs.map(d =>
+        `<option value="${d.document_id}">${escapeHtml(d.title)} (${(d.file_type || 'doc').toUpperCase()}) — ${d.document_id}</option>`
+      ).join('');
+      return;
+    } else {
+      docSelect.innerHTML = '<option value="">No documents found in knowledge base</option>';
+      return;
     }
   } catch (e) {
     console.warn('Failed to load documents for selector:', e);
@@ -305,17 +892,9 @@ async function inspectQuery(query) {
   `;
 
   try {
-    const res = await fetch(`${API_BASE}/search`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: query, limit: 10 }),
-    });
-
-    if (res.ok) {
-      const data = await res.json();
-      renderQueryInspectionResults(data, container, summaryBar);
-      return;
-    }
+    const data = await Coordin8Api.search(query, 10);
+    renderQueryInspectionResults(data, container, summaryBar);
+    return;
   } catch (err) {
     console.warn('Live search inspection failed:', err);
   }
@@ -325,7 +904,7 @@ async function inspectQuery(query) {
   container.innerHTML = `
     <div style="text-align: center; padding: 32px; color: var(--text-muted); background: hsla(0, 84%, 60%, 0.08); border: 1px solid #ef4444; border-radius: var(--radius-sm);">
       <div style="font-size: 16px; font-weight: 600; margin-bottom: 6px; color: #f87171;">⚠️ Backend Search Unavailable</div>
-      <div style="font-size: 12px; color: var(--text-main);">Could not connect to <code>${API_BASE}/search</code>. Please ensure your backend server is running on port 8000.</div>
+      <div style="font-size: 12px; color: var(--text-main);">${escapeHtml(Coordin8Api.activeProjectId ? 'Project search is currently unavailable.' : 'Select an accessible project to search.')}</div>
     </div>
   `;
 }
@@ -420,12 +999,9 @@ async function inspectDocumentHierarchy(docId) {
   `;
 
   try {
-    const res = await fetch(`${API_BASE}/documents/${docId}/hierarchy`);
-    if (res.ok) {
-      const data = await res.json();
-      renderDocumentHierarchyResults(data, container, summaryBar);
-      return;
-    }
+    const data = await Coordin8Api.hierarchy(docId);
+    renderDocumentHierarchyResults(data, container, summaryBar);
+    return;
   } catch (err) {
     console.warn('Failed to fetch document hierarchy:', err);
   }
@@ -491,7 +1067,7 @@ function renderDocumentHierarchyResults(data, container, summaryBar) {
     secDiv.innerHTML = `
       <div class="inspector-header">
         <div>
-          <span style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px;">Section ${secIdx + 1}</span>
+          <span style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0;">Section ${secIdx + 1}</span>
           <div style="font-size: 14px; font-weight: 600; color: var(--text-main); margin-top: 2px;">${escapeHtml(sec.section_id)}</div>
         </div>
         <span class="badge" style="background: hsla(217, 91%, 60%, 0.15); color: var(--accent); border: 1px solid hsla(217, 91%, 60%, 0.3);">
@@ -514,8 +1090,9 @@ function initUpload() {
 
   if (!dropzone || !fileInput) return;
 
-  // Click to select
-  dropzone.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('click', event => {
+    if (event.target !== fileInput) fileInput.click();
+  });
 
   // Prevent default drag behaviors on window and dropzone
   ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
@@ -560,58 +1137,19 @@ function initUpload() {
   async function uploadFile(file) {
     if (!statusDiv) return;
 
-    statusDiv.style.display = 'block';
-    statusDiv.innerHTML = `
-      <div style="display: flex; align-items: center; gap: 10px; color: var(--accent); background: hsla(217, 91%, 60%, 0.08); border: 1px solid var(--accent); padding: 12px 16px; border-radius: var(--radius-sm);">
-        <span style="font-size: 16px;">⏳</span>
-        <div>
-          <div>Ingesting <strong>${escapeHtml(file.name)}</strong> (${(file.size / 1024).toFixed(1)} KB)...</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">
-            Processing pipeline: Extracting &rarr; Normalized Markdown &rarr; Summarizing &rarr; Hierarchical Chunking &rarr; Vector Indexing
-          </div>
-        </div>
-      </div>
-    `;
+    statusDiv.hidden = false;
+    statusDiv.textContent = `Uploading ${file.name}...`;
 
     const formData = new FormData();
     formData.append('file', file);
 
     try {
-      const res = await fetch(`${API_BASE}/documents`, {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.detail || `Upload failed with status ${res.status}`);
-      }
-
-      const doc = await res.json();
-      statusDiv.innerHTML = `
-        <div style="color: var(--success); background: hsla(158, 64%, 52%, 0.1); border: 1px solid var(--success); padding: 12px 16px; border-radius: var(--radius-sm);">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <div>✅ <strong>${escapeHtml(file.name)}</strong> ingested successfully!</div>
-            <span class="badge badge-ready">READY</span>
-          </div>
-          <div style="font-size: 12px; color: var(--text-main); margin-top: 6px;">
-            ${escapeHtml(doc.summary || 'Document registered and indexed into Qdrant vector store.')}
-          </div>
-          <div style="margin-top: 8px;">
-            <button class="btn btn-secondary" style="font-size: 11px; padding: 4px 10px;" onclick="document.getElementById('nav-search').click()">Ask about this file &rarr;</button>
-          </div>
-        </div>
-      `;
-
-      // Refresh documents table and counters
-      await initDocumentsTable();
-
-    } catch (err) {
-      statusDiv.innerHTML = `
-        <div style="color: #f87171; background: hsla(0, 84%, 60%, 0.1); border: 1px solid #ef4444; padding: 12px 16px; border-radius: var(--radius-sm);">
-          ❌ <strong>Ingestion failed:</strong> ${escapeHtml(err.message)}
-        </div>
-      `;
+      const doc = await Coordin8Api.uploadDocument(formData);
+      const status = doc.status || (doc.success ? 'READY' : 'REGISTERED');
+      statusDiv.innerHTML = `<strong>${escapeHtml(file.name)}</strong> · <span class="badge ${status === 'READY' ? 'badge-ready' : 'badge-processing'}">${escapeHtml(status)}</span>${doc.summary ? `<p>${escapeHtml(doc.summary)}</p>` : ''}`;
+      await refreshProjectViews();
+    } catch (error) {
+      statusDiv.textContent = error.message || 'Upload failed. Please try again.';
     }
   }
 }
@@ -621,56 +1159,36 @@ async function checkServerStatus() {
   const indicator = document.getElementById('server-indicator');
   const label = document.getElementById('server-label');
   try {
-    const res = await fetch(`${API_BASE}/health`, { method: 'GET' });
-    if (res.ok) {
-      if (indicator) indicator.style.background = 'var(--success)';
-      if (label) label.textContent = 'API Connected (8000)';
-      return;
-    }
-  } catch {}
-
-  try {
-    const res = await fetch('http://localhost:8000/health', { method: 'GET' });
-    if (res.ok) {
-      if (indicator) indicator.style.background = 'var(--success)';
-      if (label) label.textContent = 'API Connected (8000)';
-      return;
-    }
-  } catch {}
-
-  if (indicator) indicator.style.background = 'var(--warning)';
-  if (label) label.textContent = 'Standalone Mock Mode';
+    await Coordin8Api.health();
+    if (indicator) indicator.style.background = 'var(--success)';
+    if (label) label.textContent = 'API Connected (8000)';
+  } catch {
+    if (indicator) indicator.style.background = 'var(--warning)';
+    if (label) label.textContent = 'Backend Unavailable';
+  }
 }
 
-window.openInspectorWithQuery = function(query) {
-  const navItems = document.querySelectorAll('.nav-item');
-  navItems.forEach(i => {
-    if (i.getAttribute('data-view') === 'inspector') i.click();
-  });
-
-  const tabQuery = document.getElementById('tab-mode-query');
-  if (tabQuery) tabQuery.click();
-
-  const queryInput = document.getElementById('inspector-query-input');
-  if (queryInput) {
-    queryInput.value = query;
+window.inspectDocument = async function(docId) {
+  const panel = document.getElementById('document-source-panel');
+  const title = document.getElementById('document-source-title');
+  const content = document.getElementById('document-source-content');
+  if (!panel || !content) return;
+  panel.hidden = false;
+  if (title) title.textContent = 'Document source';
+  content.textContent = 'Loading source details...';
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  try {
+    const document = await Coordin8Api.hierarchy(docId);
+    if (title) title.textContent = document.title;
+    content.innerHTML = `<p class="muted-copy">${escapeHtml(document.summary || 'No summary available.')}</p><p class="source-meta">${escapeHtml(document.file_type)} · ${escapeHtml(document.status)} · ${document.total_chunks} chunks</p>${document.sections.map(section => `<details class="source-section"><summary>${escapeHtml(section.section_id)} · ${section.chunks_count} chunks</summary>${section.chunks.map(chunk => `<pre>${escapeHtml(chunk.content)}</pre>`).join('')}</details>`).join('')}`;
+  } catch (error) {
+    content.textContent = error.message || 'Unable to load document source.';
   }
-  inspectQuery(query);
 };
 
-window.inspectDocument = function(docId) {
-  const navItems = document.querySelectorAll('.nav-item');
-  navItems.forEach(i => {
-    if (i.getAttribute('data-view') === 'inspector') i.click();
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('close-document-source')?.addEventListener('click', () => {
+    document.getElementById('document-source-panel').hidden = true;
   });
-
-  const tabDoc = document.getElementById('tab-mode-doc');
-  if (tabDoc) tabDoc.click();
-
-  const docSelect = document.getElementById('inspector-doc-select');
-  if (docSelect) {
-    docSelect.value = docId;
-  }
-  inspectDocumentHierarchy(docId);
-};
+});
 

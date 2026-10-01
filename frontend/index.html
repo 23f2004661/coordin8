@@ -3,11 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coordin8 — Multimodal Hierarchical RAG Knowledge System</title>
-  <meta name="description" content="Heterogeneous multimodal knowledge ingestion, canonical document models, and hierarchical RAG.">
+  <title>Coordin8 — Project Delivery Workspace</title>
+  <meta name="description" content="Project delivery, team collaboration, meeting minutes, and project-scoped knowledge chat.">
   <link rel="stylesheet" href="css/styles.css?v=2.2">
 </head>
 <body>
+
+  <section class="login-screen" id="login-screen" aria-labelledby="login-title">
+    <form class="login-panel" id="login-form">
+      <div class="brand-icon">C8</div>
+      <div class="brand-title">Coordin8</div>
+      <h1 id="login-title">Sign in</h1>
+      <label for="login-email">Email</label>
+      <input class="input-text" id="login-email" name="email" type="email" autocomplete="username" required>
+      <label for="login-password">Password</label>
+      <input class="input-text" id="login-password" name="password" type="password" autocomplete="current-password" required>
+      <button class="btn btn-primary" type="submit">Sign In</button>
+      <div class="login-error" id="login-error" role="alert"></div>
+    </form>
+  </section>
 
   <!-- Sidebar Navigation -->
   <aside class="sidebar">
@@ -15,30 +29,51 @@
       <div class="brand-icon">C8</div>
       <div>
         <div class="brand-title">Coordin8</div>
-        <div class="brand-subtitle">Hierarchical RAG</div>
+        <div class="brand-subtitle">PROJECT DELIVERY</div>
       </div>
     </div>
 
     <ul class="nav-menu">
-      <li class="nav-item active" data-view="dashboard" id="nav-dashboard">
+      <li class="nav-item active" data-view="dashboard" id="nav-dashboard" data-roles="ADMIN,MANAGER,TEAM_MEMBER">
         <svg viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
         <span>Dashboard</span>
       </li>
-      <li class="nav-item" data-view="documents" id="nav-documents">
+      <li class="nav-item" data-view="deliverables" id="nav-deliverables" data-roles="MANAGER,TEAM_MEMBER">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="16" rx="1"/><rect x="14" y="4" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="6" rx="1"/></svg>
+        <span>Deliverables</span>
+      </li>
+      <li class="nav-item" data-view="meetings" id="nav-meetings" data-roles="MANAGER,TEAM_MEMBER">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3M8 17h7"/></svg>
+        <span>Minutes of Meeting</span>
+      </li>
+      <li class="nav-item" data-view="reports" id="nav-reports" data-roles="ADMIN,MANAGER">
+        <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h17M8 16v-5M13 16V7M18 16v-8"/></svg>
+        <span>Reports</span>
+      </li>
+      <li class="nav-item" data-view="team" id="nav-team" data-roles="ADMIN,MANAGER,TEAM_MEMBER">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1M16 5.5a3 3 0 0 1 0 5.8M18 14a5 5 0 0 1 3 4.6V20"/></svg>
+        <span>Team</span>
+      </li>
+      <li class="nav-item" data-view="documents" id="nav-documents" data-roles="MANAGER,TEAM_MEMBER">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         <span>Documents</span>
       </li>
-      <li class="nav-item" data-view="upload" id="nav-upload">
-        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        <span>Upload & Ingest</span>
-      </li>
-      <li class="nav-item" data-view="search" id="nav-search">
+      <li class="nav-item" data-view="chat" id="nav-search" data-roles="MANAGER,TEAM_MEMBER">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <span>Search & Answer</span>
+        <span>Chat</span>
       </li>
-      <li class="nav-item" data-view="inspector" id="nav-inspector">
-        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        <span>Provenance Inspector</span>
+      <li class="nav-item" data-view="jira" id="nav-jira" data-roles="MANAGER">
+        <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h17M8 16v-5M13 16V7M18 16v-8"/></svg>
+        <span>Jira Metrics</span>
+      </li>
+      <li class="nav-item nav-section-label" data-roles="ADMIN" id="nav-admin-label" hidden><span>ADMINISTRATION</span></li>
+      <li class="nav-item" data-view="admin-employees" id="nav-admin-employees" data-roles="ADMIN" hidden>
+        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+        <span>Employees</span>
+      </li>
+      <li class="nav-item" data-view="admin-projects" id="nav-admin-projects" data-roles="ADMIN" hidden>
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+        <span>Projects</span>
       </li>
     </ul>
 
@@ -52,16 +87,14 @@
   <div class="main-wrapper">
     <!-- Topbar -->
     <header class="topbar">
-      <h1 class="page-title" id="current-page-title">Dashboard</h1>
+      <div class="topbar-brand">
+        <div class="brand-mark-small">C8</div>
+        <div><h1 class="page-title" id="current-page-title">Project Dashboard</h1><span class="active-project-name" id="active-project-name">Select a project</span></div>
+      </div>
       <div class="topbar-actions">
-        <button class="btn btn-secondary" onclick="document.getElementById('nav-upload').click()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Ingest File
-        </button>
-        <button class="btn btn-primary" onclick="document.getElementById('nav-search').click()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          Ask Knowledge Base
-        </button>
+        <select id="active-project" class="input-text project-select" aria-label="Active project" hidden></select>
+        <div class="user-identity"><strong id="user-name"></strong><span id="user-role"></span></div>
+        <button class="btn btn-secondary" id="logout-button" type="button">Log out</button>
       </div>
     </header>
 
@@ -69,72 +102,59 @@
     <main class="content-area">
       <!-- 1. DASHBOARD VIEW -->
       <section class="view-panel active" id="panel-dashboard">
-        <div class="stats-grid">
-          <div class="stat-card">
-            <span class="stat-label">Indexed Documents</span>
-            <span class="stat-value" id="stat-docs">0</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Canonical Chunks</span>
-            <span class="stat-value" id="stat-chunks">0</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Vector Points (Qdrant)</span>
-            <span class="stat-value" id="stat-vectors">0</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Evaluation Recall@5</span>
-            <span class="stat-value" style="color: var(--success);">100%</span>
-          </div>
+        <div class="project-heading">
+          <div><span class="eyebrow">PROJECT OVERVIEW</span><h2>Project Dashboard</h2></div>
+          <div class="dashboard-heading-actions"><span class="risk-indicator" id="dashboard-risk-indicator">No project selected</span><button class="btn btn-secondary" id="dashboard-chat-button" data-open-view="chat" type="button">Open project chat</button></div>
         </div>
-
-        <div class="card-panel">
-          <div class="card-header">
-            <h2 class="card-title">Modalities Ingested</h2>
-          </div>
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <span class="badge badge-pdf" style="padding: 6px 12px; font-size: 13px;">PDF (Native + Unlimited-OCR)</span>
-            <span class="badge badge-pptx" style="padding: 6px 12px; font-size: 13px;">PPTX (Slide Structure + VLM)</span>
-            <span class="badge badge-xlsx" style="padding: 6px 12px; font-size: 13px;">XLSX (Schema + Safe Operations)</span>
-            <span class="badge badge-docx" style="padding: 6px 12px; font-size: 13px;">DOCX (Word XML Structure)</span>
-            <span class="badge badge-ready" style="padding: 6px 12px; font-size: 13px;">TRANSCRIPTS (Turns + Timestamps)</span>
-          </div>
-        </div>
-
-        <div class="card-panel">
-          <div class="card-header">
-            <h2 class="card-title">Recent Ingestion Records</h2>
-          </div>
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Document Title</th>
-                  <th>Format</th>
-                  <th>File Size</th>
-                  <th>Status</th>
-                  <th>Canonical Summary</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="documents-tbody">
-                <!-- Injected via app.js -->
-              </tbody>
-            </table>
-          </div>
+        <div class="screen-state" id="dashboard-state" role="status" hidden></div>
+        <div class="dashboard-grid">
+          <article class="card-panel dashboard-card my-tasks-card">
+            <div class="card-header"><h2 class="card-title" id="my-task-title">My Tasks</h2><span class="stat-value compact" id="my-task-count">—</span></div>
+            <div class="task-progress-list" id="my-task-list"></div>
+          </article>
+          <article class="card-panel dashboard-card task-overview-card">
+            <div class="card-header"><h2 class="card-title">Tasks Overview</h2><span class="muted-label" id="task-total-label">— tasks</span></div>
+            <div class="donut-wrap"><div class="task-donut" id="task-donut"><span id="task-donut-total">—</span></div><div class="chart-legend" id="task-chart-legend"></div></div>
+          </article>
+          <article class="card-panel dashboard-card completion-card">
+            <div class="card-header"><h2 class="card-title">Tasks Completed</h2><span class="stat-value compact" id="completion-percent">—%</span></div>
+            <div class="completion-track"><span id="completion-bar"></span></div>
+            <p class="muted-copy" id="completion-caption">Project completion</p>
+            <div class="completion-breakdown" id="completion-breakdown"></div>
+          </article>
+          <article class="card-panel dashboard-card meetings-card">
+            <div class="card-header"><h2 class="card-title">My Meetings</h2><span class="muted-label" id="meeting-count">—</span></div>
+            <div id="dashboard-meetings" class="dashboard-list"></div>
+          </article>
+          <article class="card-panel dashboard-card review-card">
+            <div class="card-header"><h2 class="card-title">Needs Review</h2><span class="count-badge" id="review-count">0</span></div>
+            <div id="needs-review-list" class="dashboard-list"></div>
+          </article>
+          <article class="card-panel dashboard-card deliverables-overview-card">
+            <div class="card-header"><h2 class="card-title">Deliverables Overview</h2><button class="text-button" data-open-view="deliverables" type="button">View all</button></div>
+            <div id="deliverables-overview" class="deliverables-overview"></div>
+          </article>
         </div>
       </section>
 
       <!-- 2. DOCUMENTS VIEW -->
       <section class="view-panel" id="panel-documents">
+        <div class="project-heading"><div><span class="eyebrow">PROJECT FILES</span><h2>Documents</h2></div><span class="muted-label" id="documents-project-name"></span></div>
+        <div class="screen-state" id="documents-state" role="status" hidden></div>
+        <div class="card-panel">
+          <div class="card-header"><h2 class="card-title">Upload document</h2></div>
+          <div class="dropzone" id="file-dropzone">
+            <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9M16 16l-4-4-4 4"/></svg>
+            <div><strong>Choose a document to upload</strong><span>PDF, DOCX, PPTX, XLSX, image, or transcript</span></div>
+            <input type="file" id="file-input" accept=".pdf,.docx,.pptx,.xlsx,.png,.jpg,.jpeg,.vtt,.srt,.txt,.md">
+          </div>
+          <div id="upload-status" class="form-status" role="status" hidden></div>
+        </div>
         <div class="card-panel">
           <div class="card-header">
-            <h2 class="card-title">Registered Canonical Documents</h2>
+            <h2 class="card-title">Project documents</h2>
             <button class="btn btn-secondary" onclick="initDocumentsTable()">Refresh</button>
           </div>
-          <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
-            Every uploaded file is transformed into a canonical document hierarchy preserving sections, structural blocks, assets, and lineage.
-          </p>
           <div class="table-container">
             <table>
               <thead>
@@ -153,15 +173,100 @@
             </table>
           </div>
         </div>
+        <section class="card-panel document-source-panel" id="document-source-panel" hidden>
+          <div class="card-header"><h2 class="card-title" id="document-source-title">Document source</h2><button class="btn btn-secondary" id="close-document-source" type="button">Close</button></div>
+          <div id="document-source-content"></div>
+        </section>
+      </section>
+
+      <section class="view-panel" id="panel-deliverables">
+        <div class="card-panel">
+          <div class="project-heading compact-heading"><div><span class="eyebrow">PROJECT WORK</span><h2>Deliverables</h2></div><div class="deliverables-totals" id="deliverables-totals"></div></div>
+          <div class="screen-state" id="deliverables-state" role="status" hidden></div>
+          <form id="create-task-form" class="admin-inline-form" hidden>
+            <input class="input-text" name="title" placeholder="Task title" required maxlength="500">
+            <select class="input-text" name="owner_id" id="task-owner"><option value="">Unassigned</option></select>
+            <input class="input-text" name="due_date" type="date">
+            <button class="btn btn-primary" type="submit">Add Task</button>
+          </form>
+          <div class="kanban-board">
+            <section class="kanban-column"><h3>Backlog</h3><div id="tasks-backlog" class="kanban-cards"></div></section>
+            <section class="kanban-column"><h3>In Progress</h3><div id="tasks-in-progress" class="kanban-cards"></div></section>
+            <section class="kanban-column"><h3>Review</h3><div id="tasks-review" class="kanban-cards"></div></section>
+            <section class="kanban-column"><h3>Done</h3><div id="tasks-done" class="kanban-cards"></div></section>
+          </div>
+        </div>
+        <div class="card-panel timeline-panel">
+          <div class="card-header"><div><span class="eyebrow">DUE DATES</span><h2 class="card-title">Timeline</h2></div><span class="muted-label">Tasks with scheduled due dates</span></div>
+          <div class="timeline-board" id="task-timeline"></div>
+        </div>
+      </section>
+
+      <section class="view-panel" id="panel-meetings">
+        <div class="project-heading"><div><span class="eyebrow">PROJECT MEETINGS</span><h2>Minutes of Meeting</h2></div><span class="muted-label" id="meetings-project-name"></span></div>
+        <div class="screen-state" id="meetings-state" role="status" hidden></div>
+        <div class="card-panel">
+          <div class="card-header"><h2 class="card-title">Upload transcript</h2></div>
+          <form id="meeting-upload-form" class="admin-inline-form">
+            <input class="input-text" name="title" placeholder="Meeting title">
+            <input class="input-text" name="file" type="file" accept=".txt,.vtt,.srt,.md" required>
+            <button class="btn btn-primary" type="submit">Upload Transcript</button>
+          </form>
+          <div id="meeting-form-status" role="status"></div>
+        </div>
+        <div id="meetings-list" class="meeting-list"></div>
+      </section>
+
+      <section class="view-panel" id="panel-team">
+        <div class="project-heading"><div><span class="eyebrow">PROJECT PEOPLE</span><h2>Team</h2></div><span class="muted-label" id="team-project-name"></span></div>
+        <div class="screen-state" id="team-state" role="status" hidden></div>
+        <div class="card-panel">
+          <div class="card-header"><h2 class="card-title">Project team</h2></div>
+          <div class="table-container">
+            <table><thead><tr><th>Name</th><th>Role</th><th>Active Tasks</th></tr></thead><tbody id="team-tbody"></tbody></table>
+          </div>
+        </div>
+      </section>
+
+      <section class="view-panel" id="panel-reports">
+        <div class="project-heading"><div><span class="eyebrow">PROJECT REPORTING</span><h2>Weekly status report</h2></div><span class="muted-label" id="report-project-name"></span></div>
+        <div class="screen-state" id="reports-state" role="status" hidden></div>
+        <div class="card-panel">
+          <div class="card-header"><h2 class="card-title">This week</h2></div>
+          <div id="weekly-report" class="weekly-report"></div>
+        </div>
+      </section>
+
+      <section class="view-panel" id="panel-jira">
+        <div class="project-heading"><div><span class="eyebrow">PROJECT METRICS</span><h2>Jira Metrics</h2></div><span class="demo-badge">DEMO / MOCK JIRA DATA</span></div>
+        <div class="screen-state" id="jira-state" role="status" hidden></div>
+        <div class="jira-metrics-grid">
+          <article class="stat-card"><span class="stat-label">Open issues</span><strong class="stat-value" id="jira-open">—</strong></article>
+          <article class="stat-card"><span class="stat-label">In sprint</span><strong class="stat-value" id="jira-sprint">—</strong></article>
+          <article class="stat-card"><span class="stat-label">Overdue</span><strong class="stat-value" id="jira-overdue">—</strong></article>
+          <article class="stat-card"><span class="stat-label">Sprint progress</span><strong class="stat-value" id="jira-progress">—%</strong><div class="completion-track"><span id="jira-progress-bar"></span></div></article>
+        </div>
+      </section>
+
+      <section class="view-panel" id="panel-chat">
+        <div class="project-heading"><div><span class="eyebrow">PROJECT KNOWLEDGE</span><h2>Chat</h2><p class="muted-copy">Chat with <strong id="chat-project-name">this project</strong></p></div></div>
+        <div class="screen-state" id="chat-state" role="status" hidden></div>
+        <div class="card-panel project-chat-panel">
+          <div class="chat-history" id="chat-history"><div class="chat-empty" id="chat-empty">Ask a question about this project’s documents, meetings, and deliverables.</div></div>
+          <form class="search-box-container" id="project-chat-form">
+            <input type="text" class="input-text" id="search-query-input" placeholder="Ask about this project..." autocomplete="off" required>
+            <button class="btn btn-primary" id="btn-ask-query" type="submit">Ask</button>
+          </form>
+        </div>
       </section>
 
       <!-- 3. UPLOAD & INGESTION VIEW -->
-      <section class="view-panel" id="panel-upload">
+      <section class="view-panel legacy-panel" id="panel-legacy-upload" hidden>
         <div class="card-panel">
           <div class="card-header">
             <h2 class="card-title">Ingest Heterogeneous Files</h2>
           </div>
-          <div class="dropzone" id="file-dropzone">
+          <div class="dropzone" id="legacy-file-dropzone">
             <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/>
             </svg>
@@ -169,10 +274,10 @@
             <div style="font-size: 12px; color: var(--text-muted);">
               Supports PDF, DOCX, PPTX, XLSX, Images (PNG/JPG), and Transcripts (VTT/TXT).
             </div>
-            <input type="file" id="file-input" style="display: none;" accept=".pdf,.docx,.pptx,.xlsx,.png,.jpg,.jpeg,.vtt,.txt,.md">
+            <input type="file" id="legacy-file-input" style="display: none;" accept=".pdf,.docx,.pptx,.xlsx,.png,.jpg,.jpeg,.vtt,.txt,.md">
           </div>
 
-          <div id="upload-status" style="display: none; margin-top: 16px; padding: 14px 18px; border-radius: var(--radius-sm); font-size: 13px;"></div>
+          <div id="legacy-upload-status" style="display: none; margin-top: 16px; padding: 14px 18px; border-radius: var(--radius-sm); font-size: 13px;"></div>
 
           <div style="margin-top: 16px;">
             <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Ingestion Pipeline Stages (Section 16)</h3>
@@ -190,27 +295,27 @@
       </section>
 
       <!-- 4. SEARCH & GROUNDED ANSWER VIEW -->
-      <section class="view-panel" id="panel-search">
+      <section class="view-panel legacy-panel" id="panel-legacy-search" hidden>
         <div class="card-panel">
           <div class="card-header">
             <h2 class="card-title">Hierarchical Retrieval & Grounded Answer</h2>
           </div>
           
-          <div class="chat-history" id="chat-history">
+          <div class="chat-history" id="legacy-chat-history">
             <div class="chat-message chat-bot">
               <div>Hello! I am <strong>Coordin8</strong>. Ask me any question across your uploaded meeting transcripts, presentations, spreadsheets, and documents. Every claim is strictly grounded with source citations.</div>
             </div>
           </div>
 
           <div class="search-box-container">
-            <input type="text" class="input-text" id="search-query-input" placeholder="Ask any question across your uploaded documents (e.g., What was the total on the Walmart receipt?)...">
-            <button class="btn btn-primary" id="btn-ask-query">Ask Coordin8</button>
+            <input type="text" class="input-text" id="legacy-search-query-input" placeholder="Ask about this project...">
+            <button class="btn btn-primary" id="legacy-btn-ask-query">Ask</button>
           </div>
         </div>
       </section>
 
       <!-- 5. PROVENANCE INSPECTOR VIEW (Section 26 Developer View) -->
-      <section class="view-panel" id="panel-inspector">
+      <section class="view-panel legacy-panel" id="panel-legacy-inspector" hidden>
         <div class="card-panel">
           <div class="card-header">
             <h2 class="card-title">Developer Provenance Inspector (Section 26)</h2>
@@ -261,9 +366,47 @@
           </div>
         </div>
       </section>
+
+      <section class="view-panel" id="panel-admin-projects">
+        <div class="card-panel">
+          <div class="project-heading compact-heading"><div><span class="eyebrow">TENANT ADMIN</span><h2>Projects</h2></div></div>
+          <div class="screen-state" id="admin-projects-state" role="status" hidden></div>
+          <form id="create-project-form" class="admin-inline-form">
+            <input class="input-text" name="name" placeholder="Project name" required maxlength="255">
+            <input class="input-text" name="client" placeholder="Client">
+            <button class="btn btn-primary" type="submit">Create Project</button>
+          </form>
+          <div class="table-container">
+            <table><thead><tr><th>Project</th><th>Client</th><th>Status</th><th>Members</th><th>Add member</th></tr></thead><tbody id="admin-projects-tbody"></tbody></table>
+          </div>
+        </div>
+      </section>
+
+      <section class="view-panel" id="panel-admin-employees">
+        <div class="card-panel">
+          <div class="project-heading compact-heading"><div><span class="eyebrow">TENANT ADMIN</span><h2>Employees</h2></div></div>
+          <div class="screen-state" id="employees-state" role="status" hidden></div>
+          <div class="table-container">
+            <table>
+              <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Projects</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody id="employees-tbody"></tbody>
+            </table>
+          </div>
+          <form id="create-employee-form" class="admin-employee-form">
+            <label>Name<input class="input-text" name="name" required maxlength="255"></label>
+            <label>Email<input class="input-text" name="email" type="email" required></label>
+            <label>Temporary password<input class="input-text" name="temporary_password" type="password" minlength="8" required></label>
+            <label>Role<select class="input-text" name="role"><option value="MANAGER">Manager</option><option value="TEAM_MEMBER">Team Member</option></select></label>
+            <label>Projects<select class="input-text" name="project_ids" id="employee-projects" multiple size="3"></select></label>
+            <button class="btn btn-primary" type="submit">Create Employee</button>
+            <div id="employee-form-status" role="status"></div>
+          </form>
+        </div>
+      </section>
     </main>
   </div>
 
-  <script src="js/app.js?v=2026.1"></script>
+  <script src="js/api.js?v=2026.2"></script>
+  <script src="js/app.js?v=2026.2"></script>
 </body>
 </html>

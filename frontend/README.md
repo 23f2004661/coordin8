@@ -1,27 +1,24 @@
-# Coordin8 Frontend Dashboard
+# Coordin8 Project Workspace
 
-Modern web dashboard and developer provenance inspector for the Coordin8 knowledge and retrieval system.
+The frontend is a static HTML/CSS/JavaScript application. It uses the authenticated project API and does not depend on Vue or a frontend build step.
 
-Conforms to Section 26 of `ProjectDetails.md`.
+## Run
 
----
-
-## Features
-
-- **Executive Dashboard**: High-level metrics for indexed documents, chunks, vector points, and evaluation metrics.
-- **Document Management**: View registered canonical documents, format badges, and summaries.
-- **Upload & Ingestion Pipeline**: Ingestion dropzone visualizing the 7 pipeline stages (`REGISTERED` &rarr; `EXTRACTING` &rarr; `NORMALIZED` &rarr; `ENRICHING` &rarr; `CHUNKED` &rarr; `INDEXING` &rarr; `READY`).
-- **Grounded Search & Answer**: Multi-turn grounded Q&A with inline provenance citation pills.
-- **Developer Provenance Inspector**: Debug view displaying `document -> section -> chunk`, retriever type, dense/sparse scores, after-fusion rank, reranker score, and source provenance.
-
----
-
-## Running
-
-Simply open `index.html` in any web browser, or run a local static server:
+Start the backend from `backend/`, then serve this directory:
 
 ```powershell
 python -m http.server 3000
 ```
 
-Access at `http://localhost:3000`. When the backend is running at `http://localhost:8000`, the frontend automatically connects to the live API endpoints.
+Open `http://localhost:3000`. Sign in with an account created by an administrator or the local development seed. The selected project list comes from `/api/auth/me`; project chat, tasks, meetings, documents, reports, team, and Jira requests all use that selection.
+
+## Screens
+
+- Dashboard with task status, completion, meeting, review, and risk summaries
+- Deliverables Kanban and task due-date timeline
+- Project meetings, MoM generation, and action-item conversion
+- Project documents and citation-backed project chat
+- Weekly reports, team members, and demo/mock Jira metrics
+- Tenant-admin employee, project, and membership management
+
+Navigation visibility follows the authenticated role for usability. Backend authorization remains authoritative for every protected operation.
