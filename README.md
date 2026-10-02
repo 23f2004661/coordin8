@@ -121,6 +121,26 @@ To verify that the containers are healthy and running:
 docker compose ps
 ```
 
+On Windows, this Compose file publishes only Coordin8 PostgreSQL on
+`127.0.0.1:5433`, avoiding a native PostgreSQL service on port 5432. From
+`backend/`, install `requirements.txt` and set the following in `backend/.env`:
+
+```dotenv
+DATABASE_URL=postgresql+psycopg://coordin8:coordin8_pass@127.0.0.1:5433/coordin8
+```
+
+These are local demo database credentials. The configuration fallback is SQLite;
+starting Docker alone does not select PostgreSQL. Run the seed and backend from
+`backend/` so they load the same `.env`. Project knowledge-base catalogs still
+use isolated SQLite files under `backend/data/knowledge_bases/`, as implemented
+by the MVP; tenant, user, project, task, and meeting data use `DATABASE_URL`.
+
+To start just Coordin8 infrastructure without acting on another Compose project:
+
+```powershell
+docker compose -p coordin8 -f docker-compose.yml up -d postgres qdrant
+```
+
 ### Optional: Seed the MVP Demo Accounts
 From the `backend/` directory, run:
 ```powershell
@@ -188,10 +208,44 @@ python server.py
 | **API Documentation** | `http://localhost:8000/docs` | Swagger OpenAPI interactive docs |
 | **Qdrant Vector DB** | `http://localhost:6333` | REST vector search (`/dashboard` for web UI) |
 | **Qdrant gRPC** | `localhost:6334` | High-throughput vector indexing |
-| **PostgreSQL Database** | `localhost:5432` | Relational document metadata & states |
+| **PostgreSQL Database** | `127.0.0.1:5433` | Tenant, users, projects, tasks, and meetings |
 | **Unlimited OCR (Opt.)**| `http://localhost:8001` | Isolated GPU-optimized OCR service |
 
 ---
+
+## Validation Notes
+
+- The current embedding factory returns deterministic `MockEmbeddingProvider`
+   vectors even when `EMBEDDING_PROVIDER=local` and `EMBEDDING_MODEL` names BGE-M3.
+   Qdrant ingestion/retrieval can be tested, but this is not semantic BGE-M3
+   embedding validation. Changing that implementation is outside this runtime fix.
+- If Llama answers with `{"name": ..., "parameters": ...}` instead of text,
+   check LM Studio's active Jinja prompt template. An empty tool list must not
+   insert function-calling instructions: use truthy `tools` conditions instead of
+   `tools is not none` or `not tools is none`. Apply the override to the API model
+   and reload the same model if needed. Retest Chat and MoM; model-list and health
+   responses alone do not verify generation. MoM must return the requested JSON
+   structure, not a function-call wrapper.
+- **Never run pytest against the live database.** The existing autouse fixture
+   drops application tables. Use a separate terminal with an isolated database,
+   working directory, and disconnected Qdrant URL. From the repository root:
+
+```powershell
+$backend = (Resolve-Path backend).Path
+$testRoot = Join-Path $env:TEMP ('coordin8-tests-' + [guid]::NewGuid())
+New-Item -ItemType Directory $testRoot | Out-Null
+$env:DATABASE_URL = 'sqlite:///' + ($testRoot -replace '\\', '/') + '/test.db'
+$env:QDRANT_URL = 'http://127.0.0.1:1'
+$env:APP_ENV = 'development'
+$env:PYTHONPATH = $backend
+Push-Location $testRoot
+& "$backend\venv\Scripts\python.exe" -m pytest "$backend\tests" -q
+Pop-Location
+```
+
+Close that test terminal afterward so its database overrides are not reused to
+start the application. Live PostgreSQL, Qdrant, and LM Studio workflows require
+separate API/browser checks.
 
 ## Stopping the System
 

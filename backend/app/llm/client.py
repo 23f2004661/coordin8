@@ -1,5 +1,6 @@
 """LLM client for OpenAI-compatible endpoints (LM Studio, vLLM, OpenAI)."""
 
+import json
 from typing import Any
 import httpx
 from app.core.config import get_settings
@@ -38,15 +39,25 @@ class LLMClient:
             with httpx.Client(timeout=60.0) as client:
                 response = client.post(f"{self.base_url}/chat/completions", json=payload, headers=headers)
                 response.raise_for_status()
-                return response.json()["choices"][0]["message"]["content"]
+                message = response.json()["choices"][0]["message"]
         except Exception as exc:
             logger.warning("LLM completion to %s failed: %s", self.base_url, exc)
             raise RuntimeError("AI service is currently unavailable. Please try again.") from exc
 
+        content = message.get("content")
+        if message.get("tool_calls") or message.get("function_call"):
+            raise RuntimeError("AI service returned a function call. Check LM Studio's prompt template.")
+        if not isinstance(content, str) or not content.strip():
+            raise RuntimeError("AI service returned no text content.")
+        try:
+            parsed = json.loads(content)
+        except json.JSONDecodeError:
+            parsed = None
+        if isinstance(parsed, dict) and "name" in parsed and "parameters" in parsed:
+            raise RuntimeError("AI service returned a function call. Check LM Studio's prompt template.")
+        return content
+
     def generate_answer(self, query: str, context_text: str) -> str:
         """Call LLM completion with system prompt and formatted context."""
         prompt = build_rag_prompt(query, context_text)
-        try:
-            return self.generate_completion(RAG_SYSTEM_PROMPT, prompt)
-        except RuntimeError as exc:
-            raise RuntimeError("AI service is currently unavailable. Please try again.") from exc
+        return self.generate_completion(RAG_SYSTEM_PROMPT, prompt)

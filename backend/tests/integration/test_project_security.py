@@ -379,3 +379,52 @@ def test_meeting_mom_action_item_conversion_keeps_provenance(monkeypatch):
     regenerated = client.post(f"/api/meetings/{meeting_id}/generate-mom", headers=headers)
     assert regenerated.status_code == 200
     assert regenerated.json()["action_items"][0]["task_id"] == converted.json()["id"]
+
+
+def test_action_item_conversion_enforces_task_foreign_key():
+    from sqlalchemy.orm import Session
+
+    from app.api.meetings import convert_action_item_to_task
+    from app.db.session import engine
+
+    manager_id, tenant_id, _ = create_identity(role="MANAGER")
+    project_id = create_project(tenant_id, member_id=manager_id)
+    with SessionLocal() as db:
+        meeting = Meeting(
+            id=str(uuid4()),
+            project_id=project_id,
+            title="Foreign key verification",
+            transcript_text="Project User will finish the tracker.",
+            created_by=manager_id,
+        )
+        db.add(meeting)
+        db.flush()
+        action = ActionItem(
+            id=str(uuid4()),
+            meeting_id=meeting.id,
+            project_id=project_id,
+            text="Finish the tracker",
+            owner_id=manager_id,
+        )
+        db.add(action)
+        db.commit()
+        action_id = action.id
+
+    with engine.connect() as connection:
+        is_sqlite = engine.dialect.name == "sqlite"
+        if is_sqlite:
+            connection.exec_driver_sql("PRAGMA foreign_keys = ON")
+            connection.commit()
+        try:
+            with Session(bind=connection) as db:
+                manager = db.get(User, manager_id)
+                converted = convert_action_item_to_task(action_id, user=manager, db=db)
+                repeated = convert_action_item_to_task(action_id, user=manager, db=db)
+                assert converted["id"] == repeated["id"]
+                assert db.get(ActionItem, action_id).task_id == converted["id"]
+                assert db.query(Task).filter_by(project_id=project_id).count() == 1
+        finally:
+            connection.rollback()
+            if is_sqlite:
+                connection.exec_driver_sql("PRAGMA foreign_keys = OFF")
+                connection.commit()

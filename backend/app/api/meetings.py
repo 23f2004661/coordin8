@@ -211,6 +211,7 @@ def convert_action_item_to_task(
     )
     task.risk, task.risk_reason = task_risk(task.status, task.due_date)
     db.add(task)
+    db.flush()
     action.task_id = task.id
     db.commit()
     db.refresh(task)

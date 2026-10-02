@@ -18,7 +18,7 @@ services:
     container_name: coordin8_postgres
     restart: unless-stopped
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5433:5432"
     environment:
       - POSTGRES_DB=coordin8
       - POSTGRES_USER=coordin8
