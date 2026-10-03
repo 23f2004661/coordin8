@@ -1,0 +1,661 @@
+[
+  {
+    "label": "A",
+    "question": "What is SAP_Redacted_pdfa-v1.pdf about?",
+    "http_status": 200,
+    "answer": "I cannot answer this question based on the provided documents.",
+    "detail": null,
+    "citations": [
+      "Doc doc_cf57d6670b15 (Slide 2, Section sec_doc_cf57d6670b15_slide_2)",
+      "Doc doc_cf57d6670b15 (Slide 3, Section sec_doc_cf57d6670b15_slide_3)",
+      "Doc doc_cf57d6670b15 (Slide 2, Section sec_doc_cf57d6670b15_slide_2)",
+      "Doc doc_cf57d6670b15 (Slide 3, Section sec_doc_cf57d6670b15_slide_3)",
+      "Doc doc_e2842eeb2cb3 (Page 25, Section sec_doc_e2842eeb2cb3_p25)"
+    ],
+    "sources": [
+      {
+        "document_id": "doc_cf57d6670b15",
+        "document_title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "citation": "Doc doc_cf57d6670b15 (Slide 2, Section sec_doc_cf57d6670b15_slide_2)"
+      },
+      {
+        "document_id": "doc_cf57d6670b15",
+        "document_title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "citation": "Doc doc_cf57d6670b15 (Slide 3, Section sec_doc_cf57d6670b15_slide_3)"
+      },
+      {
+        "document_id": "doc_cf57d6670b15",
+        "document_title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "citation": "Doc doc_cf57d6670b15 (Slide 2, Section sec_doc_cf57d6670b15_slide_2)"
+      },
+      {
+        "document_id": "doc_cf57d6670b15",
+        "document_title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "citation": "Doc doc_cf57d6670b15 (Slide 3, Section sec_doc_cf57d6670b15_slide_3)"
+      },
+      {
+        "document_id": "doc_e2842eeb2cb3",
+        "document_title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "citation": "Doc doc_e2842eeb2cb3 (Page 25, Section sec_doc_e2842eeb2cb3_p25)"
+      }
+    ],
+    "grounded_flag": true,
+    "nonempty_evidence_gate_passed": true,
+    "support_score": null,
+    "groq_generation_path_entered": true,
+    "placeholder_only_count": 0,
+    "evidence_chars": 4259,
+    "sources_match_captured_evidence": true,
+    "chunks": [
+      {
+        "label": "A",
+        "rank": 1,
+        "document_id": "doc_cf57d6670b15",
+        "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "page": null,
+        "slide": 2,
+        "section": "sec_doc_cf57d6670b15_slide_2",
+        "chunk_id": "chk_786b3da1fb",
+        "cosine": 0.0,
+        "lexical": 0.25,
+        "pre_fusion_relevance": 0.55,
+        "final_rrf_score": 0.01639344262295082,
+        "chars": 928,
+        "preview": "THE PLATFORM\n\nWhat Is the Accelerator?\n\nAn AI-powered enterprise platform that accelerates the creation, review, quality assurance, and management of medical and regulatory documents.\n\nThis is NOT a general-purpose AI chatbot.\n\nThe accelerator combin",
+        "placeholder_only": false
+      },
+      {
+        "label": "A",
+        "rank": 2,
+        "document_id": "doc_cf57d6670b15",
+        "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "page": null,
+        "slide": 3,
+        "section": "sec_doc_cf57d6670b15_slide_3",
+        "chunk_id": "chk_5e92961f8f",
+        "cosine": 0.0,
+        "lexical": 0.25,
+        "pre_fusion_relevance": 0.55,
+        "final_rrf_score": 0.016129032258064516,
+        "chars": 866,
+        "preview": "THE PROBLEM\n\nWhat Business Problem Does It Solve?\n\nToday's manual, evidence-intensive process:\n\nSearch\n\nCollect\n\nEvidence\n\nDraft\n\nRewrite\n\nValidate\n\nQC\n\nReview\n\nRework\n\nSubmit\n\nPAIN POINTS\n\n\u203a  Searching across protocols, CSRs, SAPs, investigator broc",
+        "placeholder_only": false
+      },
+      {
+        "label": "A",
+        "rank": 3,
+        "document_id": "doc_cf57d6670b15",
+        "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "page": null,
+        "slide": 2,
+        "section": "sec_doc_cf57d6670b15_slide_2",
+        "chunk_id": "chk_496d9bb308",
+        "cosine": 0.0,
+        "lexical": 0.25,
+        "pre_fusion_relevance": 0.55,
+        "final_rrf_score": 0.015873015873015872,
+        "chars": 928,
+        "preview": "THE PLATFORM\n\nWhat Is the Accelerator?\n\nAn AI-powered enterprise platform that accelerates the creation, review, quality assurance, and management of medical and regulatory documents.\n\nThis is NOT a general-purpose AI chatbot.\n\nThe accelerator combin",
+        "placeholder_only": false
+      },
+      {
+        "label": "A",
+        "rank": 4,
+        "document_id": "doc_cf57d6670b15",
+        "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "page": null,
+        "slide": 3,
+        "section": "sec_doc_cf57d6670b15_slide_3",
+        "chunk_id": "chk_62f403d9a8",
+        "cosine": 0.0,
+        "lexical": 0.25,
+        "pre_fusion_relevance": 0.55,
+        "final_rrf_score": 0.015625,
+        "chars": 866,
+        "preview": "THE PROBLEM\n\nWhat Business Problem Does It Solve?\n\nToday's manual, evidence-intensive process:\n\nSearch\n\nCollect\n\nEvidence\n\nDraft\n\nRewrite\n\nValidate\n\nQC\n\nReview\n\nRework\n\nSubmit\n\nPAIN POINTS\n\n\u203a  Searching across protocols, CSRs, SAPs, investigator broc",
+        "placeholder_only": false
+      },
+      {
+        "label": "A",
+        "rank": 5,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 25,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p25",
+        "chunk_id": "chk_c1cb9eacb5",
+        "cosine": 0.6129,
+        "lexical": 0.0,
+        "pre_fusion_relevance": 0.42900388999999994,
+        "final_rrf_score": 0.015384615384615385,
+        "chars": 671,
+        "preview": "--------------------------------------------------------------------------------------------\nThis is a representation of an electronic record that was signed\nelectronically. Following this are manifestations of any and all\nelectronic signatures for t",
+        "placeholder_only": false
+      }
+    ]
+  },
+  {
+    "label": "B",
+    "question": "What is the study design described in the SAP?",
+    "http_status": 200,
+    "answer": "**Study design described in the SAP**\n\nThe Statistical Analysis Plan (SAP) for Study\u202fD1680C00019 outlines a **Phase\u202f3b, multicenter, randomized, double\u2011blind, parallel\u2011group, placebo\u2011controlled trial** in pediatric patients with type\u202f2 diabetes mellitus (T2DM).  \nKey elements of the design are:\n\n| Feature | Description |\n|---------|-------------|\n| **Population** | Children and adolescents aged 10\u201317\u202fyears with T2DM |\n| **Intervention** | Saxagliptin 2.5\u202fmg (pooled with 5\u202fmg) versus placebo |\n| **Primary endpoint** | Change in HbA1c from baseline to Week\u202f26 |\n| **Study periods** | \u2022 6\u2011month screening<br>\u2022 2\u2011week lead\u2011in<br>\u2022 26\u2011week short\u2011term (ST) treatment period<br>\u2022 26\u2011week long\u2011term (LT) period<br>\u2022 28\u2011day follow\u2011up<br>\u2022 104\u2011week post\u2011study visit |\n| **Randomization** | \u2022 Day\u202f1: 1:1 randomization to placebo or saxa 2.5\u202fmg (stratified by baseline antidiabetic medication, sex, and age group)<br>\u2022 Week\u202f14: second randomization for patients with HbA1c\u202f\u2265\u202f7\u202f% at Week\u202f12 (1:1 to continue low\u2011dose or up\u2011titrate to 5\u202fmg) |\n| **Blinding** | Double\u2011blind (participants, investigators, and study staff) |\n| **Analysis population** | Modified intent\u2011to\u2011treat (mITT) with multiple\u2011imputation washout (MI\u2011WO) for missing data |\n\nThese details are taken directly from the SAP section of the clinical study report: the study is described as a Phase\u202f3b, multicenter, randomized, placebo\u2011controlled, double\u2011blind, parallel\u2011group design with the above timelines and randomization scheme [Doc doc_e2842eeb2cb3 (Page\u202f8, Section\u202f3.2.1)] and summarized in Table\u202f2 of the report [Doc doc_e2842eeb2cb3 (Page\u202f7, Section\u202fTable\u202f2)].",
+    "detail": null,
+    "citations": [
+      "Doc doc_e2842eeb2cb3 (Page 8, Section sec_doc_e2842eeb2cb3_p8)",
+      "Doc doc_e2842eeb2cb3 (Page 4, Section sec_doc_e2842eeb2cb3_p4)",
+      "Doc doc_e2842eeb2cb3 (Page 2, Section sec_doc_e2842eeb2cb3_p2)",
+      "Doc doc_e2842eeb2cb3 (Page 7, Section sec_doc_e2842eeb2cb3_p7)",
+      "Doc doc_e2842eeb2cb3 (Page 6, Section sec_doc_e2842eeb2cb3_p6)"
+    ],
+    "sources": [
+      {
+        "document_id": "doc_e2842eeb2cb3",
+        "document_title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "citation": "Doc doc_e2842eeb2cb3 (Page 8, Section sec_doc_e2842eeb2cb3_p8)"
+      },
+      {
+        "document_id": "doc_e2842eeb2cb3",
+        "document_title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "citation": "Doc doc_e2842eeb2cb3 (Page 4, Section sec_doc_e2842eeb2cb3_p4)"
+      },
+      {
+        "document_id": "doc_e2842eeb2cb3",
+        "document_title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "citation": "Doc doc_e2842eeb2cb3 (Page 2, Section sec_doc_e2842eeb2cb3_p2)"
+      },
+      {
+        "document_id": "doc_e2842eeb2cb3",
+        "document_title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "citation": "Doc doc_e2842eeb2cb3 (Page 7, Section sec_doc_e2842eeb2cb3_p7)"
+      },
+      {
+        "document_id": "doc_e2842eeb2cb3",
+        "document_title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "citation": "Doc doc_e2842eeb2cb3 (Page 6, Section sec_doc_e2842eeb2cb3_p6)"
+      }
+    ],
+    "grounded_flag": true,
+    "nonempty_evidence_gate_passed": true,
+    "support_score": null,
+    "groq_generation_path_entered": true,
+    "placeholder_only_count": 0,
+    "evidence_chars": 11721,
+    "sources_match_captured_evidence": true,
+    "chunks": [
+      {
+        "label": "B",
+        "rank": 1,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 8,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p8",
+        "chunk_id": "chk_f1f3c4e009",
+        "cosine": 0.6636,
+        "lexical": 0.5,
+        "pre_fusion_relevance": 0.7818064499999999,
+        "final_rrf_score": 0.01639344262295082,
+        "chars": 2476,
+        "preview": "8\n\u2022 Protocol and Statistical Analysis Plan (SAP)\n\u2022 Regulatory Response to Information Request\n- \\\\CDSESUB1\\evsprod\\NDA202293\\1410: the programming codes for the demographic, \npatient, disease characteristics tables.\n- \\\\CDSESUB1\\evsprod\\NDA202293\\141",
+        "placeholder_only": false
+      },
+      {
+        "label": "B",
+        "rank": 2,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 4,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p4",
+        "chunk_id": "chk_a391234a51",
+        "cosine": 0.6254,
+        "lexical": 0.5,
+        "pre_fusion_relevance": 0.7627006299999999,
+        "final_rrf_score": 0.016129032258064516,
+        "chars": 1130,
+        "preview": "4\nLIST OF FIGURES \nFigure 1. Trial Design for the Study D1680C00019.......................................................................................................9\nFigure 2. Primary efficacy results on HbA1c change at Week 6, Week 12, Week 20",
+        "placeholder_only": false
+      },
+      {
+        "label": "B",
+        "rank": 3,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 2,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p2",
+        "chunk_id": "chk_9de4abd6aa",
+        "cosine": 0.6072,
+        "lexical": 0.5,
+        "pre_fusion_relevance": 0.753613125,
+        "final_rrf_score": 0.015873015873015872,
+        "chars": 3577,
+        "preview": "2\nTable of Contents\n1 EXECUTIVE SUMMARY ..................................................................................................................................5\n1.1 BRIEF OVERVIEW OF CLINICAL STUDY .........................................",
+        "placeholder_only": false
+      },
+      {
+        "label": "B",
+        "rank": 4,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 7,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p7",
+        "chunk_id": "chk_f7a0b03b62",
+        "cosine": 0.5943,
+        "lexical": 0.5,
+        "pre_fusion_relevance": 0.7471625500000001,
+        "final_rrf_score": 0.015625,
+        "chars": 1868,
+        "preview": "7\nTable 2. Overview of Study D1680C00019\nTrial ID Phase and \nDesign*\nTreatment/ \nSample Size\nEndpoint/ Analysis Preliminary \nFindings\nD1680C00019 MC, R, DB,\nPG, PC trial \n(26\nweeks)\nSaxa 2.5 mg or 5 \nmg (saxa pooled)/ \nN=88\nPlacebo (PBO) / \nN=76\nPrim",
+        "placeholder_only": false
+      },
+      {
+        "label": "B",
+        "rank": 5,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 6,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p6",
+        "chunk_id": "chk_6aece63d8a",
+        "cosine": 0.0,
+        "lexical": 0.5,
+        "pre_fusion_relevance": 0.7,
+        "final_rrf_score": 0.015384615384615385,
+        "chars": 2670,
+        "preview": "6\nendpoint analyses were consistent with the primary analysis result.  Subgroup analyses on the \nprimary efficacy endpoint demonstrated consistent results in subgroup levels defined by age, sex, \nrace, region, ethnicity and background anti-diabetic m",
+        "placeholder_only": false
+      }
+    ]
+  },
+  {
+    "label": "C",
+    "question": "What is the phase of the clinical trial?",
+    "http_status": 502,
+    "answer": null,
+    "detail": "AI service is currently unavailable. Please try again.",
+    "citations": null,
+    "sources": null,
+    "grounded_flag": null,
+    "nonempty_evidence_gate_passed": true,
+    "support_score": null,
+    "groq_generation_path_entered": true,
+    "placeholder_only_count": 0,
+    "evidence_chars": 13138,
+    "sources_match_captured_evidence": null,
+    "chunks": [
+      {
+        "label": "C",
+        "rank": 1,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 7,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p7",
+        "chunk_id": "chk_f7a0b03b62",
+        "cosine": 0.6862,
+        "lexical": 0.75,
+        "pre_fusion_relevance": 0.918096,
+        "final_rrf_score": 0.01639344262295082,
+        "chars": 1868,
+        "preview": "7\nTable 2. Overview of Study D1680C00019\nTrial ID Phase and \nDesign*\nTreatment/ \nSample Size\nEndpoint/ Analysis Preliminary \nFindings\nD1680C00019 MC, R, DB,\nPG, PC trial \n(26\nweeks)\nSaxa 2.5 mg or 5 \nmg (saxa pooled)/ \nN=88\nPlacebo (PBO) / \nN=76\nPrim",
+        "placeholder_only": false
+      },
+      {
+        "label": "C",
+        "rank": 2,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 5,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p5",
+        "chunk_id": "chk_9010fdbd95",
+        "cosine": 0.0,
+        "lexical": 0.75,
+        "pre_fusion_relevance": 0.85,
+        "final_rrf_score": 0.016129032258064516,
+        "chars": 2971,
+        "preview": "5\n1 EXECUTIVE SUMMARY \nAstraZeneca submitted supplemental new drug application (sNDA) 022350 S-026 for \nONGLYZA (saxagliptin or saxa) and sNDA 200678 S-028 for KOMBIGLYZE XR (saxa and \nmetformin HCI extended-release). Saxa is currently indicated for ",
+        "placeholder_only": false
+      },
+      {
+        "label": "C",
+        "rank": 3,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 17,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p17",
+        "chunk_id": "chk_d1c91d3597",
+        "cosine": 0.6631,
+        "lexical": 0.25,
+        "pre_fusion_relevance": 0.65655498,
+        "final_rrf_score": 0.015873015873015872,
+        "chars": 3395,
+        "preview": "17\nThe secondary endpoints FPG change from baseline at Week 26, and the proportion of subjects \nwith HbA1c < 7.0% (responders) at Week 26 in the population after excluding subjects with \nbaseline HbA1c < 7% were presented in Tables 9 and 10, respecti",
+        "placeholder_only": false
+      },
+      {
+        "label": "C",
+        "rank": 4,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 8,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p8",
+        "chunk_id": "chk_f1f3c4e009",
+        "cosine": 0.6593,
+        "lexical": 0.25,
+        "pre_fusion_relevance": 0.6546376,
+        "final_rrf_score": 0.015625,
+        "chars": 2476,
+        "preview": "8\n\u2022 Protocol and Statistical Analysis Plan (SAP)\n\u2022 Regulatory Response to Information Request\n- \\\\CDSESUB1\\evsprod\\NDA202293\\1410: the programming codes for the demographic, \npatient, disease characteristics tables.\n- \\\\CDSESUB1\\evsprod\\NDA202293\\141",
+        "placeholder_only": false
+      },
+      {
+        "label": "C",
+        "rank": 5,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 10,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p10",
+        "chunk_id": "chk_1f3be3f7a8",
+        "cosine": 0.6583,
+        "lexical": 0.25,
+        "pre_fusion_relevance": 0.65412755,
+        "final_rrf_score": 0.015384615384615385,
+        "chars": 2428,
+        "preview": "10\nSource: The sponsor\u2019s clinical study report (CSR) page 42\nThe primary objective of the study was to determine if there will be a greater mean reduction \nfrom baseline at Week 26 in HbA1c of saxa (2.5 mg or 5 mg pooled) compared to placebo in \npedi",
+        "placeholder_only": false
+      }
+    ],
+    "unchanged_retry": {
+      "http_status": 200,
+      "answer": "The clinical trial D1680C00019 is a **Phase\u202f3b** study.  \n[Doc doc_e2842eeb2cb3 (Page\u202f8, Section\u202fsec_doc_e2842eeb2cb3_p8)]",
+      "detail": null,
+      "citations": [
+        "Doc doc_e2842eeb2cb3 (Page 7, Section sec_doc_e2842eeb2cb3_p7)",
+        "Doc doc_e2842eeb2cb3 (Page 5, Section sec_doc_e2842eeb2cb3_p5)",
+        "Doc doc_e2842eeb2cb3 (Page 17, Section sec_doc_e2842eeb2cb3_p17)",
+        "Doc doc_e2842eeb2cb3 (Page 8, Section sec_doc_e2842eeb2cb3_p8)",
+        "Doc doc_e2842eeb2cb3 (Page 10, Section sec_doc_e2842eeb2cb3_p10)"
+      ],
+      "sources": [
+        {
+          "document_id": "doc_e2842eeb2cb3",
+          "document_title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "citation": "Doc doc_e2842eeb2cb3 (Page 7, Section sec_doc_e2842eeb2cb3_p7)"
+        },
+        {
+          "document_id": "doc_e2842eeb2cb3",
+          "document_title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "citation": "Doc doc_e2842eeb2cb3 (Page 5, Section sec_doc_e2842eeb2cb3_p5)"
+        },
+        {
+          "document_id": "doc_e2842eeb2cb3",
+          "document_title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "citation": "Doc doc_e2842eeb2cb3 (Page 17, Section sec_doc_e2842eeb2cb3_p17)"
+        },
+        {
+          "document_id": "doc_e2842eeb2cb3",
+          "document_title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "citation": "Doc doc_e2842eeb2cb3 (Page 8, Section sec_doc_e2842eeb2cb3_p8)"
+        },
+        {
+          "document_id": "doc_e2842eeb2cb3",
+          "document_title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "citation": "Doc doc_e2842eeb2cb3 (Page 10, Section sec_doc_e2842eeb2cb3_p10)"
+        }
+      ],
+      "grounded_flag": true
+    }
+  },
+  {
+    "label": "D",
+    "question": "What is the primary purpose of the study?",
+    "http_status": 502,
+    "answer": null,
+    "detail": "AI service is currently unavailable. Please try again.",
+    "citations": null,
+    "sources": null,
+    "grounded_flag": null,
+    "nonempty_evidence_gate_passed": true,
+    "support_score": null,
+    "groq_generation_path_entered": true,
+    "placeholder_only_count": 0,
+    "evidence_chars": 12417,
+    "sources_match_captured_evidence": null,
+    "chunks": [
+      {
+        "label": "D",
+        "rank": 1,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 14,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p14",
+        "chunk_id": "chk_83442accfe",
+        "cosine": 0.0,
+        "lexical": 0.75,
+        "pre_fusion_relevance": 0.85,
+        "final_rrf_score": 0.01639344262295082,
+        "chars": 2619,
+        "preview": "14\nEthnic group n (%)\n    Hispanic or Latino\n    Not Hispanic or Latino\n43 (48.9)\n45 (51.1)\n34 (44.7)\n42 (55.3)\n77 (47)\n87 (53)\nGeographic region n (%)\n    Asia/Pacific\n    Europe\n    Latin America\n    North America\n26 (29.5)\n15 (17.0)\n25 (39.8)\n12 (",
+        "placeholder_only": false
+      },
+      {
+        "label": "D",
+        "rank": 2,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 4,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p4",
+        "chunk_id": "chk_a391234a51",
+        "cosine": 0.6164,
+        "lexical": 0.5,
+        "pre_fusion_relevance": 0.7582108000000001,
+        "final_rrf_score": 0.016129032258064516,
+        "chars": 1130,
+        "preview": "4\nLIST OF FIGURES \nFigure 1. Trial Design for the Study D1680C00019.......................................................................................................9\nFigure 2. Primary efficacy results on HbA1c change at Week 6, Week 12, Week 20",
+        "placeholder_only": false
+      },
+      {
+        "label": "D",
+        "rank": 3,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 6,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p6",
+        "chunk_id": "chk_6aece63d8a",
+        "cosine": 0.6098,
+        "lexical": 0.5,
+        "pre_fusion_relevance": 0.7549143999999999,
+        "final_rrf_score": 0.015873015873015872,
+        "chars": 2670,
+        "preview": "6\nendpoint analyses were consistent with the primary analysis result.  Subgroup analyses on the \nprimary efficacy endpoint demonstrated consistent results in subgroup levels defined by age, sex, \nrace, region, ethnicity and background anti-diabetic m",
+        "placeholder_only": false
+      },
+      {
+        "label": "D",
+        "rank": 4,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 11,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p11",
+        "chunk_id": "chk_462394cd4e",
+        "cosine": 0.605,
+        "lexical": 0.5,
+        "pre_fusion_relevance": 0.7525228500000001,
+        "final_rrf_score": 0.015625,
+        "chars": 2603,
+        "preview": "11\nhypotheses were performed based on the same ANCOVA as for the primary hypothesis test, but \nwith the application of the inverse probability weighting (IPW) technique. To explain how IPW \nworks, consider comparing saxa 2.5 mg (without dose up-titra",
+        "placeholder_only": false
+      },
+      {
+        "label": "D",
+        "rank": 5,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 17,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p17",
+        "chunk_id": "chk_d1c91d3597",
+        "cosine": 0.6027,
+        "lexical": 0.5,
+        "pre_fusion_relevance": 0.7513396999999999,
+        "final_rrf_score": 0.015384615384615385,
+        "chars": 3395,
+        "preview": "17\nThe secondary endpoints FPG change from baseline at Week 26, and the proportion of subjects \nwith HbA1c < 7.0% (responders) at Week 26 in the population after excluding subjects with \nbaseline HbA1c < 7% were presented in Tables 9 and 10, respecti",
+        "placeholder_only": false
+      }
+    ],
+    "unchanged_retry": {
+      "http_status": 502,
+      "answer": null,
+      "detail": "AI service is currently unavailable. Please try again.",
+      "citations": null,
+      "sources": null,
+      "grounded_flag": null
+    }
+  },
+  {
+    "label": "Regression",
+    "question": "What is a project manager?",
+    "http_status": 200,
+    "answer": "In the FDA submission document, the role of **Project Manager** is held by **Anne (Christine) Wright**\u30101\u3011.",
+    "detail": null,
+    "citations": [
+      "Doc doc_e2842eeb2cb3 (Page 1, Section sec_doc_e2842eeb2cb3_p1)",
+      "Doc doc_cf57d6670b15 (Slide 2, Section sec_doc_cf57d6670b15_slide_2)",
+      "Doc doc_cf57d6670b15 (Slide 2, Section sec_doc_cf57d6670b15_slide_2)",
+      "Doc doc_cf57d6670b15 (Slide 3, Section sec_doc_cf57d6670b15_slide_3)",
+      "Doc doc_cf57d6670b15 (Slide 3, Section sec_doc_cf57d6670b15_slide_3)"
+    ],
+    "sources": [
+      {
+        "document_id": "doc_e2842eeb2cb3",
+        "document_title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "citation": "Doc doc_e2842eeb2cb3 (Page 1, Section sec_doc_e2842eeb2cb3_p1)"
+      },
+      {
+        "document_id": "doc_cf57d6670b15",
+        "document_title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "citation": "Doc doc_cf57d6670b15 (Slide 2, Section sec_doc_cf57d6670b15_slide_2)"
+      },
+      {
+        "document_id": "doc_cf57d6670b15",
+        "document_title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "citation": "Doc doc_cf57d6670b15 (Slide 2, Section sec_doc_cf57d6670b15_slide_2)"
+      },
+      {
+        "document_id": "doc_cf57d6670b15",
+        "document_title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "citation": "Doc doc_cf57d6670b15 (Slide 3, Section sec_doc_cf57d6670b15_slide_3)"
+      },
+      {
+        "document_id": "doc_cf57d6670b15",
+        "document_title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "citation": "Doc doc_cf57d6670b15 (Slide 3, Section sec_doc_cf57d6670b15_slide_3)"
+      }
+    ],
+    "grounded_flag": true,
+    "nonempty_evidence_gate_passed": true,
+    "support_score": null,
+    "groq_generation_path_entered": true,
+    "placeholder_only_count": 0,
+    "evidence_chars": 4952,
+    "sources_match_captured_evidence": true,
+    "chunks": [
+      {
+        "label": "Regression",
+        "rank": 1,
+        "document_id": "doc_e2842eeb2cb3",
+        "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+        "page": 1,
+        "slide": null,
+        "section": "sec_doc_e2842eeb2cb3_p1",
+        "chunk_id": "chk_c18f593fdd",
+        "cosine": 0.0,
+        "lexical": 0.5,
+        "pre_fusion_relevance": 0.7,
+        "final_rrf_score": 0.01639344262295082,
+        "chars": 1364,
+        "preview": "U.S. Department of Health and Human Services\nFood and Drug Administration \nCenter for Drug Evaluation and Research\nOffice of Translational Sciences\nOffice of Biostatistics\nS T A T I S T I C A L  R E V I E W  A N D  E V A L U A T I O N\nCLINICAL STUDIE",
+        "placeholder_only": false
+      },
+      {
+        "label": "Regression",
+        "rank": 2,
+        "document_id": "doc_cf57d6670b15",
+        "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "page": null,
+        "slide": 2,
+        "section": "sec_doc_cf57d6670b15_slide_2",
+        "chunk_id": "chk_786b3da1fb",
+        "cosine": 0.5052,
+        "lexical": 0.25,
+        "pre_fusion_relevance": 0.577604725,
+        "final_rrf_score": 0.016129032258064516,
+        "chars": 928,
+        "preview": "THE PLATFORM\n\nWhat Is the Accelerator?\n\nAn AI-powered enterprise platform that accelerates the creation, review, quality assurance, and management of medical and regulatory documents.\n\nThis is NOT a general-purpose AI chatbot.\n\nThe accelerator combin",
+        "placeholder_only": false
+      },
+      {
+        "label": "Regression",
+        "rank": 3,
+        "document_id": "doc_cf57d6670b15",
+        "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "page": null,
+        "slide": 2,
+        "section": "sec_doc_cf57d6670b15_slide_2",
+        "chunk_id": "chk_496d9bb308",
+        "cosine": 0.5052,
+        "lexical": 0.25,
+        "pre_fusion_relevance": 0.577604725,
+        "final_rrf_score": 0.015873015873015872,
+        "chars": 928,
+        "preview": "THE PLATFORM\n\nWhat Is the Accelerator?\n\nAn AI-powered enterprise platform that accelerates the creation, review, quality assurance, and management of medical and regulatory documents.\n\nThis is NOT a general-purpose AI chatbot.\n\nThe accelerator combin",
+        "placeholder_only": false
+      },
+      {
+        "label": "Regression",
+        "rank": 4,
+        "document_id": "doc_cf57d6670b15",
+        "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "page": null,
+        "slide": 3,
+        "section": "sec_doc_cf57d6670b15_slide_3",
+        "chunk_id": "chk_5e92961f8f",
+        "cosine": 0.4944,
+        "lexical": 0.25,
+        "pre_fusion_relevance": 0.572188835,
+        "final_rrf_score": 0.015625,
+        "chars": 866,
+        "preview": "THE PROBLEM\n\nWhat Business Problem Does It Solve?\n\nToday's manual, evidence-intensive process:\n\nSearch\n\nCollect\n\nEvidence\n\nDraft\n\nRewrite\n\nValidate\n\nQC\n\nReview\n\nRework\n\nSubmit\n\nPAIN POINTS\n\n\u203a  Searching across protocols, CSRs, SAPs, investigator broc",
+        "placeholder_only": false
+      },
+      {
+        "label": "Regression",
+        "rank": 5,
+        "document_id": "doc_cf57d6670b15",
+        "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+        "page": null,
+        "slide": 3,
+        "section": "sec_doc_cf57d6670b15_slide_3",
+        "chunk_id": "chk_62f403d9a8",
+        "cosine": 0.4944,
+        "lexical": 0.25,
+        "pre_fusion_relevance": 0.572188835,
+        "final_rrf_score": 0.015384615384615385,
+        "chars": 866,
+        "preview": "THE PROBLEM\n\nWhat Business Problem Does It Solve?\n\nToday's manual, evidence-intensive process:\n\nSearch\n\nCollect\n\nEvidence\n\nDraft\n\nRewrite\n\nValidate\n\nQC\n\nReview\n\nRework\n\nSubmit\n\nPAIN POINTS\n\n\u203a  Searching across protocols, CSRs, SAPs, investigator broc",
+        "placeholder_only": false
+      }
+    ]
+  }
+]

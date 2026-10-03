@@ -186,16 +186,37 @@ def project_chat(
     project = require_project_access(db, user, project_id)
     kb = kb_manager.get_or_create(project.kb_id)
     context = kb.query_context(request.message)
+    if not context["formatted_context"].strip():
+        return {
+            "answer": "I couldn't find enough relevant information in this project's knowledge base to answer that question.",
+            "citations": [],
+            "sources": [],
+            "grounded": False,
+        }
     try:
         answer = llm_client.generate_answer(request.message, context["formatted_context"])
     except RuntimeError as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
-    citations = [
-        unit.get("citation")
-        for unit in context.get("evidence_units", [])
-        if unit.get("citation")
-    ]
-    return {"answer": answer, "citations": citations}
+    evidence_units = context.get("evidence_units", [])
+    citations = [unit["citation"] for unit in evidence_units if unit.get("citation")]
+    document_titles = {}
+    sources = []
+    for unit in evidence_units:
+        citation = unit.get("citation")
+        document_id = unit.get("document_id")
+        if not citation or not document_id:
+            continue
+        if document_id not in document_titles:
+            document = kb.get_document(document_id)
+            document_titles[document_id] = document.get("title") if document else None
+        sources.append(
+            {
+                "document_id": document_id,
+                "document_title": document_titles[document_id],
+                "citation": citation,
+            }
+        )
+    return {"answer": answer, "citations": citations, "sources": sources, "grounded": bool(sources)}
 
 
 @router.post("/{project_id}/search")

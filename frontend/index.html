@@ -249,13 +249,30 @@
       </section>
 
       <section class="view-panel" id="panel-chat">
-        <div class="project-heading"><div><span class="eyebrow">PROJECT KNOWLEDGE</span><h2>Chat</h2><p class="muted-copy">Chat with <strong id="chat-project-name">this project</strong></p></div></div>
+        <div class="project-heading"><div><span class="eyebrow">PROJECT KNOWLEDGE</span><h2>Ask about this project</h2><p class="muted-copy">Project: <strong id="chat-project-name">No project selected</strong></p><p class="muted-copy">I can answer questions using this project's documents, meetings, tasks and project updates.</p></div></div>
         <div class="screen-state" id="chat-state" role="status" hidden></div>
         <div class="card-panel project-chat-panel">
-          <div class="chat-history" id="chat-history"><div class="chat-empty" id="chat-empty">Ask a question about this project’s documents, meetings, and deliverables.</div></div>
-          <form class="search-box-container" id="project-chat-form">
+          <div class="chat-history" id="chat-history">
+            <div class="chat-empty" id="chat-empty">
+              <p>Ask about this project's documents, meetings, tasks and updates.</p>
+              <div class="chat-starters" aria-label="Starter questions">
+                <button type="button" data-chat-starter="What is the current project delivery date?">What is the current project delivery date?</button>
+                <button type="button" data-chat-starter="What are the current project risks?">What are the current project risks?</button>
+                <button type="button" data-chat-starter="Which tasks are overdue?">Which tasks are overdue?</button>
+                <button type="button" data-chat-starter="Summarize the latest meeting.">Summarize the latest meeting.</button>
+                <button type="button" data-chat-starter="What are the major project milestones?">What are the major project milestones?</button>
+              </div>
+            </div>
+          </div>
+          <div class="chat-scope" aria-live="polite">Using knowledge only from <strong id="chat-scope-project-name">No project selected</strong></div>
+          <div class="chat-upload-status" id="chat-upload-status" role="status" hidden></div>
+          <form class="search-box-container chat-composer" id="project-chat-form">
+            <input type="file" class="chat-file-input" id="chat-file-input" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.png,.jpg,.jpeg,.webp,.tiff,.txt,.md,.html,.htm,.py,.js,.ts,.json,.sql,.sh,.yaml,.yml,.css,.vtt,.srt" hidden>
+            <button class="chat-icon-button" id="chat-attach-button" type="button" aria-label="Upload a project document" title="Upload a project document" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m21.4 11.1-8.5 8.5a5 5 0 0 1-7.1-7.1l9.2-9.2a3.3 3.3 0 0 1 4.7 4.7l-9.2 9.2a1.7 1.7 0 0 1-2.4-2.4l8.5-8.5"/></svg>
+            </button>
             <input type="text" class="input-text" id="search-query-input" placeholder="Ask about this project..." autocomplete="off" required>
-            <button class="btn btn-primary" id="btn-ask-query" type="submit">Ask</button>
+            <button class="btn btn-primary chat-send-button" id="btn-ask-query" type="submit"><span>Send</span></button>
           </form>
         </div>
       </section>

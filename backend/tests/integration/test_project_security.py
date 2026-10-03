@@ -86,6 +86,12 @@ def test_member_cannot_read_unassigned_project_or_trigger_chat(monkeypatch):
     headers = {"Authorization": f"Bearer {token}"}
 
     assert client.get(f"/api/projects/{project_id}/documents", headers=headers).status_code == 403
+    upload = client.post(
+        f"/api/projects/{project_id}/documents",
+        files={"file": ("private.txt", b"Private project upload")},
+        headers=headers,
+    )
+    assert upload.status_code == 403
     chat = client.post(
         f"/api/projects/{project_id}/chat",
         json={"message": "What is confidential?"},
@@ -173,6 +179,9 @@ def test_rag_chat_isolated_to_authorized_project(monkeypatch, tmp_path):
         assert answer.status_code == 200
         assert "Alpha" in answer.json()["answer"]
         assert "Beta" not in answer.json()["answer"]
+        assert answer.json()["grounded"] is True
+        assert answer.json()["sources"][0]["document_title"] == "Project A"
+        assert answer.json()["sources"][0]["document_id"] != ""
 
         denied = client.post(
             f"/api/projects/{project_b}/chat",
@@ -183,6 +192,65 @@ def test_rag_chat_isolated_to_authorized_project(monkeypatch, tmp_path):
         assert accessed_kbs == [project_a]
     finally:
         isolated_manager.close_all()
+
+
+def test_manager_upload_is_ready_and_chat_retrieves_from_selected_project(monkeypatch, tmp_path):
+    manager_id, tenant_id, token = create_identity(role="MANAGER")
+    project_id = create_project(tenant_id, member_id=manager_id)
+    from app.api import projects as project_api
+    from app.knowledge_base import KnowledgeBaseManager
+
+    isolated_manager = KnowledgeBaseManager(base_storage_dir=tmp_path)
+    accessed_kbs = []
+
+    def get_kb(kb_id):
+        accessed_kbs.append(kb_id)
+        return isolated_manager.get_or_create(kb_id)
+
+    monkeypatch.setattr(project_api.kb_manager, "get_or_create", get_kb)
+    monkeypatch.setattr(project_api.llm_client, "generate_answer", lambda _query, context: context)
+    client = TestClient(app)
+    headers = {"Authorization": f"Bearer {token}"}
+    content = b"Unique smoke-test marker: DELIVERY_WINDOW_2031-04-19."
+    try:
+        upload = client.post(
+            f"/api/projects/{project_id}/documents",
+            files={"file": ("delivery-window.txt", content, "text/plain")},
+            headers=headers,
+        )
+        assert upload.status_code == 201
+        assert upload.json()["success"] is True
+        assert upload.json()["status"] == "READY"
+
+        chat = client.post(
+            f"/api/projects/{project_id}/chat",
+            json={"message": "What is the unique delivery window marker?"},
+            headers=headers,
+        )
+        assert chat.status_code == 200
+        assert "DELIVERY_WINDOW_2031-04-19" in chat.json()["answer"]
+        assert chat.json()["grounded"] is True
+        assert chat.json()["sources"][0]["document_title"] == "delivery-window"
+        assert accessed_kbs == [project_id, project_id]
+    finally:
+        isolated_manager.close_all()
+
+
+def test_manager_cannot_upload_into_unassigned_project(monkeypatch):
+    _, tenant_id, token = create_identity(role="MANAGER")
+    project_id = create_project(tenant_id)
+    from app.api import projects as project_api
+
+    def retrieval_must_not_run(*args, **kwargs):
+        pytest.fail("Unauthorized upload reached the KnowledgeBase")
+
+    monkeypatch.setattr(project_api.kb_manager, "get_or_create", retrieval_must_not_run)
+    response = TestClient(app).post(
+        f"/api/projects/{project_id}/documents",
+        files={"file": ("private.txt", b"Private project upload")},
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert response.status_code == 403
 
 
 def test_chat_surfaces_llm_unavailable_instead_of_fallback(monkeypatch):
@@ -207,6 +275,35 @@ def test_chat_surfaces_llm_unavailable_instead_of_fallback(monkeypatch):
     )
     assert response.status_code == 502
     assert response.json()["detail"] == "AI service is currently unavailable. Please try again."
+
+
+def test_chat_reports_empty_project_knowledge_without_calling_llm(monkeypatch):
+    manager_id, tenant_id, token = create_identity(role="MANAGER")
+    project_id = create_project(tenant_id, member_id=manager_id)
+    from app.api import projects as project_api
+
+    class EmptyContextKB:
+        def query_context(self, _query):
+            return {"formatted_context": "", "evidence_units": []}
+
+    def llm_must_not_run(*_args):
+        pytest.fail("Chat called the LLM without project evidence")
+
+    monkeypatch.setattr(project_api.kb_manager, "get_or_create", lambda _kb_id: EmptyContextKB())
+    monkeypatch.setattr(project_api.llm_client, "generate_answer", llm_must_not_run)
+    response = TestClient(app).post(
+        f"/api/projects/{project_id}/chat",
+        json={"message": "What is blocking this project?"},
+        headers={"Authorization": f"Bearer {token}"},
+    )
+
+    assert response.status_code == 200
+    assert response.json() == {
+        "answer": "I couldn't find enough relevant information in this project's knowledge base to answer that question.",
+        "citations": [],
+        "sources": [],
+        "grounded": False,
+    }
 
 
 def test_mom_surfaces_llm_unavailable(monkeypatch):

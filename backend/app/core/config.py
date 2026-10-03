@@ -31,8 +31,8 @@ try:
 
         # Embeddings & Reranker
         embedding_provider: str = "local"
-        embedding_model: str = "text-embedding-bge-m3"
-        embedding_dimensions: int = 1024
+        embedding_model: str = "BAAI/bge-small-en-v1.5"
+        embedding_dimensions: int = 384
         reranker_provider: str = "local"
         reranker_model: str = "bge-reranker-large"
 
@@ -71,8 +71,8 @@ except ImportError:
             self.llm_model: str = os.getenv("LLM_MODEL", "meta-llama-3.1-8b-instruct")
             self.llm_temperature: float = float(os.getenv("LLM_TEMPERATURE", "0.1"))
             self.embedding_provider: str = os.getenv("EMBEDDING_PROVIDER", "local")
-            self.embedding_model: str = os.getenv("EMBEDDING_MODEL", "text-embedding-bge-m3")
-            self.embedding_dimensions: int = int(os.getenv("EMBEDDING_DIMENSIONS", "1024"))
+            self.embedding_model: str = os.getenv("EMBEDDING_MODEL", "BAAI/bge-small-en-v1.5")
+            self.embedding_dimensions: int = int(os.getenv("EMBEDDING_DIMENSIONS", "384"))
             self.reranker_provider: str = os.getenv("RERANKER_PROVIDER", "local")
             self.reranker_model: str = os.getenv("RERANKER_MODEL", "bge-reranker-large")
             self.ocr_base_url: str = os.getenv("OCR_BASE_URL", "http://127.0.0.1:9001")

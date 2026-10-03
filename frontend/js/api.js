@@ -18,9 +18,13 @@ const Coordin8Api = (() => {
         window.dispatchEvent(new Event('coordin8-auth-expired'));
       }
       if (response.status === 403) {
-        throw new Error("You don't have permission to access this project.");
+        const error = new Error('You do not have access to this project.');
+        error.status = response.status;
+        throw error;
       }
-      throw new Error(data.detail || `Request failed (${response.status})`);
+      const error = new Error(data.detail || `Request failed (${response.status})`);
+      error.status = response.status;
+      throw error;
     }
     return data;
   }
@@ -66,9 +70,9 @@ const Coordin8Api = (() => {
     createProject: project => request('/projects', { method: 'POST', body: JSON.stringify(project) }),
     getProject: id => request(`/projects/${encodeURIComponent(id)}`),
     updateProject: (id, changes) => request(`/projects/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify(changes) }),
-    documents: () => request(`/projects/${requireProject()}/documents`),
-    uploadDocument: form => request(`/projects/${requireProject()}/documents`, { method: 'POST', body: form }),
-    chat: message => request(`/projects/${requireProject()}/chat`, { method: 'POST', body: JSON.stringify({ message }) }),
+    documents: (projectId = requireProject()) => request(`/projects/${encodeURIComponent(projectId)}/documents`),
+    uploadDocument: (form, projectId = requireProject()) => request(`/projects/${encodeURIComponent(projectId)}/documents`, { method: 'POST', body: form }),
+    chat: (message, projectId = requireProject()) => request(`/projects/${encodeURIComponent(projectId)}/chat`, { method: 'POST', body: JSON.stringify({ message }) }),
     search: (query, limit = 10) => request(`/projects/${requireProject()}/search`, { method: 'POST', body: JSON.stringify({ query, limit }) }),
     hierarchy: documentId => request(`/projects/${requireProject()}/documents/${encodeURIComponent(documentId)}/hierarchy`),
     dashboard: () => request('/dashboard'),

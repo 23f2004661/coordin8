@@ -1,0 +1,71 @@
+{
+  "project_id": "a2025c2f-9fd6-4aa3-80db-53111228503c",
+  "model": "BAAI/bge-small-en-v1.5",
+  "dimension": 384,
+  "distance": "Cosine",
+  "collections_before": {
+    "kb_a2025c2f-9fd6-4aa3-80db-53111228503c_chunks": {
+      "points": 337,
+      "vectors": {
+        "size": 1024,
+        "distance": "Cosine",
+        "hnsw_config": null,
+        "quantization_config": null,
+        "on_disk": null,
+        "memory": null,
+        "datatype": null,
+        "multivector_config": null
+      }
+    },
+    "kb_a2025c2f-9fd6-4aa3-80db-53111228503c_document_summaries": {
+      "points": 7,
+      "vectors": {
+        "size": 1024,
+        "distance": "Cosine",
+        "hnsw_config": null,
+        "quantization_config": null,
+        "on_disk": null,
+        "memory": null,
+        "datatype": null,
+        "multivector_config": null
+      }
+    },
+    "kb_a2025c2f-9fd6-4aa3-80db-53111228503c_section_summaries": {
+      "points": 0,
+      "vectors": {
+        "size": 1024,
+        "distance": "Cosine",
+        "hnsw_config": null,
+        "quantization_config": null,
+        "on_disk": null,
+        "memory": null,
+        "datatype": null,
+        "multivector_config": null
+      }
+    },
+    "kb_a2025c2f-9fd6-4aa3-80db-53111228503c_assets": {
+      "points": 0,
+      "vectors": {
+        "size": 1024,
+        "distance": "Cosine",
+        "hnsw_config": null,
+        "quantization_config": null,
+        "on_disk": null,
+        "memory": null,
+        "datatype": null,
+        "multivector_config": null
+      }
+    }
+  },
+  "prepared_point_counts": {
+    "kb_a2025c2f-9fd6-4aa3-80db-53111228503c_chunks": 336,
+    "kb_a2025c2f-9fd6-4aa3-80db-53111228503c_document_summaries": 7,
+    "kb_a2025c2f-9fd6-4aa3-80db-53111228503c_section_summaries": 0,
+    "kb_a2025c2f-9fd6-4aa3-80db-53111228503c_assets": 0
+  },
+  "catalog_chunks": 336,
+  "sap_chunks": 293,
+  "omitted_chunk_ids": [
+    "chk_f54adcbbed"
+  ]
+}

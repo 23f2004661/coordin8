@@ -1,6 +1,11 @@
 """Test configuration and shared fixtures for Coordin8."""
 
+import os
+
 import pytest
+
+os.environ.setdefault("EMBEDDING_PROVIDER", "mock")
+
 from app.db.session import Base, engine
 
 

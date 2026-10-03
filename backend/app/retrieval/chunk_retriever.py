@@ -1,6 +1,7 @@
 """Stage 4: Fine chunk retrieval conforming to Section 11."""
 
 from dataclasses import dataclass
+import re
 from sqlalchemy.orm import Session
 from app.core.logging import logger
 from app.db.models import ChunkRecord
@@ -8,6 +9,21 @@ from app.indexing.embeddings import get_embedding_provider
 from app.indexing.qdrant import QdrantManager
 from app.retrieval.query_parser import ParsedQuery
 from app.retrieval.section_retriever import SectionCandidate
+
+
+LEXICAL_STOPWORDS = frozenset({
+    "what", "is", "the", "a", "an", "of", "about",
+    "this", "that", "these", "those", "in", "on", "for", "to", "from",
+    "and", "or", "with", "by", "as", "at", "be", "are", "was", "were",
+    "do", "does", "did", "how", "why", "when", "where", "which", "who",
+})
+
+
+def is_image_placeholder(content: str) -> bool:
+    return re.fullmatch(
+        r"\[Embedded Image on Page [0-9]+: [^\]\r\n]+\]",
+        (content or "").strip(),
+    ) is not None
 
 
 @dataclass
@@ -46,8 +62,17 @@ class ChunkRetriever:
         qdrant_scores: dict[str, float] = {}
         try:
             if self.qdrant.client and parsed_query.raw_query:
+                excluded_chunk_ids = [
+                    chunk_id for chunk_id, content in db.query(
+                        ChunkRecord.chunk_id, ChunkRecord.content
+                    ).all()
+                    if is_image_placeholder(content)
+                ]
                 query_vec = self.embeddings.embed_text(parsed_query.raw_query)
-                hits = self.qdrant.search_points(f"{self.qdrant.prefix}_chunks", query_vec, limit=limit * 2)
+                hits = self.qdrant.search_points(
+                    f"{self.qdrant.prefix}_chunks", query_vec, limit=limit * 2,
+                    excluded_chunk_ids=excluded_chunk_ids,
+                )
                 for h in hits:
                     cid = h.get("payload", {}).get("chunk_id")
                     if cid:
@@ -76,9 +101,15 @@ class ChunkRetriever:
             return []
 
         q_lower = parsed_query.raw_query.lower()
+        lexical_keywords = [
+            keyword for keyword in parsed_query.keywords
+            if keyword.lower() not in LEXICAL_STOPWORDS
+        ]
         scored_chunks: list[tuple[float, float, float, str, str, ChunkRecord]] = []
 
         for chk in chunks:
+            if is_image_placeholder(chk.content):
+                continue
             has_qdrant = chk.chunk_id in qdrant_scores
             dense = float(qdrant_scores.get(chk.chunk_id, 0.0))
             sparse = 0.0
@@ -89,11 +120,11 @@ class ChunkRetriever:
                 sparse += 0.6
 
             # Keyword matches
-            for kw in parsed_query.keywords:
+            for kw in lexical_keywords:
                 if kw.lower() in content_lower:
                     sparse += 0.25
 
-            if chk.summary and any(kw.lower() in chk.summary.lower() for kw in parsed_query.keywords):
+            if chk.summary and any(kw.lower() in chk.summary.lower() for kw in lexical_keywords):
                 sparse += 0.2
 
             sparse = min(1.0, sparse)

@@ -20,11 +20,13 @@ class QdrantManager:
         url: str | None = None,
         api_key: str | None = None,
         collection_prefix: str | None = None,
+        vector_size: int | None = None,
     ) -> None:
         settings = get_settings()
         self.url = url or settings.qdrant_url
         self.api_key = api_key or settings.qdrant_api_key
         self.prefix = collection_prefix or settings.qdrant_collection_prefix
+        self.vector_size = vector_size if vector_size is not None else settings.embedding_dimensions
         self.client = None
         self._init_client()
 
@@ -49,17 +51,27 @@ class QdrantManager:
         try:
             existing = [c.name for c in self.client.get_collections().collections]
             for col in collections:
+                if col in existing:
+                    vectors = self.client.get_collection(col).config.params.vectors
+                    if isinstance(vectors, dict) or vectors.size != self.vector_size:
+                        raise ValueError(
+                            f"Collection {col!r} is incompatible with {self.vector_size}-dimensional "
+                            "embeddings. Rebuild the scoped index before using this provider."
+                        )
+            for col in collections:
                 if col not in existing:
                     # Create standard dense vector collection
                     from qdrant_client.http import models as rest
                     self.client.create_collection(
                         collection_name=col,
                         vectors_config=rest.VectorParams(
-                            size=1024,
+                            size=self.vector_size,
                             distance=rest.Distance.COSINE,
                         ),
                     )
                     logger.info("Created Qdrant collection: %s", col)
+        except ValueError:
+            raise
         except Exception as exc:
             logger.warning("Failed to initialize Qdrant collections: %s", exc)
 
@@ -86,17 +98,28 @@ class QdrantManager:
             return False
 
     def search_points(
-        self, collection_name: str, query_vector: list[float], limit: int = 10
+        self, collection_name: str, query_vector: list[float], limit: int = 10,
+        excluded_chunk_ids: list[str] | None = None,
     ) -> list[dict[str, Any]]:
         """Search points by dense vector similarity."""
         if not self.client:
             return []
         try:
+            filter_options = {}
+            if excluded_chunk_ids:
+                from qdrant_client.http import models as rest
+
+                filter_options["query_filter"] = rest.Filter(must_not=[
+                    rest.FieldCondition(
+                        key="chunk_id", match=rest.MatchAny(any=excluded_chunk_ids)
+                    )
+                ])
             if hasattr(self.client, "query_points"):
                 response = self.client.query_points(
                     collection_name=collection_name,
                     query=query_vector,
                     limit=limit,
+                    **filter_options,
                 )
                 results = response.points
             else:
@@ -104,6 +127,7 @@ class QdrantManager:
                     collection_name=collection_name,
                     query_vector=query_vector,
                     limit=limit,
+                    **filter_options,
                 )
             return [
                 {

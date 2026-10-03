@@ -7,6 +7,7 @@
 let appInitialized = false;
 let activeUser = null;
 let accessibleProjects = [];
+let chatUploadInProgress = false;
 
 document.addEventListener('DOMContentLoaded', () => {
   initAuthentication();
@@ -73,6 +74,8 @@ async function startAuthenticatedApp(user) {
   applyRoleNavigation(user.role);
   const documentDropzone = document.getElementById('file-dropzone');
   if (documentDropzone) documentDropzone.hidden = !['ADMIN', 'MANAGER'].includes(user.role);
+  const chatAttachButton = document.getElementById('chat-attach-button');
+  if (chatAttachButton) chatAttachButton.hidden = !['ADMIN', 'MANAGER'].includes(user.role);
   updateActiveProjectName();
   if (!appInitialized) {
     initNavigation();
@@ -261,7 +264,7 @@ function updateActiveProjectName() {
   if (projectLabel) projectLabel.textContent = displayName;
   if (selector) selector.setAttribute('aria-label', `Active project: ${displayName}`);
   if (dashboardTitle) dashboardTitle.textContent = displayName.toUpperCase();
-  ['documents-project-name', 'meetings-project-name', 'team-project-name', 'report-project-name', 'chat-project-name'].forEach(id => {
+  ['documents-project-name', 'meetings-project-name', 'team-project-name', 'report-project-name', 'chat-project-name', 'chat-scope-project-name'].forEach(id => {
     const node = document.getElementById(id);
     if (node) node.textContent = project?.name || 'No project selected';
   });
@@ -731,54 +734,157 @@ function initProjectChat() {
   const form = document.getElementById('project-chat-form');
   const searchInput = document.getElementById('search-query-input');
   const askBtn = document.getElementById('btn-ask-query');
+  const history = document.getElementById('chat-history');
+  const attachButton = document.getElementById('chat-attach-button');
+  const fileInput = document.getElementById('chat-file-input');
+  const uploadStatus = document.getElementById('chat-upload-status');
   if (!form || !searchInput || !askBtn) return;
+
+  history?.addEventListener('click', event => {
+    const starter = event.target.closest('[data-chat-starter]');
+    if (!starter) return;
+    searchInput.value = starter.dataset.chatStarter;
+    form.requestSubmit();
+  });
+
+  attachButton?.addEventListener('click', () => fileInput?.click());
+  fileInput?.addEventListener('change', async () => {
+    const file = fileInput.files?.[0];
+    fileInput.value = '';
+    if (file) await uploadChatDocument(file);
+  });
 
   form.addEventListener('submit', async event => {
     event.preventDefault();
+    if (chatUploadInProgress) return;
     const query = searchInput.value.trim();
     if (!query) return;
+    const projectId = Coordin8Api.activeProjectId;
+    if (!projectId) {
+      setViewState('chat', 'error', 'Select an accessible project to ask a question.');
+      return;
+    }
 
     appendChatMessage('user', query);
     searchInput.value = '';
     searchInput.disabled = true;
     askBtn.disabled = true;
-    setViewState('chat', 'loading', 'Searching this project...');
+    setViewState('chat', 'clear');
+    const thinking = document.createElement('div');
+    thinking.className = 'chat-message chat-bot chat-thinking';
+    thinking.textContent = 'Coordin8 is thinking...';
+    history?.appendChild(thinking);
+    if (history) history.scrollTop = history.scrollHeight;
 
     try {
-      const data = await Coordin8Api.chat(query);
-      appendChatMessage('bot', data.answer, data.citations, query);
+      const data = await Coordin8Api.chat(query, projectId);
+      if (Coordin8Api.activeProjectId !== projectId) return;
+      appendChatMessage('bot', data.answer, data.sources?.length ? data.sources : data.citations, data.grounded ?? Boolean(data.citations?.length));
       setViewState('chat', 'clear');
-    } catch (e) {
-      setViewState('chat', 'error', e.message || 'Unable to load project chat. Please try again.');
+    } catch (error) {
+      if (Coordin8Api.activeProjectId !== projectId) return;
+      const message = error.status === 403
+        ? 'You do not have access to this project.'
+        : error.status === 502
+          ? (error.message || 'AI service is currently unavailable. Please try again.')
+          : error instanceof TypeError
+            ? 'Unable to connect to Coordin8. Please try again.'
+            : (error.message || 'Unable to connect to Coordin8. Please try again.');
+      setViewState('chat', 'error', message);
     }
     finally {
+      thinking.remove();
       searchInput.disabled = false;
       askBtn.disabled = false;
-      searchInput.focus();
+      if (Coordin8Api.activeProjectId === projectId) searchInput.focus();
     }
   });
+
+  async function uploadChatDocument(file) {
+    const projectId = Coordin8Api.activeProjectId;
+    const project = accessibleProjects.find(item => item.id === projectId);
+    const projectName = project?.name || 'the selected project';
+    if (!uploadStatus) return;
+    if (!projectId) {
+      uploadStatus.hidden = false;
+      uploadStatus.textContent = 'Select an accessible project before uploading a document.';
+      return;
+    }
+
+    chatUploadInProgress = true;
+    uploadStatus.hidden = false;
+    uploadStatus.textContent = `${file.name} · Uploading and indexing for ${projectName}...`;
+    if (attachButton) attachButton.disabled = true;
+    searchInput.disabled = true;
+    askBtn.disabled = true;
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const document = await Coordin8Api.uploadDocument(formData, projectId);
+      if (document.success !== true || String(document.status).toUpperCase() !== 'READY') {
+        throw new Error('The ingestion pipeline did not mark the document ready.');
+      }
+      if (Coordin8Api.activeProjectId !== projectId) return;
+      uploadStatus.textContent = `✓ ${file.name} is ready in ${projectName}. You can now ask questions about it.`;
+      await initDocumentsTable();
+    } catch {
+      if (Coordin8Api.activeProjectId === projectId) {
+        uploadStatus.textContent = `✕ ${file.name} could not be processed. Please try again.`;
+      }
+    } finally {
+      chatUploadInProgress = false;
+      if (attachButton) attachButton.disabled = false;
+      searchInput.disabled = false;
+      askBtn.disabled = false;
+    }
+  }
 }
 
 function clearProjectChat() {
   const history = document.getElementById('chat-history');
-  if (history) history.innerHTML = '<div class="chat-empty" id="chat-empty">Ask a question about this project’s documents, meetings, and deliverables.</div>';
+  if (history) history.innerHTML = chatEmptyMarkup();
+  const uploadStatus = document.getElementById('chat-upload-status');
+  if (uploadStatus) {
+    uploadStatus.hidden = true;
+    uploadStatus.textContent = '';
+  }
   setViewState('chat', 'clear');
 }
 
-function appendChatMessage(sender, text, citations = [], queryForInspector = '') {
+function chatEmptyMarkup() {
+  return `<div class="chat-empty" id="chat-empty">
+    <p>Ask about this project's documents, meetings, tasks and updates.</p>
+    <div class="chat-starters" aria-label="Starter questions">
+      <button type="button" data-chat-starter="What is the current project delivery date?">What is the current project delivery date?</button>
+      <button type="button" data-chat-starter="What are the current project risks?">What are the current project risks?</button>
+      <button type="button" data-chat-starter="Which tasks are overdue?">Which tasks are overdue?</button>
+      <button type="button" data-chat-starter="Summarize the latest meeting.">Summarize the latest meeting.</button>
+      <button type="button" data-chat-starter="What are the major project milestones?">What are the major project milestones?</button>
+    </div>
+  </div>`;
+}
+
+function appendChatMessage(sender, text, sources = [], grounded = false) {
   const chatHistory = document.getElementById('chat-history');
   if (!chatHistory) return;
+  document.getElementById('chat-empty')?.remove();
 
   const msgDiv = document.createElement('div');
   msgDiv.className = `chat-message chat-${sender}`;
 
   let contentHtml = `<div>${text ? escapeHtml(text).replace(/\n/g, '<br/>') : ''}</div>`;
-  if (citations && citations.length > 0) {
-    contentHtml += `<div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">`;
-    citations.forEach(c => {
-      contentHtml += `<span class="citation-pill" title="Project source citation">🔖 ${escapeHtml(c)}</span>`;
+  if (sender === 'bot') {
+    contentHtml += `<div class="chat-grounding ${grounded ? 'is-grounded' : ''}">${grounded ? 'Grounded in project knowledge' : 'No project sources were retrieved'}</div>`;
+  }
+  if (sender === 'bot' && sources?.length) {
+    contentHtml += '<div class="chat-sources"><strong>Sources</strong>';
+    sources.forEach(source => {
+      const title = typeof source === 'string' ? 'Project source' : (source.document_title || 'Project source');
+      const citation = typeof source === 'string' ? source : source.citation;
+      contentHtml += `<div class="chat-source"><span>📄 ${escapeHtml(title)}</span>${citation ? `<small>${escapeHtml(citation)}</small>` : ''}</div>`;
     });
-    contentHtml += `</div>`;
+    contentHtml += '</div>';
   }
 
   msgDiv.innerHTML = contentHtml;

@@ -273,7 +273,7 @@ If you are setting up the project for the very first time on a new machine:
    cp .env.example .env
    cp .env.example backend/.env
    ```
-   The backend reads `LLM_BASE_URL`, `LLM_API_KEY`, and `LLM_MODEL` from the process environment or `.env`. Defaults target LM Studio at `http://127.0.0.1:1234/v1` with model `meta-llama-3.1-8b-instruct` and the local placeholder key `not-needed-for-local`. For a hosted OpenAI-compatible provider, set all three values to that provider's documented base URL, secret API key, and model ID. Never commit a real API key. If the endpoint is unavailable, project Chat and MoM return HTTP 502 with an AI-service error rather than presenting a synthetic answer.
+   The backend reads `LLM_BASE_URL`, `LLM_API_KEY`, and `LLM_MODEL` from the process environment or `.env`. Groq is the configured provider for this MVP: use `https://api.groq.com/openai/v1`, a currently available model ID from Groq, and your local Groq API key. LM Studio remains available for local development by setting those values to its endpoint and model. Never commit a real API key. If the endpoint is unavailable, project Chat and MoM return HTTP 502 with an AI-service error rather than presenting a synthetic answer.
 
 3. **Set up backend virtual environment**:
    ```powershell

@@ -18,7 +18,7 @@ class IndexPipeline:
     ) -> None:
         self.embeddings = embeddings or get_embedding_provider()
         self.sparse = sparse or SparseVectorProvider()
-        self.qdrant = qdrant or QdrantManager()
+        self.qdrant = qdrant or QdrantManager(vector_size=self.embeddings.dimension)
 
     def index_document(self, document: Document) -> bool:
         """Index document summary, section summaries, chunks, and assets."""

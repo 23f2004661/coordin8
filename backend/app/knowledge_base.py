@@ -26,8 +26,9 @@ from app.ingestion.detector import detect_file_type
 from app.ingestion.jobs import JobManager
 from app.ingestion.pipeline import IngestionPipeline
 from app.ingestion.registry import DocumentRegistry
-from app.retrieval.chunk_retriever import ChunkRetriever
+from app.retrieval.chunk_retriever import ChunkRetriever, RetrievedChunk
 from app.retrieval.context import ContextAssembler
+from app.retrieval.diversity import FinalCandidateSelector
 from app.retrieval.document_retriever import DocumentRetriever
 from app.retrieval.hybrid import HybridFusion
 from app.retrieval.query_parser import QueryParser
@@ -78,12 +79,15 @@ class KnowledgeBase:
         self.storage = ArtifactStorage(root_dir=self.storage_dir / "artifacts")
 
         # 4. Scoped Vector Store
+        self.embeddings = embedding_provider or get_embedding_provider()
         self.collection_prefix = collection_prefix or f"kb_{kb_id}"
-        self.qdrant = QdrantManager(url=qdrant_url, collection_prefix=self.collection_prefix)
+        self.qdrant = QdrantManager(
+            url=qdrant_url, collection_prefix=self.collection_prefix,
+            vector_size=self.embeddings.dimension,
+        )
         self.qdrant.ensure_collections()
 
         # 5. Core Pipelines
-        self.embeddings = embedding_provider or get_embedding_provider()
         self.sparse = SparseVectorProvider()
         self.index_pipeline = IndexPipeline(
             embeddings=self.embeddings,
@@ -103,6 +107,7 @@ class KnowledgeBase:
         self.chk_retriever = ChunkRetriever(qdrant=self.qdrant, embeddings=self.embeddings)
         self.fusion = HybridFusion()
         self.reranker = get_reranker()
+        self.final_selector = FinalCandidateSelector()
         self.context_assembler = ContextAssembler()
         self.spreadsheet_executor = SpreadsheetExecutor()
 
@@ -200,8 +205,7 @@ class KnowledgeBase:
             if document_id:
                 chunks = [c for c in chunks if c.document_id == document_id]
 
-            fused = self.fusion.fuse_ranks(chunks, [], top_k=limit)
-            final = self.reranker.rerank(query, fused, top_n=limit)
+            final = self._select_final_candidates(query, chunks, limit)
 
             results = []
             for rank, c in enumerate(final, start=1):
@@ -251,8 +255,7 @@ class KnowledgeBase:
             candidate_secs = self.sec_retriever.retrieve_sections(candidate_docs, parsed, limit=limit * 2)
             chunks = self.chk_retriever.retrieve_chunks(db, candidate_secs, parsed, limit=limit * 2)
 
-            fused = self.fusion.fuse_ranks(chunks, [], top_k=limit)
-            final = self.reranker.rerank(query, fused, top_n=limit)
+            final = self._select_final_candidates(query, chunks, limit)
             assembled = self.context_assembler.assemble(final)
 
             return {
@@ -262,6 +265,14 @@ class KnowledgeBase:
                 "evidence_units": [asdict(u) for u in assembled.evidence_units],
                 "estimated_tokens": assembled.total_estimated_tokens,
             }
+
+    def _select_final_candidates(
+        self, query: str, chunks: list[RetrievedChunk], limit: int
+    ) -> list[RetrievedChunk]:
+        relevance_scores = {chunk.chunk_id: chunk.score for chunk in chunks}
+        fused = self.fusion.fuse_ranks(chunks, [], top_k=len(chunks))
+        ranked = self.reranker.rerank(query, fused, top_n=len(fused))
+        return self.final_selector.select(ranked, top_k=limit, relevance_scores=relevance_scores)
 
     def read_document(self, document_id: str) -> str | None:
         """Fetch canonical normalized markdown for a document."""

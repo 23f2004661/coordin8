@@ -2,6 +2,7 @@
 
 import httpx
 import pytest
+from types import SimpleNamespace
 
 from app.llm.client import LLMClient
 
@@ -71,3 +72,40 @@ def test_no_tools_payload_preserves_text_and_mom_json(monkeypatch, content):
     )
     client = LLMClient(base_url="http://127.0.0.1:1234/v1", model="test-model", temperature=0.1)
     assert client.generate_completion("system instructions", "source content") == content
+
+
+def test_configured_provider_uses_bearer_auth_and_openai_chat_payload(monkeypatch):
+    import json
+
+    original_client = httpx.Client
+    monkeypatch.setattr(
+        "app.llm.client.get_settings",
+        lambda: SimpleNamespace(
+            llm_base_url="https://api.groq.com/openai/v1",
+            llm_api_key="unit-test-key",
+            llm_model="test-groq-model",
+            llm_temperature=0.1,
+        ),
+    )
+
+    def respond(request):
+        assert str(request.url) == "https://api.groq.com/openai/v1/chat/completions"
+        assert request.headers["Authorization"] == "Bearer unit-test-key"
+        payload = json.loads(request.content)
+        assert payload == {
+            "model": "test-groq-model",
+            "messages": [
+                {"role": "system", "content": "system instructions"},
+                {"role": "user", "content": "source content"},
+            ],
+            "temperature": 0.1,
+        }
+        return httpx.Response(200, json={"choices": [{"message": {"content": "A project manager coordinates work."}}]})
+
+    monkeypatch.setattr(
+        "app.llm.client.httpx.Client",
+        lambda **kwargs: original_client(transport=httpx.MockTransport(respond), **kwargs),
+    )
+    assert LLMClient().generate_completion("system instructions", "source content") == (
+        "A project manager coordinates work."
+    )

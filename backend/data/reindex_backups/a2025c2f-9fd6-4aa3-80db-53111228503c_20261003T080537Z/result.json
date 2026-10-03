@@ -1,0 +1,31 @@
+{
+  "verification": {
+    "kb_a2025c2f-9fd6-4aa3-80db-53111228503c_chunks": {
+      "points": 336,
+      "dimension": 384,
+      "distance": "Cosine"
+    },
+    "kb_a2025c2f-9fd6-4aa3-80db-53111228503c_document_summaries": {
+      "points": 7,
+      "dimension": 384,
+      "distance": "Cosine"
+    },
+    "kb_a2025c2f-9fd6-4aa3-80db-53111228503c_section_summaries": {
+      "points": 0,
+      "dimension": 384,
+      "distance": "Cosine"
+    },
+    "kb_a2025c2f-9fd6-4aa3-80db-53111228503c_assets": {
+      "points": 0,
+      "dimension": 384,
+      "distance": "Cosine"
+    }
+  },
+  "chunks_embedded": 336,
+  "omitted": 1,
+  "orphan_omitted": true,
+  "embedding_failures": 0,
+  "all_vectors_384": true,
+  "other_collections_unchanged": true,
+  "source_catalog_unchanged": true
+}

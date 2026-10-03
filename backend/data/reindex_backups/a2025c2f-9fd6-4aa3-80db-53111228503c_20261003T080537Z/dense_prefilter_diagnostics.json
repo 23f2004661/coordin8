@@ -1,0 +1,2399 @@
+{
+  "provider": "LocalSentenceTransformerEmbeddingProvider",
+  "model": "BAAI/bge-small-en-v1.5",
+  "dimension": 384,
+  "queries": [
+    {
+      "label": "1",
+      "query": "What is SAP_Redacted_pdfa-v1.pdf about?",
+      "dense_limit": 20,
+      "excluded_placeholder_count": 120,
+      "raw_dense_top20": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_c1cb9eacb5",
+          "page": 25,
+          "slide": null,
+          "cosine": 0.6128627,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f1f3c4e009",
+          "page": 8,
+          "slide": null,
+          "cosine": 0.59322834,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_ef03dd69f3",
+          "page": null,
+          "slide": 5,
+          "cosine": 0.5915581,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_61cb3a73c5",
+          "page": null,
+          "slide": 5,
+          "cosine": 0.5915581,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_957860ad0e",
+          "page": null,
+          "slide": 6,
+          "cosine": 0.5901943,
+          "placeholder_only": false
+        },
+        {
+          "rank": 6,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_2ef94e244e",
+          "page": null,
+          "slide": 6,
+          "cosine": 0.5901943,
+          "placeholder_only": false
+        },
+        {
+          "rank": 7,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_f867845048",
+          "page": null,
+          "slide": 4,
+          "cosine": 0.57502574,
+          "placeholder_only": false
+        },
+        {
+          "rank": 8,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_ca0da581a3",
+          "page": null,
+          "slide": 4,
+          "cosine": 0.57502574,
+          "placeholder_only": false
+        },
+        {
+          "rank": 9,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_10630e0da6",
+          "page": 21,
+          "slide": null,
+          "cosine": 0.5726656,
+          "placeholder_only": false
+        },
+        {
+          "rank": 10,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_6a5418a1a6",
+          "page": 11,
+          "slide": null,
+          "cosine": 0.5677482,
+          "placeholder_only": false
+        },
+        {
+          "rank": 11,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_c18f593fdd",
+          "page": 1,
+          "slide": null,
+          "cosine": 0.5644827,
+          "placeholder_only": false
+        },
+        {
+          "rank": 12,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_11377cc373",
+          "page": 23,
+          "slide": null,
+          "cosine": 0.5599268,
+          "placeholder_only": false
+        },
+        {
+          "rank": 13,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_e904bf185b",
+          "page": 69,
+          "slide": null,
+          "cosine": 0.55916554,
+          "placeholder_only": false
+        },
+        {
+          "rank": 14,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_1d60ffc0a3",
+          "page": 158,
+          "slide": null,
+          "cosine": 0.55871004,
+          "placeholder_only": false
+        },
+        {
+          "rank": 15,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_67222548af",
+          "page": 119,
+          "slide": null,
+          "cosine": 0.55568033,
+          "placeholder_only": false
+        },
+        {
+          "rank": 16,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_8da6387947",
+          "page": 161,
+          "slide": null,
+          "cosine": 0.5544105,
+          "placeholder_only": false
+        },
+        {
+          "rank": 17,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_5e92961f8f",
+          "page": null,
+          "slide": 3,
+          "cosine": 0.5543851,
+          "placeholder_only": false
+        },
+        {
+          "rank": 18,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_62f403d9a8",
+          "page": null,
+          "slide": 3,
+          "cosine": 0.5543851,
+          "placeholder_only": false
+        },
+        {
+          "rank": 19,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_f78c0dadfc",
+          "page": 182,
+          "slide": null,
+          "cosine": 0.5539715,
+          "placeholder_only": false
+        },
+        {
+          "rank": 20,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_786b3da1fb",
+          "page": null,
+          "slide": 2,
+          "cosine": 0.55166155,
+          "placeholder_only": false
+        }
+      ],
+      "substantive_document_ids_in_dense_top20": [
+        "doc_3ca7a20cb73b",
+        "doc_cf57d6670b15",
+        "doc_e2842eeb2cb3"
+      ],
+      "sap_dense_positions": [
+        9,
+        13,
+        14,
+        15,
+        16,
+        19
+      ],
+      "best_sap_substantive": {
+        "rank": 9,
+        "document_id": "doc_3ca7a20cb73b",
+        "title": "SAP_Redacted_pdfa-v1",
+        "chunk_id": "chk_10630e0da6",
+        "page": 21,
+        "slide": null,
+        "cosine": 0.5726656,
+        "placeholder_only": false
+      },
+      "pre_rrf_candidates": [
+        {
+          "rank": 1,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_5e92961f8f",
+          "page": null,
+          "slide": 3,
+          "score": 0.60219255,
+          "dense_score": 0.5544,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_62f403d9a8",
+          "page": null,
+          "slide": 3,
+          "score": 0.60219255,
+          "dense_score": 0.5544,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_786b3da1fb",
+          "page": null,
+          "slide": 2,
+          "score": 0.6008307749999999,
+          "dense_score": 0.5517,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_496d9bb308",
+          "page": null,
+          "slide": 2,
+          "score": 0.55,
+          "dense_score": 0.0,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_c1cb9eacb5",
+          "page": 25,
+          "slide": null,
+          "score": 0.42900388999999994,
+          "dense_score": 0.6129,
+          "lexical_score": 0.0,
+          "placeholder_only": false
+        },
+        {
+          "rank": 6,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f1f3c4e009",
+          "page": 8,
+          "slide": null,
+          "score": 0.415259838,
+          "dense_score": 0.5932,
+          "lexical_score": 0.0,
+          "placeholder_only": false
+        },
+        {
+          "rank": 7,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_ef03dd69f3",
+          "page": null,
+          "slide": 5,
+          "score": 0.41409066999999994,
+          "dense_score": 0.5916,
+          "lexical_score": 0.0,
+          "placeholder_only": false
+        },
+        {
+          "rank": 8,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_61cb3a73c5",
+          "page": null,
+          "slide": 5,
+          "score": 0.41409066999999994,
+          "dense_score": 0.5916,
+          "lexical_score": 0.0,
+          "placeholder_only": false
+        },
+        {
+          "rank": 9,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_957860ad0e",
+          "page": null,
+          "slide": 6,
+          "score": 0.41313600999999994,
+          "dense_score": 0.5902,
+          "lexical_score": 0.0,
+          "placeholder_only": false
+        },
+        {
+          "rank": 10,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_2ef94e244e",
+          "page": null,
+          "slide": 6,
+          "score": 0.41313600999999994,
+          "dense_score": 0.5902,
+          "lexical_score": 0.0,
+          "placeholder_only": false
+        }
+      ],
+      "post_rrf_top5": [
+        {
+          "rank": 1,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_5e92961f8f",
+          "page": null,
+          "slide": 3,
+          "score": 0.01639344262295082,
+          "dense_score": 0.5544,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_62f403d9a8",
+          "page": null,
+          "slide": 3,
+          "score": 0.016129032258064516,
+          "dense_score": 0.5544,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_786b3da1fb",
+          "page": null,
+          "slide": 2,
+          "score": 0.015873015873015872,
+          "dense_score": 0.5517,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_496d9bb308",
+          "page": null,
+          "slide": 2,
+          "score": 0.015625,
+          "dense_score": 0.0,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_c1cb9eacb5",
+          "page": 25,
+          "slide": null,
+          "score": 0.015384615384615385,
+          "dense_score": 0.6129,
+          "lexical_score": 0.0,
+          "placeholder_only": false
+        }
+      ],
+      "final_reranked_top5": [
+        {
+          "rank": 1,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_5e92961f8f",
+          "page": null,
+          "slide": 3,
+          "score": 0.01639344262295082,
+          "dense_score": 0.5544,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_62f403d9a8",
+          "page": null,
+          "slide": 3,
+          "score": 0.016129032258064516,
+          "dense_score": 0.5544,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_786b3da1fb",
+          "page": null,
+          "slide": 2,
+          "score": 0.015873015873015872,
+          "dense_score": 0.5517,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_496d9bb308",
+          "page": null,
+          "slide": 2,
+          "score": 0.015625,
+          "dense_score": 0.0,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_c1cb9eacb5",
+          "page": 25,
+          "slide": null,
+          "score": 0.015384615384615385,
+          "dense_score": 0.6129,
+          "lexical_score": 0.0,
+          "placeholder_only": false
+        }
+      ],
+      "sap_survives_final_context": false,
+      "final_context_placeholder_count": 0,
+      "context_chars": 4824
+    },
+    {
+      "label": "2",
+      "query": "What is the study design described in the SAP?",
+      "dense_limit": 20,
+      "excluded_placeholder_count": 120,
+      "raw_dense_top20": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f1f3c4e009",
+          "page": 8,
+          "slide": null,
+          "cosine": 0.6636129,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_2ef94e244e",
+          "page": null,
+          "slide": 6,
+          "cosine": 0.644199,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_957860ad0e",
+          "page": null,
+          "slide": 6,
+          "cosine": 0.644199,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_62f403d9a8",
+          "page": null,
+          "slide": 3,
+          "cosine": 0.6401149,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_5e92961f8f",
+          "page": null,
+          "slide": 3,
+          "cosine": 0.6401149,
+          "placeholder_only": false
+        },
+        {
+          "rank": 6,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_ef03dd69f3",
+          "page": null,
+          "slide": 5,
+          "cosine": 0.63960266,
+          "placeholder_only": false
+        },
+        {
+          "rank": 7,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_61cb3a73c5",
+          "page": null,
+          "slide": 5,
+          "cosine": 0.63960266,
+          "placeholder_only": false
+        },
+        {
+          "rank": 8,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_ca0da581a3",
+          "page": null,
+          "slide": 4,
+          "cosine": 0.6341819,
+          "placeholder_only": false
+        },
+        {
+          "rank": 9,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_f867845048",
+          "page": null,
+          "slide": 4,
+          "cosine": 0.6341819,
+          "placeholder_only": false
+        },
+        {
+          "rank": 10,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_a391234a51",
+          "page": 4,
+          "slide": null,
+          "cosine": 0.62540126,
+          "placeholder_only": false
+        },
+        {
+          "rank": 11,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_67222548af",
+          "page": 119,
+          "slide": null,
+          "cosine": 0.6076876,
+          "placeholder_only": false
+        },
+        {
+          "rank": 12,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_9de4abd6aa",
+          "page": 2,
+          "slide": null,
+          "cosine": 0.60722625,
+          "placeholder_only": false
+        },
+        {
+          "rank": 13,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_4bfbff44ea",
+          "page": 16,
+          "slide": null,
+          "cosine": 0.60058624,
+          "placeholder_only": false
+        },
+        {
+          "rank": 14,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_356182c7a9",
+          "page": null,
+          "slide": 7,
+          "cosine": 0.5965465,
+          "placeholder_only": false
+        },
+        {
+          "rank": 15,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_b1627c5a2e",
+          "page": null,
+          "slide": 7,
+          "cosine": 0.5965465,
+          "placeholder_only": false
+        },
+        {
+          "rank": 16,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_496d9bb308",
+          "page": null,
+          "slide": 2,
+          "cosine": 0.5963624,
+          "placeholder_only": false
+        },
+        {
+          "rank": 17,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_786b3da1fb",
+          "page": null,
+          "slide": 2,
+          "cosine": 0.5963624,
+          "placeholder_only": false
+        },
+        {
+          "rank": 18,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f7a0b03b62",
+          "page": 7,
+          "slide": null,
+          "cosine": 0.5943251,
+          "placeholder_only": false
+        },
+        {
+          "rank": 19,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_e043a5ec43",
+          "page": null,
+          "slide": 1,
+          "cosine": 0.59297717,
+          "placeholder_only": false
+        },
+        {
+          "rank": 20,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_d39e1debda",
+          "page": null,
+          "slide": 1,
+          "cosine": 0.59297717,
+          "placeholder_only": false
+        }
+      ],
+      "substantive_document_ids_in_dense_top20": [
+        "doc_3ca7a20cb73b",
+        "doc_cf57d6670b15",
+        "doc_e2842eeb2cb3"
+      ],
+      "sap_dense_positions": [
+        11
+      ],
+      "best_sap_substantive": {
+        "rank": 11,
+        "document_id": "doc_3ca7a20cb73b",
+        "title": "SAP_Redacted_pdfa-v1",
+        "chunk_id": "chk_67222548af",
+        "page": 119,
+        "slide": null,
+        "cosine": 0.6076876,
+        "placeholder_only": false
+      },
+      "pre_rrf_candidates": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f1f3c4e009",
+          "page": 8,
+          "slide": null,
+          "score": 0.7818064499999999,
+          "dense_score": 0.6636,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_a391234a51",
+          "page": 4,
+          "slide": null,
+          "score": 0.7627006299999999,
+          "dense_score": 0.6254,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_9de4abd6aa",
+          "page": 2,
+          "slide": null,
+          "score": 0.753613125,
+          "dense_score": 0.6072,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f7a0b03b62",
+          "page": 7,
+          "slide": null,
+          "score": 0.7471625500000001,
+          "dense_score": 0.5943,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_6aece63d8a",
+          "page": 6,
+          "slide": null,
+          "score": 0.7,
+          "dense_score": 0.0,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 6,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_e1fe3a6f8d",
+          "page": 9,
+          "slide": null,
+          "score": 0.7,
+          "dense_score": 0.0,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 7,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_957860ad0e",
+          "page": null,
+          "slide": 6,
+          "score": 0.6470994999999999,
+          "dense_score": 0.6442,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 8,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_2ef94e244e",
+          "page": null,
+          "slide": 6,
+          "score": 0.6470994999999999,
+          "dense_score": 0.6442,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 9,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_5e92961f8f",
+          "page": null,
+          "slide": 3,
+          "score": 0.64505745,
+          "dense_score": 0.6401,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 10,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_62f403d9a8",
+          "page": null,
+          "slide": 3,
+          "score": 0.64505745,
+          "dense_score": 0.6401,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        }
+      ],
+      "post_rrf_top5": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f1f3c4e009",
+          "page": 8,
+          "slide": null,
+          "score": 0.01639344262295082,
+          "dense_score": 0.6636,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_a391234a51",
+          "page": 4,
+          "slide": null,
+          "score": 0.016129032258064516,
+          "dense_score": 0.6254,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_9de4abd6aa",
+          "page": 2,
+          "slide": null,
+          "score": 0.015873015873015872,
+          "dense_score": 0.6072,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f7a0b03b62",
+          "page": 7,
+          "slide": null,
+          "score": 0.015625,
+          "dense_score": 0.5943,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_6aece63d8a",
+          "page": 6,
+          "slide": null,
+          "score": 0.015384615384615385,
+          "dense_score": 0.0,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        }
+      ],
+      "final_reranked_top5": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f1f3c4e009",
+          "page": 8,
+          "slide": null,
+          "score": 0.01639344262295082,
+          "dense_score": 0.6636,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_a391234a51",
+          "page": 4,
+          "slide": null,
+          "score": 0.016129032258064516,
+          "dense_score": 0.6254,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_9de4abd6aa",
+          "page": 2,
+          "slide": null,
+          "score": 0.015873015873015872,
+          "dense_score": 0.6072,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f7a0b03b62",
+          "page": 7,
+          "slide": null,
+          "score": 0.015625,
+          "dense_score": 0.5943,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_6aece63d8a",
+          "page": 6,
+          "slide": null,
+          "score": 0.015384615384615385,
+          "dense_score": 0.0,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        }
+      ],
+      "sap_survives_final_context": false,
+      "final_context_placeholder_count": 0,
+      "context_chars": 12260
+    },
+    {
+      "label": "3",
+      "query": "What is the phase of the clinical trial?",
+      "dense_limit": 20,
+      "excluded_placeholder_count": 120,
+      "raw_dense_top20": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f7a0b03b62",
+          "page": 7,
+          "slide": null,
+          "cosine": 0.686192,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_d1c91d3597",
+          "page": 17,
+          "slide": null,
+          "cosine": 0.66310996,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_623702e63b",
+          "page": 12,
+          "slide": null,
+          "cosine": 0.6603476,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f1f3c4e009",
+          "page": 8,
+          "slide": null,
+          "cosine": 0.6592752,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_1f3be3f7a8",
+          "page": 10,
+          "slide": null,
+          "cosine": 0.6582551,
+          "placeholder_only": false
+        },
+        {
+          "rank": 6,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_a391234a51",
+          "page": 4,
+          "slide": null,
+          "cosine": 0.6556196,
+          "placeholder_only": false
+        },
+        {
+          "rank": 7,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_462394cd4e",
+          "page": 11,
+          "slide": null,
+          "cosine": 0.65282667,
+          "placeholder_only": false
+        },
+        {
+          "rank": 8,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_4bfbff44ea",
+          "page": 16,
+          "slide": null,
+          "cosine": 0.64832264,
+          "placeholder_only": false
+        },
+        {
+          "rank": 9,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_e1fe3a6f8d",
+          "page": 9,
+          "slide": null,
+          "cosine": 0.6416036,
+          "placeholder_only": false
+        },
+        {
+          "rank": 10,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_ccebeb82d5",
+          "page": 15,
+          "slide": null,
+          "cosine": 0.63849056,
+          "placeholder_only": false
+        },
+        {
+          "rank": 11,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_6aece63d8a",
+          "page": 6,
+          "slide": null,
+          "cosine": 0.6372745,
+          "placeholder_only": false
+        },
+        {
+          "rank": 12,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_11377cc373",
+          "page": 23,
+          "slide": null,
+          "cosine": 0.63602376,
+          "placeholder_only": false
+        },
+        {
+          "rank": 13,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_113cb0eb3a",
+          "page": 13,
+          "slide": null,
+          "cosine": 0.62707573,
+          "placeholder_only": false
+        },
+        {
+          "rank": 14,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_518963973b",
+          "page": 110,
+          "slide": null,
+          "cosine": 0.62689364,
+          "placeholder_only": false
+        },
+        {
+          "rank": 15,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_62f403d9a8",
+          "page": null,
+          "slide": 3,
+          "cosine": 0.61805904,
+          "placeholder_only": false
+        },
+        {
+          "rank": 16,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_5e92961f8f",
+          "page": null,
+          "slide": 3,
+          "cosine": 0.61805904,
+          "placeholder_only": false
+        },
+        {
+          "rank": 17,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_67222548af",
+          "page": 119,
+          "slide": null,
+          "cosine": 0.61225677,
+          "placeholder_only": false
+        },
+        {
+          "rank": 18,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_c18f593fdd",
+          "page": 1,
+          "slide": null,
+          "cosine": 0.608869,
+          "placeholder_only": false
+        },
+        {
+          "rank": 19,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_957860ad0e",
+          "page": null,
+          "slide": 6,
+          "cosine": 0.6083656,
+          "placeholder_only": false
+        },
+        {
+          "rank": 20,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_2ef94e244e",
+          "page": null,
+          "slide": 6,
+          "cosine": 0.6083656,
+          "placeholder_only": false
+        }
+      ],
+      "substantive_document_ids_in_dense_top20": [
+        "doc_3ca7a20cb73b",
+        "doc_cf57d6670b15",
+        "doc_e2842eeb2cb3"
+      ],
+      "sap_dense_positions": [
+        14,
+        17
+      ],
+      "best_sap_substantive": {
+        "rank": 14,
+        "document_id": "doc_3ca7a20cb73b",
+        "title": "SAP_Redacted_pdfa-v1",
+        "chunk_id": "chk_518963973b",
+        "page": 110,
+        "slide": null,
+        "cosine": 0.62689364,
+        "placeholder_only": false
+      },
+      "pre_rrf_candidates": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f7a0b03b62",
+          "page": 7,
+          "slide": null,
+          "score": 0.918096,
+          "dense_score": 0.6862,
+          "lexical_score": 0.75,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_9010fdbd95",
+          "page": 5,
+          "slide": null,
+          "score": 0.85,
+          "dense_score": 0.0,
+          "lexical_score": 0.75,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_d1c91d3597",
+          "page": 17,
+          "slide": null,
+          "score": 0.65655498,
+          "dense_score": 0.6631,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f1f3c4e009",
+          "page": 8,
+          "slide": null,
+          "score": 0.6546376,
+          "dense_score": 0.6593,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_1f3be3f7a8",
+          "page": 10,
+          "slide": null,
+          "score": 0.65412755,
+          "dense_score": 0.6583,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 6,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_a391234a51",
+          "page": 4,
+          "slide": null,
+          "score": 0.6528098,
+          "dense_score": 0.6556,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 7,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_4bfbff44ea",
+          "page": 16,
+          "slide": null,
+          "score": 0.6491613199999999,
+          "dense_score": 0.6483,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 8,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_e1fe3a6f8d",
+          "page": 9,
+          "slide": null,
+          "score": 0.6458018000000001,
+          "dense_score": 0.6416,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 9,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_ccebeb82d5",
+          "page": 15,
+          "slide": null,
+          "score": 0.64424528,
+          "dense_score": 0.6385,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 10,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_6aece63d8a",
+          "page": 6,
+          "slide": null,
+          "score": 0.64363725,
+          "dense_score": 0.6373,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        }
+      ],
+      "post_rrf_top5": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f7a0b03b62",
+          "page": 7,
+          "slide": null,
+          "score": 0.01639344262295082,
+          "dense_score": 0.6862,
+          "lexical_score": 0.75,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_9010fdbd95",
+          "page": 5,
+          "slide": null,
+          "score": 0.016129032258064516,
+          "dense_score": 0.0,
+          "lexical_score": 0.75,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_d1c91d3597",
+          "page": 17,
+          "slide": null,
+          "score": 0.015873015873015872,
+          "dense_score": 0.6631,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f1f3c4e009",
+          "page": 8,
+          "slide": null,
+          "score": 0.015625,
+          "dense_score": 0.6593,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_1f3be3f7a8",
+          "page": 10,
+          "slide": null,
+          "score": 0.015384615384615385,
+          "dense_score": 0.6583,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        }
+      ],
+      "final_reranked_top5": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f7a0b03b62",
+          "page": 7,
+          "slide": null,
+          "score": 0.01639344262295082,
+          "dense_score": 0.6862,
+          "lexical_score": 0.75,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_9010fdbd95",
+          "page": 5,
+          "slide": null,
+          "score": 0.016129032258064516,
+          "dense_score": 0.0,
+          "lexical_score": 0.75,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_d1c91d3597",
+          "page": 17,
+          "slide": null,
+          "score": 0.015873015873015872,
+          "dense_score": 0.6631,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f1f3c4e009",
+          "page": 8,
+          "slide": null,
+          "score": 0.015625,
+          "dense_score": 0.6593,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_1f3be3f7a8",
+          "page": 10,
+          "slide": null,
+          "score": 0.015384615384615385,
+          "dense_score": 0.6583,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        }
+      ],
+      "sap_survives_final_context": false,
+      "final_context_placeholder_count": 0,
+      "context_chars": 13681
+    },
+    {
+      "label": "4",
+      "query": "What is the primary purpose of the study?",
+      "dense_limit": 20,
+      "excluded_placeholder_count": 120,
+      "raw_dense_top20": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_a391234a51",
+          "page": 4,
+          "slide": null,
+          "cosine": 0.6164216,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_a5f0626a0e",
+          "page": 43,
+          "slide": null,
+          "cosine": 0.61305183,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_6aece63d8a",
+          "page": 6,
+          "slide": null,
+          "cosine": 0.6098288,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_462394cd4e",
+          "page": 11,
+          "slide": null,
+          "cosine": 0.6050457,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_d1c91d3597",
+          "page": 17,
+          "slide": null,
+          "cosine": 0.6026794,
+          "placeholder_only": false
+        },
+        {
+          "rank": 6,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f7a0b03b62",
+          "page": 7,
+          "slide": null,
+          "cosine": 0.6020596,
+          "placeholder_only": false
+        },
+        {
+          "rank": 7,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_e0c1023dfd",
+          "page": 19,
+          "slide": null,
+          "cosine": 0.6010912,
+          "placeholder_only": false
+        },
+        {
+          "rank": 8,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_1f3be3f7a8",
+          "page": 10,
+          "slide": null,
+          "cosine": 0.59905255,
+          "placeholder_only": false
+        },
+        {
+          "rank": 9,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_67222548af",
+          "page": 119,
+          "slide": null,
+          "cosine": 0.5985401,
+          "placeholder_only": false
+        },
+        {
+          "rank": 10,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_5863853205",
+          "page": 121,
+          "slide": null,
+          "cosine": 0.59734595,
+          "placeholder_only": false
+        },
+        {
+          "rank": 11,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_4bfbff44ea",
+          "page": 16,
+          "slide": null,
+          "cosine": 0.5965272,
+          "placeholder_only": false
+        },
+        {
+          "rank": 12,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_9de4abd6aa",
+          "page": 2,
+          "slide": null,
+          "cosine": 0.5940496,
+          "placeholder_only": false
+        },
+        {
+          "rank": 13,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_ccebeb82d5",
+          "page": 15,
+          "slide": null,
+          "cosine": 0.59338987,
+          "placeholder_only": false
+        },
+        {
+          "rank": 14,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_11377cc373",
+          "page": 23,
+          "slide": null,
+          "cosine": 0.58987576,
+          "placeholder_only": false
+        },
+        {
+          "rank": 15,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_10630e0da6",
+          "page": 21,
+          "slide": null,
+          "cosine": 0.58632827,
+          "placeholder_only": false
+        },
+        {
+          "rank": 16,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_6f33fdd02b",
+          "page": 20,
+          "slide": null,
+          "cosine": 0.5859458,
+          "placeholder_only": false
+        },
+        {
+          "rank": 17,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_f867845048",
+          "page": null,
+          "slide": 4,
+          "cosine": 0.58410954,
+          "placeholder_only": false
+        },
+        {
+          "rank": 18,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_ca0da581a3",
+          "page": null,
+          "slide": 4,
+          "cosine": 0.58410954,
+          "placeholder_only": false
+        },
+        {
+          "rank": 19,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_db12d63469",
+          "page": 120,
+          "slide": null,
+          "cosine": 0.5785694,
+          "placeholder_only": false
+        },
+        {
+          "rank": 20,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_5e92961f8f",
+          "page": null,
+          "slide": 3,
+          "cosine": 0.57842714,
+          "placeholder_only": false
+        }
+      ],
+      "substantive_document_ids_in_dense_top20": [
+        "doc_3ca7a20cb73b",
+        "doc_cf57d6670b15",
+        "doc_e2842eeb2cb3"
+      ],
+      "sap_dense_positions": [
+        2,
+        9,
+        10,
+        15,
+        19
+      ],
+      "best_sap_substantive": {
+        "rank": 2,
+        "document_id": "doc_3ca7a20cb73b",
+        "title": "SAP_Redacted_pdfa-v1",
+        "chunk_id": "chk_a5f0626a0e",
+        "page": 43,
+        "slide": null,
+        "cosine": 0.61305183,
+        "placeholder_only": false
+      },
+      "pre_rrf_candidates": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_83442accfe",
+          "page": 14,
+          "slide": null,
+          "score": 0.85,
+          "dense_score": 0.0,
+          "lexical_score": 0.75,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_a391234a51",
+          "page": 4,
+          "slide": null,
+          "score": 0.7582108000000001,
+          "dense_score": 0.6164,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_6aece63d8a",
+          "page": 6,
+          "slide": null,
+          "score": 0.7549143999999999,
+          "dense_score": 0.6098,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_462394cd4e",
+          "page": 11,
+          "slide": null,
+          "score": 0.7525228500000001,
+          "dense_score": 0.605,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_d1c91d3597",
+          "page": 17,
+          "slide": null,
+          "score": 0.7513396999999999,
+          "dense_score": 0.6027,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 6,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f7a0b03b62",
+          "page": 7,
+          "slide": null,
+          "score": 0.7510298,
+          "dense_score": 0.6021,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 7,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_e0c1023dfd",
+          "page": 19,
+          "slide": null,
+          "score": 0.7505455999999999,
+          "dense_score": 0.6011,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 8,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_1f3be3f7a8",
+          "page": 10,
+          "slide": null,
+          "score": 0.749526275,
+          "dense_score": 0.5991,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 9,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_4bfbff44ea",
+          "page": 16,
+          "slide": null,
+          "score": 0.7482636,
+          "dense_score": 0.5965,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 10,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_ccebeb82d5",
+          "page": 15,
+          "slide": null,
+          "score": 0.7466949350000001,
+          "dense_score": 0.5934,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        }
+      ],
+      "post_rrf_top5": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_83442accfe",
+          "page": 14,
+          "slide": null,
+          "score": 0.01639344262295082,
+          "dense_score": 0.0,
+          "lexical_score": 0.75,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_a391234a51",
+          "page": 4,
+          "slide": null,
+          "score": 0.016129032258064516,
+          "dense_score": 0.6164,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_6aece63d8a",
+          "page": 6,
+          "slide": null,
+          "score": 0.015873015873015872,
+          "dense_score": 0.6098,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_462394cd4e",
+          "page": 11,
+          "slide": null,
+          "score": 0.015625,
+          "dense_score": 0.605,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_d1c91d3597",
+          "page": 17,
+          "slide": null,
+          "score": 0.015384615384615385,
+          "dense_score": 0.6027,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        }
+      ],
+      "final_reranked_top5": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_83442accfe",
+          "page": 14,
+          "slide": null,
+          "score": 0.01639344262295082,
+          "dense_score": 0.0,
+          "lexical_score": 0.75,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_a391234a51",
+          "page": 4,
+          "slide": null,
+          "score": 0.016129032258064516,
+          "dense_score": 0.6164,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_6aece63d8a",
+          "page": 6,
+          "slide": null,
+          "score": 0.015873015873015872,
+          "dense_score": 0.6098,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_462394cd4e",
+          "page": 11,
+          "slide": null,
+          "score": 0.015625,
+          "dense_score": 0.605,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_d1c91d3597",
+          "page": 17,
+          "slide": null,
+          "score": 0.015384615384615385,
+          "dense_score": 0.6027,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        }
+      ],
+      "sap_survives_final_context": false,
+      "final_context_placeholder_count": 0,
+      "context_chars": 12962
+    },
+    {
+      "label": "Regression",
+      "query": "What is a project manager?",
+      "dense_limit": 20,
+      "excluded_placeholder_count": 120,
+      "raw_dense_top20": [
+        {
+          "rank": 1,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_957860ad0e",
+          "page": null,
+          "slide": 6,
+          "cosine": 0.53122133,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_2ef94e244e",
+          "page": null,
+          "slide": 6,
+          "cosine": 0.53122133,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_786b3da1fb",
+          "page": null,
+          "slide": 2,
+          "cosine": 0.50520945,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_496d9bb308",
+          "page": null,
+          "slide": 2,
+          "cosine": 0.50520945,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_5e92961f8f",
+          "page": null,
+          "slide": 3,
+          "cosine": 0.49437767,
+          "placeholder_only": false
+        },
+        {
+          "rank": 6,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_62f403d9a8",
+          "page": null,
+          "slide": 3,
+          "cosine": 0.49437767,
+          "placeholder_only": false
+        },
+        {
+          "rank": 7,
+          "document_id": "doc_5ceea85f298b",
+          "title": "coordin8-q3-verification",
+          "chunk_id": "chk_7b3c392cc5",
+          "page": null,
+          "slide": null,
+          "cosine": 0.45627674,
+          "placeholder_only": false
+        },
+        {
+          "rank": 8,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_ca0da581a3",
+          "page": null,
+          "slide": 4,
+          "cosine": 0.45449406,
+          "placeholder_only": false
+        },
+        {
+          "rank": 9,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_f867845048",
+          "page": null,
+          "slide": 4,
+          "cosine": 0.45449406,
+          "placeholder_only": false
+        },
+        {
+          "rank": 10,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_ef03dd69f3",
+          "page": null,
+          "slide": 5,
+          "cosine": 0.45042992,
+          "placeholder_only": false
+        },
+        {
+          "rank": 11,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_61cb3a73c5",
+          "page": null,
+          "slide": 5,
+          "cosine": 0.45042992,
+          "placeholder_only": false
+        },
+        {
+          "rank": 12,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_356182c7a9",
+          "page": null,
+          "slide": 7,
+          "cosine": 0.44457024,
+          "placeholder_only": false
+        },
+        {
+          "rank": 13,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_b1627c5a2e",
+          "page": null,
+          "slide": 7,
+          "cosine": 0.44457024,
+          "placeholder_only": false
+        },
+        {
+          "rank": 14,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_67222548af",
+          "page": 119,
+          "slide": null,
+          "cosine": 0.43780535,
+          "placeholder_only": false
+        },
+        {
+          "rank": 15,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_d39e1debda",
+          "page": null,
+          "slide": 1,
+          "cosine": 0.42913878,
+          "placeholder_only": false
+        },
+        {
+          "rank": 16,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_e043a5ec43",
+          "page": null,
+          "slide": 1,
+          "cosine": 0.42913878,
+          "placeholder_only": false
+        },
+        {
+          "rank": 17,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_b070aaddbc",
+          "page": 172,
+          "slide": null,
+          "cosine": 0.42804247,
+          "placeholder_only": false
+        },
+        {
+          "rank": 18,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_4778572633",
+          "page": 171,
+          "slide": null,
+          "cosine": 0.4233316,
+          "placeholder_only": false
+        },
+        {
+          "rank": 19,
+          "document_id": "doc_3ca7a20cb73b",
+          "title": "SAP_Redacted_pdfa-v1",
+          "chunk_id": "chk_157f371880",
+          "page": 179,
+          "slide": null,
+          "cosine": 0.4232878,
+          "placeholder_only": false
+        },
+        {
+          "rank": 20,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_f1f3c4e009",
+          "page": 8,
+          "slide": null,
+          "cosine": 0.42223465,
+          "placeholder_only": false
+        }
+      ],
+      "substantive_document_ids_in_dense_top20": [
+        "doc_3ca7a20cb73b",
+        "doc_5ceea85f298b",
+        "doc_cf57d6670b15",
+        "doc_e2842eeb2cb3"
+      ],
+      "sap_dense_positions": [
+        14,
+        17,
+        18,
+        19
+      ],
+      "best_sap_substantive": {
+        "rank": 14,
+        "document_id": "doc_3ca7a20cb73b",
+        "title": "SAP_Redacted_pdfa-v1",
+        "chunk_id": "chk_67222548af",
+        "page": 119,
+        "slide": null,
+        "cosine": 0.43780535,
+        "placeholder_only": false
+      },
+      "pre_rrf_candidates": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_c18f593fdd",
+          "page": 1,
+          "slide": null,
+          "score": 0.7,
+          "dense_score": 0.0,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_786b3da1fb",
+          "page": null,
+          "slide": 2,
+          "score": 0.577604725,
+          "dense_score": 0.5052,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_496d9bb308",
+          "page": null,
+          "slide": 2,
+          "score": 0.577604725,
+          "dense_score": 0.5052,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_5e92961f8f",
+          "page": null,
+          "slide": 3,
+          "score": 0.572188835,
+          "dense_score": 0.4944,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_62f403d9a8",
+          "page": null,
+          "slide": 3,
+          "score": 0.572188835,
+          "dense_score": 0.4944,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 6,
+          "document_id": "doc_5ceea85f298b",
+          "title": "coordin8-q3-verification",
+          "chunk_id": "chk_7b3c392cc5",
+          "page": null,
+          "slide": null,
+          "score": 0.5531383700000001,
+          "dense_score": 0.4563,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 7,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_957860ad0e",
+          "page": null,
+          "slide": 6,
+          "score": 0.371854931,
+          "dense_score": 0.5312,
+          "lexical_score": 0.0,
+          "placeholder_only": false
+        },
+        {
+          "rank": 8,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_2ef94e244e",
+          "page": null,
+          "slide": 6,
+          "score": 0.371854931,
+          "dense_score": 0.5312,
+          "lexical_score": 0.0,
+          "placeholder_only": false
+        },
+        {
+          "rank": 9,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_f867845048",
+          "page": null,
+          "slide": 4,
+          "score": 0.31814584199999996,
+          "dense_score": 0.4545,
+          "lexical_score": 0.0,
+          "placeholder_only": false
+        },
+        {
+          "rank": 10,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_ca0da581a3",
+          "page": null,
+          "slide": 4,
+          "score": 0.31814584199999996,
+          "dense_score": 0.4545,
+          "lexical_score": 0.0,
+          "placeholder_only": false
+        }
+      ],
+      "post_rrf_top5": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_c18f593fdd",
+          "page": 1,
+          "slide": null,
+          "score": 0.01639344262295082,
+          "dense_score": 0.0,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_786b3da1fb",
+          "page": null,
+          "slide": 2,
+          "score": 0.016129032258064516,
+          "dense_score": 0.5052,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_496d9bb308",
+          "page": null,
+          "slide": 2,
+          "score": 0.015873015873015872,
+          "dense_score": 0.5052,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_5e92961f8f",
+          "page": null,
+          "slide": 3,
+          "score": 0.015625,
+          "dense_score": 0.4944,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_62f403d9a8",
+          "page": null,
+          "slide": 3,
+          "score": 0.015384615384615385,
+          "dense_score": 0.4944,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        }
+      ],
+      "final_reranked_top5": [
+        {
+          "rank": 1,
+          "document_id": "doc_e2842eeb2cb3",
+          "title": "fda_22350s26_and_200678s28_saxagliptin_statistical_prea",
+          "chunk_id": "chk_c18f593fdd",
+          "page": 1,
+          "slide": null,
+          "score": 0.01639344262295082,
+          "dense_score": 0.0,
+          "lexical_score": 0.5,
+          "placeholder_only": false
+        },
+        {
+          "rank": 2,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_786b3da1fb",
+          "page": null,
+          "slide": 2,
+          "score": 0.016129032258064516,
+          "dense_score": 0.5052,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 3,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_496d9bb308",
+          "page": null,
+          "slide": 2,
+          "score": 0.015873015873015872,
+          "dense_score": 0.5052,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 4,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_5e92961f8f",
+          "page": null,
+          "slide": 3,
+          "score": 0.015625,
+          "dense_score": 0.4944,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        },
+        {
+          "rank": 5,
+          "document_id": "doc_cf57d6670b15",
+          "title": "POD5_AI_Regulatory_Writing_Copilot_Executive_Presentation (1)",
+          "chunk_id": "chk_62f403d9a8",
+          "page": null,
+          "slide": 3,
+          "score": 0.015384615384615385,
+          "dense_score": 0.4944,
+          "lexical_score": 0.25,
+          "placeholder_only": false
+        }
+      ],
+      "sap_survives_final_context": false,
+      "final_context_placeholder_count": 0,
+      "context_chars": 5515
+    }
+  ],
+  "catalog_unchanged": true,
+  "qdrant_writes": 0,
+  "groq_calls": 0
+}
