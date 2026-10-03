@@ -5,9 +5,14 @@
 
 // Global constants
 let appInitialized = false;
-let activeUser = null;
-let accessibleProjects = [];
-let chatUploadInProgress = false;
+const state = {
+  user: null,
+  projects: [],
+  selectedProjectId: sessionStorage.getItem('coordin8-project'),
+  currentPage: null,
+  loading: {},
+  errors: {},
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   initAuthentication();
@@ -32,15 +37,25 @@ function initAuthentication() {
     });
   }
   if (logoutButton) logoutButton.addEventListener('click', logout);
-  window.addEventListener('coordin8-auth-expired', () => showLogin('Your session has expired. Please sign in again.'));
+  window.addEventListener('coordin8-auth-expired', () => {
+    state.user = null;
+    state.projects = [];
+    state.selectedProjectId = null;
+    sessionStorage.removeItem('coordin8-project');
+    clearAuthenticatedData();
+    showLogin('Your session has expired. Please sign in again.');
+  });
   if (Coordin8Api.token) {
-    Coordin8Api.me().then(startAuthenticatedApp).catch(() => showLogin());
+    Coordin8Api.me().then(startAuthenticatedApp).catch(error => {
+      if (error.status !== 401) showLogin(error.message);
+    });
   } else showLogin();
 }
 
 async function startAuthenticatedApp(user) {
-  activeUser = user;
-  accessibleProjects = user.projects || [];
+  clearAuthenticatedData();
+  state.user = user;
+  state.projects = await Coordin8Api.projects();
   document.body.classList.add('authenticated');
   window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#/dashboard`);
   const userName = document.getElementById('user-name');
@@ -49,23 +64,21 @@ async function startAuthenticatedApp(user) {
   if (userRole) userRole.textContent = user.role.replaceAll('_', ' ');
 
   const projectSelect = document.getElementById('active-project');
-  const savedProject = Coordin8Api.activeProjectId;
+  const savedProject = state.selectedProjectId;
   if (projectSelect) {
-    projectSelect.innerHTML = accessibleProjects.map(project =>
-      `<option value="${escapeHtml(project.id)}">${escapeHtml(project.name)}</option>`
-    ).join('');
-    projectSelect.hidden = accessibleProjects.length === 0;
-    projectSelect.disabled = accessibleProjects.length < 2;
-    const selected = accessibleProjects.some(project => project.id === savedProject) ? savedProject : accessibleProjects[0]?.id;
-    Coordin8Api.setActiveProject(selected);
+    projectSelect.innerHTML = state.projects.map(project => `<option value="${escapeHtml(project.id)}">${escapeHtml(project.name)}</option>`).join('');
+    projectSelect.hidden = state.projects.length === 0;
+    projectSelect.disabled = state.projects.length < 2;
+    const selected = state.projects.some(project => project.id === savedProject) ? savedProject : state.projects[0]?.id || null;
+    setSelectedProject(selected);
     if (selected) projectSelect.value = selected;
     if (!projectSelect.dataset.bound) {
       projectSelect.addEventListener('change', async () => {
-        Coordin8Api.setActiveProject(projectSelect.value);
+        setSelectedProject(projectSelect.value || null);
         updateActiveProjectName();
         clearProjectChat();
-        await refreshProjectViews();
-        if (activeUser.role === 'ADMIN') await loadAdminManagement();
+        await refreshProjectViews({ clearProjectData: true });
+        if (['ADMIN', 'SUPER_ADMIN'].includes(state.user.role)) await loadAdminManagement();
       });
       projectSelect.dataset.bound = 'true';
     }
@@ -85,7 +98,7 @@ async function startAuthenticatedApp(user) {
     initProjectWorkflowViews();
     appInitialized = true;
   }
-  if (user.role === 'ADMIN') await loadAdminManagement();
+  if (['ADMIN', 'SUPER_ADMIN'].includes(user.role)) await loadAdminManagement();
   await refreshProjectViews();
   checkServerStatus();
 }
@@ -99,7 +112,20 @@ function showLogin(message = '') {
 
 function logout() {
   Coordin8Api.logout();
+  state.user = null;
+  state.projects = [];
+  state.selectedProjectId = null;
+  sessionStorage.removeItem('coordin8-project');
+  clearAuthenticatedData();
   showLogin();
+}
+
+function clearAuthenticatedData() {
+  clearProjectViewData();
+  clearProjectChat();
+  ['admin-projects-tbody', 'employees-tbody', 'employee-projects', 'task-owner'].forEach(id => document.getElementById(id)?.replaceChildren());
+  state.loading = {};
+  state.errors = {};
 }
 
 function initAdminManagement() {
@@ -109,15 +135,19 @@ function initAdminManagement() {
     projectForm.addEventListener('submit', async event => {
       event.preventDefault();
       const fields = new FormData(projectForm);
+      const submit = projectForm.querySelector('[type="submit"]');
+      submit.disabled = true;
       try {
         await Coordin8Api.createProject({ name: fields.get('name'), client: fields.get('client') || null });
         projectForm.reset();
         const user = await Coordin8Api.me();
         renderProjectOptions(user.projects);
-        await refreshProjectViews();
+        await refreshProjectViews({ clearProjectData: true });
         await loadAdminManagement();
       } catch (error) {
-        window.alert(error.message);
+        setViewState('admin-projects', 'error', error.message);
+      } finally {
+        submit.disabled = false;
       }
     });
     projectForm.dataset.bound = 'true';
@@ -127,6 +157,8 @@ function initAdminManagement() {
       event.preventDefault();
       const fields = new FormData(employeeForm);
       const status = document.getElementById('employee-form-status');
+      const submit = employeeForm.querySelector('[type="submit"]');
+      submit.disabled = true;
       try {
         await Coordin8Api.createEmployee({
           name: fields.get('name'),
@@ -140,6 +172,8 @@ function initAdminManagement() {
         await loadAdminManagement();
       } catch (error) {
         if (status) status.textContent = error.message;
+      } finally {
+        submit.disabled = false;
       }
     });
     employeeForm.dataset.bound = 'true';
@@ -147,6 +181,12 @@ function initAdminManagement() {
 }
 
 async function loadAdminManagement() {
+  if (!['ADMIN', 'SUPER_ADMIN'].includes(state.user?.role)) return;
+  const projectForm = document.getElementById('create-project-form');
+  if (projectForm) projectForm.hidden = state.user.role !== 'ADMIN';
+  const employeeForm = document.getElementById('create-employee-form');
+  const adminRoleOption = employeeForm?.querySelector('option[value="ADMIN"]');
+  if (adminRoleOption) adminRoleOption.hidden = state.user.role !== 'SUPER_ADMIN';
   setViewState('admin-projects', 'loading', 'Loading tenant projects...');
   setViewState('employees', 'loading', 'Loading employees...');
   try {
@@ -154,37 +194,63 @@ async function loadAdminManagement() {
     const employeeProjects = document.getElementById('employee-projects');
     const employeeRows = document.getElementById('employees-tbody');
     const projectRows = document.getElementById('admin-projects-tbody');
-    const projectMembers = await Promise.all(projects.map(project => Coordin8Api.getProjectMembers(project.id).catch(() => [])));
+    const projectMembers = await Promise.all(projects.map(project => Coordin8Api.getProjectMembers(project.id)));
     if (projectRows) {
       projectRows.innerHTML = projects.length ? projects.map((project, index) => {
         const members = projectMembers[index];
         const activeEmployees = employees.filter(employee => employee.is_active && !members.some(member => member.user_id === employee.id));
+        const editable = state.user.role === 'ADMIN';
         return `<tr>
-          <td><strong>${escapeHtml(project.name)}</strong></td>
-          <td>${escapeHtml(project.client || '—')}</td>
+          <td><input class="input-text project-name" data-project-id="${escapeHtml(project.id)}" value="${escapeHtml(project.name)}" aria-label="Project name" ${editable ? '' : 'disabled'}></td>
+          <td><input class="input-text project-client" data-project-id="${escapeHtml(project.id)}" value="${escapeHtml(project.client || '')}" aria-label="Client" ${editable ? '' : 'disabled'}></td>
           <td>${escapeHtml(project.status)}</td>
           <td>${members.length ? members.map(member => `<span class="member-chip">${escapeHtml(member.name)}<button type="button" class="remove-member" data-project-id="${escapeHtml(project.id)}" data-user-id="${escapeHtml(member.user_id)}" aria-label="Remove ${escapeHtml(member.name)}">×</button></span>`).join('') : '<span class="muted-label">No members</span>'}</td>
           <td><div class="member-assignment"><select class="input-text member-select" data-project-id="${escapeHtml(project.id)}"><option value="">Select employee</option>${activeEmployees.map(employee => `<option value="${escapeHtml(employee.id)}">${escapeHtml(employee.name)}</option>`).join('')}</select><button class="btn btn-secondary add-member" data-project-id="${escapeHtml(project.id)}" type="button" aria-label="Add member">Add</button></div></td>
+          <td>${editable ? `<button class="btn btn-secondary save-project" data-project-id="${escapeHtml(project.id)}" type="button">Save</button>` : ''}</td>
         </tr>`;
-      }).join('') : '<tr><td colspan="5" class="table-empty">No projects found for this tenant.</td></tr>';
+      }).join('') : '<tr><td colspan="6" class="table-empty">No projects found for this tenant.</td></tr>';
+      projectRows.querySelectorAll('.save-project').forEach(button => button.addEventListener('click', async () => {
+        const projectId = button.dataset.projectId;
+        const row = button.closest('tr');
+        button.disabled = true;
+        try {
+          await Coordin8Api.updateProject(projectId, {
+            name: row.querySelector('.project-name').value,
+            client: row.querySelector('.project-client').value || null,
+          });
+          state.projects = await Coordin8Api.projects();
+          renderProjectOptions(state.projects);
+          await loadAdminManagement();
+        } catch (error) {
+          setViewState('admin-projects', 'error', error.message);
+        } finally {
+          button.disabled = false;
+        }
+      }));
       projectRows.querySelectorAll('.add-member').forEach(button => button.addEventListener('click', async () => {
         const select = projectRows.querySelector(`.member-select[data-project-id="${button.dataset.projectId}"]`);
         if (!select?.value) return;
+        button.disabled = true;
         try {
           await Coordin8Api.addProjectMember(button.dataset.projectId, select.value);
           await loadAdminManagement();
           await refreshProjectViews();
         } catch (error) {
           setViewState('admin-projects', 'error', error.message);
+        } finally {
+          button.disabled = false;
         }
       }));
       projectRows.querySelectorAll('.remove-member').forEach(button => button.addEventListener('click', async () => {
+        button.disabled = true;
         try {
           await Coordin8Api.removeProjectMember(button.dataset.projectId, button.dataset.userId);
           await loadAdminManagement();
           await refreshProjectViews();
         } catch (error) {
           setViewState('admin-projects', 'error', error.message);
+        } finally {
+          button.disabled = false;
         }
       }));
       setViewState('admin-projects', projects.length ? 'clear' : 'empty', 'No projects found for this tenant.');
@@ -197,53 +263,65 @@ async function loadAdminManagement() {
     if (employeeRows) {
       employeeRows.innerHTML = employees.map(employee => {
         const names = projects.filter(project => employee.project_ids.includes(project.id)).map(project => project.name).join(', ');
-        const isCurrentUser = employee.id === activeUser.id;
-        const roleControl = employee.role === 'ADMIN' || isCurrentUser
+        const isCurrentUser = employee.id === state.user.id;
+        const roleControl = (employee.role === 'ADMIN' && state.user.role !== 'SUPER_ADMIN') || isCurrentUser
           ? escapeHtml(employee.role)
-          : `<select class="input-text employee-role" data-id="${escapeHtml(employee.id)}"><option value="MANAGER" ${employee.role === 'MANAGER' ? 'selected' : ''}>MANAGER</option><option value="TEAM_MEMBER" ${employee.role === 'TEAM_MEMBER' ? 'selected' : ''}>TEAM_MEMBER</option></select>`;
+          : `<select class="input-text employee-role" data-id="${escapeHtml(employee.id)}">${state.user.role === 'SUPER_ADMIN' ? `<option value="ADMIN" ${employee.role === 'ADMIN' ? 'selected' : ''}>ADMIN</option>` : ''}<option value="MANAGER" ${employee.role === 'MANAGER' ? 'selected' : ''}>MANAGER</option><option value="TEAM_MEMBER" ${employee.role === 'TEAM_MEMBER' ? 'selected' : ''}>TEAM_MEMBER</option></select>`;
         const accountAction = isCurrentUser ? '<span class="muted-label">Current account</span>' : `<button class="btn btn-secondary employee-toggle" data-id="${escapeHtml(employee.id)}" data-active="${employee.is_active}">${employee.is_active ? 'Deactivate' : 'Activate'}</button>`;
         return `<tr><td>${escapeHtml(employee.name)}</td><td>${escapeHtml(employee.email)}</td><td>${roleControl}</td><td>${escapeHtml(names || '—')}</td><td>${employee.is_active ? 'Active' : 'Inactive'}</td><td>${accountAction}</td></tr>`;
       }).join('');
       employeeRows.querySelectorAll('.employee-role').forEach(select => {
         select.addEventListener('change', async () => {
+          select.disabled = true;
           try {
             await Coordin8Api.updateEmployee(select.dataset.id, { role: select.value });
             await loadAdminManagement();
           } catch (error) {
-            window.alert(error.message);
+            setViewState('employees', 'error', error.message);
+          } finally {
+            select.disabled = false;
           }
         });
       });
       employeeRows.querySelectorAll('.employee-toggle').forEach(button => {
         button.addEventListener('click', async () => {
+          button.disabled = true;
           try {
             await Coordin8Api.updateEmployee(button.dataset.id, { is_active: button.dataset.active !== 'true' });
             await loadAdminManagement();
           } catch (error) {
-            window.alert(error.message);
+            setViewState('employees', 'error', error.message);
+          } finally {
+            button.disabled = false;
           }
         });
       });
       setViewState('employees', employees.length ? 'clear' : 'empty', 'No employees found.');
     }
   } catch (error) {
-    setViewState('employees', 'error', 'Unable to load tenant administration. Please try again.');
-    setViewState('admin-projects', 'error', 'Unable to load tenant projects. Please try again.');
+    setViewState('employees', 'error', error.message);
+    setViewState('admin-projects', 'error', error.message);
   }
 }
 
 function renderProjectOptions(projects) {
-  accessibleProjects = projects;
+  state.projects = projects;
   const selector = document.getElementById('active-project');
   if (!selector) return;
-  const current = Coordin8Api.activeProjectId;
+  const current = state.selectedProjectId;
   selector.innerHTML = projects.map(project => `<option value="${escapeHtml(project.id)}">${escapeHtml(project.name)}</option>`).join('');
   selector.hidden = projects.length === 0;
   selector.disabled = projects.length < 2;
-  const selected = projects.some(project => project.id === current) ? current : projects[0]?.id;
-  Coordin8Api.setActiveProject(selected);
+  const selected = projects.some(project => project.id === current) ? current : projects[0]?.id || null;
+  setSelectedProject(selected);
   if (selected) selector.value = selected;
   updateActiveProjectName();
+}
+
+function setSelectedProject(projectId) {
+  state.selectedProjectId = projectId || null;
+  if (state.selectedProjectId) sessionStorage.setItem('coordin8-project', state.selectedProjectId);
+  else sessionStorage.removeItem('coordin8-project');
 }
 
 function applyRoleNavigation(role) {
@@ -256,7 +334,7 @@ function applyRoleNavigation(role) {
 }
 
 function updateActiveProjectName() {
-  const project = accessibleProjects.find(item => item.id === Coordin8Api.activeProjectId);
+  const project = state.projects.find(item => item.id === state.selectedProjectId);
   const projectLabel = document.getElementById('active-project-name');
   const selector = document.getElementById('active-project');
   const dashboardTitle = document.getElementById('dashboard-project-title');
@@ -277,17 +355,24 @@ function initProjectWorkflowViews() {
     taskForm.addEventListener('submit', async event => {
       event.preventDefault();
       const fields = new FormData(taskForm);
+      const submit = taskForm.querySelector('[type="submit"]');
+      const projectId = state.selectedProjectId;
+      if (!projectId) return setViewState('deliverables', 'error', 'Select an accessible project before creating a task.');
+      submit.disabled = true;
+      setViewState('deliverables', 'loading', 'Saving task...');
       try {
         await Coordin8Api.createTask({
           title: fields.get('title'),
           owner_id: fields.get('owner_id') || null,
           due_date: fields.get('due_date') || null,
-        });
+        }, projectId);
+        if (state.selectedProjectId !== projectId) return;
         taskForm.reset();
         await refreshProjectViews();
-        await initDocumentsTable();
       } catch (error) {
-        window.alert(error.message);
+        if (state.selectedProjectId === projectId) setViewState('deliverables', 'error', error.message);
+      } finally {
+        submit.disabled = false;
       }
     });
     taskForm.dataset.bound = 'true';
@@ -296,42 +381,40 @@ function initProjectWorkflowViews() {
     meetingForm.addEventListener('submit', async event => {
       event.preventDefault();
       const status = document.getElementById('meeting-form-status');
+      const submit = meetingForm.querySelector('[type="submit"]');
+      const projectId = state.selectedProjectId;
+      if (!projectId) {
+        if (status) status.textContent = 'Select an accessible project before uploading a transcript.';
+        return;
+      }
+      submit.disabled = true;
+      if (status) status.textContent = 'Uploading transcript...';
       try {
-        await Coordin8Api.uploadMeeting(new FormData(meetingForm));
+        await Coordin8Api.uploadMeeting(new FormData(meetingForm), projectId);
+        if (state.selectedProjectId !== projectId) return;
         meetingForm.reset();
-        if (status) status.textContent = 'Transcript uploaded and indexed.';
+        if (status) status.textContent = 'Transcript uploaded.';
         await refreshProjectViews();
       } catch (error) {
-        if (status) status.textContent = error.message;
+        if (state.selectedProjectId === projectId && status) status.textContent = error.message;
+      } finally {
+        submit.disabled = false;
       }
     });
     meetingForm.dataset.bound = 'true';
   }
 }
 
-async function refreshProjectViews() {
-  const projectId = Coordin8Api.activeProjectId;
+async function refreshProjectViews({ clearProjectData = false } = {}) {
+  const projectId = state.selectedProjectId;
   const views = ['dashboard', 'deliverables', 'documents', 'meetings', 'team', 'reports', 'jira'];
+  if (clearProjectData || !projectId) clearProjectViewData();
   if (!projectId) {
-    views.forEach(view => setViewState(view, 'empty', 'Select an accessible project to view this information.'));
-    if (activeUser?.role === 'ADMIN') {
-      setViewState('dashboard', 'loading', 'Loading tenant overview...');
-      try {
-        const tenantDashboard = await Coordin8Api.dashboard();
-        renderDashboard(
-          { tasks: { total: 0, backlog: 0, in_progress: 0, review: 0, done: 0, at_risk: 0 }, upcoming_tasks: [] },
-          tenantDashboard,
-          [],
-          [],
-        );
-        setViewState('dashboard', 'clear');
-      } catch {
-        setViewState('dashboard', 'error', 'Unable to load tenant dashboard. Please try again.');
-      }
-    }
+    const message = state.projects.length ? 'Select an accessible project to view this information.' : 'No projects assigned.';
+    views.forEach(view => setViewState(view, 'empty', message));
     return;
   }
-  const canManage = activeUser && ['ADMIN', 'MANAGER'].includes(activeUser.role);
+  const canManage = state.user && ['ADMIN', 'MANAGER'].includes(state.user.role);
   const taskForm = document.getElementById('create-task-form');
   if (taskForm) taskForm.hidden = !canManage;
   const meetingForm = document.getElementById('meeting-upload-form');
@@ -339,19 +422,43 @@ async function refreshProjectViews() {
   views.forEach(view => setViewState(view, 'loading', `Loading ${view === 'jira' ? 'Jira metrics' : view}...`));
 
   const requests = [
-    Coordin8Api.projectDashboard(),
+    Coordin8Api.projectDashboard(projectId),
     Coordin8Api.dashboard(),
-    Coordin8Api.tasks(),
-    Coordin8Api.meetings(),
-    Coordin8Api.projectMembers(),
-    Coordin8Api.weeklyReport(),
-    Coordin8Api.documents(),
-    activeUser?.role === 'MANAGER' ? Coordin8Api.jiraMetrics() : Promise.resolve(null),
+    Coordin8Api.tasks(projectId),
+    Coordin8Api.meetings(projectId),
+    Coordin8Api.projectMembers(projectId),
+    Coordin8Api.weeklyReport(projectId),
+    Coordin8Api.documents(projectId),
+    ['ADMIN', 'MANAGER'].includes(state.user?.role) ? Coordin8Api.jiraMetrics(projectId) : Promise.resolve(null),
   ];
   const results = await Promise.allSettled(requests);
   const loaded = {};
   const requestNames = ['projectDashboard', 'roleDashboard', 'tasks', 'meetings', 'members', 'report', 'documents', 'jira'];
   results.forEach((item, index) => { loaded[requestNames[index]] = item; });
+  if (state.selectedProjectId !== projectId) return;
+
+  if (results.some(item => item.status === 'rejected' && item.reason?.status === 403)) {
+    try {
+      state.projects = await Coordin8Api.projects();
+      if (!state.projects.some(project => project.id === projectId)) {
+        const replacement = state.projects[0]?.id || null;
+        setSelectedProject(replacement);
+        const selector = document.getElementById('active-project');
+        if (selector) {
+          selector.innerHTML = state.projects.map(project => `<option value="${escapeHtml(project.id)}">${escapeHtml(project.name)}</option>`).join('');
+          selector.hidden = state.projects.length === 0;
+          selector.disabled = state.projects.length < 2;
+          if (replacement) selector.value = replacement;
+        }
+        updateActiveProjectName();
+        clearProjectChat();
+        await refreshProjectViews({ clearProjectData: true });
+        return;
+      }
+    } catch {
+      // Keep the per-view access errors visible if the authorized project list cannot be refreshed.
+    }
+  }
 
   const tasks = loaded.tasks.status === 'fulfilled' ? loaded.tasks.value : [];
   const meetings = loaded.meetings.status === 'fulfilled' ? loaded.meetings.value : [];
@@ -360,70 +467,103 @@ async function refreshProjectViews() {
   renderMeetings(meetings, canManage);
   renderTeam(members);
   renderTaskOwners(members);
-  if (loaded.projectDashboard.status === 'fulfilled' && loaded.roleDashboard.status === 'fulfilled') {
-    renderDashboard(loaded.projectDashboard.value, loaded.roleDashboard.value, tasks, meetings);
-    setViewState('dashboard', tasks.length ? 'clear' : 'empty', 'No project tasks or meetings yet.');
-  } else {
-    setViewState('dashboard', 'error', 'Unable to load project dashboard. Please try again.');
-  }
+  if (loaded.projectDashboard.status === 'fulfilled') {
+    renderDashboard(loaded.projectDashboard.value, loaded.roleDashboard.status === 'fulfilled' ? loaded.roleDashboard.value : null, tasks, meetings);
+    setViewState('dashboard', tasks.length || meetings.length ? 'clear' : 'empty', 'No project tasks or meetings yet.');
+  } else setViewState('dashboard', 'error', loaded.projectDashboard.reason?.message || 'Unable to load project dashboard. Please try again.');
   if (loaded.tasks.status === 'fulfilled') {
     setViewState('deliverables', tasks.length ? 'clear' : 'empty', 'No tasks found for this project.');
     renderTimeline(tasks);
-  } else setViewState('deliverables', 'error', 'Unable to load project tasks. Please try again.');
+  } else setViewState('deliverables', 'error', loaded.tasks.reason?.message || 'Unable to load project tasks. Please try again.');
   if (loaded.meetings.status === 'fulfilled') setViewState('meetings', meetings.length ? 'clear' : 'empty', 'No meetings found for this project.');
-  else setViewState('meetings', 'error', 'Unable to load project meetings. Please try again.');
+  else setViewState('meetings', 'error', loaded.meetings.reason?.message || 'Unable to load project meetings. Please try again.');
   if (loaded.members.status === 'fulfilled') setViewState('team', members.length ? 'clear' : 'empty', 'No team members are assigned to this project.');
-  else setViewState('team', 'error', 'Unable to load project team. Please try again.');
+  else setViewState('team', 'error', loaded.members.reason?.message || 'Unable to load project team. Please try again.');
   if (loaded.report.status === 'fulfilled') {
     renderWeeklyReport(loaded.report.value);
     setViewState('reports', 'clear');
-  } else setViewState('reports', 'error', 'Unable to load the weekly report. Please try again.');
+  } else setViewState('reports', 'error', loaded.report.reason?.message || 'Unable to load the weekly report. Please try again.');
   if (loaded.documents.status === 'fulfilled') {
     renderDocumentsView(loaded.documents.value);
     setViewState('documents', loaded.documents.value.length ? 'clear' : 'empty', 'No documents found for this project.');
-  } else setViewState('documents', 'error', 'Unable to load project documents. Please try again.');
-  if (activeUser?.role === 'MANAGER' && loaded.jira.status === 'fulfilled') {
+  } else setViewState('documents', 'error', loaded.documents.reason?.message || 'Unable to load project documents. Please try again.');
+  if (['ADMIN', 'MANAGER'].includes(state.user?.role) && loaded.jira.status === 'fulfilled') {
     renderJiraMetrics(loaded.jira.value);
     setViewState('jira', 'clear');
-  } else if (activeUser?.role === 'MANAGER') setViewState('jira', 'error', 'Unable to load demo Jira metrics. Please try again.');
+  } else if (['ADMIN', 'MANAGER'].includes(state.user?.role)) setViewState('jira', 'error', loaded.jira.reason?.message || 'Unable to load mock Jira metrics. Please try again.');
 }
 
-function setViewState(view, state, message = '') {
+function clearProjectViewData() {
+  state.tasks = [];
+  state.meetings = [];
+  ['tasks-backlog', 'tasks-in-progress', 'tasks-review', 'tasks-done', 'panel-documents-tbody', 'meetings-list', 'team-tbody', 'weekly-report', 'task-timeline'].forEach(id => document.getElementById(id)?.replaceChildren());
+  ['task-donut-total', 'task-total-label', 'completion-percent', 'meeting-count', 'review-count', 'my-task-count', 'jira-open', 'jira-sprint', 'jira-overdue', 'jira-progress'].forEach(id => {
+    const node = document.getElementById(id);
+    if (node) node.textContent = '—';
+  });
+  const completionBar = document.getElementById('completion-bar');
+  if (completionBar) completionBar.style.width = '0%';
+  const jiraBar = document.getElementById('jira-progress-bar');
+  if (jiraBar) jiraBar.style.width = '0%';
+  const donut = document.getElementById('task-donut');
+  if (donut) donut.style.background = 'conic-gradient(var(--border-subtle) 0 100%)';
+  ['dashboard-meetings', 'needs-review-list', 'my-task-list', 'task-chart-legend', 'deliverables-overview'].forEach(id => document.getElementById(id)?.replaceChildren());
+  const risk = document.getElementById('dashboard-risk-indicator');
+  if (risk) {
+    risk.textContent = state.selectedProjectId ? 'Loading project...' : 'No project selected';
+    risk.classList.remove('is-at-risk');
+  }
+  ['completion-caption', 'completion-breakdown', 'deliverables-totals', 'meeting-form-status'].forEach(id => {
+    const node = document.getElementById(id);
+    if (node) node.textContent = '';
+  });
+  const uploadStatus = document.getElementById('upload-status');
+  if (uploadStatus) {
+    uploadStatus.hidden = true;
+    uploadStatus.replaceChildren();
+  }
+  const sourcePanel = document.getElementById('document-source-panel');
+  if (sourcePanel) sourcePanel.hidden = true;
+}
+
+function setViewState(view, status, message = '') {
   const node = document.getElementById(`${view}-state`);
   if (!node) return;
-  node.hidden = state === 'clear';
-  node.dataset.state = state;
+  node.hidden = status === 'clear';
+  node.dataset.state = status;
   node.textContent = message;
+  state.loading[view] = status === 'loading';
+  if (status === 'error') state.errors[view] = message;
+  else delete state.errors[view];
 }
 
 function renderDashboard(projectDashboard, roleDashboard, tasks, meetings) {
   const totals = { ...projectDashboard.tasks };
-  if (activeUser.role === 'ADMIN') Object.assign(totals, roleDashboard.tasks);
-  if (activeUser.role === 'TEAM_MEMBER') {
+  if (state.user.role === 'TEAM_MEMBER') {
     ['backlog', 'in_progress', 'review', 'done'].forEach(status => {
       totals[status] = tasks.filter(task => task.status === status.toUpperCase()).length;
     });
     totals.total = tasks.length;
     totals.at_risk = tasks.filter(task => task.risk).length;
   }
-  const mine = tasks.filter(task => task.owner_id === activeUser.id);
-  const riskCount = activeUser.role === 'ADMIN'
-    ? roleDashboard.at_risk_projects.length
-    : tasks.filter(task => task.risk).length;
+  const mine = tasks.filter(task => task.owner_id === state.user.id);
+  const riskCount = totals.at_risk || 0;
   const riskIndicator = document.getElementById('dashboard-risk-indicator');
   if (riskIndicator) {
-    riskIndicator.textContent = riskCount ? `${riskCount} ${activeUser.role === 'ADMIN' ? 'projects' : 'tasks'} at risk` : 'On track';
+    riskIndicator.textContent = riskCount ? `${riskCount} tasks at risk` : 'On track';
     riskIndicator.classList.toggle('is-at-risk', riskCount > 0);
   }
 
   const myTaskCount = document.getElementById('my-task-count');
   const myTaskTitle = document.getElementById('my-task-title');
   const myTaskList = document.getElementById('my-task-list');
-  if (myTaskTitle) myTaskTitle.textContent = activeUser.role === 'ADMIN' ? 'Tenant Overview' : 'My Tasks';
-  if (myTaskCount) myTaskCount.textContent = activeUser.role === 'ADMIN' ? roleDashboard.employee_count : mine.length;
+  if (myTaskTitle) myTaskTitle.textContent = state.user.role === 'ADMIN' ? 'Tenant Overview' : 'My Tasks';
+  if (myTaskCount) myTaskCount.textContent = state.user.role === 'ADMIN' ? roleDashboard?.employee_count ?? '—' : mine.length;
   if (myTaskList) {
-    if (activeUser.role === 'ADMIN') {
+    if (state.user.role === 'ADMIN' && roleDashboard) {
       myTaskList.innerHTML = `<div class="dashboard-metric-line"><span>Employees</span><strong>${roleDashboard.employee_count}</strong></div><div class="dashboard-metric-line"><span>Tenant projects</span><strong>${roleDashboard.project_count}</strong></div><div class="dashboard-metric-line"><span>Active projects</span><strong>${roleDashboard.active_projects}</strong></div>`;
+    } else if (state.user.role === 'ADMIN') {
+      myTaskList.innerHTML = '<div class="inline-empty">Tenant overview unavailable.</div>';
     } else if (!mine.length) {
       myTaskList.innerHTML = '<div class="inline-empty">No tasks assigned to you.</div>';
     } else {
@@ -461,14 +601,16 @@ function renderDashboard(projectDashboard, roleDashboard, tasks, meetings) {
   if (completionBar) completionBar.style.width = `${completion}%`;
   if (completionCaption) completionCaption.textContent = `${totals.done || 0} of ${total} deliverables complete`;
   const breakdown = document.getElementById('completion-breakdown');
-  if (breakdown) breakdown.textContent = `${totals.at_risk || 0} at risk · ${projectDashboard.upcoming_tasks.length} due soon`;
+  const overdueCount = tasks.filter(task => task.risk_reason === 'Task is overdue').length;
+  if (breakdown) breakdown.textContent = `${totals.at_risk || 0} at risk · ${projectDashboard.upcoming_tasks.length} due soon · ${overdueCount} overdue`;
 
   const meetingsNode = document.getElementById('dashboard-meetings');
   const meetingCount = document.getElementById('meeting-count');
-  if (meetingCount) meetingCount.textContent = meetings.length;
-  if (meetingsNode) meetingsNode.innerHTML = meetings.length
-    ? meetings.slice(0, 3).map(meeting => `<div class="dashboard-list-row"><strong>${escapeHtml(meeting.title)}</strong><span>${formatDate(meeting.created_at)}</span></div>`).join('')
-    : '<div class="inline-empty">No project meetings yet.</div>';
+  const activity = projectDashboard.recent_activity || [];
+  if (meetingCount) meetingCount.textContent = activity.length;
+  if (meetingsNode) meetingsNode.innerHTML = activity.length
+    ? activity.slice(0, 4).map(item => `<div class="dashboard-list-row"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.type)} · ${formatDate(item.created_at)}</span></div>`).join('')
+    : '<div class="inline-empty">No recent project activity.</div>';
 
   const needsReview = tasks.filter(task => task.status === 'REVIEW');
   const reviewCount = document.getElementById('review-count');
@@ -547,6 +689,7 @@ function formatDate(value) {
 }
 
 function renderTasks(tasks) {
+  state.tasks = tasks;
   const lanes = {
     BACKLOG: 'tasks-backlog',
     IN_PROGRESS: 'tasks-in-progress',
@@ -560,7 +703,7 @@ function renderTasks(tasks) {
   tasks.forEach(task => {
     const lane = document.getElementById(lanes[task.status]);
     if (!lane) return;
-    const canUpdate = activeUser && (['ADMIN', 'MANAGER'].includes(activeUser.role) || task.owner_id === activeUser.id);
+    const canUpdate = state.user && (['ADMIN', 'MANAGER'].includes(state.user.role) || task.owner_id === state.user.id);
     const card = document.createElement('article');
     card.className = 'kanban-task';
     card.innerHTML = `
@@ -575,12 +718,22 @@ function renderTasks(tasks) {
         <option value="DONE" ${task.status === 'DONE' ? 'selected' : ''}>Done</option>
       </select>`;
     card.querySelector('.task-status-control').addEventListener('change', async event => {
+      const control = event.target;
+      control.disabled = true;
+      const projectId = state.selectedProjectId;
+      setViewState('deliverables', 'loading', 'Updating task...');
       try {
-        await Coordin8Api.updateTask(task.id, { status: event.target.value });
+        const updatedTask = await Coordin8Api.updateTask(task.id, { status: control.value });
+        if (state.selectedProjectId !== projectId) return;
+        state.tasks = state.tasks.map(item => item.id === updatedTask.id ? updatedTask : item);
+        renderTasks(state.tasks);
+        renderTimeline(state.tasks);
         await refreshProjectViews();
-        await initDocumentsTable();
       } catch (error) {
-        window.alert(error.message);
+        control.value = task.status;
+        if (state.selectedProjectId === projectId) setViewState('deliverables', 'error', error.message);
+      } finally {
+        if (control.isConnected) control.disabled = false;
       }
     });
     card.querySelector('.task-source')?.addEventListener('click', () => window.inspectDocument(task.source_document_id));
@@ -597,6 +750,7 @@ function renderTaskOwners(members) {
 }
 
 function renderMeetings(meetings, canManage) {
+  state.meetings = meetings;
   const container = document.getElementById('meetings-list');
   if (!container) return;
   if (meetings.length === 0) {
@@ -616,20 +770,34 @@ function renderMeetings(meetings, canManage) {
       ${canManage ? `<div class="meeting-actions"><button class="btn btn-secondary generate-mom" data-id="${escapeHtml(meeting.id)}">${meeting.summary ? 'Regenerate MoM' : 'Generate MoM'}</button></div>` : ''}
     </article>`).join('');
   container.querySelectorAll('.generate-mom').forEach(button => button.addEventListener('click', async () => {
+    const projectId = state.selectedProjectId;
+    button.disabled = true;
+    setViewState('meetings', 'loading', 'Generating MoM...');
     try {
-      await Coordin8Api.generateMom(button.dataset.id);
+      const updatedMeeting = await Coordin8Api.generateMom(button.dataset.id);
+      if (state.selectedProjectId !== projectId) return;
+      state.meetings = state.meetings.map(meeting => meeting.id === updatedMeeting.id ? updatedMeeting : meeting);
+      renderMeetings(state.meetings, canManage);
       await refreshProjectViews();
     } catch (error) {
-      window.alert(error.message);
+      if (state.selectedProjectId === projectId) setViewState('meetings', 'error', error.message);
+    } finally {
+      if (button.isConnected) button.disabled = false;
     }
   }));
   container.querySelectorAll('.action-to-task').forEach(button => button.addEventListener('click', async () => {
+    const projectId = state.selectedProjectId;
+    button.disabled = true;
+    setViewState('meetings', 'loading', 'Creating task from action item...');
     try {
-      await Coordin8Api.actionItemToTask(button.dataset.id);
+      const task = await Coordin8Api.actionItemToTask(button.dataset.id);
+      if (state.selectedProjectId !== projectId) return;
+      state.tasks = [...state.tasks.filter(item => item.id !== task.id), task];
       await refreshProjectViews();
-      await initDocumentsTable();
     } catch (error) {
-      window.alert(error.message);
+      if (state.selectedProjectId === projectId) setViewState('meetings', 'error', error.message);
+    } finally {
+      if (button.isConnected) button.disabled = false;
     }
   }));
 }
@@ -638,7 +806,7 @@ function renderTeam(members) {
   const tbody = document.getElementById('team-tbody');
   if (!tbody) return;
   tbody.innerHTML = members.map(member =>
-    `<tr><td>${escapeHtml(member.name)}</td><td>${escapeHtml(member.role.replaceAll('_', ' '))}</td><td>${member.active_tasks}</td></tr>`
+    `<tr><td>${escapeHtml(member.name)}</td><td>${escapeHtml(member.role.replaceAll('_', ' '))}</td><td>Active</td><td>${member.active_tasks}</td></tr>`
   ).join('');
 }
 
@@ -666,10 +834,14 @@ function initNavigation() {
     item.addEventListener('click', () => {
       if (item.hidden) return;
       const targetView = item.getAttribute('data-view');
+      if (!targetView) return;
+      const allowedRoles = (item.dataset.roles || '').split(',');
+      if (!state.user || !allowedRoles.includes(state.user.role)) return;
       navItems.forEach(i => i.classList.remove('active'));
       panels.forEach(p => p.classList.remove('active'));
 
       item.classList.add('active');
+      state.currentPage = targetView;
       const panel = document.getElementById(`panel-${targetView}`);
       if (panel) panel.classList.add('active');
 
@@ -677,7 +849,9 @@ function initNavigation() {
         pageTitle.textContent = item.querySelector('span').textContent;
       }
       window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#/${targetView}`);
-      if (targetView === 'admin-projects' || targetView === 'admin-employees') loadAdminManagement();
+      if (targetView === 'admin-projects' || targetView === 'admin-employees') {
+        if (['ADMIN', 'SUPER_ADMIN'].includes(state.user.role)) loadAdminManagement();
+      }
       if (targetView === 'documents' || targetView === 'dashboard' || targetView === 'deliverables' || targetView === 'meetings' || targetView === 'reports' || targetView === 'team' || targetView === 'jira') refreshProjectViews();
     });
   });
@@ -689,17 +863,19 @@ function initNavigation() {
 
 // Documents Table & Dashboard Metrics
 async function initDocumentsTable() {
-  if (!Coordin8Api.activeProjectId) {
+  const projectId = state.selectedProjectId;
+  if (!projectId) {
     setViewState('documents', 'empty', 'Select an accessible project to view documents.');
     return;
   }
   setViewState('documents', 'loading', 'Loading project documents...');
   try {
-    const documents = await Coordin8Api.documents();
+    const documents = await Coordin8Api.documents(projectId);
+    if (state.selectedProjectId !== projectId) return;
     renderDocumentsView(documents);
     setViewState('documents', documents.length ? 'clear' : 'empty', 'No documents found for this project.');
-  } catch {
-    setViewState('documents', 'error', 'Unable to load project documents. Please try again.');
+  } catch (error) {
+    if (state.selectedProjectId === projectId) setViewState('documents', 'error', error.message);
   }
 }
 
@@ -756,10 +932,10 @@ function initProjectChat() {
 
   form.addEventListener('submit', async event => {
     event.preventDefault();
-    if (chatUploadInProgress) return;
+    if (state.loading.chat || state.loading.upload) return;
     const query = searchInput.value.trim();
     if (!query) return;
-    const projectId = Coordin8Api.activeProjectId;
+    const projectId = state.selectedProjectId;
     if (!projectId) {
       setViewState('chat', 'error', 'Select an accessible project to ask a question.');
       return;
@@ -767,6 +943,7 @@ function initProjectChat() {
 
     appendChatMessage('user', query);
     searchInput.value = '';
+    state.loading.chat = true;
     searchInput.disabled = true;
     askBtn.disabled = true;
     setViewState('chat', 'clear');
@@ -778,11 +955,11 @@ function initProjectChat() {
 
     try {
       const data = await Coordin8Api.chat(query, projectId);
-      if (Coordin8Api.activeProjectId !== projectId) return;
+      if (state.selectedProjectId !== projectId) return;
       appendChatMessage('bot', data.answer, data.sources?.length ? data.sources : data.citations, data.grounded ?? Boolean(data.citations?.length));
       setViewState('chat', 'clear');
     } catch (error) {
-      if (Coordin8Api.activeProjectId !== projectId) return;
+      if (state.selectedProjectId !== projectId) return;
       const message = error.status === 403
         ? 'You do not have access to this project.'
         : error.status === 502
@@ -794,15 +971,17 @@ function initProjectChat() {
     }
     finally {
       thinking.remove();
+      state.loading.chat = false;
       searchInput.disabled = false;
       askBtn.disabled = false;
-      if (Coordin8Api.activeProjectId === projectId) searchInput.focus();
+      if (state.selectedProjectId === projectId) searchInput.focus();
     }
   });
 
   async function uploadChatDocument(file) {
-    const projectId = Coordin8Api.activeProjectId;
-    const project = accessibleProjects.find(item => item.id === projectId);
+    if (state.loading.upload) return;
+    const projectId = state.selectedProjectId;
+    const project = state.projects.find(item => item.id === projectId);
     const projectName = project?.name || 'the selected project';
     if (!uploadStatus) return;
     if (!projectId) {
@@ -811,7 +990,7 @@ function initProjectChat() {
       return;
     }
 
-    chatUploadInProgress = true;
+    state.loading.upload = true;
     uploadStatus.hidden = false;
     uploadStatus.textContent = `${file.name} · Uploading and indexing for ${projectName}...`;
     if (attachButton) attachButton.disabled = true;
@@ -822,18 +1001,18 @@ function initProjectChat() {
 
     try {
       const document = await Coordin8Api.uploadDocument(formData, projectId);
-      if (document.success !== true || String(document.status).toUpperCase() !== 'READY') {
-        throw new Error('The ingestion pipeline did not mark the document ready.');
-      }
-      if (Coordin8Api.activeProjectId !== projectId) return;
-      uploadStatus.textContent = `✓ ${file.name} is ready in ${projectName}. You can now ask questions about it.`;
+      if (state.selectedProjectId !== projectId) return;
+      const status = String(document.status || 'UNKNOWN').toUpperCase();
+      uploadStatus.textContent = document.success === false || status === 'FAILED'
+        ? `${file.name} · Failed: ${document.summary || 'The backend did not complete ingestion.'}`
+        : `${file.name} · ${status}. Uploaded to this project's knowledge base.`;
       await initDocumentsTable();
-    } catch {
-      if (Coordin8Api.activeProjectId === projectId) {
-        uploadStatus.textContent = `✕ ${file.name} could not be processed. Please try again.`;
+    } catch (error) {
+      if (state.selectedProjectId === projectId) {
+        uploadStatus.textContent = `${file.name} · ${error.message}`;
       }
     } finally {
-      chatUploadInProgress = false;
+      state.loading.upload = false;
       if (attachButton) attachButton.disabled = false;
       searchInput.disabled = false;
       askBtn.disabled = false;
@@ -954,12 +1133,7 @@ function initInspectorView() {
   }
 
   // Initial load
-  populateDocSelect().then(() => {
-    if (queryInput && !queryInput.value) {
-      queryInput.value = 'walmart receipt total';
-      inspectQuery('walmart receipt total');
-    }
-  });
+  populateDocSelect();
 }
 
 async function populateDocSelect() {
@@ -967,7 +1141,7 @@ async function populateDocSelect() {
   if (!docSelect) return;
 
   try {
-    const docs = await Coordin8Api.documents();
+    const docs = await Coordin8Api.documents(state.selectedProjectId);
     if (docs.length > 0) {
       docSelect.innerHTML = docs.map(d =>
         `<option value="${d.document_id}">${escapeHtml(d.title)} (${(d.file_type || 'doc').toUpperCase()}) — ${d.document_id}</option>`
@@ -998,7 +1172,7 @@ async function inspectQuery(query) {
   `;
 
   try {
-    const data = await Coordin8Api.search(query, 10);
+    const data = await Coordin8Api.search(query, state.selectedProjectId, 10);
     renderQueryInspectionResults(data, container, summaryBar);
     return;
   } catch (err) {
@@ -1010,7 +1184,7 @@ async function inspectQuery(query) {
   container.innerHTML = `
     <div style="text-align: center; padding: 32px; color: var(--text-muted); background: hsla(0, 84%, 60%, 0.08); border: 1px solid #ef4444; border-radius: var(--radius-sm);">
       <div style="font-size: 16px; font-weight: 600; margin-bottom: 6px; color: #f87171;">⚠️ Backend Search Unavailable</div>
-      <div style="font-size: 12px; color: var(--text-main);">${escapeHtml(Coordin8Api.activeProjectId ? 'Project search is currently unavailable.' : 'Select an accessible project to search.')}</div>
+      <div style="font-size: 12px; color: var(--text-main);">${escapeHtml(state.selectedProjectId ? 'Project search is currently unavailable.' : 'Select an accessible project to search.')}</div>
     </div>
   `;
 }
@@ -1105,7 +1279,7 @@ async function inspectDocumentHierarchy(docId) {
   `;
 
   try {
-    const data = await Coordin8Api.hierarchy(docId);
+    const data = await Coordin8Api.hierarchy(docId, state.selectedProjectId);
     renderDocumentHierarchyResults(data, container, summaryBar);
     return;
   } catch (err) {
@@ -1241,21 +1415,34 @@ function initUpload() {
   });
 
   async function uploadFile(file) {
+    if (state.loading.upload) return;
     if (!statusDiv) return;
+    const projectId = state.selectedProjectId;
+    if (!projectId) {
+      statusDiv.hidden = false;
+      statusDiv.textContent = 'Select an accessible project before uploading a document.';
+      return;
+    }
 
     statusDiv.hidden = false;
     statusDiv.textContent = `Uploading ${file.name}...`;
+    state.loading.upload = true;
+    fileInput.disabled = true;
 
     const formData = new FormData();
     formData.append('file', file);
 
     try {
-      const doc = await Coordin8Api.uploadDocument(formData);
-      const status = doc.status || (doc.success ? 'READY' : 'REGISTERED');
-      statusDiv.innerHTML = `<strong>${escapeHtml(file.name)}</strong> · <span class="badge ${status === 'READY' ? 'badge-ready' : 'badge-processing'}">${escapeHtml(status)}</span>${doc.summary ? `<p>${escapeHtml(doc.summary)}</p>` : ''}`;
+      const doc = await Coordin8Api.uploadDocument(formData, projectId);
+      if (state.selectedProjectId !== projectId) return;
+      const status = String(doc.status || 'UNKNOWN').toUpperCase();
+      statusDiv.innerHTML = `<strong>${escapeHtml(file.name)}</strong> · <span class="badge ${status === 'READY' ? 'badge-ready' : 'badge-processing'}">${escapeHtml(status)}</span>${doc.success === false ? '<p>Ingestion failed.</p>' : '<p>Uploaded to this project\'s knowledge base.</p>'}${doc.summary ? `<p>${escapeHtml(doc.summary)}</p>` : ''}`;
       await refreshProjectViews();
     } catch (error) {
-      statusDiv.textContent = error.message || 'Upload failed. Please try again.';
+      if (state.selectedProjectId === projectId) statusDiv.textContent = error.message || 'Upload failed. Please try again.';
+    } finally {
+      state.loading.upload = false;
+      fileInput.disabled = false;
     }
   }
 }
@@ -1284,7 +1471,7 @@ window.inspectDocument = async function(docId) {
   content.textContent = 'Loading source details...';
   panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
   try {
-    const document = await Coordin8Api.hierarchy(docId);
+    const document = await Coordin8Api.hierarchy(docId, state.selectedProjectId);
     if (title) title.textContent = document.title;
     content.innerHTML = `<p class="muted-copy">${escapeHtml(document.summary || 'No summary available.')}</p><p class="source-meta">${escapeHtml(document.file_type)} · ${escapeHtml(document.status)} · ${document.total_chunks} chunks</p>${document.sections.map(section => `<details class="source-section"><summary>${escapeHtml(section.section_id)} · ${section.chunks_count} chunks</summary>${section.chunks.map(chunk => `<pre>${escapeHtml(chunk.content)}</pre>`).join('')}</details>`).join('')}`;
   } catch (error) {

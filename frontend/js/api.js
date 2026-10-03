@@ -1,8 +1,34 @@
-const API_BASE = `http://${window.location.hostname || 'localhost'}:8000/api`;
+const API_PROTOCOL = window.location.protocol === 'https:' ? 'https:' : 'http:';
+const API_BASE = (window.COORDIN8_API_BASE || document.querySelector('meta[name="coordin8-api-base"]')?.content || `${API_PROTOCOL}//${window.location.hostname || '127.0.0.1'}:8000/api`).replace(/\/$/, '');
 
 const Coordin8Api = (() => {
   let token = sessionStorage.getItem('coordin8-token');
-  let activeProjectId = sessionStorage.getItem('coordin8-project');
+
+  function clearSession() {
+    token = null;
+    sessionStorage.removeItem('coordin8-token');
+  }
+
+  function errorMessage(detail, status) {
+    const defaults = {
+      403: 'You do not have permission to perform this action.',
+      404: 'The requested item was not found.',
+      409: 'This change conflicts with existing data.',
+      422: 'Please check the submitted information.',
+      429: 'Too many requests. Please wait and try again.',
+      500: 'The server encountered an error. Please try again.',
+      502: 'The AI service is currently unavailable. Please try again.',
+    };
+    if (status >= 500 && status !== 502) return defaults[status] || 'The server encountered an error. Please try again.';
+    if (typeof detail === 'string' && detail.trim()) return detail;
+    if (Array.isArray(detail)) {
+      return detail.map(item => {
+        const location = Array.isArray(item.loc) ? item.loc.filter(part => part !== 'body').join(' / ') : '';
+        return `${location ? `${location}: ` : ''}${item.msg || 'Invalid value'}`;
+      }).join(' ');
+    }
+    return defaults[status] || `Request failed (${status}).`;
+  }
 
   async function request(path, options = {}, authenticated = true) {
     const headers = new Headers(options.headers || {});
@@ -10,88 +36,90 @@ const Coordin8Api = (() => {
     if (options.body && !(options.body instanceof FormData) && !headers.has('Content-Type')) {
       headers.set('Content-Type', 'application/json');
     }
-    const response = await fetch(`${API_BASE}${path}`, { ...options, headers });
-    const data = await response.json().catch(() => ({}));
+
+    let response;
+    try {
+      response = await fetch(`${API_BASE}${path}`, { ...options, headers });
+    } catch (cause) {
+      const error = new Error('Unable to reach the Coordin8 backend. Check the connection and try again.');
+      error.kind = 'network';
+      error.cause = cause;
+      throw error;
+    }
+
+    const contentType = response.headers.get('content-type') || '';
+    const data = response.status === 204 ? null : contentType.includes('json')
+      ? await response.json().catch(() => null)
+      : await response.text().catch(() => '');
     if (!response.ok) {
       if (response.status === 401 && authenticated) {
         clearSession();
         window.dispatchEvent(new Event('coordin8-auth-expired'));
       }
-      if (response.status === 403) {
-        const error = new Error('You do not have access to this project.');
-        error.status = response.status;
-        throw error;
-      }
-      const error = new Error(data.detail || `Request failed (${response.status})`);
+      const detail = typeof data === 'object' && data !== null ? data.detail : data;
+      const error = new Error(errorMessage(detail, response.status));
       error.status = response.status;
       throw error;
     }
     return data;
   }
 
-  function clearSession() {
-    token = null;
-    activeProjectId = null;
-    sessionStorage.removeItem('coordin8-token');
-    sessionStorage.removeItem('coordin8-project');
-  }
+  const json = value => JSON.stringify(value);
+  const projectPath = (projectId, suffix = '') => {
+    if (!projectId) throw new Error('Select an accessible project first.');
+    return `/projects/${encodeURIComponent(projectId)}${suffix}`;
+  };
 
-  function requireProject() {
-    if (!activeProjectId) throw new Error('Select an accessible project first.');
-    return activeProjectId;
-  }
-
-  return {
+  const api = {
+    get: (path, authenticated = true) => request(path, {}, authenticated),
+    post: (path, body, authenticated = true) => request(path, { method: 'POST', body: json(body) }, authenticated),
+    patch: (path, body) => request(path, { method: 'PATCH', body: json(body) }),
+    put: (path, body) => request(path, { method: 'PUT', body: json(body) }),
+    delete: path => request(path, { method: 'DELETE' }),
+    upload: (path, form) => request(path, { method: 'POST', body: form }),
     get token() { return token; },
-    get activeProjectId() { return activeProjectId; },
-    setActiveProject(id) {
-      activeProjectId = id || null;
-      if (activeProjectId) sessionStorage.setItem('coordin8-project', activeProjectId);
-      else sessionStorage.removeItem('coordin8-project');
-    },
     async login(email, password) {
-      const result = await request('/auth/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-      }, false);
+      const result = await api.post('/auth/login', { email, password }, false);
       token = result.access_token;
       sessionStorage.setItem('coordin8-token', token);
       try {
-        return await this.me();
+        return await api.me();
       } catch (error) {
         clearSession();
         throw error;
       }
     },
-    me: () => request('/auth/me'),
-    logout() { clearSession(); },
-    health: () => request('/health', {}, false),
-    projects: () => request('/projects'),
-    createProject: project => request('/projects', { method: 'POST', body: JSON.stringify(project) }),
-    getProject: id => request(`/projects/${encodeURIComponent(id)}`),
-    updateProject: (id, changes) => request(`/projects/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify(changes) }),
-    documents: (projectId = requireProject()) => request(`/projects/${encodeURIComponent(projectId)}/documents`),
-    uploadDocument: (form, projectId = requireProject()) => request(`/projects/${encodeURIComponent(projectId)}/documents`, { method: 'POST', body: form }),
-    chat: (message, projectId = requireProject()) => request(`/projects/${encodeURIComponent(projectId)}/chat`, { method: 'POST', body: JSON.stringify({ message }) }),
-    search: (query, limit = 10) => request(`/projects/${requireProject()}/search`, { method: 'POST', body: JSON.stringify({ query, limit }) }),
-    hierarchy: documentId => request(`/projects/${requireProject()}/documents/${encodeURIComponent(documentId)}/hierarchy`),
-    dashboard: () => request('/dashboard'),
-    projectDashboard: () => request(`/projects/${requireProject()}/dashboard`),
-    tasks: () => request(`/projects/${requireProject()}/tasks`),
-    createTask: task => request(`/projects/${requireProject()}/tasks`, { method: 'POST', body: JSON.stringify(task) }),
-    updateTask: (id, changes) => request(`/tasks/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify(changes) }),
-    meetings: () => request(`/projects/${requireProject()}/meetings`),
-    uploadMeeting: form => request(`/projects/${requireProject()}/meetings`, { method: 'POST', body: form }),
-    generateMom: id => request(`/meetings/${encodeURIComponent(id)}/generate-mom`, { method: 'POST' }),
-    actionItemToTask: id => request(`/action-items/${encodeURIComponent(id)}/tasks`, { method: 'POST' }),
-    employees: () => request('/employees'),
-    createEmployee: employee => request('/employees', { method: 'POST', body: JSON.stringify(employee) }),
-    updateEmployee: (id, changes) => request(`/employees/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify(changes) }),
-    projectMembers: () => request(`/projects/${requireProject()}/members`),
-    getProjectMembers: projectId => request(`/projects/${encodeURIComponent(projectId)}/members`),
-    addProjectMember: (projectId, userId) => request(`/projects/${encodeURIComponent(projectId)}/members`, { method: 'POST', body: JSON.stringify({ user_id: userId }) }),
-    removeProjectMember: (projectId, userId) => request(`/projects/${encodeURIComponent(projectId)}/members/${encodeURIComponent(userId)}`, { method: 'DELETE' }),
-    weeklyReport: () => request(`/projects/${requireProject()}/reports/weekly`),
-    jiraMetrics: () => request(`/projects/${requireProject()}/jira-metrics`),
+    me: () => api.get('/auth/me'),
+    logout: clearSession,
+    health: () => api.get('/health', false),
+    projects: () => api.get('/projects'),
+    createProject: project => api.post('/projects', project),
+    getProject: id => api.get(`/projects/${encodeURIComponent(id)}`),
+    updateProject: (id, changes) => api.patch(`/projects/${encodeURIComponent(id)}`, changes),
+    documents: projectId => api.get(projectPath(projectId, '/documents')),
+    uploadDocument: (form, projectId) => api.upload(projectPath(projectId, '/documents'), form),
+    chat: (message, projectId) => api.post(`${projectPath(projectId)}/chat`, { message }),
+    search: (query, projectId, limit = 10) => api.post(`${projectPath(projectId)}/search`, { query, limit }),
+    hierarchy: (documentId, projectId) => api.get(`${projectPath(projectId, `/documents/${encodeURIComponent(documentId)}/hierarchy`)}`),
+    dashboard: () => api.get('/dashboard'),
+    projectDashboard: projectId => api.get(projectPath(projectId, '/dashboard')),
+    tasks: projectId => api.get(projectPath(projectId, '/tasks')),
+    createTask: (task, projectId) => api.post(projectPath(projectId, '/tasks'), task),
+    updateTask: (id, changes) => api.patch(`/tasks/${encodeURIComponent(id)}`, changes),
+    meetings: projectId => api.get(projectPath(projectId, '/meetings')),
+    uploadMeeting: (form, projectId) => api.upload(projectPath(projectId, '/meetings'), form),
+    generateMom: id => api.post(`/meetings/${encodeURIComponent(id)}/generate-mom`),
+    actionItemToTask: id => api.post(`/action-items/${encodeURIComponent(id)}/tasks`),
+    employees: () => api.get('/employees'),
+    createEmployee: employee => api.post('/employees', employee),
+    updateEmployee: (id, changes) => api.patch(`/employees/${encodeURIComponent(id)}`, changes),
+    projectMembers: projectId => api.get(projectPath(projectId, '/members')),
+    getProjectMembers: projectId => api.get(projectPath(projectId, '/members')),
+    addProjectMember: (projectId, userId) => api.post(projectPath(projectId, '/members'), { user_id: userId }),
+    removeProjectMember: (projectId, userId) => api.delete(`${projectPath(projectId, '/members')}/${encodeURIComponent(userId)}`),
+    weeklyReport: projectId => api.get(projectPath(projectId, '/reports/weekly')),
+    jiraMetrics: projectId => api.get(projectPath(projectId, '/jira-metrics')),
   };
+
+  return api;
 })();

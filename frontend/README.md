@@ -10,7 +10,9 @@ Start the backend from `backend/`, then serve this directory:
 python -m http.server 3000
 ```
 
-Open `http://localhost:3000`. Sign in with an account created by an administrator or the local development seed. The selected project list comes from `/api/auth/me`; project chat, tasks, meetings, documents, reports, team, and Jira requests all use that selection.
+Open `http://localhost:3000`. Sign in with an account created by an administrator or the local development seed. The authenticated user and role come from `/api/auth/me`; authorized projects come from `/api/projects`. Project chat, tasks, meetings, documents, reports, team, and Jira requests use the selected project.
+
+The API base defaults to the frontend host on port `8000` with the `/api` prefix. For another backend host, set the `coordin8-api-base` meta tag in `index.html` to the full API base URL, for example `https://api.example.com/api`.
 
 ## Screens
 

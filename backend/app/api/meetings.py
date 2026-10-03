@@ -19,6 +19,25 @@ kb_manager = KnowledgeBaseManager()
 llm_client = LLMClient()
 
 
+def resolve_owner(db: Session, project_id: str, owner_label: str | None) -> User | None:
+    """Match an AI owner label to one active project member; ambiguous labels stay unresolved."""
+    label = " ".join((owner_label or "").split()).casefold()
+    if not label:
+        return None
+    members = (
+        db.query(User)
+        .join(ProjectMember, ProjectMember.user_id == User.id)
+        .filter(ProjectMember.project_id == project_id, User.is_active.is_(True))
+        .all()
+    )
+    exact = [m for m in members if " ".join(m.name.split()).casefold() == label or m.email.casefold() == label]
+    if exact:
+        return exact[0] if len(exact) == 1 else None
+    label_tokens = label.split()
+    partial = [m for m in members if m.name.casefold().split()[: len(label_tokens)] == label_tokens]
+    return partial[0] if len(partial) == 1 else None
+
+
 def meeting_payload(db: Session, meeting: Meeting) -> dict:
     actions = db.query(ActionItem).filter(ActionItem.meeting_id == meeting.id).order_by(ActionItem.created_at).all()
     return {
@@ -149,18 +168,7 @@ def generate_mom(
         if action_text.casefold() in converted_texts:
             continue
         owner_label = raw.get("owner") if isinstance(raw.get("owner"), str) else None
-        owner = None
-        if owner_label:
-            owner = (
-                db.query(User)
-                .join(ProjectMember, ProjectMember.user_id == User.id)
-                .filter(
-                    ProjectMember.project_id == project.id,
-                    User.is_active.is_(True),
-                    User.name.ilike(owner_label.strip()),
-                )
-                .first()
-            )
+        owner = resolve_owner(db, project.id, owner_label)
         due_date = None
         if raw.get("due_date"):
             try:
@@ -197,6 +205,9 @@ def convert_action_item_to_task(
         task = db.query(Task).filter(Task.id == action.task_id).first()
         if task:
             return task_payload(task, db)
+    if not action.owner_id and action.owner_label:
+        owner = resolve_owner(db, project.id, action.owner_label)
+        action.owner_id = owner.id if owner else None
     task = Task(
         id=str(uuid4()),
         project_id=project.id,

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coordin8 — Project Delivery Workspace</title>
   <meta name="description" content="Project delivery, team collaboration, meeting minutes, and project-scoped knowledge chat.">
+  <meta name="coordin8-api-base" content="">
   <link rel="stylesheet" href="css/styles.css?v=2.2">
 </head>
 <body>
@@ -34,44 +35,44 @@
     </div>
 
     <ul class="nav-menu">
-      <li class="nav-item active" data-view="dashboard" id="nav-dashboard" data-roles="ADMIN,MANAGER,TEAM_MEMBER">
+      <li class="nav-item active" data-view="dashboard" id="nav-dashboard" data-roles="ADMIN,SUPER_ADMIN,MANAGER,TEAM_MEMBER">
         <svg viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
         <span>Dashboard</span>
       </li>
-      <li class="nav-item" data-view="deliverables" id="nav-deliverables" data-roles="MANAGER,TEAM_MEMBER">
+      <li class="nav-item" data-view="deliverables" id="nav-deliverables" data-roles="ADMIN,SUPER_ADMIN,MANAGER,TEAM_MEMBER">
         <svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="16" rx="1"/><rect x="14" y="4" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="6" rx="1"/></svg>
         <span>Deliverables</span>
       </li>
-      <li class="nav-item" data-view="meetings" id="nav-meetings" data-roles="MANAGER,TEAM_MEMBER">
+      <li class="nav-item" data-view="meetings" id="nav-meetings" data-roles="ADMIN,SUPER_ADMIN,MANAGER,TEAM_MEMBER">
         <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3M8 17h7"/></svg>
         <span>Minutes of Meeting</span>
       </li>
-      <li class="nav-item" data-view="reports" id="nav-reports" data-roles="ADMIN,MANAGER">
+      <li class="nav-item" data-view="reports" id="nav-reports" data-roles="ADMIN,SUPER_ADMIN,MANAGER">
         <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h17M8 16v-5M13 16V7M18 16v-8"/></svg>
         <span>Reports</span>
       </li>
-      <li class="nav-item" data-view="team" id="nav-team" data-roles="ADMIN,MANAGER,TEAM_MEMBER">
+      <li class="nav-item" data-view="team" id="nav-team" data-roles="ADMIN,SUPER_ADMIN,MANAGER,TEAM_MEMBER">
         <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1M16 5.5a3 3 0 0 1 0 5.8M18 14a5 5 0 0 1 3 4.6V20"/></svg>
         <span>Team</span>
       </li>
-      <li class="nav-item" data-view="documents" id="nav-documents" data-roles="MANAGER,TEAM_MEMBER">
+      <li class="nav-item" data-view="documents" id="nav-documents" data-roles="ADMIN,SUPER_ADMIN,MANAGER,TEAM_MEMBER">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         <span>Documents</span>
       </li>
-      <li class="nav-item" data-view="chat" id="nav-search" data-roles="MANAGER,TEAM_MEMBER">
+      <li class="nav-item" data-view="chat" id="nav-search" data-roles="ADMIN,SUPER_ADMIN,MANAGER,TEAM_MEMBER">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <span>Chat</span>
       </li>
-      <li class="nav-item" data-view="jira" id="nav-jira" data-roles="MANAGER">
+      <li class="nav-item" data-view="jira" id="nav-jira" data-roles="ADMIN,MANAGER">
         <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h17M8 16v-5M13 16V7M18 16v-8"/></svg>
         <span>Jira Metrics</span>
       </li>
-      <li class="nav-item nav-section-label" data-roles="ADMIN" id="nav-admin-label" hidden><span>ADMINISTRATION</span></li>
-      <li class="nav-item" data-view="admin-employees" id="nav-admin-employees" data-roles="ADMIN" hidden>
+      <li class="nav-item nav-section-label" data-roles="ADMIN,SUPER_ADMIN" id="nav-admin-label" hidden><span>ADMINISTRATION</span></li>
+      <li class="nav-item" data-view="admin-employees" id="nav-admin-employees" data-roles="ADMIN,SUPER_ADMIN" hidden>
         <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
         <span>Employees</span>
       </li>
-      <li class="nav-item" data-view="admin-projects" id="nav-admin-projects" data-roles="ADMIN" hidden>
+      <li class="nav-item" data-view="admin-projects" id="nav-admin-projects" data-roles="ADMIN,SUPER_ADMIN" hidden>
         <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
         <span>Projects</span>
       </li>
@@ -123,7 +124,7 @@
             <div class="completion-breakdown" id="completion-breakdown"></div>
           </article>
           <article class="card-panel dashboard-card meetings-card">
-            <div class="card-header"><h2 class="card-title">My Meetings</h2><span class="muted-label" id="meeting-count">—</span></div>
+            <div class="card-header"><h2 class="card-title">Recent Activity</h2><span class="muted-label" id="meeting-count">—</span></div>
             <div id="dashboard-meetings" class="dashboard-list"></div>
           </article>
           <article class="card-panel dashboard-card review-card">
@@ -223,7 +224,7 @@
         <div class="card-panel">
           <div class="card-header"><h2 class="card-title">Project team</h2></div>
           <div class="table-container">
-            <table><thead><tr><th>Name</th><th>Role</th><th>Active Tasks</th></tr></thead><tbody id="team-tbody"></tbody></table>
+            <table><thead><tr><th>Name</th><th>Role</th><th>Status</th><th>Active Tasks</th></tr></thead><tbody id="team-tbody"></tbody></table>
           </div>
         </div>
       </section>
@@ -351,14 +352,8 @@
             <!-- Query Mode Controls -->
             <div id="inspector-query-controls">
               <div style="display: flex; gap: 10px; margin-top: 8px;">
-                <input type="text" class="input-text" id="inspector-query-input" placeholder="Type query to trace retrieval lineage (e.g., 'walmart receipt total', 'manager agent proposal')...">
+                <input type="text" class="input-text" id="inspector-query-input" placeholder="Search this project's retrieval index...">
                 <button class="btn btn-primary" id="btn-inspect-query" style="white-space: nowrap;">Inspect Lineage</button>
-              </div>
-              <div class="inspector-chips">
-                <span style="font-size: 11px; color: var(--text-dim);">Quick test queries:</span>
-                <button class="inspector-chip-btn" data-query="walmart receipt total">walmart receipt total</button>
-                <button class="inspector-chip-btn" data-query="manager agent proposal">manager agent proposal</button>
-                <button class="inspector-chip-btn" data-query="robot learning architecture">robot learning architecture</button>
               </div>
             </div>
 
@@ -394,7 +389,7 @@
             <button class="btn btn-primary" type="submit">Create Project</button>
           </form>
           <div class="table-container">
-            <table><thead><tr><th>Project</th><th>Client</th><th>Status</th><th>Members</th><th>Add member</th></tr></thead><tbody id="admin-projects-tbody"></tbody></table>
+            <table><thead><tr><th>Project</th><th>Client</th><th>Status</th><th>Members</th><th>Add member</th><th>Actions</th></tr></thead><tbody id="admin-projects-tbody"></tbody></table>
           </div>
         </div>
       </section>
@@ -413,7 +408,7 @@
             <label>Name<input class="input-text" name="name" required maxlength="255"></label>
             <label>Email<input class="input-text" name="email" type="email" required></label>
             <label>Temporary password<input class="input-text" name="temporary_password" type="password" minlength="8" required></label>
-            <label>Role<select class="input-text" name="role"><option value="MANAGER">Manager</option><option value="TEAM_MEMBER">Team Member</option></select></label>
+            <label>Role<select class="input-text" name="role"><option value="MANAGER">Manager</option><option value="TEAM_MEMBER">Team Member</option><option value="ADMIN">Admin</option></select></label>
             <label>Projects<select class="input-text" name="project_ids" id="employee-projects" multiple size="3"></select></label>
             <button class="btn btn-primary" type="submit">Create Employee</button>
             <div id="employee-form-status" role="status"></div>

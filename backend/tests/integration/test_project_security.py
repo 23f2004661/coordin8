@@ -525,3 +525,141 @@ def test_action_item_conversion_enforces_task_foreign_key():
             if is_sqlite:
                 connection.exec_driver_sql("PRAGMA foreign_keys = OFF")
                 connection.commit()
+
+
+def add_named_member(tenant_id: str, project_id: str, name: str, role: str = "TEAM_MEMBER") -> str:
+    with SessionLocal() as db:
+        user = User(
+            tenant_id=tenant_id,
+            name=name,
+            email=f"{uuid4()}@example.com",
+            password_hash=hash_password("project-test-password"),
+            role=role,
+            is_active=True,
+        )
+        db.add(user)
+        db.flush()
+        db.add(ProjectMember(project_id=project_id, user_id=user.id, project_role="MEMBER"))
+        db.commit()
+        return user.id
+
+
+def test_mom_action_item_owners_propagate_to_tasks_and_survive_reload(monkeypatch):
+    manager_id, tenant_id, token = create_identity(role="MANAGER")
+    project_id = create_project(tenant_id, member_id=manager_id)
+    anjali_id = add_named_member(tenant_id, project_id, "Anjali Gupta", role="MANAGER")
+    tarang_id = add_named_member(tenant_id, project_id, "Tarang Jhaveri")
+    with SessionLocal() as db:
+        meeting = Meeting(
+            id=str(uuid4()),
+            project_id=project_id,
+            title="Q3 Client Review",
+            transcript_text="Manager: Anjali will own the client status report, and Tarang will own the onboarding checklist.",
+            created_by=manager_id,
+        )
+        db.add(meeting)
+        db.commit()
+        meeting_id = meeting.id
+
+    from app.api import meetings as meeting_api
+
+    generated = {
+        "summary": "Client review preparation.",
+        "decisions": [],
+        "action_items": [
+            {"text": "Complete onboarding checklist and send to Anjali", "owner": "Tarang Jhaveri", "due_date": None},
+            {"text": "Prepare client status report for client review", "owner": "Anjali", "due_date": None},
+            {"text": "Validate onboarding tracker", "owner": "tarang", "due_date": None},
+        ],
+    }
+    monkeypatch.setattr(meeting_api.llm_client, "generate_completion", lambda *_args: __import__("json").dumps(generated))
+    client = TestClient(app)
+    headers = {"Authorization": f"Bearer {token}"}
+    mom = client.post(f"/api/meetings/{meeting_id}/generate-mom", headers=headers)
+    assert mom.status_code == 200
+    actions = {item["text"]: item for item in mom.json()["action_items"]}
+    expected = {
+        "Complete onboarding checklist and send to Anjali": (tarang_id, "Tarang Jhaveri"),
+        "Prepare client status report for client review": (anjali_id, "Anjali Gupta"),
+        "Validate onboarding tracker": (tarang_id, "Tarang Jhaveri"),
+    }
+    for text, (owner_id, owner_name) in expected.items():
+        assert actions[text]["owner_id"] == owner_id
+        created = client.post(f"/api/action-items/{actions[text]['id']}/tasks", headers=headers)
+        assert created.status_code == 201
+        assert created.json()["owner_id"] == owner_id
+        assert created.json()["owner_name"] == owner_name
+
+    reloaded = client.get(f"/api/projects/{project_id}/tasks", headers=headers)
+    assert reloaded.status_code == 200
+    by_title = {task["title"]: task for task in reloaded.json()}
+    for text, (owner_id, owner_name) in expected.items():
+        assert by_title[text]["owner_id"] == owner_id
+        assert by_title[text]["owner_name"] == owner_name
+    meetings = client.get(f"/api/projects/{project_id}/meetings", headers=headers)
+    assert {item["text"]: item["owner_id"] for item in meetings.json()[0]["action_items"]} == {
+        text: owner_id for text, (owner_id, _) in expected.items()
+    }
+
+
+def test_action_item_conversion_resolves_stored_owner_label():
+    manager_id, tenant_id, token = create_identity(role="MANAGER")
+    project_id = create_project(tenant_id, member_id=manager_id)
+    anjali_id = add_named_member(tenant_id, project_id, "Anjali Gupta", role="MANAGER")
+    with SessionLocal() as db:
+        meeting = Meeting(
+            id=str(uuid4()),
+            project_id=project_id,
+            title="Q3 Client Review",
+            transcript_text="Anjali will own the client status report.",
+            created_by=manager_id,
+        )
+        db.add(meeting)
+        db.flush()
+        action = ActionItem(
+            id=str(uuid4()),
+            meeting_id=meeting.id,
+            project_id=project_id,
+            text="Prepare client status report for client review",
+            owner_label="Anjali",
+        )
+        db.add(action)
+        db.commit()
+        action_id = action.id
+
+    client = TestClient(app)
+    headers = {"Authorization": f"Bearer {token}"}
+    created = client.post(f"/api/action-items/{action_id}/tasks", headers=headers)
+    assert created.status_code == 201
+    assert created.json()["owner_id"] == anjali_id
+    reloaded = client.get(f"/api/projects/{project_id}/tasks", headers=headers)
+    assert reloaded.json()[0]["owner_name"] == "Anjali Gupta"
+    with SessionLocal() as db:
+        assert db.get(ActionItem, action_id).owner_id == anjali_id
+
+
+def test_ambiguous_action_item_owner_label_stays_unassigned(monkeypatch):
+    manager_id, tenant_id, token = create_identity(role="MANAGER")
+    project_id = create_project(tenant_id, member_id=manager_id)
+    add_named_member(tenant_id, project_id, "Anjali Gupta")
+    add_named_member(tenant_id, project_id, "Anjali Rao")
+    with SessionLocal() as db:
+        meeting = Meeting(
+            id=str(uuid4()),
+            project_id=project_id,
+            title="Ambiguous owner",
+            transcript_text="Anjali will prepare the report.",
+            created_by=manager_id,
+        )
+        db.add(meeting)
+        db.commit()
+        meeting_id = meeting.id
+
+    from app.api import meetings as meeting_api
+
+    generated = {"summary": "s", "decisions": [], "action_items": [{"text": "Prepare report", "owner": "Anjali", "due_date": None}]}
+    monkeypatch.setattr(meeting_api.llm_client, "generate_completion", lambda *_args: __import__("json").dumps(generated))
+    mom = TestClient(app).post(f"/api/meetings/{meeting_id}/generate-mom", headers={"Authorization": f"Bearer {token}"})
+    assert mom.status_code == 200
+    assert mom.json()["action_items"][0]["owner_id"] is None
+    assert mom.json()["action_items"][0]["owner_label"] == "Anjali"
